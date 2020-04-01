@@ -1,3 +1,3 @@
 # Research CV
 
-Template is for an academic CV.
+Templates are for an academic CV.
