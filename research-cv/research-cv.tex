@@ -1,0 +1,361 @@
+%Research CV template for academics and researchers
+%@TheDoctorRAB
+\documentclass[letter,oneside,english,10pt,headinclude,headsepline]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{bold-extra}
+\usepackage{bibentry}
+\usepackage{filecontents}
+\usepackage[yyyymmdd]{datetime} %set preferred date format
+\renewcommand{\dateseparator}{.} %set preferred date separator
+
+\makeatletter %makes section in block caps with large font \section*{}
+\renewcommand
+\section{\@startsection{section}{1}%
+  \z@{1.5\linespacing}{.25\linespacing}%
+  {\bfseries\scshape\large\raggedright}}
+
+\makeatletter %makes section in block caps with normal font \subsection*{}
+\renewcommand
+\subsection{\@startsection{subsection}{1}%
+  \z@{.75\linespacing}{.25\linespacing}%
+  {\bfseries\scshape\raggedright}}
+
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhf{} %page number on bottom right
+\lhead{\scriptsize Title Name} %title and name
+\chead{\scriptsize \textit{Vita}} %maybe something more specific here if desired
+\rhead{\scriptsize \today} %date
+\rfoot{\thepage} %page number
+
+\title{Name}
+
+%peer reviewed journal papers
+\begin{filecontents}{peer-reviewed.bib} 
+    @article{
+        pr1,
+        author = {},
+        journal = {},
+        pages = {},
+        title = {{}},
+        volume = {},
+        year = {}
+    }
+\end{filecontents}
+
+%books and book contributions
+\begin{filecontents}{book-contribution.bib}
+    @book{
+        bk1,
+        author = {},
+        title = {{}},
+        year = {},
+        publisher = {{}}
+        isbn = {}
+    }
+\end{filecontents}
+
+%conference proceedings
+\begin{filecontents}{conference-proceedings.bib}
+    @conference{
+        cf1,
+        author = {},
+        title = {{}},
+        year = {},
+        organization = {},
+        address = {}
+    }
+\end{filecontents}
+
+%reports, misc, non-refeered
+\begin{filecontents}{reports.bib}
+    @misc{
+        rp1,
+        author = {},
+        title = {{}},
+        institution = {},
+        year = {}
+    }
+\end{filecontents}
+
+%conference presentations - not the same as invited talks 
+\begin{filecontents}{conference-presentations.bib}
+    @conference{
+        cf1,
+        author = {},
+        title = {{}},
+        year = {},
+        organization = {},
+        address = {}
+    }
+\end{filecontents}
+
+\begin{document}
+
+%.bib files to create
+\nobibliography{peer-reviewed,book-contribution,conference-proceedings,reports,conference-presentations} 
+
+%.bst file
+\bibliographystyle{} %custom bst file
+
+\thispagestyle{fancy}
+
+\begin{center}{
+        \textsc{ %block caps font
+            \textbf{
+                Name\\
+                {\footnotesize Title} \\
+                {\footnotesize Institution $\sq$ Department} \\
+                {\footnotesize Address} \\
+                {\footnotesize email $\sq$ twitter $\sq$ phone} 
+            }
+        }
+    }
+\end{center}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
+\section*{Education}
+\noindent\textbf{University}\\
+\textbf{Doctor of Philosophy $\sq$ Major} \hfill{\textit{Date}}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textit{Dissertation: }
+    \item[]Examination fields: 
+    \item[]Committee: 
+\end{itemize}
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University}\\
+\textbf{Master of Science $\sq$ Major} \hfill{\textit{Date}}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textit{Thesis: }
+    \item[]Advisor: 
+\end{itemize}
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University}\\
+\textbf{Bachelor of Science $\sq$ Major and distinction(s)} \hfill{\textit{}}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textit{Capstone: }
+    \item[] Advisor: 
+\end{itemize}
+
+\section*{Research Experience} %academic positions
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title} \hfill{\textit{From - To}}\\
+Brief summary 
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title} \hfill{\textit{From - To}}\\
+Brief summary 
+
+\section*{Related Research Experience} %like internships
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title} \hfill{\textit{From - To}}\\
+Brief summary 
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title} \hfill{\textit{From - To}}\\
+Brief summary 
+
+\section*{Related Professional Experience} %anything else
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title} \hfill{\textit{From - To}}\\
+Brief summary 
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title} \hfill{\textit{From - To}}\\
+Brief summary 
+
+\section*{Awarded Projects} %chronologically
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.15ex,partopsep=1ex,parsep=1ex]
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\section*{Thesis Committees}
+\subsection*{Major Professor} %or adviser, whatever the official title is
+\noindent\textit{Current}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]Student Name, Degree - Topic
+\end{itemize}
+\vspace*{.75\baselineskip}
+
+\noindent\textit{Graduates}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]Student Name, Degree - Thesis Title 
+\end{itemize}
+
+\subsection*{Member}
+\noindent\textit{Graduates}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]Student Name, Degree - Thesis Title 
+\end{itemize}
+
+\section*{Refereed Journal Publications}
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.15ex,partopsep=1ex,parsep=1ex]
+    \item\bibentry{pr1}.
+\end{enumerate}
+
+\section*{Book Contribution}
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.15ex,partopsep=1ex,parsep=1ex]
+    \item\bibentry{bk1}.
+\end{enumerate}
+
+\section*{Refereed Conference Proceedings}
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.15ex,partopsep=1ex,parsep=1ex]
+    \item\bibentry{cf1}.
+\end{enumerate}
+
+\section*{Non-Refereed Technical Reports}
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.15ex,partopsep=1ex,parsep=1ex]
+    \item\bibentry{rp1}.
+\end{enumerate}
+
+\section*{Conference Presentations}
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.15ex,partopsep=1ex,parsep=1ex]
+    \item\bibentry{cf1}.
+\end{enumerate}
+
+\section*{Teaching Experience}
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title}\\ 
+\textit{Course Number: Title \hfill{Semester}}\\
+Summary
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title}\\ 
+\textit{Course Number: Title \hfill{Semester}}\\
+Summary
+
+\section*{Related Teaching Experience} %for TA, etc.
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title}\\ 
+\textit{Course Number: Title \hfill{Semester}}\\
+Summary
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University/Institution $\sq$ Location $\sq$ Department}\\
+\textbf{Title}\\ 
+\textit{Course Number: Title \hfill{Semester}}\\
+Summary
+
+\section*{Professional Service} 
+\subsection*{University/Institution} %department/college related activities
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]
+\end{itemize}
+
+\subsection*{Academic Search Committees}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textit{Year}
+    \item[]Search committee %don't say it was a failed search 
+            \vspace{.05in}
+    \item[]\textit{Year}
+    \item[]Search committee %don't say it was a failed search 
+\end{itemize}
+
+\subsection*{Peer Reviewer}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textit{Regular periods} %for journals/conferences on a regular basis
+    \item[] 
+            \vspace{.05in}
+    \item[]\textit{Year} %specific one-time reviewing
+    \item[] 
+            \vspace{.05in}
+    \item[]\textit{Year} %specific one-time reviewing
+    \item[] 
+\end{itemize}
+
+\subsection*{Conference Committees}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=.05ex,partopsep=1ex,parsep=1ex]
+    \item[]
+\end{itemize}
+
+\subsection*{Technical Session Organizer}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=.05ex,partopsep=1ex,parsep=1ex]
+    \item[]
+\end{itemize}
+
+\subsection*{Technical Session Chair}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=.05ex,partopsep=1ex,parsep=1ex]
+    \item[]
+\end{itemize}
+
+\subsection*{Symposia Organizer}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=.05ex,partopsep=1ex,parsep=1ex]
+    \item[]
+\end{itemize}
+
+\subsection*{Invited Talks}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textit{University/Institution $\sq$ Department} %speaking at graduate orientation, etc.
+    \item[]Title $\sq$ Purpose \hfill{\textit{Dates}}
+        \vspace{.05in}
+    \item[]\textit{Seminars} %typical department seminar talks
+    \item[]University/Institution Department \hfill{\textit{Date}}
+        \vspace{.05in}
+    \item[]\textit{Lightning Talks} %throw everything in there 
+    \item[]Talk \hfill{\textit{Date}}
+        \vspace{.05in}
+    \item[]\textit{Outreach}
+    \item[]Event \hfill{\textit{Date}}
+        \vspace{.05in}
+    \item[]\textit{Lectures} %invited to lecture in a course
+    \item[]University/Institution - Course or topic \hfill{\textit{Date}}
+\end{itemize}
+
+\subsection*{Community Service}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textit{Event} \hfill{\textit{Date}}
+    \item[]Summary 
+        \vspace{.05in}
+    \item[]\textit{Event} \hfill{\textit{Date}}
+    \item[]Summary 
+\end{itemize}
+
+\subsection*{Outreach and Related Professional Activities} %career fairs, etc.
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]Event \hfill{\textit{Date}}
+\end{itemize}
+
+\subsection*{Professional Training}
+\noindent\textbf{University/Institution}\\
+\textbf{Role}\\
+\textit{Title of Event} \hfill{\textit{Date}}\\
+Summary
+\vspace*{.75\baselineskip}
+
+\noindent\textbf{University/Institution}\\
+\textbf{Role}\\
+\textit{Title of Event} \hfill{\textit{Date}}\\
+Summary
+
+\subsection*{Awards and Fellowships}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textbf{University/Institution}
+    \item[]Award or fellowship \hfill{\textit{Date}}
+        \vspace{.05in}
+    \item[]\textbf{University/Institution}
+    \item[]Award or fellowship \hfill{\textit{Date}}
+
+\subsection*{Professional Societies and Positions}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]\textbf{Society}
+    \item[]Position \hfill{\textit{From - To}}
+        \vspace{.05in}
+    \item[]\textbf{Society}
+    \item[]Position \hfill{\textit{From - To}}
+\end{itemize}
+
+\end{document}
