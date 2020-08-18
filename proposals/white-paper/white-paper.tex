@@ -1,4 +1,7 @@
-\documentclass[11pt,a4paper]{article}
+%@TheDoctorRAB
+%Standard white paper/preproposal format when there is a page limit
+%neup.bst designed to use numbered citations in order of appearance, short author list
+\documentclass[11pt,letterpaper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
 \usepackage[pagewise]{lineno} %line numbering
 \usepackage{setspace}
@@ -13,12 +16,15 @@
 \graphicspath{{../img/}}
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{caption}
-\captionsetup[table]{skip=11pt} %sets a space after table caption
+\captionsetup[table]{skip=0pt} %sets a space after table caption
 \usepackage{times}
 \usepackage{enumitem}
-\usepackage[labelfont=bf]{caption}
+%\usepackage[labelfont=bf]{caption}
 
-\usepackage[round]{natbib} %parenthesis instead of brackets for inline citations
+\usepackage[numbers]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
+\setlength{\bibsep}{0pt} %sets space between references
+\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\renewcommand\bibpreamble{\vspace{-0.2\baselineskip}} %sets spacing after heading if not using default references heading
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -76,9 +82,9 @@
     \label{tab-timeframe}
 \end{table}
 
-% uncomment to prepare references
-%\bibliographystyle{}
-%\setlength{\bibhang}{0pt}
-%\bibliography{}
+\noindent\textbf{References}
+\bibliographystyle{neup}
+\setlength{\bibhang}{0pt}
+\bibliography{references}
 
 \end{document}
