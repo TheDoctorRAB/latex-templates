@@ -1,9 +1,12 @@
-\documentclass[11pt,a4paper]{article}
+%@TheDoctorRAB
+%Standard white paper/preproposal format when there is a page limit
+%neup.bst designed to use numbered citations in order of appearance, short author list
+\documentclass[11pt,letterpaper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
 \usepackage[pagewise]{lineno} %line numbering
 \usepackage{setspace}
 \usepackage{ulem} %strikethrough
-\usepackage{xcolor} %change font color
+\usepackage{xcolor,colortbl} %change font color
 \usepackage{graphicx}
 \usepackage{filecontents}
 \usepackage{tablefootnote}
@@ -12,13 +15,27 @@
 \renewcommand{\dateseparator}{.}
 \graphicspath{{../img/}}
 \setcounter{secnumdepth}{5} %set subsection to nth level
-\usepackage{caption}
-\captionsetup[table]{skip=11pt} %sets a space after table caption
 \usepackage{times}
 \usepackage{enumitem}
-\usepackage[labelfont=bf]{caption}
+%\usepackage[labelfont=bf]{caption}
 
-\usepackage[round]{natbib} %parenthesis instead of brackets for inline citations
+\usepackage[singlelinecheck=false]{caption}
+\captionsetup[table]{skip=0pt} %sets a space after table caption
+\captionsetup[figure]{skip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+
+\usepackage{wrapfig}
+\setlength{\intextsep}{0.10mm}
+\setlength{\columnsep}{0.10mm}
+
+\usepackage[numbers]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
+\setlength{\bibsep}{0pt} %sets space between references
+\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\renewcommand\bibpreamble{\vspace{-0.2\baselineskip}} %sets spacing after heading if not using default references heading
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -37,6 +54,9 @@
 \begin{center}\textbf{Title}\end{center}\\
 
 \noindent\textbf{Summary of the Proposed Project.} 
+\\
+
+\noindent\textbf{Motivation.}
 \\
 
 \noindent\textbf{Overall Objective.}
@@ -61,24 +81,58 @@
 
 \begin{table}[h!]
     \centering
-    \caption{Timeframe for Execution of Proposed Project.}
-    \begin{tabular}{|l|l|l|l|l|l|}
+    \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
         \hline
-        \textbf{Tasks} & \textbf{M} & \textbf{M} & \textbf{M} & \textbf{M} & \textbf{M} \\
+        \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{TASKS}}}& 
+        \multicolumn{4}{|c|}{\textbf{Y1}}&
+        \multicolumn{4}{|c|}{\textbf{Y2}}&
+        \multicolumn{4}{|c|}{\textbf{Y3}}\\
+        \cline{2-13}
+        &
+        \textbf{Q1}& 
+        \textbf{Q2}& 
+        \textbf{Q3}& 
+        \textbf{Q4}& 
+        \textbf{Q1}& 
+        \textbf{Q2}& 
+        \textbf{Q3}& 
+        \textbf{Q4}& 
+        \textbf{Q1}& 
+        \textbf{Q2}& 
+        \textbf{Q3}& 
+        \textbf{Q4}\\
         \hline
-        Task I & & & & & \\
+        I. & & & & & & & & & & & & \\
         \hline
-        Task II & & & & & \\
+        II. & & & & & & & & & & & & \\
         \hline
-        Task III & & & & & \\
+        III. & & & & & & & & & & & & \\
+        \hline
+        IV. & & & & & & & & & & & & \\
+        \hline
+        V. & & & & & & & & & & & & \\
+        \hline
+        VI. & & & & & & & & & & & & \\
+        \hline
+        VII. & & & & & & & & & & & & \\
         \hline
     \end{tabular}
     \label{tab-timeframe}
 \end{table}
 
-% uncomment to prepare references
-%\bibliographystyle{}
-%\setlength{\bibhang}{0pt}
-%\bibliography{}
+\noindent\textbf{References}
+\bibliographystyle{neup}
+\setlength{\bibhang}{0pt}
+\bibliography{references}
+
+%wrap figure around text
+%move to wherever in the text 
+%{l} fixes it on the left margin
+%\begin{wrapfigure}{l}{0.x\textwidth}
+%       \includegraphics[width=0.(x-2)\textwidth]{}
+%    \caption{}
+%    \label{fig-}
+%\end{wrapfigure}
 
 \end{document}
