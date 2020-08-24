@@ -17,6 +17,7 @@
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{times}
 \usepackage{enumitem}
+\usepackage{multirow}
 %\usepackage[labelfont=bf]{caption}
 
 \usepackage[singlelinecheck=false]{caption}
@@ -51,7 +52,15 @@
 
 \begin{document}
 
-\begin{center}\textbf{Title}\end{center}\\
+{\centering 
+    \textbf{Title\\
+    Call\\
+    }
+    Name (PI) - Affiliation\\
+    Name (co-PI) - Affiliation 
+\par
+}
+\vspace{\baselineskip}
 
 \noindent\textbf{Summary of the Proposed Project.} 
 \\
@@ -78,6 +87,7 @@
 \\
 
 \noindent\textbf{Task N. Title.}
+\\
 
 \begin{table}[h!]
     \centering
@@ -103,19 +113,103 @@
         \textbf{Q3}& 
         \textbf{Q4}\\
         \hline
-        I. & & & & & & & & & & & & \\
+        I. 
+        &\x\textbf{I}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & \\
         \hline
-        II. & & & & & & & & & & & & \\
+        II. 
+        &\x\textbf{II} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & \\
         \hline
-        III. & & & & & & & & & & & & \\
+        III. 
+        &\x\textbf{III} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & \\
         \hline
-        IV. & & & & & & & & & & & & \\
+        IV. 
+        &\x\textbf{IV}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & \\
         \hline
-        V. & & & & & & & & & & & & \\
+        V. 
+        &\x\textbf{V} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & \\
         \hline
-        VI. & & & & & & & & & & & & \\
+        VI. 
+        &\x\textbf{VI} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & \\
         \hline
-        VII. & & & & & & & & & & & & \\
+        VII. 
+        &\x\textbf{VII} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & \\
         \hline
     \end{tabular}
     \label{tab-timeframe}
@@ -129,6 +223,7 @@
 %wrap figure around text
 %move to wherever in the text 
 %{l} fixes it on the left margin
+%{L} floats
 %\begin{wrapfigure}{l}{0.x\textwidth}
 %       \includegraphics[width=0.(x-2)\textwidth]{}
 %    \caption{}
