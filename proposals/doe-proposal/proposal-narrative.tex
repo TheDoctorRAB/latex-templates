@@ -37,6 +37,29 @@
 \newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
 \newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
 \newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
+
+%\paragraph and \subparagraph modifiers
+% no indent for each
+% after \z@ pads whitespace on the top
+% em sets the distance after heading to text horizonally
+
+\makeatletter
+\renewcommand\paragraph{%
+    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
+    {\normalfont \normalsize \bfseries}}%
+
+\makeatletter
+\renewcommand\subparagraph{%
+    \@startsection{subparagraph}{5}{\z@ }{0.45\baselineskip}{-1em}
+    {\normalfont \normalsize \itshape }}%
+
+\makeatletter
+\renewcommand\subsection{%
+    \@startsection{subsection}{2}{\z@ }{0.75\baselineskip}{0.25\baselineskip}
+    { \large \bfseries}}%
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
