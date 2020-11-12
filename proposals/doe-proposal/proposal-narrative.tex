@@ -18,6 +18,7 @@
 \usepackage{multirow}
 \usepackage{tabularx}
 \usepackage{tabulary}
+\usepackage{array}
 %\usepackage[labelfont=bf]{caption}
 
 \usepackage[singlelinecheck=false]{caption}
@@ -40,6 +41,7 @@
 \newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
+<<<<<<< HEAD
 
 %\paragraph and \subparagraph modifiers
 % no indent for each
@@ -60,6 +62,8 @@
 \renewcommand\subsection{%
     \@startsection{subsection}{2}{\z@ }{0.75\baselineskip}{0.25\baselineskip}
     { \large \bfseries}}%
+=======
+>>>>>>> 7c9df975c5ab8185bd5edf6ac02c218a9614e9b2
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -83,7 +87,8 @@
     Name (co-PI) - Affiliation 
 \par
 }
-\vspace{\baselineskip}
+
+\vspace{0.5\baselineskip}
 
 \noindent\textbf{Summary of the Proposed Project.} 
 
@@ -94,11 +99,16 @@
 %    \label{fig-wsc-simulator}
 %\end{wrapfigure}
 \noindent 
-\\
+
+\vspace{0.5\baselineskip}
+
 \noindent\textbf{Motivation.} \textit{Context.} 
 
+\vspace{0.5\baselineskip}
+
 \noindent\textbf{Overall Objective.} The overall objective of this project is to 
-\\
+
+\vspace{0.5\baselineskip}
 
 \noindent\textbf{Research Focus.} The N workscopes in this project are - 
 \begin{enumerate}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
@@ -107,22 +117,30 @@
             \item
             \item
         \end{itemize}
+    \item\textit{Cross Cutting Issues (Full team)}
+        \begin{itemize}[topsep=-1ex,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+            \item Identify lessons learned
+            \item Develop future research pathways
+        \end{itemize}
 \end{enumerate}
 
-\vspace{\baselineskip}
+\vspace{0.5\baselineskip}
 
 \noindent\textbf{Importance and Relevance to Objectives.} \textit{Background.} 
 
 \textit{Relevant literature.} 
 
 \textit{Unique project features.} 
-\\
 
-\noindent\textbf{Logical Path, Work Scope, Description of Tasks.} The Logical Path and the proposed Work Scope is described below in terms of the defined Tasks for the project. Many of the Tasks overlap. Research will be concurrent and mutually dependent across the investigators.\\
+\vspace{0.5\baselineskip}
+
+\noindent\textbf{Logical Path, Work Scope, Description of Tasks.} The Logical Path and the proposed Work Scope is described below in terms of the defined Tasks for the project. Many of the Tasks overlap. Research will be concurrent and mutually dependent across the investigators.
+
+\vspace{0.25\baselineskip}
 
 \noindent\textbf{Workscope 1. Task I. Title.} (\textit{Lead - ; Support - }) 
-\\
 
+\vspace{0.25\baselineskip}
 
 \noindent\textbf{Workscope N. Task X. Crosscutting Issues.} (\textit{Lead - PI; Support - All}) Lessons learned will be identified for project outcomes. Additional discussion will cover -
 \begin{itemize}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
@@ -131,24 +149,28 @@
     \item
 \end{itemize}
 
+\vspace{0.5\baselineskip}
+
 \noindent\textbf{Logical Path to Work Accomplishment. Major Deliverables and Outcomes.} We anticipate the following outcomes -
 \begin{enumerate}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
     \item
     \item
     \item
+    \item Identification of lessons learned and engagement in future pathways and partnerships.
 \end{enumerate}
 
-\vspace{\baselineskip}
+\vspace{0.5\baselineskip}
 
 \begin{table}[H]
     \centering
     \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
-    \begin{tabular}{|p{0.27\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|L{0.27\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
         \hline
         \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{TASKS}}}& 
         \multicolumn{4}{|c|}{\textbf{Y1}}&
         \multicolumn{4}{|c|}{\textbf{Y2}}&
-        \multicolumn{4}{|c|}{\textbf{Y3}}\\
+        \multicolumn{4}{|c|}{\textbf{Y3}}
+        \\
         \cline{2-13}
         &
         \textbf{Q1}& 
@@ -162,7 +184,8 @@
         \textbf{Q1}& 
         \textbf{Q2}& 
         \textbf{Q3}& 
-        \textbf{Q4}\\
+        \textbf{Q4}
+        \\
         \hline
         I. 
         &\x\textbf{I} 
@@ -176,7 +199,8 @@
         &
         &
         &
-        & \\
+        & 
+        \\
         \hline
         II. 
         &\x\textbf{II} 
@@ -190,7 +214,8 @@
         & 
         & 
         & 
-        & \\
+        & 
+        \\
         \hline
         III. 
         &\x\textbf{III} 
@@ -204,7 +229,8 @@
         & 
         & 
         & 
-        & \\
+        & 
+        \\
         \hline
         IV. 
         &\x\textbf{IV} 
@@ -218,7 +244,8 @@
         & 
         & 
         & 
-        & \\
+        & 
+        \\
         \hline
         V. 
         &\x\textbf{V} 
@@ -232,7 +259,8 @@
         &
         &
         &  
-        & \\
+        & 
+        \\
         \hline
         VI. 
         &\x\textbf{VI} 
@@ -246,7 +274,8 @@
         &
         &
         & 
-        & \\
+        & 
+        \\
         \hline
         VII. Crosscutting issues 
         & 
@@ -260,13 +289,14 @@
         & 
         &
         &\x\textbf{VII}
-        &\x\textbf{VII} \\
+        &\x\textbf{VII} 
+        \\
         \hline
     \end{tabular}
     \label{tab-timeframe}
 \end{table}
 
-\vspace{\baselineskip}
+\vspace{0.5\baselineskip}
 
 \begin{table}[H]
     \centering
@@ -420,49 +450,66 @@
 \end{table}
 
 \vspace{\baselineskip}
+\vspace{0.5\baselineskip}
 
-\noindent\textbf{Contribution to Advancing State of the Art in Nuclear Engineering and Cybersecurity.} 
-\\
+\noindent\textbf{Contribution to Advancing State of the Art in Nuclear Engineering and .} 
+
+\vspace{0.5\baselineskip}
 
 \noindent\textbf{Description of Facilities to be Utilized to Execute Scope.} 
-\\
+
+\vspace{0.5\baselineskip}
+
 
 \noindent\textbf{Challenges to Accomplish Tasks and Planned Mitigations.} 
-\\
+
+\vspace{0.5\baselineskip}
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|p{0.45\linewidth}|p{0.45\linewidth}|}
         \hline
         \multicolumn{1}{|c|}{\textbf{Challenges to accomplish tasks}}
-        &\multicolumn{1}{|c|}{\textbf{Planned mitigations}}\\
+        &\multicolumn{1}{|c|}{\textbf{Planned mitigations}}
+        \\
         \hline
         
-        & \\
+        & 
+        \\
         \hline
         
-        & \\
+        & 
+        \\
         \hline
         
-        & \\
+        & 
+        \\
         \hline
         
-        & \\
+        & 
+        \\
         \hline
         
-        & \\
+        & 
+        \\
         \hline
     \end{tabular}
     \label{tab-milestones}
 \end{table}
 
-\vspace{\baselineskip}
+\vspace{0.5\baselineskip}
 
-\noindent\textbf{Information, Data, and Plans.} All information has been presented in the technical scope.\\
+\noindent\textbf{Information, Data, and Plans.} All information has been presented in the technical scope.
 
-\noindent\textbf{Quality Assurance.} Our project team have practiced a QA approach, consistent with the graded approach established by the DOE Technical Integration Office, per the NEUP website and any additional requirements deemed necessary during contracting. All projects undergo safety review by experts. We have followed this QA expectation in all ongoing awards.\\
+\vspace{0.5\baselineskip}
 
-\noindent\textbf{Mandatory Requirements.} We abide by current and pending information on nuclear-related federal funding contained in Form 3204. The Mandatory, Go/No-go, requirements will be coordinated with the institutional Office of Sponsored Research, the general counsel, and the Office of Technology Transfer. Each PI noted below will assume responsibility as the point of contact.\\
+\noindent\textbf{Quality Assurance.} Our project team have practiced a QA approach, consistent with the graded approach established by the DOE Technical Integration Office, per the NEUP website and any additional requirements deemed necessary during contracting. All projects undergo safety review by experts. We have followed this QA expectation in all ongoing awards.
+
+\vspace{0.5\baselineskip}
+
+\noindent\textbf{Mandatory Requirements.} We abide by current and pending information on nuclear-related federal funding contained in Form 3204. The Mandatory, Go/No-go, requirements will be coordinated with the institutional Office of Sponsored Research, the general counsel, and the Office of Technology Transfer. Each PI noted below will assume responsibility as the point of contact.
+
+\vspace{0.5\baselineskip}
 
 \begin{table}[h!]
     \centering
@@ -471,43 +518,50 @@
         \textbf{No.}
         &\textbf{Requirement}
         &\textbf{Responsibility}
-        &\textbf{Evaluation}\\
+        &\textbf{Evaluation}
+        \\
         \hline
         1
         &Commitment to reporting and budget requirements
         &All PIs
-        &Go/No-go \\
+        &Go/No-go 
+        \\
         \hline
         2
         &10 CFR 851 Worker Safety and Health Program
         &All PIs
-        &Go/No-go \\
+        &Go/No-go 
+        \\
         \hline
         3
         &Export Control
         &All PIs
-        &Go/No-go \\
+        &Go/No-go 
+        \\
         \hline
         4
         &Standard Research Subcontract
         &All PIs
-        &Go/No-go \\
+        &Go/No-go 
+        \\
         \hline
         5
         &Quality Assurance
         &All PIs
-        &Go/No-go \\
+        &Go/No-go 
+        \\
         \hline
         6
         &Commitment to prepare additional contract elements
         &All PIs
-        &Go/No-go \\
+        &Go/No-go 
+        \\
         \hline
     \end{tabular}
     \label{tab-mandatory-requirements}
 \end{table}
         
-\vspace{\baselineskip}
+\vspace{0.5\baselineskip}
         
 \noindent\textbf{References}
 \bibliographystyle{neup}
