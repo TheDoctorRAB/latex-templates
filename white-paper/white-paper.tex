@@ -19,6 +19,7 @@
 \usepackage{enumitem}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{longtable}
 %\usepackage[labelfont=bf]{caption}
 
 \usepackage[singlelinecheck=false]{caption}
@@ -41,7 +42,6 @@
 \newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
-<<<<<<< HEAD
 
 %\paragraph and \subparagraph modifiers
 % no indent for each
@@ -62,8 +62,6 @@
 \renewcommand\subsection{%
     \@startsection{subsection}{2}{\z@ }{0.75\baselineskip}{0.25\baselineskip}
     { \large \bfseries}}%
-=======
->>>>>>> 7c9df975c5ab8185bd5edf6ac02c218a9614e9b2
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -77,6 +75,8 @@
 \begin{filecontents}{references.bib}
 \end{filecontents}
 
+%\setstretch{1.05} %linespacing
+
 \begin{document}
 
 {\centering 
@@ -88,60 +88,65 @@
 \par
 }
 
-\vspace{0.5\baselineskip}
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
 
-\noindent\textbf{Summary of the Proposed Project.} 
+\paragraph*{Summary of the Proposed Project.} 
+\noindent
 
-\vspace{0.5\baselineskip}
+\paragraph*{Motivation.}
+\noindent
 
-\noindent\textbf{Motivation.}
+\paragraph*{Overall Objective.}
+\noindent
 
-\vspace{0.5\baselineskip}
+\paragraph*{Importance and Relevance to Objectives.} 
+\subparagraph*{Background.} 
+\noindent
 
-\noindent\textbf{Overall Objective.}
-
-\vspace{0.5\baselineskip}
-
-\noindent\textbf{Importance and Relevance to Objectives.} \textit{Background.} \textit{Relevant literature.}
+\subparagraph*{Relevant literature.}
+\noindent
 
 %for a 3 page preproposal, limit above subject matter to the first page
 
-\vspace{0.5\baselineskip}
-
-\noindent\textbf{Logical Path, Work Scope, Description of Tasks.} The Logical Path and the proposed Work Scope is described below in terms of the defined Tasks for the project.
+\paragraph*{Logical Path, Work Scope, Description of Tasks.} The Logical Path and the proposed Work Scope is described below in terms of the defined Tasks for the project.
 
 \vspace{0.25\baselineskip}
 
-\noindent\textbf{Workscope 1 - Title.} (\textit{Lead - ; Support - })\textbf{Task I. Title.}
+\paragraph*{Workscope 1 - Title.} (\textit{Lead - ; Support - })
+\subparagraph*{Task I. Title.}
+\noindent
 
-\vspace{0.25\baselineskip}
+\subparagraph*{Task II. Title.}
+\noindent
 
-\noindent\textbf{Task II. Title.}
+\paragraph*{Workscope 2 - Title.} (\textit{Lead - ; Support - })
+\subparagraph*{Task II. Title.}
+\noindent
 
-\vspace{0.25\baselineskip}
+\subparagraph*{Task IV. Title.}
+\noindent
 
-\noindent\textbf{Task III. Title.}
+\paragraph*{Logical Path to Work Accomplishment. Major Deliverables and Outcomes.} 
+\noindent We anticipate the following outcomes - 
+\begin{enumerate}[topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex]
+    \item
+    \item
+    \item
+    \item Identify lessons learned and engage in future pathways and partnerships.
+\end{enumerate}
 
-\vspace{0.25\baselineskip}
-
-\noindent\textbf{Task N. Title.}
-
-\vspace{0.5\baselineskip}
-
-\noindent\textbf{Logical Path to Work Accomplishment. Major Deliverables and Outcomes.} We anticipate the following outcomes: (1), (2), (3), (4), (5), and (6) Identify lessons learned and engage in future pathways and partnerships.
-
-\vspace{0.5\baselineskip}
-
-\noindent\textbf{Estimated Cost of the Project.} We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
+\paragraph*{Estimated Cost of the Project.} 
+\noindent We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 
 %limiting tasks, deliverables to one page allows for more references to be included on the third page, for a 3 page limit
 
-\vspace{0.5\baselineskip}
-
-\begin{table}[h!]
-    \centering
-    \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
-    \begin{tabular}{|L{0.37\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
+%\begin{table}[h!]
+%    \centering
+%    \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
+%    \begin{tabular}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
+        \label{tab-timeline}\\
         \hline
         \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{TASKS}}}& 
         \multicolumn{4}{|c|}{\textbf{Y1}}&
@@ -269,11 +274,14 @@
         &\x\textbf{VII} 
         \\
         \hline
-    \end{tabular}
-    \label{tab-timeframe}
-\end{table}
+%    \end{tabular}
+%    \label{tab-timeframe}
+%\end{table}
+\end{longtable}
 
-\vspace{0.5\baselineskip}
+\newpage
+%remove page break if there are page limits
+%\vspace{0.5\baselineskip}
 
 \noindent\textbf{References}
 \bibliographystyle{neup}
