@@ -1,0 +1,301 @@
+%@TheDoctorRAB
+%Standard white paper/preproposal format when there is a page limit
+%neup.bst designed to use numbered citations in order of appearance, short author list
+\documentclass[11pt,letterpaper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough
+\usepackage{xcolor,colortbl} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../img/}}
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{times}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{longtable}
+%\usepackage[labelfont=bf]{caption}
+
+\usepackage[singlelinecheck=false]{caption}
+\captionsetup[table]{skip=0pt} %sets a space after table caption
+\captionsetup[figure]{skip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+
+\usepackage{wrapfig}
+\setlength{\intextsep}{0.10mm}
+\setlength{\columnsep}{0.10mm}
+
+\usepackage[numbers]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
+\setlength{\bibsep}{0pt} %sets space between references
+\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\renewcommand\bibpreamble{\vspace{-0.2\baselineskip}} %sets spacing after heading if not using default references heading
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
+
+%\paragraph and \subparagraph modifiers
+% no indent for each
+% after \z@ pads whitespace on the top
+% em sets the distance after heading to text horizonally
+
+\makeatletter
+\renewcommand\paragraph{%
+    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
+    {\normalfont \normalsize \bfseries}}%
+
+\makeatletter
+\renewcommand\subparagraph{%
+    \@startsection{subparagraph}{5}{\z@ }{0.45\baselineskip}{-1em}
+    {\normalfont \normalsize \itshape }}%
+
+\makeatletter
+\renewcommand\subsection{%
+    \@startsection{subsection}{2}{\z@ }{0.75\baselineskip}{0.25\baselineskip}
+    { \large \bfseries}}%
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0.5pt} %turn off line in header
+\lhead{\scriptsize Name}
+\chead{\scriptsize Title, subject, agency, etc.}
+\rhead{\scriptsize \today}
+\rfoot{\thepage}
+
+\begin{filecontents}{references.bib}
+\end{filecontents}
+
+%\setstretch{1.05} %linespacing
+
+\begin{document}
+
+{\centering 
+    \textbf{Title\\
+    Call\\
+    }
+    Name (PI) - Affiliation\\
+    Name (co-PI) - Affiliation 
+\par
+}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
+\paragraph*{Summary of the Proposed Project.} 
+\noindent
+
+\paragraph*{Motivation.}
+\noindent
+
+\paragraph*{Overall Objective.}
+\noindent
+
+\paragraph*{Importance and Relevance to Objectives.} 
+\subparagraph*{Background.} 
+\noindent
+
+\subparagraph*{Relevant literature.}
+\noindent
+
+%for a 3 page preproposal, limit above subject matter to the first page
+
+\paragraph*{Logical Path, Work Scope, Description of Tasks.} The Logical Path and the proposed Work Scope is described below in terms of the defined Tasks for the project.
+
+\vspace{0.25\baselineskip}
+
+\paragraph*{Workscope 1 - Title.} (\textit{Lead - ; Support - })
+\subparagraph*{Task I. Title.}
+\noindent
+
+\subparagraph*{Task II. Title.}
+\noindent
+
+\paragraph*{Workscope 2 - Title.} (\textit{Lead - ; Support - })
+\subparagraph*{Task II. Title.}
+\noindent
+
+\subparagraph*{Task IV. Title.}
+\noindent
+
+\paragraph*{Logical Path to Work Accomplishment. Major Deliverables and Outcomes.} 
+\noindent We anticipate the following outcomes - 
+\begin{enumerate}[topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex]
+    \item
+    \item
+    \item
+    \item Identify lessons learned and engage in future pathways and partnerships.
+\end{enumerate}
+
+\paragraph*{Estimated Cost of the Project.} 
+\noindent We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
+
+%limiting tasks, deliverables to one page allows for more references to be included on the third page, for a 3 page limit
+
+%\begin{table}[h!]
+%    \centering
+%    \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
+%    \begin{tabular}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
+        \label{tab-timeline}\\
+        \hline
+        \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{TASKS}}}& 
+        \multicolumn{4}{|c|}{\textbf{Y1}}&
+        \multicolumn{4}{|c|}{\textbf{Y2}}&
+        \multicolumn{4}{|c|}{\textbf{Y3}}
+        \\
+        \cline{2-13}
+        &
+        \textbf{Q1}& 
+        \textbf{Q2}& 
+        \textbf{Q3}& 
+        \textbf{Q4}& 
+        \textbf{Q1}& 
+        \textbf{Q2}& 
+        \textbf{Q3}& 
+        \textbf{Q4}& 
+        \textbf{Q1}& 
+        \textbf{Q2}& 
+        \textbf{Q3}& 
+        \textbf{Q4}
+        \\
+        \hline
+        I. 
+        &\x\textbf{I}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        \\
+        \hline
+        II. 
+        &\x\textbf{II} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        \\
+        \hline
+        III. 
+        &\x\textbf{III} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        \\
+        \hline
+        IV. 
+        &\x\textbf{IV}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        \\
+        \hline
+        V. 
+        &\x\textbf{V} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        \\
+        \hline
+        VI. 
+        &\x\textbf{VI} 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        \\
+        \hline
+        VII. Crosscutting issues
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        &\x\textbf{VII} 
+        &\x\textbf{VII} 
+        \\
+        \hline
+%    \end{tabular}
+%    \label{tab-timeframe}
+%\end{table}
+\end{longtable}
+
+\newpage
+%remove page break if there are page limits
+%\vspace{0.5\baselineskip}
+
+\noindent\textbf{References}
+\bibliographystyle{neup}
+\setlength{\bibhang}{0pt}
+\bibliography{references}
+
+%wrap figure around text
+%move to wherever in the text 
+%{l} fixes it on the left margin
+%{L} floats
+%\begin{wrapfigure}{l}{0.x\textwidth}
+%       \includegraphics[width=0.(x-2)\textwidth]{}
+%    \caption{}
+%    \label{fig-}
+%\end{wrapfigure}
+
+\end{document}
