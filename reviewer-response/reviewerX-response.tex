@@ -1,0 +1,91 @@
+%@TheDoctorRAB
+\documentclass[11pt,a4paper]{article} 
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in, bmargin=1in]{geometry} 
+\usepackage{setspace} 
+\usepackage{xcolor} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage[yyyymmdd]{datetime}
+\usepackage{fixltx2e}
+\renewcommand{\dateseparator}{.}
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{times}
+\usepackage{enumitem}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
+
+%to crossref between files
+%clear both directories
+%pdflatex manuscript first
+%pdflatex this file next
+%filename does not require extension here
+\usepackage{xr}
+\externaldocument{path/to/marked/manuscript/filename} %crossref through aux file
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+
+\makeatletter %make text labels
+\newcommand{\labeltext}[3][]{%
+    \@bsphack%
+    \csname phantomsection\endcsname %in case hyperref is used
+    \def\tst{#1}%
+    \def\labelmarkup{} %how to markup the label itself
+    %\def\refmarkup{\labelmarkup} %How to markup the reference
+    \def\refmarkup{}%
+    \ifx\tst\empty\def\@currentlabel{\refmarkup{#2}}{\label{#3}}%
+    \else\def\@currentlabel{\refmarkup{#1}}{\label{#3}}\fi%
+    \@esphack%
+    \labelmarkup{#2}% visible printed text.
+}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\lhead{\scriptsize Manuscript ID}
+\chead{\scriptsize Reviewer N}
+\rhead{\scriptsize \today}
+\rfoot{\thepage} %move page number to bottom right
+
+\begin{document}
+
+\begin{center}\textbf{Response to Reviewer}\end{center}
+
+\noindent Thank you for the peer review of this manuscript. Each comment was considered carefully. The manuscript has been revised accordingly in the hope that the updated paper is worthy of publication. A detailed response to each comment is provided in this document. 
+
+\begin{center}\textbf{Responses to Reviewer Comments}\end{center}
+
+\leftskip0in\relax \rightskip0in\relax
+\noindent\textbf{General comments.}\\
+\noindent Reviewer comment.  \\ 
+
+\leftskip.25in\relax \rightskip.25in\relax
+\noindent Author response. \\
+
+\noindent Revisions - 
+\begin{enumerate}[leftmargin=.5in,rightmargin=.25in,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item\labeltext{Statement on how authors will revise the manuscript accordingly.}{X-label-name}
+\end{enumerate}
+\vspace*{\baselineskip}
+
+%how it works
+%in marked manuscript, just \ref{X-label-name} (X = Reviewer X), and then the text in \labeltext{} will be referenced
+
+%repeat as needed 
+
+\newpage 
+
+\leftskip0in\relax \rightskip0in\relax
+\noindent\textbf{Editorial comments.}
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item Page X-Line Number N - Abstract 1 - \labeltext{Reviewer editorial comment}{X-ed1}\\
+        Author response 
+        \vspace{.1in}
+    \item Page X-Line Number N - \labeltext{Reviewer editorial comment}{X-ed2}\\
+        Author response 
+        \vspace{.1in}
+
+    %repeat as needed
+
+\end{enumerate}
+
+\end{document}

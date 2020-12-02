@@ -1,0 +1,117 @@
+%@TheDoctorRAB
+\documentclass[letter,oneside,english,10pt,headinclude,headsepline]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{bold-extra}
+\usepackage{bibentry}
+\usepackage{filecontents}
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{.}
+
+\makeatletter %makes section in block caps with large font \section*{}
+\renewcommand
+\section{\@startsection{section}{1}%
+  \z@{1.5\linespacing}{.25\linespacing}%
+  {\bfseries\scshape\large\raggedright}}
+
+\makeatletter %makes section in block caps with normal font \subsection*{}
+\renewcommand
+\subsection{\@startsection{subsection}{1}%
+  \z@{.75\linespacing}{.25\linespacing}%
+  {\bfseries\scshape\raggedright}}
+
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhf{} %page number on bottom right
+\lhead{\scriptsize Title Name}
+\chead{\scriptsize \textit{Abbrv. Vita}}
+\rhead{\scriptsize \today} %date
+\rfoot{\thepage} %page number
+
+\title{Name}
+
+%\natexlab not working - remove from bbl file
+\begin{filecontents}{peer-reviewed.bib} 
+    @article{
+        pr1,
+        author = {},
+        journal = {},
+        pages = {},
+        title = {{}},
+        volume = {},
+        year = {}
+    }
+\end{filecontents}
+
+\begin{document}
+
+\nobibliography{peer-reviewed} %bib file
+\bibliographystyle{standard} %custom bst file
+
+\thispagestyle{fancy}
+
+{\centering 
+        \textsc{ %block caps font
+            \textbf{
+                Name $\sq$ Title \\
+                University/Institution $\sq$ Department \\
+                Address 1 $\sq$ Address 2\\
+                email $\sq$ @Twitter $\sq$ office phone 
+            }
+        }
+\par}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
+\subsection*{Education and Training}
+\noindent University $\sq$ Doctor of Philosophy $\sq$ Major \hfill{Date}\\
+University $\sq$ Master of Science $\sq$ Major \hfill{Date}\\
+University $\sq$ Bachelor of Science $\sq$ Major \hfill{Date}
+
+\subsection*{Research and Professional Experience}
+\noindent University $\sq$ Location $\sq$ Department
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]Title/Position \hfill{From - To}
+\end{itemize}
+\vspace*{.5\baselineskip}
+
+\noindent University $\sq$ Location $\sq$ Department
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]Title/Position \hfill{From - To}
+\end{itemize}
+
+\subsection*{Awarded Projects} %chronologically
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.05ex,partopsep=1ex,parsep=1ex]
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\subsection*{Relevant Publications\hfill{*students}} 
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=.05ex,partopsep=1ex,parsep=1ex]
+    \item\bibentry{pr1}.
+\end{enumerate}
+
+\subsection*{Relevant Courses Taught}
+\begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item[]University $\sq$ Location $\sq$ Department 
+    \item[] Course Number: Title 
+        \vspace{.05in}
+    \item[]University $\sq$ Location $\sq$ Department 
+    \item[] Course Number: Title 
+\end{itemize}
+
+\subsection*{Synergistic Activities}
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item
+    \item
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\end{document}

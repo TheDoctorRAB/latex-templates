@@ -1,0 +1,84 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{xcolor} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../img/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{caption}
+\captionsetup[table]{skip=11pt} %sets a space after table caption
+\usepackage{times}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
+\usepackage[round]{natbib} %parenthesis instead of brackets for inline citations
+\usepackage{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{caption}
+\usepackage[labelfont=bf]{caption}
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\renewcommand\labelenumi{(\theenumi)} %changes 1. to (1) in enumerated list
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0.5pt} %turn off line in header
+\lhead{\scriptsize ID}
+\chead{\scriptsize Peer review - \textit{Authors(s)}}
+\rhead{\scriptsize \today}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{titlepage}
+    \title{
+        Title\\
+    }
+    \author{
+        Name
+        \\ \\ \\
+        Affiliation 
+        \\ \\
+        Submitted to: \textit{Journal Name}\\[ID]
+        \\ \\ \\
+        editor 
+    }
+\clearpage %not have page number on title page
+\maketitle
+\thispagestyle{empty} %start with page number 1 on second page
+\end{titlepage}
+
+\noindent\textbf{Preface.}
+
+\noindent\textbf{General comments.}
+
+\noindent\textbf{Section comments.}
+
+\noindent\textbf{Line items.}
+\begin{enumerate}[leftmargin=*]
+\end{enumerate}
+        
+        
+\end{document}
