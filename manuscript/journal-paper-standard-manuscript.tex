@@ -37,6 +37,9 @@
 \usepackage{chngcntr}
 \usepackage{hyperref}
 \usepackage{sectsty}
+\usepackage{lastpage}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
 
 \usepackage[singlelinecheck=false]{caption}
 \captionsetup[table]{skip=3pt} %sets a space after table caption
@@ -54,6 +57,9 @@
 \newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
 \newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
 \newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
 
@@ -131,6 +137,8 @@
     }  
 \end{filecontents}
 
+%\newacronym{}{}{}
+
 \begin{document}
 
 \begin{titlepage}
@@ -152,7 +160,7 @@
 \maketitle
 \vspace*{\fill}
 \begin{flushright}{
-        \noindent Number of pages - XX \\
+        \noindent Number of pages - \pageref{LastPage} \\
         \noindent Number of tables - XX \\
         \noindent Number of figures - XX
 }
@@ -166,6 +174,10 @@
 \modulolinenumbers[3] %line numbering interval
 
 \section*{Abstract} \label{sec-abstract}
+
+\newpage
+
+\printnoidxglossary
 
 \newpage
 
