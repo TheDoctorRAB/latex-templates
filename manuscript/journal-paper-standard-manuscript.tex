@@ -20,6 +20,7 @@
 \usepackage{longtable} %need to put label at top under caption then \\ - use spacing
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
 \usepackage[round,semicolon]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
+%\usepackage[numbers,sort&compress]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations; nsf.bst
 \usepackage{enumitem}
 \usepackage{boldline}
 \usepackage{makecell}
@@ -35,15 +36,18 @@
 \usepackage{subcaption}
 \usepackage[labelfont=bf]{caption}
 \usepackage{chngcntr}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \usepackage{sectsty}
+\usepackage{textcomp}
 \usepackage{lastpage}
+\usepackage[toc,page]{appendix}
+\usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
 
 \usepackage[singlelinecheck=false]{caption}
-\captionsetup[table]{skip=3pt} %sets a space after table caption
-\captionsetup[figure]{skip=3pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+\captionsetup[table]{skip=7pt} %sets a space after table caption
+\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period} %sets space above caption, 'figure' format
 
 \usepackage{wrapfig}
 \setlength{\intextsep}{0.20mm}
@@ -89,9 +93,9 @@
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-%\lhead{\scriptsize Manuscript ID}
-%\chead{\scriptsize \textit{Author - Draft/Marked Manuscript}}
-%\rhead{\scriptsize \today}
+\lhead{\scriptsize Manuscript ID - AHP NHRES}
+\chead{\scriptsize \textit{Redfoot et al. - Draft Manuscript}}
+\rhead{\scriptsize \today}
 \rfoot{\thepage}
 
 \begin{filecontents}{references.bib} 
@@ -161,8 +165,8 @@
 \vspace*{\fill}
 \begin{flushright}{
         \noindent Number of pages - \pageref{LastPage} \\
-        \noindent Number of tables - XX \\
-        \noindent Number of figures - XX
+        \noindent Number of tables - \totaltables \\
+        \noindent Number of figures - \totalfigures
 }
 \end{flushright}
 \thispagestyle{empty} %start with page number 1 on second page
