@@ -5,7 +5,7 @@
 \usepackage[pagewise]{lineno} %line numbering
 \usepackage{setspace}
 \usepackage{ulem} %strikethrough - do not \sout{\cite{}}
-\usepackage{xcolor,colortbl} %change font color
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
 \usepackage{graphicx}
 \usepackage{filecontents}
 \usepackage{tablefootnote}
@@ -15,10 +15,16 @@
 \renewcommand{\dateseparator}{.}
 \graphicspath{{../img/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
+
+%fonts
 \usepackage{times}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+
 \usepackage{tabto} %general tabbed spacing
 \usepackage{longtable} %need to put label at top under caption then \\ - use spacing
-\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
 \usepackage[round,semicolon]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
 %\usepackage[numbers,sort&compress]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations; nsf.bst
 \usepackage{enumitem}
@@ -40,13 +46,15 @@
 \usepackage{sectsty}
 \usepackage{textcomp}
 \usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes} %makes colored boxes for commenting
 \usepackage[toc,page]{appendix}
 \usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
 
 \usepackage[singlelinecheck=false]{caption}
-\captionsetup[table]{skip=7pt} %sets a space after table caption
+\captionsetup[table]{skip=7pti,labelsep=period} %sets a space after table caption
 \captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period} %sets space above caption, 'figure' format
 
 \usepackage{wrapfig}
@@ -64,6 +72,11 @@
 \newcommand{\acf}{\acrfull} %full acronym
 \newcommand{\acl}{\acrlong} %long acronym
 \newcommand{\acs}{\acrshort} %short acronym
+
+\newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
+\newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
+\newcommandx{\cmt}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
+\newcommandx{\omt}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
 
@@ -85,9 +98,29 @@
 }
 \makeatother
 
+%\makeatletter
+%\renewcommand\section{%
+%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
+%    {\normalfont \normalsize \bfseries}}%
+
+%\makeatletter
+%\renewcommand\paragraph{%
+%    \@startsection{paragraph}{4}{\z@ }{0.25\baselineskip}{-1em}
+%    {\normalfont \normalsize \bfseries}}%
+
+%\makeatletter
+%\renewcommand\subparagraph{%
+%    \@startsection{subparagraph}{5}{\z@ }{0.20\baselineskip}{-1em}
+%    {\normalfont \normalsize \itshape }}%
+
+%\makeatletter
+%\renewcommand\subsection{%
+%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
+%    { \large \normalsize \bfseries}}%
+    
 %\setlength{\bibsep}{0pt} %sets space between references
 %\renewcommand{\bibsection}{} %suppresses large 'references' heading
-%\renewcommand\bibpreamble{\vspace{-0.2\baselineskip}} %sets spacing after heading if not using default references heading
+%\renewcommand\bibpreamble{\vspace{-0.30\baselineskip}} %sets spacing after heading if not using default references heading
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -172,6 +205,9 @@
 \thispagestyle{empty} %start with page number 1 on second page
 \end{titlepage}
 
+%spacing options
+%\setstretch{1.05} %custom linespacing
+%\spacing{1.25} %equivalent to 1.5 line spacing in Word
 \onehalfspacing %linespacing
 \linenumbers %toggle line numbers
 \pagewiselinenumbers %reset line numbers on new page
