@@ -69,7 +69,7 @@
 \setlength{\parskip}{0pt}
 
 %%%%%%%%%%% SECTIONING %%%%%%%%%%%
-\setcounter{secnumdepth}{-2} %hide all section heading numbers
+\setcounter{secnumdepth}{-3} %hide all section heading numbers
 
 \renewcommand\section{\@startsection
 	{section}{1}{0pt}%		%name, level, indent
@@ -92,6 +92,17 @@
 	{.5\baselineskip}%		%afterskip
 	{\reset@font\itshape}%
 }
+
+\renewcommand\paragraph{\@startsection
+	{paragraph}{1}{0pt}%		%name, level, indent
+	%{subsubsection}{1}{-\parindent}%		%name, level, indent
+	{-.25\baselineskip}%		%beforeskip
+    {-0.5em}
+%	{0.25\baselineskip}%		%afterskip
+	{\reset@font\bf\itshape}%
+}
+
+\renewcommand{\quote}{\list{}{\rightmargin=\leftmargin\topsep=3pt}\item\relax}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APPENDIX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % appendix needs equations labeled A.1 etc., but shouldn't look like 
