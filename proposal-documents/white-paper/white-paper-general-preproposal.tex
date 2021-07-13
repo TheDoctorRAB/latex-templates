@@ -77,8 +77,8 @@
 \makenoidxglossaries
 
 \usepackage[singlelinecheck=false]{caption}
-\captionsetup[table]{skip=7pt,labelsep=period} %sets a space after table caption
-\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period} %sets space above caption, 'figure' format
+\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period,name={Tab.}} %sets a space after table caption
+\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
 
 \usepackage{wrapfig}
 \setlength{\intextsep}{0.20mm}
@@ -271,7 +271,7 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 %    \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
 %    \begin{tabular}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
 \begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
-        \captionsetup{margin=-9pt}
+%       \captionsetup{margin=-0pt}
         \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
         \label{tab-timeline}\\
         \hline
