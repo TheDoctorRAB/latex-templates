@@ -48,13 +48,13 @@
 \usepackage{lastpage}
 \usepackage{xargs} %for \newcommandx
 \usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes} %makes colored boxes for commenting
-\usepackage[toc,page]{appendix}
+\usepackage[toc,title]{appendix}
 \usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
 
 \usepackage[singlelinecheck=false]{caption}
-\captionsetup[table]{skip=7pt,labelsep=period} %sets a space after table caption
+\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period} %sets a space after table caption
 \captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period} %sets space above caption, 'figure' format
 
 \usepackage{wrapfig}
@@ -69,9 +69,14 @@
 \newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
 \newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
 \newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+
 \newcommand{\acf}{\acrfull} %full acronym
 \newcommand{\acl}{\acrlong} %long acronym
 \newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
 
 \newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
 \newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
@@ -167,7 +172,12 @@
 \thispagestyle{empty} %start with page number 1 on second page
 \end{titlepage}
 
+%spacing options
 \onehalfspacing %linespacing
+%\setstretch{1.05} %linespacing
+%\spacing{1.25} %equivalent to 1.5 line spacing in Word
+
+%linenumbering
 \linenumbers %toggle line numbers
 \pagewiselinenumbers %reset line numbers on new page
 \modulolinenumbers[3] %line numbering interval
