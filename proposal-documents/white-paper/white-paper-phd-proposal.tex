@@ -4,6 +4,7 @@
 %%%%%
 %
 %REFERENCES
+%
 %neup.bst - numbered citations in order of appearance, short author list with et al in reference section
 %nsf.bst - numbered citations in order of appearance, full author list in references section
 %standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
@@ -22,7 +23,7 @@
 %the rest list numerically
 %
 %%%%%
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,letterpaper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
 \usepackage[pagewise]{lineno} %line numbering
 \usepackage{setspace}
@@ -54,6 +55,7 @@
 \usepackage{makecell}
 \usepackage{booktabs}
 \usepackage{amssymb}
+\usepackage{gensymb}
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{tabularx}
@@ -91,9 +93,14 @@
 \newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
 \newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
 \newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+
 \newcommand{\acf}{\acrfull} %full acronym
 \newcommand{\acl}{\acrlong} %long acronym
 \newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
 
 \newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
 \newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
