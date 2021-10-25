@@ -51,7 +51,7 @@
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
 %\usepackage[round,semicolon]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
 \usepackage[numbers,sort&compress]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations; nsf.bst
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
 \usepackage{boldline}
 \usepackage{makecell}
 \usepackage{booktabs}
@@ -77,6 +77,10 @@
 \usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
+
+\usepackage[firstpage]{draftwatermark}
+\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+\SetWatermarkScale{0.35}
 
 \usepackage[singlelinecheck=false]{caption}
 \captionsetup[table]{skip=7pt,labelformat={default},labelsep=period,name={Tab.}} %sets a space after table caption
@@ -211,11 +215,23 @@
 %\spacing{1.25} %equivalent to 1.5 line spacing in Word
 
 %linenumbering
-%\linenumbers %toggle line numbers
-%\pagewiselinenumbers %reset line numbers on new page
-%\modulolinenumbers[3] %line numbering interval
+\linenumbers %toggle line numbers
+\pagewiselinenumbers %reset line numbers on new page
+\modulolinenumbers[1] %line numbering interval
 
 \begin{document}
+
+{\centering 
+    \textbf{Agency - Call \\
+    Federal POC - , Technical POC - \\
+    General budget\\
+    }
+\par
+}
+
+\noindent Text of call.
+
+\newpage
 
 {\centering
     \textbf{Title\\
@@ -232,17 +248,40 @@
 %may not be needed
 
 \paragraph*{Summary of the Proposed Project.} 
+\subparagraph*{Proposal.}
+
+\subparagraph*(Key features of the project.)
 
 \paragraph*{Motivation.}
+\subparagraph*(Context.)
 
 \paragraph*{Overall Objective.}
+
+\subsection*{Research Focus and Workscopes.} 
+\begin{enumerate}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+    \item\textit{Workscope title (Lead - )}
+        \begin{itemize}[leftmargin=*,topsep=-1ex,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+            \item Task 
+            \item Task 
+            \item Task 
+            \item Task 
+        \end{itemize}
+    \item\textit{Concluding work (Full team)}
+        \begin{itemize}[leftmargin=*,topsep=-1ex,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+            \item Discuss crosscutting issues
+        \end{itemize}
+\end{enumerate}
 
 \paragraph*{Importance and Relevance to Objectives.} 
 \subparagraph*{Background.} 
 
 \subparagraph*{Relevant literature.}
 
+\subparagraph*{Recently funded work.}
 %for a 3 page preproposal, limit above subject matter to the first page
+%research focus will have to go
+
+\paragraph*{Unique project features.}
 
 \paragraph*{Logical Path, Work Scope, Description of Tasks.} The Logical Path and the proposed Work Scope is described below in terms of the defined Tasks for the project.
 
@@ -411,6 +450,70 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 %    \end{tabular}
 %    \label{tab-timeframe}
 %\end{table}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{|l|l|l|} %comment out for page limits
+    \caption*{\textbf{Milestones.}}
+    \label{tab-milestones}\\
+    \hline
+        \multicolumn{1}{|c|}{\textbf{Milestone}}
+        &\multicolumn{1}{|c|}{\textbf{Deliverable}}
+        &\multicolumn{1}{|c|}{\textbf{Completion}}\\
+        \hline
+        \begin{tabular}[c]{@{}l@{}}
+            0. Project logistics
+        \end{tabular}
+        &
+        \begin{tabular}[c]{@{}l@{}}
+            0.1. Kick-off report, roles, and responsibilities.\\
+            0.2. Annual reports.\\
+            0.3. Agency administrative requirements.\\
+            0.4. Final project report.\\
+            0.5. Journal paper submission.\\
+            0.6. Conference presentations.
+        \end{tabular}
+        &
+        \begin{tabular}[c]{@{}l@{}}
+            0.1. Y1-Q2\\
+            0.2. Annually\\
+            0.3. Quarterly\\
+            0.4. Y3-Q4\\
+            0.5. Annually\\
+            0.6. Annually
+        \end{tabular}
+        \\
+        \hline
+        \begin{tabular}[c]{@{}l@{}}
+            1.
+        \end{tabular}
+        &
+        \begin{tabular}[c]{@{}l@{}}
+            1.1. 
+
+        \end{tabular}
+        &
+        \begin{tabular}[c]{@{}l@{}}
+            1.1. YX-QN
+        \end{tabular}
+        \\
+        \hline
+        \begin{tabular}[c]{@{}l@{}}
+            15. Crosscutting\\issues
+        \end{tabular}
+        &
+        \begin{tabular}[c]{@{}l@{}}
+            15.1. Identify lessons learned.\\
+            15.2. Develop future pathways and partnerships.
+        \end{tabular}
+        &
+        \begin{tabular}[c]{@{}l@{}}
+            15.1. YEND-Q3\\
+            15.2. YEND-Q4
+        \end{tabular}
+        \\
+        \hline
 \end{longtable}
 
 \newpage
