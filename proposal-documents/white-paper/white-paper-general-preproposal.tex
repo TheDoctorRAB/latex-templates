@@ -40,17 +40,36 @@
 \graphicspath{{../img/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 
-%fonts
+%%%%% fonts
 \usepackage{times}
 %arial - uncomment next two lines
 %\usepackage{helvet}
 %\renewcommand{\familydefault}{\sfdefault}
+%%%%%
 
-\usepackage{tabto} %general tabbed spacing
+%%%%% references
+%\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+\usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+%%%%%
+
+%%%%% tables and figures
 \usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+
+\usepackage[singlelinecheck=false,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period} %sets a space after table caption
+\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period} %sets space above caption, 'figure' format
+
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.20mm}
+\setlength{\columnsep}{0.20mm}
+%%%%%
+
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
-%\usepackage[round,semicolon]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
-\usepackage[numbers,sort&compress]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations; nsf.bst
 \usepackage[inline]{enumitem}
 \usepackage{boldline}
 \usepackage{makecell}
@@ -59,13 +78,8 @@
 \usepackage{gensymb}
 \usepackage{amsmath}
 \usepackage{physics}
-\usepackage{tabularx}
-\usepackage{multirow}
 \usepackage{lscape}
 \usepackage{array}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage[labelfont=bf]{caption}
 \usepackage{chngcntr}
 %\usepackage{hyperref}
 \usepackage{sectsty}
@@ -139,7 +153,7 @@
 \makeatletter
 \renewcommand\section{%
     \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-    {\normalfont \normalsize \bfseries}}%
+    {\Large \normalfont \bfseries}}%
 
 \makeatletter
 \renewcommand\paragraph{%
@@ -154,11 +168,11 @@
 \makeatletter
 \renewcommand\subsection{%
     \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
-    { \large \normalsize \bfseries}}%
+    { \large \normalfont \bfseries}}%
     
 \setlength{\bibsep}{0pt} %sets space between references
 \renewcommand{\bibsection}{} %suppresses large 'references' heading
-\renewcommand\bibpreamble{\vspace{-0.30\baselineskip}} %sets spacing after heading if not using default references heading
+\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -206,8 +220,29 @@
     }
 \end{filecontents}
 
-%\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
+%%%%% acronyms
+% alphabetical ordering is automated
+\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
+\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
+\newacronym{inl}{INL}{Idaho National Laboratory}
+\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{anl}{ANL}{Argonne National Laboratory}
+\newacronym{npp}{NPP}{Nuclear Power Plant}
+\newacronym{smr}{SMR}{Small Modular Reactor}
+\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
+\newacronym{nus}{NuScale}{NuScale Power, LLC}
+\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
+\newacronym{epri}{EPRI}{Electric Power Research Institute}
+\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
+\newacronym{ci}{CI}{Consistency Index}
+\newacronym{cr}{CR}{Consistency Ratio}
+\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
+\newacronym{lwr}{LWR}{Light Water Reactor}
+\newacronym{eia}{EIA}{U.S. Energy Information Administration}
+\newacronym{oer}{OER}{Online Educational Resource}
+\newacronym{lms}{LMS}{Learning Management System}
 %\newacronym{}{}{}
+%%%%%
 
 %spacing options
 %\onehalfspacing %linespacing
@@ -244,16 +279,16 @@
 
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
 
-\section*{Abstract}
 %may not be needed
+\begin{center}\subsection*{Abstract}\end{center}
 
 \paragraph*{Summary of the Proposed Project.} 
 \subparagraph*{Proposal.}
 
-\subparagraph*(Key features of the project.)
+\subparagraph*{Key features of the project.}
 
 \paragraph*{Motivation.}
-\subparagraph*(Context.)
+\subparagraph*{Context.}
 
 \paragraph*{Overall Objective.}
 
@@ -283,20 +318,26 @@
 
 \paragraph*{Unique project features.}
 
-\paragraph*{Logical Path, Work Scope, Description of Tasks.} The Logical Path and the proposed Work Scope is described below in terms of the defined Tasks for the project.
+\paragraph*{Logical Path, Work Scope, Description of Tasks.} 
 
 \paragraph*{Workscope 1 - Title.} (\textit{Lead - ; Support - })
-\subparagraph*{Task I. Title.}
-
-\subparagraph*{Task II. Title.}
+\begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
+    \item\textit{Title.}
+    \item\textit{Title.}
+    \item\textit{Title.}
+\end{enumerate}
 
 \paragraph*{Workscope 2 - Title.} (\textit{Lead - ; Support - })
-\subparagraph*{Task III. Title.}
-
-\subparagraph*{Task IV. Title.}
+\begin{enumerate}[resume*,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
+    \item\textit{Title.}
+    \item\textit{Title.}
+    \item\textit{Title.}
+\end{enumerate}
 
 \paragraph*{Workscope 3 - Future outlook.} (\textit{Full team})
-\subparagraph*{Task VII. Crosscutting issues.}
+\begin{enumerate}[resume*,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
+    \item\textit{Crosscutting issues.}
+\end{enumerate}
 
 \paragraph*{Logical Path to Work Accomplishment. Major Deliverables and Outcomes.} 
 We anticipate the following outcomes - 
@@ -312,11 +353,7 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 
 %limiting tasks, deliverables to one page allows for more references to be included on the third page, for a 3 page limit
 
-%\begin{table}[h!]
-%    \centering
-%    \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
-%    \begin{tabular}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
-\begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{longtable}{|L{0.23\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
 %       \captionsetup{margin=-0pt}
         \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
         \label{tab-timeline}\\
@@ -447,13 +484,11 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
         &\x\textbf{X} 
         \\
         \hline
-%    \end{tabular}
-%    \label{tab-timeframe}
-%\end{table}
 \end{longtable}
 
 \newpage
 
+%not typically needed in a preproposal, but good to do 
 \begin{longtable}{|l|l|l|} %comment out for page limits
     \caption*{\textbf{Milestones.}}
     \label{tab-milestones}\\
@@ -517,10 +552,11 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 \end{longtable}
 
 \newpage
+
 %remove page break if there are page limits
 %\vspace{0.5\baselineskip}
 
-\section*{References}
+\paragraph*{References}
 \bibliographystyle{nsf}
 \setlength{\bibhang}{0pt}
 \bibliography{references}
