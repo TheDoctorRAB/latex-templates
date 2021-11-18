@@ -80,7 +80,7 @@
 \usepackage{lscape}
 \usepackage{array}
 \usepackage{chngcntr}
-%\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{sectsty}
 \usepackage{textcomp}
 \usepackage{lastpage}
@@ -91,6 +91,10 @@
 \usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
+
+\usepackage[firstpage,vpos=0.67\paperheight]{draftwatermark}
+\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+\SetWatermarkScale{0.25}
 
 %\usepackage{xr} %for revisions - will cross reference from one file to here
 %\externaldocument{/path/to/auxfilename} %aux file needed
