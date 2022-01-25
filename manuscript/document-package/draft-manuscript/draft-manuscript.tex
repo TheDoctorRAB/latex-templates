@@ -85,16 +85,18 @@
 \usepackage{textcomp}
 \usepackage{lastpage}
 \usepackage{xargs} %for \newcommandx
-
-\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes} %makes colored boxes for commenting
-\usepackage[toc,page]{appendix}
+\usepackage{gensymb}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage[toc,title]{appendix}
 \usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
 
+%%%%% watermark
 \usepackage[firstpage,vpos=0.67\paperheight]{draftwatermark}
 \SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
 \SetWatermarkScale{0.25}
+%%%%% 
 
 %\usepackage{xr} %for revisions - will cross reference from one file to here
 %\externaldocument{/path/to/auxfilename} %aux file needed
@@ -117,7 +119,7 @@
 \newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
 \newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
 \newcommandx{\cmt}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
-\newcommandx{\omt}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
+\newcommandx{\rab}[2][1=]{\author=RAB,tickmarkheight=0.15cm,todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
 
