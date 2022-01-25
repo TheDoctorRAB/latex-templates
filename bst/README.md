@@ -11,3 +11,5 @@ neup.bst - numbered citations in order of appearance, short author list with et 
 nsf.bst - numbered citations in order of appearance, full author list in references section  
 standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section  
 ans.bst is for ANS cls only
+
+More on use of the custom bst is in the preamble for the document templates. 
