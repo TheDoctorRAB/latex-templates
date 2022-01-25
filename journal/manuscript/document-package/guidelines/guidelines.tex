@@ -1,0 +1,169 @@
+%%%%%
+%@TheDoctorRAB
+%Guide for draft-manuscript.tex with standard.bst or nsf.bst
+%Just complile and read
+%Packages here don't matter
+%%%%%
+\documentclass[11pt,a4paper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../img/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+
+%fonts
+\usepackage{times}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{tabto} %general tabbed spacing
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+\usepackage[round,semicolon]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
+%\usepackage[numbers,sort&compress]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations; nsf.bst
+\usepackage{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[labelfont=bf]{caption}
+\usepackage{chngcntr}
+%\usepackage{hyperref}
+\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes} %makes colored boxes for commenting
+\usepackage[toc,page]{appendix}
+\usepackage[figure,table]{totalcount}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+
+\usepackage[singlelinecheck=false]{caption}
+\captionsetup[table]{skip=7pt,labelsep=period} %sets a space after table caption
+\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period} %sets space above caption, 'figure' format
+
+\usepackage{wrapfig}
+\setlength{\intextsep}{0.20mm}
+\setlength{\columnsep}{0.20mm}
+
+%\usepackage{xr} %for revisions - will cross reference from one file to here
+%\externaldocument{/path/to/auxfilename} %aux file needed
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
+\newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+\lhead{\scriptsize Information on preparing a journal paper}
+%\chead{\scriptsize \textit{ - Draft Manuscript}}
+\rhead{\scriptsize \today}
+\rfoot{\thepage}
+
+\begin{document}
+
+\section*{General}
+There are a lot of documents to prepare when submitting a manuscript to the journal. These are all teed up in the document-package folder. \textit{Do them last.} Start by actually writing the paper with the draft-manuscript.tex file. The rest is leftover from before the digital age.
+
+\subsection*{Images}
+Put all images in the img folder. The draft-manuscript.tex file has the path setup so you don't have to specify it in the file, just the file name.
+
+\section*{Citations}
+The draft-manuscript.tex file is set up for two citations formats - standard and nsf. Or neup.bst, which is just a short version of nsf.bst. Line 51 is for standard.bst. Line 52 is for the others. Set the bst filename on line 322.
+
+For standard.bst, you have to use \verb=\citep{bor20a}=. This gives, (Borrelli, 2020) in the text. It's a common form for most journals. If you do \verb=\cite{bor20a}=, then you get Borrelli (2020) in the text. 
+
+This helps if you want to write something like - 
+\begin{quote}
+    Borrelli (2020) argues that object-orientied programming can effectively model safeguards-by-design.
+\end{quote}
+
+For multiple citations, just do \verb=\citep{bor20a,clo19a}= and it will do (Borrelli 2020; Clooney 2019) automatically. 
+
+If we have to use nsf.bst, then \verb=\citep= and \verb=\cite= both with just give \texttt{[1]}, but if you used \verb=\cite= with standard and switch to nsf, then you have to put `Ref.' in front of it, so it's a pain. I've submitted all my papers with standard.bst and literally no reviewer has commented on it.
+
+\subsection*{Adding references to the tex file}
+Line 178/179 is the filecontents/references.bib to add the reference information. Some people make a separate bib file. I think this is easier to do everything in the main tex file. Some example references are already set up as a guide. In general, people way overboard on the citation information or use ridiculous types. All that is needed is enough for someone to do a search and find the material that was cited in the paper. Really, that only is @article for a journal paper, @misc for a technical report, like INL reports, and @conference for a conference proceedings. I also included @book and @incollection. The latter is rare. I don't even use @book much. Anything outside of these can be covered with @misc. Web page URLs and DOIs aren't really necessary. I do not use @techreport because it renders `Tec. Rep.' in the citation list, and it drives me up the wall. For techical reports, I recommend @misc because in the \verb=note= = \verb={{}}= field, just put the report number, and everyone knows it is a technical report. 
+
+Keep the \verb={{}}= for \verb=title= = \verb={{}}= and \verb=note= = \verb={{}}= because it will output verbatim what is in the field. 
+
+For a journal paper, you don't need the number; the volume is sufficient, and you don't need the page range; the starting page is sufficient. 
+
+For authors, the format is - 
+\begin{quote}
+    \verb=@author= = \verb={Borrelli, R. A. and Clooney, George}=
+\end{quote}
+
+I'm throwing George a bone giving him the last author credit. 
+
+Enter all authors into the author field, even if there's 17. standard.bst is set up to add `et al.' if there are more than two of them inline, but in the references, all the authors are listed. The others just render numbers inline. nsf.bst will list all the authors in the references. NSF requires this. It's also just a courtesy to include everyone on a paper. neup.bst will render only the first author and `et al.' in the references section.
+
+If the author is an organization, like an NRC report, then just do  - 
+\begin{quote}
+    \verb=@author= = \verb={{Nuclear Regulatory Commission}}= 
+\end{quote}
+with the double \verb={{}}=.
+
+\newpage
+
+\section*{Manuscript}
+\subsection*{Contents}
+The \verb=\section{}= level headings are suggestions, but generally common to journal papers. I strongly recommend to keep Motivation and Goals. I typically like to separate Results; where you talk about the data, and Discussion; where you say what the data means and why it's important. 
+
+Future Work is always important because it tells reviewers that you know the context of the work. You can also discuss here if you've made any assumptions, how you can test/verify them, etc.
+
+\subsection*{Acronyms}
+I set up acronyms with shortcuts to make it easy, easy, easy. Line 225 is where you list them. The format is -
+\begin{quote}
+    \verb=\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}=
+\end{quote}
+
+Shortcuts are - 
+\begin{quote}
+    `full'\\
+    \verb=\acf{nrc}= = United States Nuclear Regulatory Commission (NRC)\\
+    The () are automatic.
+    \\ \\
+    `long'\\
+    \verb=\acl{nrc}= = United States Nuclear Regulatory Commission
+    \\ \\
+    `short'\\
+    \verb=\acs{nrc}= = NRC
+\end{quote}
+
+Additionally, the above with `p' on the end; i.e., \verb=\acfp{}=, pluralizes the entry. 
+
+Trust me, this will save uncountable keystrokes. AND - the acronym tags work in \verb=\section{}=, etc.
+
+It's set up when you compile to produce a list of the acronyms automatically. Only acronyms used in the text are rendered in the list. This is on line 272
+
+\subsection*{Headings}
+The tex file is set up for 5 levels of headings - 
+\begin{quote}
+    \verb=\section{},\subsection{},\subsubsection{},\paragraph{},\subparagraph{}=
+\end{quote}
+
+\end{document}
