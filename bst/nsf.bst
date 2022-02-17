@@ -4,11 +4,19 @@
 %%
 %% The original source files were:
 %%
+<<<<<<< HEAD
 %% merlin.mbs  (with options: `head,ay,annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
 %% physjour.mbs  (with options: `ay,annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
 %% geojour.mbs  (with options: `ay,annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
 %% photjour.mbs  (with options: `ay,annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
 %% merlin.mbs  (with options: `tail,ay,annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
+=======
+%% merlin.mbs  (with options: `head,annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
+%% physjour.mbs  (with options: `annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
+%% geojour.mbs  (with options: `annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
+%% photjour.mbs  (with options: `annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
+%% merlin.mbs  (with options: `tail,annote,pres,seq-no,nm-revf,dt-beg,dtrev,jttl-rm,volp-com,jpg-1,pp-last,num-xser,ser-vol,jnm-x,btit-rm,bt-rm,bkpg-x,isbn,issn,doi,in-col,ppx,ed,ord,xand,url,url-nl,em-it,nfss,,{}')
+>>>>>>> master
 %% ----------------------------------------
 %% *** NSF style bibliography ***
 %% 
@@ -28,6 +36,7 @@
  %   For use with BibTeX version 0.99a or later
  %-------------------------------------------------------------------
  % This bibliography style file is intended for texts in ENGLISH
+<<<<<<< HEAD
  % This is an author-year citation style bibliography. As such, it is
  % non-standard LaTeX, and requires a special package file to function properly.
  % Such a package is    natbib.sty   by Patrick W. Daly
@@ -48,6 +57,18 @@
  %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., 1990, p. 32)
  %   \citeauthor{key} ==>>           Jones et al.
  %   \citeyear{key} ==>>             1990
+=======
+ % This is a numerical citation style, and as such is standard LaTeX.
+ % It requires no extra package to interface to the main text.
+ % The form of the \bibitem entries is
+ %   \bibitem{key}...
+ % Usage of \cite is as follows:
+ %   \cite{key} ==>>          [#]
+ %   \cite[chap. 2]{key} ==>> [#, chap. 2]
+ % where # is a number determined by the ordering in the reference list.
+ % The order in the reference list is that by which the works were originally
+ %   cited in the text, or that in the database.
+>>>>>>> master
  %---------------------------------------------------------------------
 
 ENTRY
@@ -81,7 +102,11 @@ ENTRY
     year
   }
   {}
+<<<<<<< HEAD
   { label extra.label sort.label short.list }
+=======
+  { label }
+>>>>>>> master
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
 FUNCTION {init.state.consts}
 { #0 'before.all :=
@@ -174,6 +199,15 @@ FUNCTION {or}
     'skip$
   if$
 }
+<<<<<<< HEAD
+=======
+FUNCTION {new.block.checka}
+{ empty$
+    'skip$
+    'new.block
+  if$
+}
+>>>>>>> master
 FUNCTION {new.block.checkb}
 { empty$
   swap$ empty$
@@ -182,6 +216,23 @@ FUNCTION {new.block.checkb}
     'new.block
   if$
 }
+<<<<<<< HEAD
+=======
+FUNCTION {new.sentence.checka}
+{ empty$
+    'skip$
+    'new.sentence
+  if$
+}
+FUNCTION {new.sentence.checkb}
+{ empty$
+  swap$ empty$
+  and
+    'skip$
+    'new.sentence
+  if$
+}
+>>>>>>> master
 FUNCTION {field.or.null}
 { duplicate$ empty$
     { pop$ "" }
@@ -754,6 +805,7 @@ FUNCTION {format.names.ed}
   while$
   } if$
 }
+<<<<<<< HEAD
 FUNCTION {format.key}
 { empty$
     { key field.or.null }
@@ -761,6 +813,8 @@ FUNCTION {format.key}
   if$
 }
 
+=======
+>>>>>>> master
 FUNCTION {format.authors}
 { author "author" format.names
 }
@@ -834,9 +888,13 @@ FUNCTION {format.title}
 }
 FUNCTION {output.bibitem}
 { newline$
+<<<<<<< HEAD
   "\bibitem[" write$
   label write$
   ")]{" write$
+=======
+  "\bibitem{" write$
+>>>>>>> master
   cite$ write$
   "}" write$
   newline$
@@ -876,6 +934,7 @@ FUNCTION {word.in}
   " " * }
 
 FUNCTION {format.date}
+<<<<<<< HEAD
 { year "year" bibinfo.check duplicate$ empty$
     {
       "empty year in " cite$ * "; set to ????" * warning$
@@ -884,6 +943,25 @@ FUNCTION {format.date}
     'skip$
   if$
   extra.label *
+=======
+{
+  month "month" bibinfo.check
+  duplicate$ empty$
+  year  "year"  bibinfo.check duplicate$ empty$
+    { swap$ 'skip$
+        { "there's a month but no year in " cite$ * warning$ }
+      if$
+      *
+    }
+    { swap$ 'skip$
+        {
+          " " * swap$
+        }
+      if$
+      *
+    }
+  if$
+>>>>>>> master
 }
 FUNCTION {format.btitle}
 { title "title" bibinfo.check
@@ -1123,6 +1201,17 @@ FUNCTION {format.in.ed.booktitle}
     }
   if$
 }
+<<<<<<< HEAD
+=======
+FUNCTION {empty.misc.check}
+{ author empty$ title empty$ howpublished empty$
+  month empty$ year empty$ note empty$
+  and and and and and
+    { "all relevant fields are empty in " cite$ * warning$ }
+    'skip$
+  if$
+}
+>>>>>>> master
 FUNCTION {format.thesis.type}
 { type duplicate$ empty$
     'pop$
@@ -1145,9 +1234,53 @@ FUNCTION {format.tr.number}
 }
 FUNCTION {format.article.crossref}
 {
+<<<<<<< HEAD
   word.in
   " \cite{" * crossref * "}" *
 }
+=======
+  key duplicate$ empty$
+    { pop$
+      journal duplicate$ empty$
+        { "need key or journal for " cite$ * " to crossref " * crossref * warning$ }
+        { "journal" bibinfo.check emphasize word.in swap$ * }
+      if$
+    }
+    { word.in swap$ * " " *}
+  if$
+  " \cite{" * crossref * "}" *
+}
+FUNCTION {format.crossref.editor}
+{ editor #1 "{vv~}{ll}" format.name$
+  "editor" bibinfo.check
+  editor num.names$ duplicate$
+  #2 >
+    { pop$
+      "editor" bibinfo.check
+      " " * bbl.etal
+      *
+    }
+    { #2 <
+        'skip$
+        { editor #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
+            {
+              "editor" bibinfo.check
+              " " * bbl.etal
+              *
+            }
+            {
+             bbl.and space.word
+              * editor #2 "{vv~}{ll}" format.name$
+              "editor" bibinfo.check
+              *
+            }
+          if$
+        }
+      if$
+    }
+  if$
+}
+>>>>>>> master
 FUNCTION {format.book.crossref}
 { volume duplicate$ empty$
     { "empty volume in " cite$ * "'s crossref of " * crossref * warning$
@@ -1158,11 +1291,50 @@ FUNCTION {format.book.crossref}
       swap$ tie.or.space.prefix "volume" bibinfo.check * * bbl.of space.word *
     }
   if$
+<<<<<<< HEAD
+=======
+  editor empty$
+  editor field.or.null author field.or.null =
+  or
+    { key empty$
+        { series empty$
+            { "need editor, key, or series for " cite$ * " to crossref " *
+              crossref * warning$
+              "" *
+            }
+            { series emphasize * }
+          if$
+        }
+        { key * }
+      if$
+    }
+    { format.crossref.editor * }
+  if$
+>>>>>>> master
   " \cite{" * crossref * "}" *
 }
 FUNCTION {format.incoll.inproc.crossref}
 {
+<<<<<<< HEAD
   word.in
+=======
+  editor empty$
+  editor field.or.null author field.or.null =
+  or
+    { key empty$
+        { format.booktitle duplicate$ empty$
+            { "need editor, key, or booktitle for " cite$ * " to crossref " *
+              crossref * warning$
+            }
+            { word.in swap$ * }
+          if$
+        }
+        { word.in key * " " *}
+      if$
+    }
+    { word.in format.crossref.editor * " " *}
+  if$
+>>>>>>> master
   " \cite{" * crossref * "}" *
 }
 FUNCTION {format.org.or.pub}
@@ -1195,7 +1367,10 @@ FUNCTION {format.organization.address}
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
+<<<<<<< HEAD
   author format.key output
+=======
+>>>>>>> master
   format.date "year" output.check
   date.block
   format.title "title" output.check
@@ -1226,7 +1401,10 @@ FUNCTION {book}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check
+<<<<<<< HEAD
       editor format.key output
+=======
+>>>>>>> master
     }
     { format.authors output.nonnull
       crossref missing$
@@ -1261,8 +1439,12 @@ FUNCTION {book}
 FUNCTION {booklet}
 { output.bibitem
   format.authors output
+<<<<<<< HEAD
   author format.key output
   format.date "year" output.check
+=======
+  format.date output
+>>>>>>> master
   date.block
   format.title "title" output.check
   new.block
@@ -1280,7 +1462,10 @@ FUNCTION {inbook}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check
+<<<<<<< HEAD
       editor format.key output
+=======
+>>>>>>> master
     }
     { format.authors output.nonnull
       crossref missing$
@@ -1323,7 +1508,10 @@ FUNCTION {inbook}
 FUNCTION {incollection}
 { output.bibitem
   format.authors "author" output.check
+<<<<<<< HEAD
   author format.key output
+=======
+>>>>>>> master
   format.date "year" output.check
   date.block
   format.title "title" output.check
@@ -1352,7 +1540,10 @@ FUNCTION {incollection}
 FUNCTION {inproceedings}
 { output.bibitem
   format.authors "author" output.check
+<<<<<<< HEAD
   author format.key output
+=======
+>>>>>>> master
   format.date "year" output.check
   date.block
   format.title "title" output.check
@@ -1384,6 +1575,7 @@ FUNCTION {inproceedings}
 FUNCTION {conference} { inproceedings }
 FUNCTION {manual}
 { output.bibitem
+<<<<<<< HEAD
   format.authors output
   author format.key output
   format.date "year" output.check
@@ -1392,6 +1584,36 @@ FUNCTION {manual}
   organization address new.block.checkb
   organization "organization" bibinfo.check output
   address "address" bibinfo.check output
+=======
+  author empty$
+    { organization "organization" bibinfo.check
+      duplicate$ empty$ 'pop$
+        { output
+          address "address" bibinfo.check output
+        }
+      if$
+    }
+    { format.authors output.nonnull }
+  if$
+  format.date output
+  date.block
+  format.btitle "title" output.check
+  author empty$
+    { organization empty$
+        {
+          address new.block.checka
+          address "address" bibinfo.check output
+        }
+        'skip$
+      if$
+    }
+    {
+      organization address new.block.checkb
+      organization "organization" bibinfo.check output
+      address "address" bibinfo.check output
+    }
+  if$
+>>>>>>> master
   format.edition output
   format.doi output
   new.block
@@ -1403,7 +1625,10 @@ FUNCTION {manual}
 FUNCTION {mastersthesis}
 { output.bibitem
   format.authors "author" output.check
+<<<<<<< HEAD
   author format.key output
+=======
+>>>>>>> master
   format.date "year" output.check
   date.block
   format.btitle
@@ -1422,22 +1647,36 @@ FUNCTION {mastersthesis}
 FUNCTION {misc}
 { output.bibitem
   format.authors output
+<<<<<<< HEAD
   author format.key output
   format.date "year" output.check
   date.block
   format.title output
   new.block
+=======
+  format.date output
+  title howpublished new.block.checkb
+  format.title output
+  howpublished new.block.checka
+>>>>>>> master
   howpublished "howpublished" bibinfo.check output
   format.doi output
   new.block
   format.note output
   fin.entry
   write.url
+<<<<<<< HEAD
+=======
+  empty.misc.check
+>>>>>>> master
 }
 FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
+<<<<<<< HEAD
   author format.key output
+=======
+>>>>>>> master
   format.date "year" output.check
   date.block
   format.btitle
@@ -1456,7 +1695,10 @@ FUNCTION {phdthesis}
 FUNCTION {presentation}
 { output.bibitem
   format.authors output
+<<<<<<< HEAD
   author format.key output
+=======
+>>>>>>> master
   new.block
   format.title output
   new.block
@@ -1475,19 +1717,50 @@ FUNCTION {presentation}
 
 FUNCTION {proceedings}
 { output.bibitem
+<<<<<<< HEAD
   format.editors output
   editor format.key output
+=======
+  editor empty$
+    { organization "organization" bibinfo.check output
+    }
+    { format.editors output.nonnull }
+  if$
+>>>>>>> master
   format.date "year" output.check
   date.block
   format.btitle "title" output.check
   format.bvolume output
   format.number.series output
+<<<<<<< HEAD
   new.sentence
   publisher empty$
     { format.organization.address output }
     { organization "organization" bibinfo.check output
       format.publisher.address output
     }
+=======
+  editor empty$
+    { publisher empty$
+        'skip$
+        {
+          new.sentence
+          format.publisher.address output
+        }
+      if$
+    }
+    { publisher empty$
+        {
+          new.sentence
+          format.organization.address output }
+        {
+          new.sentence
+          organization "organization" bibinfo.check output
+          format.publisher.address output
+        }
+      if$
+     }
+>>>>>>> master
   if$
   format.isbn output
   format.issn output
@@ -1501,7 +1774,10 @@ FUNCTION {proceedings}
 FUNCTION {techreport}
 { output.bibitem
   format.authors "author" output.check
+<<<<<<< HEAD
   author format.key output
+=======
+>>>>>>> master
   format.date "year" output.check
   date.block
   format.title
@@ -1520,8 +1796,12 @@ FUNCTION {techreport}
 FUNCTION {unpublished}
 { output.bibitem
   format.authors "author" output.check
+<<<<<<< HEAD
   author format.key output
   format.date "year" output.check
+=======
+  format.date output
+>>>>>>> master
   date.block
   format.title "title" output.check
   format.doi output
@@ -1533,6 +1813,7 @@ FUNCTION {unpublished}
 
 FUNCTION {default.type} { misc }
 READ
+<<<<<<< HEAD
 FUNCTION {sortify}
 { purify$
   "l" change.case$
@@ -1806,14 +2087,39 @@ FUNCTION {bib.sort.order}
 }
 ITERATE {bib.sort.order}
 SORT
+=======
+STRINGS { longest.label }
+INTEGERS { number.label longest.label.width }
+FUNCTION {initialize.longest.label}
+{ "" 'longest.label :=
+  #1 'number.label :=
+  #0 'longest.label.width :=
+}
+FUNCTION {longest.label.pass}
+{ number.label int.to.str$ 'label :=
+  number.label #1 + 'number.label :=
+  label width$ longest.label.width >
+    { label 'longest.label :=
+      label width$ 'longest.label.width :=
+    }
+    'skip$
+  if$
+}
+EXECUTE {initialize.longest.label}
+ITERATE {longest.label.pass}
+>>>>>>> master
 FUNCTION {begin.bib}
 { preamble$ empty$
     'skip$
     { preamble$ write$ newline$ }
   if$
+<<<<<<< HEAD
   "\begin{thebibliography}{" number.label int.to.str$ * "}" *
   write$ newline$
   "\providecommand{\natexlab}[1]{#1}"
+=======
+  "\begin{thebibliography}{"  longest.label  * "}" *
+>>>>>>> master
   write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
