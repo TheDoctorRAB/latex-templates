@@ -61,8 +61,8 @@
 
 \usepackage[singlelinecheck=false,labelfont=bf]{caption}
 \usepackage{subcaption}
-\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period} %sets a space after table caption
-\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period} %sets space above caption, 'figure' format
+\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period,name={Tab.}} %sets a space after table caption
+\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
 
 \usepackage{wrapfig} %wraps figures around text
 \setlength{\intextsep}{0.20mm}
@@ -81,12 +81,12 @@
 \usepackage{lscape}
 \usepackage{array}
 \usepackage{chngcntr}
-%\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{sectsty}
 \usepackage{textcomp}
 \usepackage{lastpage}
 \usepackage{xargs} %for \newcommandx
-\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes} %makes colored boxes for commenting
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
 \usepackage[toc,page]{appendix}
 \usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
@@ -95,10 +95,6 @@
 \usepackage[firstpage]{draftwatermark}
 %\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
 %\SetWatermarkScale{0.35}
-
-\usepackage[singlelinecheck=false]{caption}
-\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period,name={Tab.}} %sets a space after table caption
-\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
 
 \usepackage{wrapfig}
 \setlength{\intextsep}{0.20mm}
@@ -124,9 +120,10 @@
 \newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
 \newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
 \newcommandx{\cmt}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
-\newcommandx{\omt}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
+\newcommandx{\rab}[2][1=]{\todo[author=RAB,tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
 
 \makeatletter
 \renewcommand\tableofcontents{%
@@ -558,6 +555,7 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 
 \paragraph*{References}
 \bibliographystyle{nsf}
+%\bibliographystyle{neup}
 \setlength{\bibhang}{0pt}
 \bibliography{references}
 
