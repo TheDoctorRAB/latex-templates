@@ -93,13 +93,10 @@
 \usepackage{textcomp}
 \usepackage{lastpage}
 \usepackage{xargs} %for \newcommandx
-<<<<<<< HEAD:manuscript/document-package/draft-manuscript/draft-manuscript.tex
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
 \usepackage{marginnote}
-=======
 \usepackage{gensymb}
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
->>>>>>> master:journal/manuscript/document-package/draft-manuscript/draft-manuscript.tex
 \usepackage[toc,title]{appendix}
 \usepackage[figure,table]{totalcount}
 
@@ -108,12 +105,9 @@
 %%%%% watermark
 \usepackage[firstpage,vpos=0.67\paperheight]{draftwatermark}
 \SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
-<<<<<<< HEAD:manuscript/document-package/draft-manuscript/draft-manuscript.tex
 \SetWatermarkScale{0.20}
-=======
 \SetWatermarkScale{0.25}
 %%%%% 
->>>>>>> master:journal/manuscript/document-package/draft-manuscript/draft-manuscript.tex
 
 %\usepackage{xr} %for revisions - will cross reference from one file to here
 %\externaldocument{/path/to/auxfilename} %aux file needed
@@ -150,15 +144,12 @@
 \newcommand{\acsp}{\acrshortpl} %short acronym plural
 
 \newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
-<<<<<<< HEAD:manuscript/document-package/draft-manuscript/draft-manuscript.tex
 \newcommandx{\por}[2][1=]{\todo[author=Porter,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
 \newcommandx{\sam}[2][1=]{\todo[author=Sam,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
 \newcommandx{\rab}[2][1=]{\todo[author=RAB,tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
-=======
 \newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
 \newcommandx{\cmt}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
 \newcommandx{\rab}[2][1=]{\author=RAB,tickmarkheight=0.15cm,todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
->>>>>>> master:journal/manuscript/document-package/draft-manuscript/draft-manuscript.tex
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
