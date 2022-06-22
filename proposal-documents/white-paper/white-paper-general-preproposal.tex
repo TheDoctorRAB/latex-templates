@@ -50,6 +50,9 @@
 %%%%% references
 %\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
 \usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\setlength{\bibsep}{3pt} %sets space between references
+\renewcommand{\bibsection}{} %suppresses large 'references' heading
+%\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
 %%%%%
 
 %%%%% tables and figures
@@ -58,15 +61,19 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.05mm}
+\setlength{\columnsep}{0.05mm}
 
 \usepackage[singlelinecheck=false,labelfont=bf]{caption}
 \usepackage{subcaption}
-\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period,name={Tab.}} %sets a space after table caption
-\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+\captionsetup[table]{justification=justified,skip=7pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[figure]{justification=justified,skip=7pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
 
-\usepackage{wrapfig} %wraps figures around text
-\setlength{\intextsep}{0.20mm}
-\setlength{\columnsep}{0.20mm}
+%\captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=1pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+%\captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Tab.}} %sets space above caption, 'figure' format
 %%%%%
 
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
@@ -87,21 +94,39 @@
 \usepackage{lastpage}
 \usepackage{xargs} %for \newcommandx
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
-\usepackage[toc,page]{appendix}
+\usepackage{marginnote}
+\usepackage{gensymb}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage[toc,title]{appendix}
 \usepackage[figure,table]{totalcount}
-\usepackage[acronym,nomain,nonumberlist]{glossaries}
-\makenoidxglossaries
 
-\usepackage[firstpage]{draftwatermark}
+\usepackage[capitalise]{cleveref}
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.67\paperheight]{draftwatermark}
 %\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
-%\SetWatermarkScale{0.35}
-
-\usepackage{wrapfig}
-\setlength{\intextsep}{0.20mm}
-\setlength{\columnsep}{0.20mm}
+%\SetWatermarkScale{0.25}
+%%%%% 
 
 %\usepackage{xr} %for revisions - will cross reference from one file to here
 %\externaldocument{/path/to/auxfilename} %aux file needed
+
+%%%%% toc and glossaries
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+\usepackage{titlesec,titletoc}
+%\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
+%\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
+\titleformat{\part}{\normalfont\large\bfseries}{\thepart}{}{}[]
+\titlespacing\part{0pt}{0.75\baselineskip}{0.50\baselineskip}
+\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[.]
+\titlespacing*\section{0pt}{0.55\baselineskip}{0.35\baselineskip}
+\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+\titlespacing*\subsection{0pt}{0.45\baselineskip}{0.30\baselineskip}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.20\baselineskip}
 
 \newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
 \newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
@@ -118,12 +143,16 @@
 \newcommand{\acsp}{\acrshortpl} %short acronym plural
 
 \newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
+\newcommandx{\por}[2][1=]{\todo[author=Porter,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
+%\newcommandx{\}[2][1=]{\todo[author=Sam,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
+%\newcommandx{\}[2][1=]{\todo[author=RAB,tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
 \newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
 \newcommandx{\cmt}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
-\newcommandx{\rab}[2][1=]{\todo[author=RAB,tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
+\newcommandx{\rab}[2][1=]{\author=RAB,tickmarkheight=0.15cm,todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
 
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
 
 \makeatletter
 \renewcommand\tableofcontents{%
@@ -147,30 +176,27 @@
 \newcommand*\ftp{\fontsize{16.5}{17.5}\selectfont}
 \makeatother
 
-\makeatletter
-\renewcommand\section{%
-    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-    {\Large \normalfont \bfseries}}%
+%\makeatletter
+%\renewcommand\section{%
+%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
+%    {\large \normalfont \bfseries}}%
 
-\makeatletter
-\renewcommand\paragraph{%
-    \@startsection{paragraph}{4}{\z@ }{0.25\baselineskip}{-1em}
-    {\normalfont \normalsize \bfseries}}%
+%\makeatletter
+%\renewcommand\paragraph{%
+%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
+%    {\normalfont \normalsize \bfseries}}%
 
-\makeatletter
-\renewcommand\subparagraph{%
-    \@startsection{subparagraph}{5}{\z@ }{0.20\baselineskip}{-1em}
-    {\normalfont \normalsize \itshape }}%
+%\makeatletter
+%\renewcommand\subparagraph{%
+%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
+%    {\normalfont \normalsize \itshape }}%
 
-\makeatletter
-\renewcommand\subsection{%
-    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
-    { \large \normalfont \bfseries}}%
-    
-\setlength{\bibsep}{0pt} %sets space between references
-\renewcommand{\bibsection}{} %suppresses large 'references' heading
-\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
+%\makeatletter
+%\renewcommand\subsection{%
+%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
+%    {\large \normalfont \bfseries}}%
 
+%%%%% header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
@@ -179,6 +205,7 @@
 \chead{\scriptsize \textit{Title}}
 \rhead{\scriptsize \today}
 \rfoot{\thepage}
+%%%%%
 
 \begin{filecontents}{references.bib} 
     @misc{
@@ -238,6 +265,43 @@
 \newacronym{eia}{EIA}{U.S. Energy Information Administration}
 \newacronym{oer}{OER}{Online Educational Resource}
 \newacronym{lms}{LMS}{Learning Management System}
+\newacronym{cps}{CPS}{Cyber-Physical Systems}
+\newacronym{nsf}{NSF}{National Science Foundation}
+\newacronym{wsc}{WSC}{Western Services Corporation}
+\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
+\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
+\newacronym{pwr}{PWR}{Pressurized Water Reactor}
+\newacronym{roi}{ROI}{Return on Investment}
+\newacronym{ic}{I\&C}{Instrumentation \& Controls}
+\newacronym{mwe}{MWe}{Megawatts-electric}
+\newacronym{ics}{ICS}{Industrial Control Systems}
+\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
+\newacronym{ip}{IP}{Internet Protocol}
+\newacronym{udp}{UDP}{User Datagram Protocol}
+\newacronym{tva}{TVA}{Tennessee Valley Authority}
+\newacronym{plc}{PLC}{Programmable Logic Controller}
+\newacronym{vfd}{VFD}{Variable Frequency Drive}
+\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
+\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
+\newacronym{mim}{MITM}{Man in the Middle}
+\newacronym{dos}{DDoS}{Distributed Denial of Service}
+\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
+\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
+\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
+\newacronym{cs}{CS}{Critical System}
+\newacronym{loc}{LOCA}{Loss of Coolant Accident}
+\newacronym{hmi}{HMI}{Human Machine Interface}
+\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
+\newacronym{bol}{BOL}{beginning-of-life}
+\newacronym{eol}{EOL}{end-of-life}
+\newacronym{mol}{MOL}{middle-of-life}
+\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
+\newacronym{ccc}{CCC}{Computing Community Consortium}
+\newacronym{neu}{NEUP}{Nuclear Energy University Program}
+\newacronym{doe}{DOE}{United States Department of Energy}
+\newacronym{nei}{NEI}{Nuclear Energy Institute}
+\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
 %\newacronym{}{}{}
 %%%%%
 
@@ -269,6 +333,7 @@
     \textbf{Title\\
     Call\\
     }
+    \vspace{0.10in}
     Name (PI) - Affiliation; Name (co-PI) - Affiliation\\
     Name (co-PI) - Affiliation
 \par
@@ -277,75 +342,85 @@
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
 
 %may not be needed
-\begin{center}\subsection*{Abstract}\end{center}
+%\begin{center}\subsection*{Abstract}\end{center}
 
-\paragraph*{Summary of the Proposed Project.} 
-\subparagraph*{Proposal.}
+\section*{Summary of the Proposed Project} 
+\subsection*{Proposal}
+\subsection*{Key features of the project}
 
-\subparagraph*{Key features of the project.}
+\section*{Motivation}
+\subsection*{Context}
 
-\paragraph*{Motivation.}
-\subparagraph*{Context.}
+\section*{Overall Objective}
 
-\paragraph*{Overall Objective.}
-
-\subsection*{Research Focus and Workscopes.} 
-\begin{enumerate}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
-    \item\textit{Workscope title (Lead - )}
-        \begin{itemize}[leftmargin=*,topsep=-1ex,itemsep=-1ex,partopsep=1ex,parsep=1ex]
-            \item Task 
-            \item Task 
-            \item Task 
-            \item Task 
-        \end{itemize}
-    \item\textit{Concluding work (Full team)}
-        \begin{itemize}[leftmargin=*,topsep=-1ex,itemsep=-1ex,partopsep=1ex,parsep=1ex]
-            \item Discuss crosscutting issues
-        \end{itemize}
+\section*{Workscopes in Brief}
+\begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=0.5in]
+    \item\textbf{X.} (\textit{Lead - ; Support - , })
+        \begin{enumerate}[topsep=3pt,itemsep=1ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.25in]
+            \item\textit{x.}
+            \item\textit{x.}
+        \end{enumerate}
+    \item\textbf{X.} (\textit{Lead - ; Support - , })
+        \begin{enumerate}[resume,topsep=3pt,itemsep=1ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.25in]
+            \item\textit{x.}
+            \item\textit{x.}
+        \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Importance and Relevance to Objectives.} 
-\subparagraph*{Background.} 
+\section*{Importance and Relevance to Objectives} 
+\subsection*{Background} 
 
-\subparagraph*{Relevant literature.}
+\subsection*{Relevant literature}
 
-\subparagraph*{Recently funded work.}
-%for a 3 page preproposal, limit above subject matter to the first page
-%research focus will have to go
+\subsection*{Recently funded work}
 
-\paragraph*{Unique project features.}
+\subsection*{Unique project features}
 
-\paragraph*{Logical Path, Work Scope, Description of Tasks.} 
+\section*{Research Workscopes \& Tasks}
+\subsection*{Research activities}
 
-\paragraph*{Workscope 1 - Title.} (\textit{Lead - ; Support - })
-\begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
-    \item\textit{Title.}
-    \item\textit{Title.}
-    \item\textit{Title.}
+\subsection*{Workscope 1 - Title}
+\begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
+    \item\textit{First task.}
+        \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*)]
+            \item Details.
+        \end{enumerate}
+    \item\textit{Second task.}
+        \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*)]
+            \item Details.
+        \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Workscope 2 - Title.} (\textit{Lead - ; Support - })
-\begin{enumerate}[resume*,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
-    \item\textit{Title.}
-    \item\textit{Title.}
-    \item\textit{Title.}
+\vspace{0.05in}
+
+\noindent\textit{Through this Workscope, we will \ldots.}
+
+\subsection*{Workscope 2 - Title}
+\begin{enumerate}[resume,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
+    \item\textit{Next task.}
+        \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*)]
+            \item Details.
+        \end{enumerate}
+    \item\textit{Next task.}
+        \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*)]
+            \item Details.
+        \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Workscope 3 - Future outlook.} (\textit{Full team})
-\begin{enumerate}[resume*,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textit{Task \Roman*.},align=left,leftmargin=0.5in]
-    \item\textit{Crosscutting issues.}
-\end{enumerate}
+\vspace{0.05in}
 
-\paragraph*{Logical Path to Work Accomplishment. Major Deliverables and Outcomes.} 
-We anticipate the following outcomes - 
-\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex]
+\noindent\textit{Through this Workscope, we will \ldots.}
+
+\section*{Logical Path to Work Accomplishment. Major Deliverables and Outcomes.} 
+The following outcomes are anticipated - 
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex,label=(\arabic*)]
     \item
     \item
     \item
     \item Identify lessons learned and engage in future pathways and partnerships.
 \end{enumerate}
 
-\paragraph*{Estimated Cost of the Project.} 
+\section*{Estimated Cost of the Project.} 
 We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 
 %limiting tasks, deliverables to one page allows for more references to be included on the third page, for a 3 page limit
@@ -547,6 +622,51 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
         \\
         \hline
 \end{longtable}
+
+\part*{References}
+\bibliographystyle{nsf}
+\setlength{\bibhang}{0pt}
+\bibliography{references}
+
+
+%\newpage
+
+
+%\begin{appendices}
+
+
+%    \renewcommand{\thesection}{\Roman{section}}
+%    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+
+
+%\section{Title}\label{app-}
+
+
+%\end{appendices}
+
+
+%wrap figure around text
+%move to wherever in the text 
+%{l} fixes it on the left margin
+%{L} floats
+%\begin{wrapfigure}{l}{0.x\textwidth}
+%       \includegraphics[width=0.(x-2)\textwidth]{}
+%    \caption{}
+%    \label{fig-}
+%\end{wrapfigure}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+\begin{document}
 
 \newpage
 
