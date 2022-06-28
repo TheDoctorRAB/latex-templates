@@ -86,32 +86,11 @@
 }
 
 \renewcommand\subsubsection{\@startsection
-	{subsubsection}{1}{0pt}%		%name, level, indent
-	%{subsubsection}{1}{-\parindent}%		%name, level, indent
+	{subsubsection}{1}{-\parindent}%		%name, level, indent
 	{-.75\baselineskip}%		%beforeskip
 	{.5\baselineskip}%		%afterskip
-	{\reset@font\itshape}%
+	{\reset@font\emph}%
 }
-
-\renewcommand\paragraph{\@startsection
-	{paragraph}{1}{0pt}%		%name, level, indent
-	%{subsubsection}{1}{-\parindent}%		%name, level, indent
-	{-.25\baselineskip}%		%beforeskip
-    {-0.5em}
-%	{0.25\baselineskip}%		%afterskip
-	{\reset@font\bf\itshape}%
-}
-
-\renewcommand\subparagraph{\@startsection
-	{subparagraph}{1}{0pt}%		%name, level, indent
-	%{subsubsection}{1}{-\parindent}%		%name, level, indent
-	{-.25\baselineskip}%		%beforeskip
-    {-0.5em}
-%	{0.25\baselineskip}%		%afterskip
-	{\reset@font\itshape}%
-}
-
-\renewcommand{\quote}{\list{}{\rightmargin=\leftmargin\topsep=3pt}\item\relax}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APPENDIX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % appendix needs equations labeled A.1 etc., but shouldn't look like 
