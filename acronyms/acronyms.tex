@@ -1,36 +1,55 @@
-%put this in preamble
+%%%%%%put this in preamble
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
+%%%%%
+
+
+%%%%% put this in right before draft
 %%%%% acronyms
 % alphabetical ordering is automated
+\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
 \newacronym{anl}{ANL}{Argonne National Laboratory}
+\newacronym{inl}{INL}{Idaho National Laboratory}
+\newacronym{npp}{NPP}{Nuclear Power Plant}
+\newacronym{nrs}{NHRES}{Nuclear Renewable Hybrid Energy System}
+\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{smr}{SMR}{Small Modular Reactor}
+\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
+\newacronym{nus}{NuScale}{NuScale Power, LLC}
+\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
+\newacronym{epri}{EPRI}{Electric Power Research Institute}
+\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
+\newacronym{ci}{CI}{Consistency Index}
+\newacronym{cr}{CR}{Consistency Ratio}
+\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
+\newacronym{lwr}{LWR}{Light Water Reactor}
 \newacronym{aps}{APS}{Arizona Public Service} 
 \newacronym{arm}{ARMA}{Autoregressive Moving Average} 
 \newacronym{eia}{EIA}{Energy Information Agency}
 \newacronym{epa}{EPA}{Environmental Protection Agency}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}  
 \newacronym{hx}{HX}{Heat exchanger} 
-\newacronym{ide}{IDE}{Israel Desalination Enterprises} 
-\newacronym{inl}{INL}{Idaho National Laboratory} 
-\newacronym{iso}{ISO}{Independent System Operator} 
-\newacronym{msf}{MSF}{Multi-Stage Flash} 
+\newacronym{msf}{MSF}{Multi-Stage Flash Distillation} 
 \newacronym{mwe}{MWe}{Megawatts electricity}
 \newacronym{mwt}{MWth}{Megawatts thermal energy}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation} 
-\newacronym{npp}{NPP}{Nuclear Power Plant} 
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission} 
 \newacronym{ies}{IES}{Integrated Energy System} 
-\newacronym{ornl}{ORNL}{Oak Ridge National Laboratory} 
 \newacronym{pv}{PV}{Palo Verde Generating Station} 
 \newacronym{rav}{RAVEN}{Risk Analysis Virtual Environment} 
 \newacronym{ro}{RO}{Reverse Osmosis} 
-\newacronym{rom}{ROM}{Reduced Order Models} 
-\newacronym{smr}{SMR}{Small Modular Reactor} 
+\newacronym{rom}{ROM}{Reduced Order Model} 
 \newacronym{spe}{SPECO}{Specific Exergy Costing} 
 \newacronym{ufs}{U-FSAR}{Updated Final Safety Analysis Report} 
-\newacronym{ahp}{AHP}{Analytic Hierarchy Procedure}
-\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
-\newacronym{ies}{IESO}{Independent Electricity System Operator}
+\newacronym{ieo}{IESO}{Independent Electricity System Operator}
+\newacronym{us}{US}{United States}
+\newacronym{med}{MED}{Multiple-Effect Distillation}
+\newacronym{ed}{ED/EDR}{Electrodialysis Reversal}
+\newacronym{nf}{NF}{Nanofiltration}
+\newacronym{jls}{J}{Joules}
+\newacronym{nre}{NREI}{Nuclear Renewable Energy Integration}
+\newacronym{nrt}{NRTL}{Aspen Electrolyte Non-Random Two-Liquid}
+\newacronym{ferc}{FERC}{Federal Energy Regulatory Commission}
+\newacronym{ide}{IDE}{Israel Desalination Enterprises} 
+\newacronym{iso}{ISO}{Independent System Operator} 
+\newacronym{msf}{MSF}{Multi-Stage Flash} 
 \newacronym{npt}{NPT}{Treaty on the Non-Proliferation of Nuclear Weapons}
 \newacronym{un}{UN}{United Nations}
 \newacronym{ict}{ICT}{Information and communications technologies}
@@ -45,10 +64,7 @@
 \newacronym{mad}{MAD}{Mutually Assured Destruction}
 \newacronym{wmd}{WMD}{Weapons of Mass Destruction}
 \newacronym{sq}{SQ}{Significant Quantity}
-\newacronym{iaea}{IAEA}{International Atomic Energy Agency}
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
 \newacronym{der}{DER}{Distributed Energy Resource}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
 \newacronym{ferc}{FERC}{Federal Energy Regulatory Commission}
 \newacronym{usa}{US}{United States}
 \newacronym{doe}{DOE}{United States Department of Energy}
@@ -58,14 +74,12 @@
 \newacronym{var}{VAr}{Volt-Amps Reactive}
 \newacronym{dsm}{DSM}{Demand Side Management}
 \newacronym{nyi}{NYISO}{New York Independent System Operator}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}
 \newacronym{ac}{AC}{Alternating Current}
 \newacronym{dc}{DC}{Direct Current}
-\newacronym{eia}{EIA}{United States Energy Information Administration}
 \newacronym{pha}{PHA}{Preliminary Hazards Analysis}
 \newacronym{inc}{I\&C}{Instrumentation and Controls}
-%\newacronym{}{}{}
 %%%%%
-%put this in the document somewhere
-\printnoidxglossary
-%%%%
+
+%%%%%put this in the document where the acronym list will appear - Acronyms is in section format
+\printnoidxglossary%[title{}] %removes automated Acronyms title too add custom
+%%%%%
