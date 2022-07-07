@@ -1,0 +1,318 @@
+%@TheDoctorRAB
+%standard white paper/preproposal format
+%
+%%%%%
+%
+%REFERENCES
+%
+%neup.bst - numbered citations in order of appearance, short author list with et al in reference section
+%nsf.bst - numbered citations in order of appearance, full author list in references section
+%standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
+%ans.bst is for ANS only. 
+%
+%author = {Lastname, Firstname and Lastname, Firstname and Lastname, Firstname} for all bst formats
+%bst renders the author list itself
+%
+%author = {{Nuclear Regulatory Commission}} if the author is an organization, institution, etc., and not people
+%
+%title = {{}} for all
+%
+%for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
+%standard.bst \cite{-} - Borrelli (2021) in the text
+%standard.bst lists references alphabetically
+%the rest list numerically
+%
+%%%%%
+\documentclass[11pt,a4paper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../img/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+%\usepackage{mypythonhighlight}
+%\usepackage{lipsum}
+
+%%%%% fonts
+\usepackage{times}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+%%%%% references
+\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+%\usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+%\setlength{\bibsep}{7pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+%\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
+%%%%%
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.05mm}
+\setlength{\columnsep}{0.05mm}
+
+\usepackage[singlelinecheck=false,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{justification=centering,skip=7pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[figure]{justification=justified,skip=7pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
+
+%\captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=1pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+%\captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Tab.}} %sets space above caption, 'figure' format
+%%%%%
+
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+\usepackage[inline]{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{marginnote}
+\usepackage[toc,title]{appendix}
+\usepackage[figure,table]{totalcount}
+
+\usepackage[capitalise]{cleveref}
+
+%\usepackage[firstpage,vpos=0.67\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+
+%to crossref between files
+%clear both directories
+%pdflatex manuscript first
+%pdflatex this file next
+%manuscript needs correponding code here with /path/to/this-file
+\usepackage{xr}
+\externaldocument{/path/to/manuscript} %crossref through aux file
+
+\makeatletter %make text labels
+\newcommand{\labeltext}[3][]{%
+    \@bsphack%
+    \csname phantomsection\endcsname %in case hyperref is used
+    \def\tst{#1}%
+    \def\labelmarkup{} %how to markup the label itself
+    %\def\refmarkup{\labelmarkup} %How to markup the reference
+    \def\refmarkup{}%
+    \ifx\tst\empty\def\@currentlabel{\refmarkup{#2}}{\label{#3}}%
+    \else\def\@currentlabel{\refmarkup{#1}}{\label{#3}}\fi%
+    \@esphack%
+    \labelmarkup{#2}% visible printed text.
+}
+
+%%%%% toc and glossaries
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+\usepackage{titlesec,titletoc}
+%\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
+%\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
+
+\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
+\titlespacing\part{0pt}{0.75\baselineskip}{0.50\baselineskip}
+
+\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[.]
+\titlespacing*\section{0pt}{0.55\baselineskip}{0.35\baselineskip}
+
+\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+\titlespacing*\subsection{0pt}{0.45\baselineskip}{0.30\baselineskip}
+
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+\titlespacing*\paragraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+
+%\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
+%\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
+
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.20\baselineskip}
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
+\newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+
+\newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
+\newcommandx{\por}[2][1=]{\todo[author=Porter,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
+\newcommandx{\sam}[2][1=]{\todo[author=Sam,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
+\newcommandx{\rab}[2][1=]{\todo[author=RAB,tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoffigures{%
+    \@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoftables{%
+    \@starttoc{lot}%
+}
+\makeatother
+
+\makeatletter
+\newcommand*\ftp{\fontsize{16.5}{17.5}\selectfont}
+\makeatother
+
+%\makeatletter
+%\renewcommand\section{%
+%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
+%    {\large \normalfont \bfseries}}%
+
+%\makeatletter
+%\renewcommand\paragraph{%
+%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
+%    {\normalfont \normalsize \bfseries}}%
+
+%\makeatletter
+%\renewcommand\subparagraph{%
+%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
+%    {\normalfont \normalsize \itshape }}%
+
+%\makeatletter
+%\renewcommand\subsection{%
+%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
+%    {\large \normalfont \bfseries}}%
+    
+%%%%% header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+\lhead{\scriptsize JOURNAL-ID}
+\chead{\scriptsize \textit{Author et al.} - Reviewer X}
+\rhead{\scriptsize \today}
+\rfoot{\thepage} %move page number to bottom right
+%%%%%
+
+\begin{filecontents}{references.bib} 
+\end{filecontents}
+
+%%%%% acronyms
+%\newacronym{}{}{}
+%%%%%
+
+\begin{document}
+
+\begin{titlepage}
+    \title{Title}
+    \author{
+        Author 1, 
+        Author 2, 
+        \textsuperscript{*}Author 3
+        \\ \\ \\
+        Affiliation
+        \\ \\ \\
+        \textsuperscript{*}rborrelli@uidaho.edu
+        \\ \\ \\ 
+        Response to Reviewer
+    }
+\clearpage %not have page number on title page
+\maketitle
+\thispagestyle{empty} %start with page number 1 on second page
+\end{titlepage}
+
+\part*{Reviewer X}
+
+\noindent Thank you for the peer review of this manuscript. Each comment was considered carefully. The manuscript has been revised accordingly in the hope that the updated paper is worthy of publication. A detailed response to each comment is provided in this document. 
+
+\section*{General comments}
+\begin{enumerate}[series=innerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),align=left,leftmargin=*]
+    \item Comment
+\end{enumerate}
+
+\subsection*{Response}
+Response
+
+\paragraph*{Revisions}
+Revisions
+\begin{enumerate}[leftmargin=.5in,rightmargin=.5in,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,label=(\roman*)]
+    \item\labeltext{Statement.}{1-label}
+\end{enumerate}
+
+\begin{enumerate}[resume=innerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),align=left,leftmargin=*]
+    \item Comment
+\end{enumerate}
+
+\subsection*{Response}
+Response
+
+\paragraph*{Revisions}
+Revisions
+\begin{enumerate}[leftmargin=.5in,rightmargin=.5in,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,label=(\roman*)]
+    \item\labeltext{Statement.}{1-label-2}
+\end{enumerate}
+
+\newpage 
+
+\section*{Editorial comments}
+\begin{enumerate}[series=innerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),align=left,leftmargin=*]
+    \item Abstract 1 - \labeltext{`...essential components \textit{to} back-end...' $\rightarrow$ `...essential components \textit{of} back-end...'}{1-ed1}
+\end{enumerate}
+
+\subsection*{Response}
+\begin{enumerate}[leftmargin=.5in,rightmargin=.5in,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,label=(\roman*)]
+    \item Reply
+\end{enumerate}
+
+\begin{enumerate}[resume=innerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),align=left,leftmargin=*]
+    \item Abstract 1 - \labeltext{`...essential components \textit{to} back-end...' $\rightarrow$ `...essential components \textit{of} back-end...'}{1-ed1}
+\end{enumerate}
+
+\subsection*{Response}
+\begin{enumerate}[leftmargin=.5in,rightmargin=.5in,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,label=(\roman*)]
+    \item Reply
+\end{enumerate}
+
+%\newpage
+
+%\part*{References}
+%\bibliographystyle{nsf}
+%\setlength{\bibhang}{0pt}
+%\bibliography{references}
+
+\end{document}
