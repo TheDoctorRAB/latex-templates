@@ -1,0 +1,270 @@
+\documentclass[aspectratio=1610,pdftex,dvipsnames,compress]{beamer}
+\usetheme{Boadilla}
+\usecolortheme{seahorse}
+\beamertemplatenavigationsymbolsempty 
+
+\addtobeamertemplate{footnote}{\hskip -2em}{} %pushes footnote to margin
+
+\setbeamerfont{title}{series=\bfseries}
+
+\setbeamertemplate{page number in head/foot}[framenumber] %Just gives slide number; comment out for 1/7, 2/7, etc.
+
+\definecolor{BackGround}{RGB}{255,250,240}
+\setbeamercolor{background canvas}{bg=BackGround}
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+%packages and definitions
+\usepackage{enumitem}
+\setlist[itemize]{label=\textbullet}
+\usepackage{nicefrac}
+\usepackage{ulem}
+\usepackage{graphicx,animate}
+\usepackage{mypythonhighlight}% allows inclusion of graphics
+\graphicspath{{../img/}} %path to graphics
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+
+%%%%%
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+\usepackage{booktabs} % nice rules (thick lines) for tables
+\usepackage{microtype} % improves typography for PDF
+
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+
+\usepackage{xcolor,colortbl} %change font color
+\usepackage[numbers,sort&compress]{natbib} 
+\usepackage{bibentry}
+
+
+\setlength{\bibsep}{0pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\renewcommand\bibpreamble{\vspace{-0.2\baselineskip}} %sets spacing after heading if not using default references heading
+
+%\begin{filecontents}{references.bib}
+%\end{filecontents}
+
+
+%%%%% user commands
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfill} %bibliography ordered list has numbers left flush
+\makeatother
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
+\newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+\newcommand{\Acf}{\Acrfull} %full acronym first letter capital
+\newcommand{\Acl}{\Acrlong} %long acronym first letter capital
+%%%%%
+
+%%%%%
+\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
+\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
+\newacronym{inl}{INL}{Idaho National Laboratory}
+\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{anl}{ANL}{Argonne National Laboratory}
+\newacronym{npp}{NPP}{Nuclear Power Plant}
+\newacronym{smr}{SMR}{Small Modular Reactor}
+\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
+\newacronym{nus}{NuScale}{NuScale Power, LLC}
+\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
+\newacronym{epri}{EPRI}{Electric Power Research Institute}
+\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
+\newacronym{ci}{CI}{Consistency Index}
+\newacronym{cr}{CR}{Consistency Ratio}
+\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
+\newacronym{lwr}{LWR}{Light Water Reactor}
+\newacronym{eia}{EIA}{U.S. Energy Information Administration}
+\newacronym{oer}{OER}{Online Educational Resource}
+\newacronym{lms}{LMS}{Learning Management System}
+\newacronym{cps}{CPS}{Cyber-Physical Systems}
+\newacronym{nsf}{NSF}{National Science Foundation}
+\newacronym{wsc}{WSC}{Western Services Corporation}
+\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
+\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
+\newacronym{pwr}{PWR}{Pressurized Water Reactor}
+\newacronym{roi}{ROI}{Return on Investment}
+\newacronym{ic}{I\&C}{Instrumentation \& Controls}
+\newacronym{mwe}{MWe}{Megawatts-electric}
+\newacronym{ics}{ICS}{Industrial Control Systems}
+\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
+\newacronym{ip}{IP}{Internet Protocol}
+\newacronym{udp}{UDP}{User Datagram Protocol}
+\newacronym{tva}{TVA}{Tennessee Valley Authority}
+\newacronym{plc}{PLC}{Programmable Logic Controller}
+\newacronym{vfd}{VFD}{Variable Frequency Drive}
+\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
+\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
+\newacronym{mim}{MITM}{Man in the Middle}
+\newacronym{dos}{DDoS}{Distributed Denial of Service}
+\newacronym{ds}{DoS}{denial-of-service}
+\newacronym{MM}{MiTM}{Man in the Middle}
+\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
+\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
+\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
+\newacronym{cs}{CS}{Critical System}
+\newacronym{loca}{LOCA}{Loss of Coolant Accident}
+\newacronym{hmi}{HMI}{Human Machine Interface}
+\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
+\newacronym{bol}{BOL}{beginning-of-life}
+\newacronym{eol}{EOL}{end-of-life}
+\newacronym{mol}{MOL}{middle-of-life}
+\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
+\newacronym{ccc}{CCC}{Computing Community Consortium}
+\newacronym{neu}{NEUP}{Nuclear Energy University Program}
+\newacronym{doe}{DOE}{United States Department of Energy}
+\newacronym{nei}{NEI}{Nuclear Energy Institute}
+\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
+\newacronym{rcs}{RCS}{Reactor Cooling System}
+\newacronym{generic}{GPWR}{Generic Pressurized Water Reactor}
+\newacronym{pcap}{PCAP}{packet capture file}
+%%%%%
+
+
+\title[Short title for footer]{Long title for title page}
+
+\author[Short author for footer]{
+    Name\\
+    \vspace{0.25in}
+    Another name\\
+    \vspace{0.05in}
+    \includegraphics{img/} 
+    \includegraphics{img/}
+}
+
+\institute[Short institute for footer]{
+    \vspace{0.05in}
+    Institution\\
+    Subtitle\\
+    \vspace{0.10in}
+    Subtitle\\
+    \vspace{0.15in}
+    \includegraphics[width=0.20\textwidth]{logo}
+    }
+
+\date{\today}
+    
+
+\begin{document}
+\nobibliography* %Allows you to put \bibentry citations in the footers of frames/slides.
+%This does NOT effect your ability to put a bibliography slide at the end
+
+%%%%% title page with no footer
+{
+    \setbeamertemplate{footline}{} 
+    \begin{frame}
+        \titlepage
+    \end{frame}
+} 
+
+
+\begin{frame}{Title}
+    \begin{enumerate}[label=(\arabic*),leftmargin=*,itemsep=7pt]
+        \item .
+        \item .
+        \item .
+    \end{enumerate}
+    \vspace{0.25in}
+    \begin{itemize}[leftmargin=*,itemsep=7pt]
+        \item .
+        \item . 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Title}
+    \begin{itemize}[leftmargin=*,itemsep=7pt]
+        \item .  
+        \item .
+        \item .
+    \end{itemize}
+\end{frame}
+
+
+%\begin{frame}{Title}
+%    \begin{itemize}
+%            \only<1-2>{
+%            \item .
+%            }
+%
+%            \only<2>{
+%            \item .
+%            \item . \citep{citation}
+%            }
+%    \end{itemize}
+%
+%    \only<2>{
+%        \blfootnote{\tiny\cite{citation}\tiny\bibentry{citation}}
+%    }
+%\end{frame}
+
+
+%\begin{frame}{Title}
+%    \begin{itemize}
+%        \item . \citep{ref}
+%        \item . \citep{ref}
+%    \end{itemize}
+%    \blfootnote{\tiny\cite{ref}\tiny\bibentry{ref}}
+%    \blfootnote{\tiny\cite{ref}\tiny\bibentry{ref}}
+%\end{frame}
+
+
+%\begin{frame}{Title}
+%    \begin{columns}
+%        \begin{column}{0.75\textwidth}
+%            \begin{figure}
+%                \centering
+%                \includegraphics[width=0.95\textwidth]{figure}
+%                \caption{}
+%            \end{figure}
+%        \end{column}
+%
+%        \begin{column}{0.25\textwidth}
+%            \begin{itemize}
+%                \item .
+%                \item .
+%                \item .
+%            \end{itemize}
+%        \end{column}
+%    \end{columns}
+%\end{frame}
+
+
+%\begin{frame}{Acknowledgements}
+%    \centering
+%    Research was funded by .
+%\end{frame}
+
+
+%\begin{frame}{References}
+%    \bibliographystyle{neup}
+%    \footnotesize
+%    \bibliography{references}
+%\end{frame}
+
+
+\end{document}
