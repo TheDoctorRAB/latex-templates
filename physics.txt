@@ -1,0 +1,10 @@
+% ______________________Physics cards_____
+set pop 1000000 500 100 1
+%set pop 20000 100 30 1
+%set ngamma 1 %invokes production of prompt gammas in neutron reactions
+set ures 1
+set acelib "endfb71r1_p2" "endfb71r1" "jeff31u"
+% Prints cross section data to [input]_xs0.m file.
+set xsplot 100 1e-11 2.0 %comment out for temp sens
+set power 0.4e6 % 400 KW thermal output
+%
