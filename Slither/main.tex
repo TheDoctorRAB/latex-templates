@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{slither}%requires slither.sty to be in the working directory
+\usepackage{verbatim}
+
+\title{Slither Code Block Package}
+\author{Sam Root}
+\date{February 2023}
+
+\begin{document}
+\section*{Slither Package}
+This is a \LaTeX package that makes it easy to include Python and Serpent  codes in your documents with an aesthetically pleasing code block. It builds on a great package called pythonhighlight by Oliver. This is a huge upgrade over just using the verbatim package to include code. \\
+
+https://github.com/olivierverdier/python-latex-highlighting/blob/master/pythonhighlight.sty
+
+
+\subsection*{Python Codes}
+You can include code by typing it into the \verb|\begin{python}\end{python}| environment.
+
+\begin{code}\caption{Hello!} \begin{python}
+    x=10
+    print("Hello World") #comment
+    try:
+        a=2/x
+    except ZeroDivisionError:
+        print('undefined')
+\end{python}\label{code:hello}\end{code}
+
+You can also use inline codes like \pyth{import numpy} or \pyth{lambda x: x if x<=1 else fib(x-1) + fib(x-2)} by using the \verb|\pyth{}| control sequence. \\
+
+Or you can save python files into your working directory and include them without the need to retype/copy-paste them using the \\ \verb|\inputpython{<input.py>}{<firstline>}{<lastline>}| command. The line numbers are smart, so if \pyth{<firstline>!=1}, it will start from the appropriate line. Be careful with this, especially making sure not to break up multiline `lines' like multiline comments or dictionaries, or the syntax highlighting may fail. 
+
+\begin{code}\caption{F strings}
+\inputpython{test.py}{2}{8}
+\label{code:fstrings}\end{code}
+
+\newpage
+\subsection*{Serpent Input Files}
+It is a bit more complicated to use the Serpent capabilities. While I know all of the Control Words in Serpent, I do not know what you are going to name materials etc. You will have to open slither.sty, and add things that you would like to follow the `Name' syntax highlighting file to the line under \serp{\%Add Names here}.
+
+You can include input files by typing it into the \verb|\begin{serpent}\end{serpent}| environment.
+
+\begin{code}\caption{Fuel!} \begin{serpent}
+    /*
+    Enriched (4%) Uranium Metal 
+    */
+    mat fuel     -10.1
+    92235.03c    -0.04 
+    92238.03c    -0.96
+    'string'
+\end{serpent}\label{code:fuel}\end{code}
+
+You can include individual commands inline like \serp{surf s1 sqc 0.0 0.0 100.0}.
+
+Or you can save serpent input files into your working directory and include them without the need to retype/copy-paste them using the \\ \verb|\inputserpent{<input.txt>}{<firstline>}{<lastline>}| command.
+
+\begin{code}\caption{Physics Cards}
+    \inputserpent{physics.txt}{1}{10}
+    \label{code:physics}\end{code}
+
+\newpage
+\subsection*{Wrapping Files over the Page Break}
+You'll likely have files long enough to wrap over multiple pages. This is simple to deal with using the input<python/serpent> commands, as these natively allow you to handle page numbers. It's a little hacky as part of the code lays outside of the code-float, but it still allows you to reference it using the label.
+
+\begin{code}\caption{Python OOP Helium Cycle}
+    \inputpython{HeliumCycle.py}{1}{39}
+    \label{code:brayton}\end{code}
+    \newpage
+    \inputpython{HeliumCycle.py}{40}{86}
+    \newpage
+    \inputpython{HeliumCycle.py}{87}{130}
+    \newpage
+    \inputpython{HeliumCycle.py}{131}{178}
+    \newpage
+    \inputpython{HeliumCycle.py}{179}{195}
+
+
+\end{document}

@@ -1,0 +1,196 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{slither}[2011/09/19 python code highlighting; provided by Olivier Verdier <olivier.verdier@gmail.com>]
+%%Modified by sjroot%%
+
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+\RequirePackage{caption}
+\RequirePackage{float}
+
+%Initializing float environment (like table or figure) for code blocks
+\floatstyle{plaintop}
+\newfloat{code}{thp}{loc}
+\floatname{code}{Code}
+\renewcommand*{\lstlistlistingname}{Code Listings}
+\renewcommand*{\lstlistingname}{Code Listing}
+\definecolor{gray}{gray}{0.5}
+
+%Custom Colors for Syntax Highlighting
+\colorlet{commentcolour}{gray!90!white}
+\colorlet{stringcolour}{green!60!black}
+\colorlet{keywordcolour}{red!90!black}
+\colorlet{exceptioncolour}{yellow!50!red}
+\colorlet{commandcolour}{blue!60!black}
+\colorlet{numpycolour}{blue!60!green}
+\colorlet{literatecolour}{magenta!90!black}
+\colorlet{promptcolour}{green!50!black}
+\colorlet{specmethodcolour}{violet}
+
+%Some Stuff That could be called later=
+\newcommand*{\framemargin}{3ex}
+\newcommand*{\literatecolour}{\textcolor{literatecolour}}
+\newcommand*{\pythonprompt}{\textcolor{promptcolour}{{>}{>}{>}}}
+
+%Defines the syntax highlighting for python code blocks
+\lstdefinestyle{mypython}{
+%imports some default settings from the lstlistings package for python
+language=python,
+%basic settings
+showtabs=true,
+numbers=left,
+tab=,
+tabsize=2,
+basicstyle=\ttfamily\footnotesize,%\setstretch{.5},
+stringstyle=\color{stringcolour},
+showstringspaces=false,
+alsoletter={1234567890},
+%Some special characters
+otherkeywords={\%, \}, \{, \&, \|},
+%Conditionals and Functions
+keywordstyle=\color{keywordcolour}\bfseries,
+emph={and,break,class,continue,def,yield,del,elif ,else,%
+except,exec,finally,for,from,global,if,import,in,%
+lambda,not,or,pass,print,raise,return,try,while,assert,with},
+emphstyle=\color{blue}\bfseries,
+%Booleans
+emph={[2]True, False, None},
+emphstyle=[2]\color{keywordcolour},
+%Some Built in Functions
+emph={[3]object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,xrange,append,execfile,real,imag,reduce,str,repr},
+emphstyle=[3]\color{commandcolour},
+%Exceptions
+emph={Exception,NameError,IndexError,SyntaxError,TypeError,ValueError,OverflowError,ZeroDivisionError},
+emphstyle=\color{exceptioncolour}\bfseries,
+%Makes Triplequotes act as multi-line comments
+morecomment=[s]{"""}{"""},
+commentstyle=\color{commentcolour}\slshape,
+%Numpy Keywords
+emph={[4]ode, fsolve, sqrt, exp, sin, cos,arctan, arctan2, arccos, pi,  array, norm, solve, dot, arange, isscalar, max, sum, flatten, shape, reshape, find, any, all, abs, plot, linspace, legend, quad, polyval,polyfit, hstack, concatenate,vstack,column_stack,empty,zeros,ones,rand,vander,grid,pcolor,eig,eigs,eigvals,svd,qr,tan,det,logspace,roll,min,mean,cumsum,cumprod,diff,vectorize,lstsq,cla,eye,xlabel,ylabel,squeeze},
+emphstyle=[4]\color{numpycolour},
+%Dunder Methods
+emph={[5]__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__},
+emphstyle=[5]\color{specmethodcolour},
+%Error Handling and Troubleshooting
+emph={[6]assert,yield},
+emphstyle=[6]\color{keywordcolour}\bfseries,
+%Range
+emph={[7]range},
+emphstyle={[7]\color{keywordcolour}\bfseries},
+%Not a Clue
+literate=*%
+{:}{{\literatecolour:}}{1}%
+{=}{{\literatecolour=}}{1}%
+{-}{{\literatecolour-}}{1}%
+{+}{{\literatecolour+}}{1}%
+{*}{{\literatecolour*}}{1}%
+{**}{{\literatecolour{**}}}2%
+{/}{{\literatecolour/}}{1}%
+{//}{{\literatecolour{//}}}2%
+{!}{{\literatecolour!}}{1}%
+%{(}{{\literatecolour(}}{1}%
+%{)}{{\literatecolour)}}{1}%
+{[}{{\literatecolour[}}{1}%
+{]}{{\literatecolour]}}{1}%
+{<}{{\literatecolour<}}{1}%
+{>}{{\literatecolour>}}{1}%
+{>>>}{\pythonprompt}{3}%
+,%
+%Codeblock Settings
+frame=trbl,
+rulecolor=\color{black!40},
+backgroundcolor=\color{lime!10!cyan!10!white},
+breakindent=.5\textwidth,frame=single,breaklines=true%
+%}
+}
+
+%provides a command to load in a .py file from the working directory directly, and place it in a code block.
+\newcommand*{\inputpython}[3]{\lstinputlisting[firstline=#2,lastline=#3,firstnumber=#2,frame=single,breakindent=.5\textwidth,frame=single,breaklines=true,style=mypython]{#1}}
+
+%Generates a code block from the text put in this environment with python syntax highlighting
+\lstnewenvironment{python}[1][]{\lstset{style=mypython}}{}
+
+%modifies the python code block styling for in-line python
+%in perfect honesty I don't really know how this block of code works
+%Thanks Oliver
+\lstdefinestyle{mypythoninline}{
+style=mypython,%
+basicstyle=\ttfamily,%
+keywordstyle=\color{keywordcolour},%
+emphstyle={[7]\color{keywordcolour}},%
+emphstyle=\color{exceptioncolour},%
+literate=*%
+{:}{{\literatecolour:}}{2}%
+{=}{{\literatecolour=}}{2}%
+{-}{{\literatecolour-}}{2}%
+{+}{{\literatecolour+}}{2}%
+{*}{{\literatecolour*}}2%
+{**}{{\literatecolour{**}}}3%
+{/}{{\literatecolour/}}{2}%
+{//}{{\literatecolour{//}}}{2}%
+{!}{{\literatecolour!}}{2}%
+%{(}{{\literatecolour(}}{2}%
+%{)}{{\literatecolour)}}{2}%
+{[}{{\literatecolour[}}{2}%
+{]}{{\literatecolour]}}{2}%
+{<}{{\literatecolour<}}{2}%
+{<=}{{\literatecolour{<=}}}3%
+{>}{{\literatecolour>}}{2}%
+{>=}{{\literatecolour{>=}}}3%
+{==}{{\literatecolour{==}}}3%
+{!=}{{\literatecolour{!=}}}3%
+{+=}{{\literatecolour{+=}}}3%
+{-=}{{\literatecolour{-=}}}3%
+{*=}{{\literatecolour{*=}}}3%
+{/=}{{\literatecolour{/=}}}3%
+%% emphstyle=\color{blue},%
+}
+
+%Command for inline python syntax highlighting
+\newcommand*{\pyth}{\lstinline[style=mypythoninline]}
+
+
+
+%Defines the syntax highlighting for serpent code blocks
+\lstdefinestyle{myserpent}{
+showtabs=true,
+numbers=left,
+tab=,
+tabsize=2,
+basicstyle=\ttfamily\footnotesize,%\setstretch{.5},
+%Making Strings work for double quotes and single quotes
+morestring=[b]",
+morestring=[b]',
+stringstyle=\color{stringcolour},
+showstringspaces=false,
+alsoletter={1234567890},
+%Add Control Words here. I already included everyting in the input syntax manual
+emph={[3]set,branch,casematrix,cell,coef,datamesh,dep,det,div,dtrans,ene,ftrans,fun,hisv,ifc,include,lat,ltrans,mat,mesh,mflow,mix,nest,particle,pbed,phb,pin,plot,rep,sample,sens,solid,src,srtrans,strans,surf,therm,thermstoch,tme,trans,transb,transv,transa,umsh,utrans,wwgen,wwin,absrate,acelib,adf,alb,arr,ba,bala,bc,blockdt,bralib,branchless,bumode,bunorm,ccmaxiter,ccmaxpop,cdop,cea,cfe,cmm,coefpara,combing,comfile,confi,coverxlib,covlib,cpd,cpop,csw,dataout,dbrc,dd,declib,decomp,delnu,depmtx,depout,deppara,depstepbunorm,dfsol,dix,dpec,dt,dynccfile,dynsrc,ecut,ecutdesn,ecutmat,eddi,edepdel,edpekcorr,edepmode,egrid,ekn,elcond,elgas,elmee,elspn,entr,fininitfile,fissh,fissrate,fissye,flux,fluxlimtrc,fmtx,forcedt,fpcut,fsp,fum,gbuf,gct,gcu,gcut,genrate,gpop,gsw,his,ifp,imp,impl,infrk,inventory,isobra,iter,alb,nuc keff,lossrate,lost,maxsplit,mbtch,mcvol,mdep,memfrac,mfpcut,mfpcutdens,mfpcutmat,micro,minxs,multievelgcu,mvol,nbuf,nfg,nfylib,ngamma,nphys,nps,opti,outp,pbuf,pcc,pdatadir,poi,pop,powdens,power,ppid,pport,ppw,precsrcf,prethresh,printelsp,printm,qparam_dbrc,qparam_tms,relfactor,repro,rfr,rfw,rnddec,root,roulette,runtme,samarium,savesrc,sca,seed,sfbuf,sfrate,sfylib,shbuf,sie,sourcescale,spa,spd,srcrate,stl,stlfile,tcut,title,tpa,transmurea,transnorm,transtime,trc,ttacut,ttb,ttbpm,ufs,ures,usym,U235H,voidc,wrenout,wie,wwb,xenon,xscalc,xsplot},
+emphstyle=[3]\color{keywordcolour},
+%Add Control Words here. I already included everyting in the input syntax manual
+emph={[4] px,py,pz,plane,cylx,cyly,cylz,cyl,cylv,sph,cone,quadratic,inf,torx,tory,torz,tric,sqc,rect,hexxc,hexyc,hexxsprism,hexyprism,octa,dode,cube,cuboid,ppd,pad,cross,gcros,hexxap,hexyap,involute,vessel},
+emphstyle=[4]\color{keywordcolour},
+%Add Names here
+emph={[6]fuel,B4C},
+emphstyle=[6]\color{commandcolour}\bfseries,
+%Setting Up Comments
+morecomment=[s]{/*}{*/}, %[s]block comments begin and end with these characters
+morecomment=[l]\%, %[l]comments begin with this character at any point in the
+commentstyle=\color{commentcolour}\slshape,
+%Codeblock Setup
+frame=trbl,
+rulecolor=\color{black!40},
+backgroundcolor=\color{magenta!10!cyan!10!white},
+breakindent=.5\textwidth,frame=single,breaklines=true%
+%}
+}
+
+%provides a command to load in a file from the working directory directly, and place it in a code block, with Serpent syntax highlighting.
+\newcommand*{\inputserpent}[3]{\lstinputlisting[firstline=#2,lastline=#3,firstnumber=#2,frame=single,breakindent=.5\textwidth,frame=single,breaklines=true,style=myserpent]{#1}}
+
+%Generates a code block from the text put in this environment with serpent syntax highlighting
+\lstnewenvironment{serpent}[1][]{\lstset{style=myserpent}}{}
+
+%Command for inline serpent syntax highlighting
+\newcommand*{\serp}{\lstinline[style=myserpent]}
+
+%End of File
