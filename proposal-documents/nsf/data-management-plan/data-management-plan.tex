@@ -1,0 +1,124 @@
+%@TheDoctorRAB
+%Use for original, revised, clean manuscripts
+\documentclass[11pt,letterpaper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{xcolor} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../../img/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{caption}
+\captionsetup[table]{skip=11pt} %sets a space after table caption
+\usepackage{times}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
+\usepackage[round]{natbib} %parenthesis instead of brackets for inline citations
+\usepackage{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[labelfont=bf]{caption}
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+%\usepackage{xr} %document crossreferencing
+%\externaldocument{/path/to/auxfilename} %aux file needed
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
+
+\makeatletter
+\renewcommand\paragraph{%
+    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
+    {\normalfont \normalsize \bfseries}}%
+
+\makeatletter
+\renewcommand\subparagraph{%
+    \@startsection{subparagraph}{5}{\z@ }{0.45\baselineskip}{-1em}
+    {\normalfont \normalsize \itshape }}%
+
+\makeatletter
+\renewcommand\subsection{%
+    \@startsection{subsection}{2}{\z@ }{0.75\baselineskip}{0.25\baselineskip}
+    { \large \bfseries}}%
+    
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0pt} %turn off line in header
+%\lhead{\scriptsize ID}
+%\chead{\scriptsize Data Management Plan}
+%\rhead{\scriptsize \today}
+\rfoot{\thepage}
+
+\begin{document}
+
+{\centering 
+    \textbf{Title\\
+    Data Management Plan\\
+    \vspace{0.05in}
+    }
+    Name (PI) - Affiliation 
+\par
+}
+
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
+\subsection*{Types of data and materials}
+%Data specific to project tasks. List according to workscope.
+\noindent During the course of the project, the following data and materials will be generated and collected -
+\begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex]
+    \item
+    \item
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\subsection*{Data and metadata standards}
+%Making sure the agency knows that the teams knows what to do with the data. Edit as needed. 
+\noindent Data will be saved in spreadsheets and text files; e.g., csv, tab delimited, etc. Literature and other written materials will be in pdf. All data will be archived on each Investigator's password protected office computer(s), regularly backed-up on external hard drives that will also be password protected, and on the \textit{Specific Institution file sharing system; e.g., OneDrive}. Handwritten notes will be transcribed into LaTeX files or similar word processing files. All files will be named with appropriate and standard convention, reflective of the metadata. Other materials; e.g., output from computational tools (used for any postprocessing of the data), will be stored in their standard format, with supporting documentation as pdf or a `README.txt'. Images and maps will be also stored in standard format; e.g., jpg, as appropriate. Metadata standards are based on the historically best practices based on staff expertise and widespread community use - \href{https://libraries.mit.edu/data-management/}{MIT data management guidance}.
+
+\subsection*{Physical and/or cyber resources and facilities}
+\noindent The PI will establish a shared research data space in the cloud; e.g., SharePoint, etc., with project members for storing and sharing soft copies of data and materials. Project-generated data will be archived by the project team. These data will be used in this project as relevant to defined project tasks. Physical resources will be stored in each Investigator's laboratory/office with restricted card key access.
+
+\subsection*{Policies for access and sharing}
+%Check with home institution for these paragraphs.
+\noindent Collected data and materials will be made available to the general research community as appropriate depending on copyright, confidentiality, and proprietary restrictions. 
+
+\paragraph*{Access and sharing.}
+\noindent All data and materials will be freely available to project researchers with access to the shared research data storage space. Handwritten documentation will be stored in laboratory notebooks and/or digitally copied/transcribed and stored in the shared space. Collaborators will have access to data and materials upon request and as appropriate with PI acknowledgement. Data and materials will be published and made accessible to the general research community as the research progresses. Investigators retain the right to use the data created under this project before opening it up to wider use. Presentations and publications in conference proceedings and peer-reviewed journals due to project progress will be documented and reported to the sponsor agency. 
+
+\paragraph*{Provisions for appropriate protection of privacy, confidentiality, security, intellectual property, or other rights or requirements.}
+\noindent While the intention is to broadly disseminate results, it is understood that the project team may be in possession of confidential/proprietary information and may create intellectual property. Information will be made publicly available through standard channels. Throughout the project period, and thereafter, utmost care will be directed to the safeguarding of data that might be deemed sensitive. Such data will be stored in locked cabinets or on secure servers. During the communication of data files only university or company email servers will be used under secure connections. Sensitive data will not be communicated through unsecured wireless networks. Online meetings will be held through PI coordination using the \textit{Institution videoconferencing platform; e.g., Zoom, Teams} with appropriate authentication; e.g., passcodes. 
+
+\subsection*{Policies and provisions for reuse and redistribution}
+\noindent Data and related materials will be archived for at least three years following the completion of the project. Each Investigators' institution have a dedicated staff of computer support specialists. No special software or tools will be needed to access the data and materials when they are archived. Access will be limited to Investigators and those granted permission to the research data storage space. Data will be archived with the \textit{Specific Institution Repository} and will be
+prepared for public release after a reasonable length of time to be determined by the community of interest through the process of peer-review and program management. For additional information about \textit{Specific Institution Repository} institutional data management capabilities, policies and procedures, please contact \textit{Contact Person} at \textit{contact information}. 
+
+\subsection*{Roles and responsibilities}
+\noindent Investigators will be responsible for postdoctorate and student documents and store data and materials in the manner described herein, as well as for holding long-term purview of the data. Students will be required to review this data management plan, and the standards website noted above prior to initiating research. Any individual on the project that creates any data and materials will hold responsibility for proper documentation and storage with oversight provided by the direct mentor. Investigators will monitor and review the data management and the data management plan, along with the students involved each quarter. As individuals depart the project, they will communicate data and materials under their direct responsibility to the respective Investigator and any incoming replacement. Data will be stored and automatically backed up by the \textit{Specific Institution Information Technology Center}.
+
+\end{document}
