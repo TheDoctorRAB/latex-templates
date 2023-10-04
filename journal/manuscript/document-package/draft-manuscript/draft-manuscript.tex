@@ -132,7 +132,11 @@
 \usepackage[title,titletoc]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
+<<<<<<< HEAD
 \AtBeginEnvironment{appendices}{\crefalias{section}{appendix}} %for cleveref to use Appendix
+=======
+\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
+>>>>>>> 3774105a8183f7b20f276c0515911fc7f8fb4aab
 \usepackage{titlesec,titletoc}
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
@@ -149,7 +153,7 @@
 \titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
 \titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
 \titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
-\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.20\baselineskip}
+\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
 %%%%%
 
 
@@ -282,7 +286,7 @@
 %%%%%
 
 
-%%%%%%% citations
+%%%%% citations
 \begin{filecontents}{references.bib}
     @misc{
         nye15a,
@@ -319,7 +323,7 @@
         address = {Las Vegas, Nevada}
     }
 \end{filecontents}
-%%%%%%%
+%%%%%
 
 
 %%%%% acronyms
@@ -456,6 +460,7 @@
 
 
 \printnoidxglossary
+
 
 \newpage
 %\section*{Table of Contents}
