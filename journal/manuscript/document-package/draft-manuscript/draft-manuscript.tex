@@ -1,6 +1,6 @@
+%%%%%
 %@TheDoctorRAB
-%standard white paper/preproposal format
-%
+%standard journal format
 %%%%%
 %
 %REFERENCES
@@ -67,6 +67,8 @@
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
 \usepackage[capitalise]{cleveref}
+\usepackage{nameref}
+%\usepackage{parskip}
 %%%%%
 
 
@@ -130,6 +132,7 @@
 \usepackage[title,titletoc]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
+\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}} %for cleveref to use Appendix
 \usepackage{titlesec,titletoc}
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
@@ -157,9 +160,6 @@
 %\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
 \newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
 %\st{} does strikethrough using soul package but does not like acronyms
-\newcommand{\blc}{\cellcolor{aliceblue}} %use to shade in table cell
-\newcommand{\grc}{\cellcolor{lightgray}} %use to shade in table cell
-\newcommand{\whc}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
 
 
@@ -172,6 +172,9 @@
 \definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
 
 
@@ -187,8 +190,8 @@
 
 
 %%%%% todonotes
-\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
-\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
 \newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 
 
@@ -272,7 +275,7 @@
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize Manuscript ID or Journal name}
+\lhead{\scriptsize Consent based siting -- Communities of place}
 \chead{\scriptsize \textit{First Author et al. - Draft Manuscript}}
 \rhead{\scriptsize \today}
 \rfoot{\thepage}
@@ -632,7 +635,7 @@ Major results and implications include -
 
 %    \setcounter{section}{0}
 %    \renewcommand{\thesection}{\Roman{section}}
-%    \titleformat{\section}{\normalfont\Large\bfseries}{Appendix \thesection:}{1ex}{}[]
+%    \titleformat{\section}{\normalfont\large\bfseries}{Appendix \thesection:}{1ex}{}[]
 
 
 %    \section{Just appendix title} \label{app-}
