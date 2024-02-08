@@ -1,0 +1,564 @@
+%%%%% 
+%Sam Root - University of Idaho
+%Thesis defense slides with sidebar
+%Customize with your school colors!
+%Fork sjroot97/UI-Thesis-Dissertation for thesis guide, poster, and examples
+%%%%%
+\documentclass[aspectratio=169,pdftex,dvipsnames]{beamer}
+\usetheme[right,hideallsubsections]{Berkeley}
+\usecolortheme{seahorse}
+\beamertemplatenavigationsymbolsempty 
+\addtobeamertemplate{footnote}{\hskip -2em}{}
+
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty,font=small}
+
+%packages and definitions
+\usepackage{wrapfig}
+\usepackage{textgreek}
+\usepackage{enumitem}
+\setlist[itemize]{label=\textbullet}
+\usepackage{amsmath,cancel,nicefrac}
+\usepackage{ulem}
+\usepackage{graphicx,animate}
+\graphicspath{{./img/},{}} %path to graphics
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+
+%%%%%
+\usepackage{pgf,pgfplots}
+\usepackage{tikz,grffile} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+\pgfplotsset{compat=newest}
+%\usepgfplotslibrary{patchplots}
+%%%%%
+
+\usepackage{booktabs} % nice rules (thick lines) for tables
+\usepackage{microtype} % improves typography for PDF
+\usepackage{verbatim}
+
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+%\makenoidxglossaries
+
+\usepackage{xcolor,colortbl} %change font color
+\usepackage[numbers,sort&compress]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations; nsf.bst
+\usepackage{bibentry}
+\usepackage[eulergreek]{sansmath}
+
+
+\setlength{\bibsep}{0pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\renewcommand\bibpreamble{\vspace{-0.2\baselineskip}} %sets spacing after heading if not using default references heading
+
+%%%%% user commands
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+%Fix centering on title slide which doesn't have a sidebar [plain]
+\newcommand\noside{\addtolength\textwidth{2cm} 
+\setlength\hsize{\textwidth} 
+\setlength\columnwidth{\textwidth}
+\vfill\centering}
+
+%Make sidebar background color so it appears invisible
+\newcommand\outlineframe{
+    \setbeamercolor{sidebar}{fg=Chrome,bg=Chrome}
+\setbeamercolor{title in sidebar}{fg=Chrome}
+\setbeamercolor{author in sidebar}{fg=Chrome}
+\setbeamercolor{section in sidebar}{fg=Chrome}
+}
+
+%Make sidebar original color so it appears again
+\newcommand\stopoutlineframe{
+    \setbeamercolor*{sidebar}{fg=PrideGold,bg=Black}
+\setbeamercolor*{title in sidebar}{fg=PrideGold}
+\setbeamercolor*{author in sidebar}{fg=PrideGold}
+\setbeamercolor*{section in sidebar}{fg=PrideGold}
+}
+
+\makeatletter
+\setlength{\beamer@headheight}{1cm}
+\renewcommand{\@biblabel}[1]{#1.\hfill} %bibliography ordered list has numbers left flush
+\makeatother
+\setbeamertemplate{navigation symbols}{}
+% \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{sidebar right}[sidebar theme]
+\addtobeamertemplate{sidebar right}{}{%
+    \vspace{10pt}
+    \hspace{20pt}
+    \insertframenumber
+    \vspace{10pt}
+    }
+
+% Current section in TOC
+\AtBeginSection[ ]
+{\outlineframe
+\begin{frame}{}
+    \tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+\stopoutlineframe}
+
+ \AtBeginSubsection[]{
+     \begin{frame}{}
+         \vfill
+         \centering
+         \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+             \usebeamerfont{title}\insertsubsectionhead\par
+         \end{beamercolorbox}
+       
+         \vfill
+       
+     \end{frame}
+ }
+
+\logo{\includegraphics[width=40pt]{logocorner}}
+
+% colors
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+
+\setbeamercolor{background canvas}{bg=Chrome}
+\setbeamercolor{block title}{bg=Silver,fg=Black}
+\setbeamercolor{block body}{bg=Silver!20,fg=Black}
+
+\setbeamercolor{block title alerted}{bg=Black, fg=Silver}
+\setbeamercolor{block body alerted}{bg=PrideGold, fg=Black}
+\setbeamercolor{alerted text}{fg=Silver}
+
+\setbeamercolor*{block title example}{bg=PrideGold, fg = Black}
+\setbeamercolor*{block body example}{bg=PrideGold!20, fg = Black}
+
+\setbeamercolor*{palette primary}{bg = PrideGold}
+\setbeamercolor*{palette secondary}{bg = PrideGold, fg = White}
+\setbeamercolor*{palette tertiary}{bg = PrideGold, fg = White}
+\setbeamercolor*{titlelike}{fg = PrideGold}
+\setbeamercolor*{title}{bg = Black, fg = PrideGold}
+\setbeamercolor*{item}{fg = PrideGold}
+\setbeamercolor*{caption name}{fg = PrideGold}
+
+\setbeamercolor*{sidebar}{fg=PrideGold,bg=Black}
+\setbeamercolor*{title in sidebar}{fg=PrideGold}
+\setbeamercolor*{author in sidebar}{fg=PrideGold}
+\setbeamercolor*{section in sidebar}{fg=PrideGold}
+
+
+\setbeamercolor{section in toc}{fg=Black}
+\setbeamercolor{subsection in toc}{fg=Black}
+
+\setbeamercolor{page number in head/foot}{fg=Silver,bg=Black}
+\setbeamercolor{footline}{bg=Black}
+
+\setbeamercolor{bibliography entry author}{fg=Black}
+\setbeamercolor{bibliography entry note}{fg=Black}
+\setbeamercolor{bibliography entry title}{fg=Black}
+
+% Font Information
+
+\usefonttheme{professionalfonts}
+
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{author}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{caption}{size=\tiny}
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strike-through
+\newcommand{\x}{\cellcolor{lightgray}\textbf{X}} %use to shade in table cell
+
+%fix spacing for frames with subtitles
+\newcommand\cST{\vspace{-0.5cm}} %Center title when no subtitle
+\newcommand\ST{\vspace{-0.15cm}}  %Make subtitles fix in top bar
+
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+\newcommand{\Acf}{\Acrfull} %full acronym first letter capital
+\newcommand{\Acl}{\Acrlong} %long acronym first letter capital
+
+\newacronym{pid}{PID}{Proportional-Integral-Derivative}
+\newacronym{npp}{NPP}{Nuclear Power Plant}
+\newacronym{msnb}{MSNB}{Molten Salt Nuclear Battery}
+\newacronym{msr}{MSR}{Molten Salt Reactor}
+\newacronym{msre}{MSRE}{Molten Salt Reactor Experiment}
+\newacronym{lwr}{LWR}{Light Water Reactor}
+\newacronym{smr}{SMR}{Small Modular Reactor}
+\newacronym{nrc}{NRC}{Nuclear Regulatory Commission}
+\newacronym{ans}{ANS}{American Nuclear Society}
+\newacronym{inl}{INL}{Idaho National Laboratory}
+\newacronym{nrel}{NREL}{National Renewable Energy Laboratory}
+\newacronym{oak}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{lti}{LTI}{Linear Time-Invariant}
+\newacronym{mm}{MIMO}{Multi-Input Multi-Output}
+\newacronym{ss}{SISO}{Single-Input Single-Output}
+
+\newcommand{\UF}[1][4]{$UF_{#1}$}
+\newcommand{\flinak}{$FLiNaK$ }
+
+\newcommand{\B}[1][]{$^{#1}B$ }
+\newcommand{\Be}[1][]{$^{#1}Be$ }
+\newcommand{\I}[1][135]{$^{#1}I$ }
+\newcommand{\Xe}[1][135]{$^{#1}Xe$ }
+\newcommand{\Nd}[1][149]{$^{#1}Nd$}
+\newcommand{\Pm}[1][149]{$^{#1}Pm$ }
+\newcommand{\Sa}[1][149]{$^{#1}Sa$ }
+\newcommand{\Gd}[1][157]{$^{#1}Gd$ }
+\newcommand{\U}[1][]{$^{#1}U$ }
+\newcommand{\Pu}[1][239]{$^{#1}Pu$ }
+\newcommand{\Ca}[1][]{$^{#1}Ca$ }
+\newcommand{\Am}[1][]{$^{#1}Am$ }
+\newcommand{\Po}[1][]{$^{#1}Po$ }
+\newcommand{\Ra}[1][]{$^{#1}Ra$ }
+%%%%%
+\newcommand{\sci}[1][]{$\times$ 10\textsuperscript{#1} }
+%%%%%
+
+%Title Slide Info
+\title[LaTeX Defense]{Writing a Thesis or Dissertation\\for University of Idaho with LaTeX}
+\author{Joe Vandal}
+\institute[Idaho Falls Center]{University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
+    Department of Nuclear Engineering and Industrial Management\\
+    }
+\date{December 6\textsuperscript{th}, 2023}    
+\titlegraphic{\includegraphics[width=0.20\textwidth]{logo}}
+
+
+\begin{document}
+    \nobibliography*
+{    \setbeamertemplate{footline}{}
+
+%Title Slide
+    \begin{frame}[plain]{}
+        \noside
+        \titlepage
+    \end{frame}
+} 
+
+%Biography Slide
+\begin{frame}{About the Author}
+    \vfill
+    \begin{block}{Experience}
+      B.S Chemical Engineering (2015-2019) - Michigan Technological University\\
+      M.S. Nuclear Engineering (2021-2023) - University of Idaho - \acs{nrc} Fellow\\
+      Modeling and Simulation Intern at Idaho National Lab
+    \end{block}
+    \vfill
+    \begin{block}{Select Publications}
+    \bibentry{MyOwnPaper}\;\\
+    \bibentry{RootMS}   
+    \end{block}
+    \vfill
+\end{frame}
+
+%Outline Slide
+{\outlineframe
+\begin{frame}{Outline}
+    \tableofcontents[hideallsubsections]
+\end{frame}
+\stopoutlineframe}
+
+\section{Introduction}
+\begin{frame}{Background}
+    \begin{block}{Block 1}
+        \only<1>{
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+                \item Item 3
+                \item Item 4
+            \end{itemize}
+        }
+    \end{block}
+    
+    \begin{block}{Block 2}
+        \only<2>{
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+                \item Item 3
+            \end{itemize}
+        }
+    \end{block}
+    
+    \begin{block}{Block 3}
+        \only<3>{
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+                \item Item 3
+            \end{itemize}
+        }
+    \end{block}
+\end{frame}
+
+\begin{frame}{Molten Salt Nuclear Battery}
+    \begin{columns}
+        %Column 1
+        \begin{column}{0.5\textwidth}
+            \begin{block}{Left Block 1}
+                \only<1>{
+                    \begin{itemize}
+                        \item Item 1
+                    \item Item 2
+                    \item Item 3
+                    \end{itemize}
+                }
+            \end{block}
+            \begin{block}{Left Block 2}
+                \only<2>{
+                    \begin{itemize}
+                        \item Item 1
+                        \item Item 2
+                        \item Item 3
+                    \end{itemize}
+                }
+            \end{block}
+        \end{column}
+        %Column 2
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.9\textwidth]{ANS}
+                \caption{ANS Logo}
+                \label{fig:ans}
+            \end{figure}
+            }
+            \only<2>{
+                \begin{figure}
+                    \includegraphics[width=0.9\textwidth]{logo}
+                    \caption{UIdaho Logo}
+                \end{figure}
+            }
+        \end{column}
+    \end{columns}
+    \end{frame}
+
+\begin{frame}{Citations}
+    \begin{block}{A Citation \cite{MyOwnPaper}}
+        \only<1>{
+        \begin{itemize}
+            \item Item 1
+            \item Item 2
+        \end{itemize}    
+        }
+    \end{block}
+    
+    \begin{block}{Another Citation \cite{RootMS}}
+        \only<2>{
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+            \end{itemize}    
+            }
+    \end{block}
+    
+    \begin{block}{No Citation}
+        \only<3>{
+            \begin{itemize}
+                \item Item 1
+            \end{itemize}    
+            }
+    \end{block}
+
+    \blfootnote{\tiny\cite{MyOwnPaper} \tiny\bibentry{MyOwnPaper}}
+    \blfootnote{\tiny\cite{RootMS} \tiny\bibentry{RootMS}}
+\end{frame}
+
+\section{Subsections}
+\subsection{Subsection 1}
+\begin{frame}{A Tikz Drawing}
+    \begin{figure}[!ht]
+        \centering
+        \resizebox{\textwidth}{!}{\input{tikz/feedback}}
+    \end{figure}
+\end{frame}
+
+\begin{comment}
+\begin{frame}{A commented out frame}
+    You can't see this
+    \begin{figure}[!ht]
+        \centering
+        \resizebox{\textwidth}{!}{\input{tikz/feedback}}
+    \end{figure}
+\end{frame}
+\end{comment}
+
+\begin{frame}{An equation explained}
+    \begin{equation*}
+        u(t) 
+        = \underbrace{K_P e(t)}_{\text{Proportional}} 
+        + \underbrace{K_I \int_0^t e(t)dt}_{\text{Integral}} 
+        + \underbrace{K_D \frac{de(t)}{dt}}_{\text{Derivative}}
+    \end{equation*}
+    \only<2->{
+    \begin{block}{Proportional}
+        \only<2>{
+        \begin{itemize}
+            \item Control output is manipulated in proportion to the error defined by the proportional gain constant
+            \item High gain yields an aggressive controller that is prone to overshooting the set-point
+            \item Low gain may result in steady-state offset
+        \end{itemize}    
+        }
+    \end{block}
+
+    \begin{block}{Integral}
+        \only<3>{\begin{itemize} 
+            \item Considers cumulative error to help eliminate steady-state offset 
+            \item As the process variable settles around the set-point, the cumulative error approaches a constant value and the effect of the integral controller diminishes.
+        \end{itemize}
+        }
+    \end{block}
+
+    \begin{block}{Derivative}
+        \only<4>{\begin{itemize}
+            \item Estimates the time rate of change of the error to dampen overshoot
+            \item Backs-off the proportional response when the process variable rapidly approaches the set-point
+            \item Can be difficult to tune
+        \end{itemize}
+        }
+    \end{block}
+    }
+\end{frame}
+
+
+\subsection{Subheadings}
+\begin{frame}{Heading\only<2->{\ST}}{\only<1>{\cST}\only<2-3>{Subheading for 2nd and 3rd slide}\only<4-5>{Subheading for 4th and 5th slide}}
+    \only<1>{
+         No subheading on this slide
+     }
+     \only<2-3>{
+         \begin{block}{Block for second slide}
+            \only<2>{\begin{itemize}
+                \item Textbook Citation with chapter \cite[Ch. 7]{Kerlin}
+                \item Another textbook citation with chapter \cite[Ch. 6]{DH}
+            \end{itemize}}
+         \end{block}
+            
+         \begin{block}{Block for third slide}
+            \only<3>{\begin{itemize}
+                \item A citation that only appears for the third frame \cite{MyOwnPaper}
+                \item Item 2
+            \end{itemize}}
+         \end{block}
+
+         \only<2>{\blfootnote{\tiny\cite{Kerlin} \tiny\bibentry{Kerlin}}
+         \blfootnote{\tiny\cite{DH} \tiny\bibentry{DH}}}
+         \only<3>{\blfootnote{\tiny\cite{PetersonMS} \tiny\bibentry{PetersonMS}}}
+     }
+     \only<4-5>{
+             \begin{block}{Block for 4th slide}
+                \only<4>{\begin{itemize}
+                    \item Emphasis \textit{emphasis}
+                    \item Item 2
+                    \item $t_{\nicefrac{1}{2}}$ halflife - bring back the citation from the second slide \cite[Ch. 6]{DH}
+                \end{itemize}
+                \begin{equation*}
+                    {^{87}Br} \underset{56 sec}{\stackrel{\beta^-}{\longrightarrow}} {^{87}Kr^{*}} \to {^{86}Kr + n}
+                \end{equation*}}
+             \end{block}
+             
+             \begin{block}{Block for fifth slide}
+                \only<5>{\begin{itemize}
+                    \item Precursors produced near the core exit and long lived precursors may emit their neutrons outside of the core 
+                    \item These neutrons are effectively lost from the fission chain reaction \cite[Ch. 3]{Kerlin}
+                    \item Larger power transport requires a higher flow rate
+                    \item Greater delayed neutron losses 
+                    \item Negative feedback
+                \end{itemize}}
+             \end{block}
+              
+
+             \only<4>{\blfootnote{\tiny\cite{DH} \tiny\bibentry{DH}}}
+             \only<5>{\blfootnote{\tiny\cite{Kerlin} \tiny\bibentry{Kerlin}}}
+     }
+ \end{frame}
+
+\begin{frame}{A Table}
+    \begin{table}[bh!]
+        \centering\footnotesize
+        \begin{tabular}{c|ccccc|cc}
+        \hline
+        Years & c\textsubscript{4} \sci[9] & c\textsubscript{3} \sci[6] & c\textsubscript{2} \sci[4] & c\textsubscript{1} \sci[2] & c\textsubscript{0} & root ($^o$) & slope ($pcm/^o$) \\ \hline
+        0.0 & -2.797 & 1.789 & -4.361 & 4.829 & -2.009 & 111.41 & 224.24 \\
+        0.5 & -2.755 & 1.755 & -4.272 & 4.732 & -1.976 & 113.69 & 203.69 \\
+        1.0 & -1.838 & 1.253 & -3.253 & 3.826 & -1.682 & 115.79 & 189.71 \\
+        1.5 & -2.533 & 1.632 & -3.253 & 4.507 & -1.909 & 117.38 & 175.96 \\
+        2.0 & -2.418 & 1.578 & -3.930 & 4.440 & -1.895 & 119.45 & 161.06 \\\hline
+        2.5 & -1.461 & 1.026 & -2.750 & 3.337 & -1.515 & 121.06 & 152.71 \\
+        3.0 & -1.137 & 0.856 & -2.425 & 3.070 & -1.440 & 122.67 & 146.08 \\
+        3.5 & -2.054 & 1.357 & -3.433 & 3.953 & -1.727 & 124.58 & 130.85 \\
+        4.0 & -2.527 & 1.617 & -3.967 & 4.438 & -1.892 & 126.46 & 120.67 \\\hline
+        4.5 & -2.869 & 1.831 & -4.460 & 4.935 & -2.081 & 128.35 & 111.30 \\
+        5.0 & -2.338 & 1.520 & -3.785 & 4.291 & -1.855 & 130.55 & 102.04 \\
+        5.5 & -1.471 & 1.054 & -2.852 & 3.467 & -1.585 & 132.29 & 93.34 \\
+        6.0 & -2.626 & 1.702 & -4.211 & 4.729 & -2.027 & 134.96 & 83.90 \\\hline
+        6.5 & -1.672 & 1.141 & -2.985 & 3.550 & -1.607 & 137.45 & 77.56 \\
+        7.0 & -3.321 & 2.095 & -5.036 & 5.492 & -2.292 & 139.19 & 69.73 \\
+        7.5 & -2.419 & 1.579 & -3.936 & 4.459 & -1.932 & 142.69 & 59.45 \\
+        8.0 & -7.991 & 0.648 & -1.960 & 2.623 & -1.305 & 144.62 & 55.65 \\
+        \end{tabular}
+        \label{tab:Depletionfit}
+    \end{table}
+\end{frame}
+
+
+
+\section{Conclusions}
+\begin{frame}{Conclusions}
+    \begin{block}{Summary of Work Completed}
+        \only<1>{
+            \begin{itemize}
+                \item Item 1
+                \item Item 2
+                \item Item 3
+            \end{itemize}
+        }
+        \begin{block}{Results In-Brief}
+            \only<2>{
+                \begin{itemize}
+                    \item Item 1
+                    \item Item 2
+                    \item Item 3
+                \end{itemize}
+            }
+        \end{block}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Acknowledgements}
+    \centering
+    This work and my coursework is being completed under a Graduate Fellowship funded by \acf{nrc}.
+\end{frame}
+
+\begin{frame}[plain]{}
+    \noside
+    \includegraphics[height=0.9\textheight]{logo}
+    \vfill
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+    \bibliographystyle{./rcs/neup}
+    \footnotesize
+    \bibliography{./rcs/References}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
