@@ -33,6 +33,21 @@
 
 % ams math must be loaded before txfonts
 \usepackage{amsmath}
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
+%\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=black,citecolor=black,urlcolor=blue} 
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,textwidth=15mm]{todonotes} %makes colored boxes for commenting
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+
 % Use Times for math font and text font.
 \RequirePackage[T1]{fontenc}
 \RequirePackage{txfonts}
