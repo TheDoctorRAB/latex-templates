@@ -7,8 +7,8 @@ Common acronyms for nuclear writings and all sorts of things.
 
 Put in .bashrc - 
 
-export ACRONYM="$HOME/github/latex-templates/acronyms"
+export ACRONYM="$HOME/path/to/acronyms-file/"
 
-or wherever the acronym.tex file is stored
+wherever the acronym.tex file is stored
 
-Then in the .tex file, just add \input
+Then in the .tex file, just add \input{$ACRONYM/acronyms}
