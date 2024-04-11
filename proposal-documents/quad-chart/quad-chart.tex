@@ -1,0 +1,765 @@
+%@TheDoctorRAB
+%
+%presentation template for class slides and research presentations
+%allows for citations in slide and a list at the end
+%
+%%%%%
+%
+%REFERENCES
+%
+%neup.bst - numbered citations in order of appearance, short author list with et al in reference section
+%nsf.bst - numbered citations in order of appearance, full author list in references section
+%standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
+%ans.bst is for ANS only. 
+%
+%author = {Lastname, Firstname and Lastname, Firstname and Lastname, Firstname} for all bst formats
+%bst renders the author list itself
+%
+%author = {{Nuclear Regulatory Commission}} if the author is an organization, institution, etc., and not people
+%
+%title = {{}} for all
+%
+%for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
+%standard.bst \cite{-} - Borrelli (2021) in the text
+%standard.bst lists references alphabetically
+%the rest list numerically
+%
+%
+%%% citations on slides 
+%
+% \citep{xxxnna} where the citation should go
+%
+% \blfootnote{\fontsize\cite{xxxnna}\fontsize\bibentry{xxxnna}}\\ 
+% before \end{frame}
+% footnotes aren't working for some reason
+%
+% this works
+% \tiny\cite{xxxnna}\tiny\hspace{0.05in}\bibentry{xxxnna}\\ 
+% before \end{frame}
+%%%%%
+
+%%%%% presentation settings
+\documentclass[aspectratio=1610,pdftex,dvipsnames,compress,xcolor={dvipsnames},8pt]{beamer}
+\usetheme{Boadilla}
+\usecolortheme{seahorse}
+\beamertemplatenavigationsymbolsempty
+\addtobeamertemplate{footnote}{\hskip -2em}{} %pushes footnote to margin
+%%% font style - can add size, etc.
+%https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+\setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries,size=\LARGE}
+\setbeamerfont{footline}{series=\bfseries}
+\setbeamerfont{author}{series=\bfseries}
+\setbeamerfont{institute}{series=\bfseries}
+\setbeamerfont{date}{series=\bfseries}
+\setbeamertemplate{frametitle}[default][center]
+\setbeamertemplate{page number in head/foot}[framenumber] %just gives slide number; comment out for 1/7, 2/7...
+%\setbeamertemplate{caption}[numbered] %number tables and figures
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+%sam root
+\definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+%%% general
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+%%% set slides
+\setbeamercolor{background canvas}{bg=BackGround}
+%%%
+\setbeamercolor{block title}{bg=Silver,fg=Black}
+\setbeamercolor{block body}{bg=Silver!20,fg=Black}
+\setbeamercolor{block title alerted}{bg=Black,fg=Silver}
+\setbeamercolor{block body alerted}{bg=PrideGold,fg=Black}
+\setbeamercolor{alerted text}{fg=Silver}
+\setbeamercolor*{block title example}{bg=PrideGold,fg=Black}
+\setbeamercolor*{block body example}{bg=PrideGold!20,fg=Black}
+%%%
+\setbeamercolor*{palette primary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette secondary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette tertiary}{bg=PrideGold,fg=Black}
+%%%
+\setbeamercolor*{titlelike}{bg=PrideGold,fg=Black}
+\setbeamercolor*{title}{bg=PrideGold,fg=Black}
+\setbeamercolor*{item}{fg=PrideGold}
+\setbeamercolor*{caption name}{fg=PrideGold}
+%%%
+\setbeamercolor*{sidebar}{fg=PrideGold,bg=Black}
+\setbeamercolor*{title in sidebar}{fg=PrideGold}
+\setbeamercolor*{author in sidebar}{fg=PrideGold}
+\setbeamercolor*{section in sidebar}{fg=PrideGold}
+%%%
+\setbeamercolor{section in toc}{fg=Black}
+\setbeamercolor{subsection in toc}{fg=Black}
+%%%
+\setbeamercolor{page number in head/foot}{fg=Black,bg=PrideGold}
+%\setbeamercolor{footline}{bg=Black}
+%%%
+\setbeamercolor{bibliography entry author}{fg=Black}
+\setbeamercolor{bibliography entry note}{fg=Black}
+\setbeamercolor{bibliography entry title}{fg=Black}
+%%%
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+
+%%%%%
+
+
+%%%%% general 
+%\documentclass[11pt,a4paper]{article}
+%\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{graphicx}
+\usepackage{mypythonhighlight,verbatim}
+\usepackage{filecontents}
+\usepackage{footnotehyper}
+\usepackage{float}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+\usepackage[inline]{enumitem}
+\setlist[itemize]{label=\textbullet}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=black,citecolor=black,urlcolor=blue} 
+%\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{soul}
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage[capitalise]{cleveref}
+\usepackage{microtype} %improves typography for pdf
+\usepackage[pdftex,dvipsnames]{colortbl} %change font color
+\usepackage{eso-pic}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+\usepackage{times}
+%\renewcommand{\sfdefault}{ubuntu}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references
+%\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+\usepackage[numbers,sort&compress]{natbib} %for [1-3] - use neup.bst; nsf.bst isn't working
+\usepackage{bibentry}
+\setbeamertemplate{bibliography entry title}{} %deletes linebreak for in slide references
+\setlength{\bibsep}{7pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+%\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+\usepackage[singlelinecheck=false,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[figure]{justification=centering,skip=3pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
+\captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+\captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% cross referencing files
+%\usepackage{xr} %for revisions - will cross reference from one file to here
+%\externaldocument{/path/to/auxfilename} %aux file needed
+%%%%%
+
+
+%%%%% toc and glossaries
+%\usepackage[toc,title]{appendix}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+%\makenoidxglossaries
+%\usepackage{titlesec,titletoc}
+%\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
+%\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
+%\titleformat{\part}{\normalfont\large\bfseries}{\thepart}{}{}[]
+%\titlespacing*\part{0pt}{0.95\baselineskip}{0.75\baselineskip}
+%\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[.]
+%\titlespacing*\section{0pt}{0.65\baselineskip}{0.55\baselineskip}
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+%\titlespacing*\subsection{0pt}{0.50\baselineskip}{0.35\baselineskip}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+%\titlespacing*\paragraph{0pt}{0.45\baselineskip}{0.25\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+%\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
+%\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.20\baselineskip}
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%\st{} does strikethrough using soul package but does not like acronyms
+\newcommand{\blucell}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\grycekk}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\whicell}{\cellcolor{antiquewhite}} %use to shade in table cell
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% todonotes
+\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+%\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%%%
+%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[author=\textbf{Food for thought},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+%\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+%%% highlighting 
+\DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlh}[2]{#1}
+    \else
+    \newcommand{\hlh}[2]{\han{#2}\hlc{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlj}[2]{#1}
+    \else
+    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hlf}[1]{{\sethlcolor{lightmauve}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlb}[2]{#1}
+    \else
+    \newcommand{\hlb}[2]{\rab{#2}\hlf{#1}}
+    \fi
+    \makeatother
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% table contents
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoffigures{%
+    \@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoftables{%
+    \@starttoc{lot}%
+}
+\makeatother
+
+\makeatletter
+\newcommand*\ftp{\fontsize{16.5}{17.5}\selectfont}
+\makeatother
+%%%%%
+
+
+%%%%% user commands
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfill} %bibliography ordered list has numbers left flush
+\makeatother
+
+
+\AtBeginSection[]{
+    \begin{frame}[plain]{}
+         
+         \vfill
+
+         \centering
+         \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{titlelike}
+             \usebeamerfont{title}\insertsectionhead\par
+         \end{beamercolorbox}
+
+         \vfill
+
+     \end{frame}
+ }
+
+
+ \newcommand\FourQuad[4]{%
+    \begin{minipage}[c][0.47\textheight][c]{0.47\textwidth}#1\end{minipage}\hfill%
+    \begin{minipage}[c][0.47\textheight][c]{0.47\textwidth}#2\end{minipage}\\[0in]
+    \begin{minipage}[c][0.47\textheight][c]{0.47\textwidth}#3\end{minipage}\hfill
+    \begin{minipage}[c][0.47\textheight][c]{0.47\textwidth}#4\end{minipage}%
+}
+
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.925\paperwidth},\LenToUnit{0.875\paperheight}){#1}}}
+\AddToShipoutPictureFG{
+  \AtPagemyUpperLeft{{\includegraphics[width=0.07\textwidth]{logo/university-of-idaho/main/ui-black.png}}}
+}%
+%%%%%
+
+
+%%%%% header and footer
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{} %move page number to bottom right
+%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%\lhead{\scriptsize Name}
+%\lhead{\scriptsize PNUCENE-D-22-xxxxx}
+%\chead{\scriptsize \textit{PhD White Paper Project Proposal}}
+%\rhead{\scriptsize \today}
+%\rfoot{\thepage}
+%%%%%
+
+
+%%%%%%% citations
+%%%%%%%
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%%%%%
+
+
+%%%%% spacing
+%\onehalfspacing %linespacing
+%\setstretch{1.05} %linespacing
+%\spacing{1.25} %equivalent to 1.5 line spacing in Word
+%%%%%
+
+
+%%%%% linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[1] %line numbering interval
+%%%%%
+
+
+%%%%% title page
+%\addtocounter{framenumber}{-1} %does not count the title slide in the slide count
+%\title[Dynamic Risk Assessment Overview \& Primer]{\large Idaho Community-Engaged Resilience for Energy-Water Systems\\Dynamic Risk Assessment Overview \& Primer}
+%\title[Dynamic Risk Assessment Overview]{\acl{icr}\\Dynamic Risk Assessment Overview}
+%\author[@TheDoctorRAB]{R. A. Borrelli}
+%\institute[]{
+%    \includegraphics[width=0.15\textwidth]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}\\
+%    \vspace{0.10in}
+%    2024.04.19\\
+%    \vspace{0.10in}
+%    }
+%\date{\acs{icr}}
+%\titlegraphic{\includegraphics[width=0.20\textwidth]{logo/i-crews/icrews-modified.png}}
+%%%%%
+
+
+%%%%%
+%\logo{\includegraphics[width=0.05\textwidth]{logo/university-of-idaho/main/ui.jpg}} %lower right on every slide
+%%%%%
+
+
+\begin{document}
+
+
+\nobibliography* %allows \bibentry citations in the footers of frames; NOT effect putting bibliography slide at the end
+
+
+%%%%% title page with no footer
+%{
+%    \setbeamertemplate{footline}{}
+%    \begin{frame}[plain]{}
+%        \titlepage
+%    \end{frame}
+%}
+%%%%%
+
+\begin{frame}[plain]{Title\\Names}
+\FourQuad%
+{
+    \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Objective}
+            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+                \item[]What are you trying to do? Describe your objectives using absolutely no jargon.
+            \end{enumerate}
+        \item[]\textbf{Problem}
+            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+                \item[]How is it done today, and what are the limits of current practice? 
+            \end{enumerate}
+        \item[]\textbf{Relevance}
+            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+                \item[]What are the specific benefits?
+            \end{enumerate}
+    \end{enumerate}
+}%
+{
+    %\vfill
+    \centering
+    \includegraphics[width=0.95\textwidth]{risk/general/farmer.jpg}
+    \captionof*{figure}{Notional Farmer's chart}
+}%
+{
+    \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Approach}
+            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+                \item[]Brief statement describing your approach
+                \item[]What’s new about it
+                \item[]Why it will be successful
+            \end{enumerate}
+        \item[]\textbf{Risk \& Alternate Approaches}
+            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+                \item[]Statement of risks and alternate approaches.
+            \end{enumerate}
+    \end{enumerate}
+    \vspace{0.05in}
+    \tiny\bibentry{bor23a}
+}%
+{
+    \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Estimated Cost \& Schedule}
+            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+                \item[]\$XX for NN years
+            \end{enumerate}
+        \item[]\textbf{Key Deliverables}
+            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=5pt,leftmargin=*,label=(\arabic*)]
+                \item[]2-3 bullet points listing deliverables using non-technical language. 
+            \end{enumerate}
+        \item[]\textbf{Contact --} Name
+    \end{enumerate}
+}
+\end{frame}
+
+
+%\begin{frame}{Learning nodes}
+%    \begin{columns}[t]
+%
+%        \begin{column}{0.50\textwidth}
+%            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=1pt,leftmargin=*,label=(\arabic*)]
+%                \item[]\textbf{Risk}
+%                \item[]Three questions
+%                    \vspace{0.10in}
+%                \item[]\textbf{Risk assessment}
+%                    \vspace{0.10in}
+%                \item[]\textbf{Classifying risk}
+%                    \vspace{0.10in}
+%                \item[]\textbf{Severity}
+%                \item[]Risk matrix
+%                    \vspace{0.10in}
+%                \item[]\textbf{Risk management}
+%                    \vspace{0.10in}
+%                \item[]\textbf{Hazard assessment}
+%                    \vspace{0.10in}
+%                \item[]\textbf{Applications}
+%            \end{enumerate}
+%        \end{column}
+%
+%        \begin{column}{0.50\textwidth}
+%            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=1pt,leftmargin=*,label=(\arabic*)]
+%                \item[]\hfill\textbf{Human factors}
+%                    \vspace{0.10in}
+%                \item[]\hfill\textbf{Risk for lifecycle assessment}
+%                    \vspace{0.10in}
+%                \item[]\hfill\textbf{Frequency}
+%                    \vspace{0.10in}
+%                \item[]\hfill\textbf{Uncertainty}
+%                    \vspace{0.10in}
+%                \item[]\hfill\textbf{Ethical theories}
+%                    \vspace{0.10in}
+%                \item[]\hfill\textbf{Context}
+%            \end{enumerate}
+%        \end{column}
+%
+%    \end{columns}
+%\end{frame}
+
+
+%\begin{frame}{A risk matrix is a high level assessment tool}
+%    \begin{longtable}{|c|c|c|c|c|c|}
+%        \hline
+%        \multirow{2}{*}{\textbf{Severity}} 
+%        & \multicolumn{5}{c|}{\textbf{Probability}} 
+%        \\ 
+%        \cline{2-6}
+%         
+%        & Frequent 
+%        & Likely 
+%        & Occasional 
+%        & Seldom 
+%        & Unlikely 
+%        \\ 
+%        \hline
+%        \textbf{Catastrophic} 
+%        & E 
+%        & E 
+%        & H 
+%        & H 
+%        & M 
+%        \\ 
+%        \hline
+%        \textbf{Critical}     
+%        & E 
+%        & E 
+%        & H 
+%        & M 
+%        & L 
+%        \\ 
+%        \hline
+%        \textbf{Marginal}     
+%        & H 
+%        & M 
+%        & M 
+%        & L 
+%        & L 
+%        \\ 
+%        \hline
+%        \textbf{Negligible}   
+%        & M 
+%        & L 
+%        & L 
+%        & L 
+%        & L 
+%        \\ 
+%        \hline
+%        \hline
+%        \multicolumn{3}{|l}{E -- Extreme Risk} 
+%        & \multicolumn{3}{l|}{M -- Moderate Risk} 
+%        \\
+%        \multicolumn{3}{|l}{H -- High Risk}    
+%        & \multicolumn{3}{l|}{L -- Low Risk} 
+%        \\ 
+%        \hline
+%    \end{longtable}
+%\end{frame}
+
+
+%\begin{frame}{Risk matrix for cyberattacks on a \acl{npp}}
+%    \setlength{\arrayrulewidth}{0.5mm}
+%    {\renewcommand{\arraystretch}{1.25}
+%    \footnotesize
+%        \begin{longtable}{|c|c|c|c|c|c|}
+%            \caption[\acs{pha} results for selected \acs{npp} plant systems]{\acl{pha} results for selected \acs{npp} plant systems. The product of Accessibility and Impact nominally reflects the vulnerability of the system as to whether the reactor will be tripped or if the operator can take corrective or mitigating actions to recover operability \citep{bor23a}.}
+%            \label{tab-pha-cyber}
+%            \\
+%            \hline
+%            \multirow{2}{*}{\textbf{Impact}}
+%            &\multicolumn{5}{c|}{\textbf{Accessibility}}
+%            \\
+%            \cline{2-6}
+%            
+%            & \textbf{Frequent}
+%            & \textbf{Likely}
+%            & \textbf{Occasional}
+%            & \textbf{Seldom}
+%            & \textbf{Unlikely}
+%            \\
+%            \hline
+%           \textbf{Catastrophic}
+%            &
+%            &
+%            &
+%            &
+%            &
+%            \begin{tabular}[c]{@{}c@{}}
+%                Reactor controls
+%            \end{tabular}
+%            \\
+%            \hline
+%            \textbf{Critical}
+%            &
+%            &
+%            \begin{tabular}[c]{@{}c@{}}
+%                Spent fuel pool\\
+%                Boron monitoring
+%            \end{tabular}
+%            &
+%            &
+%            &
+%            \\
+%            \hline
+%            \textbf{Moderate}
+%            &
+%            &
+%            \begin{tabular}[c]{@{}c@{}}
+%                Exciter
+%            \end{tabular}
+%            &
+%            \begin{tabular}[c]{@{}c@{}}
+%                Steam generator\\
+%                Condenser
+%            \end{tabular}
+%            &
+%            &
+%            \\
+%            \hline
+%            \textbf{Marginal}
+%            &
+%            &
+%            \begin{tabular}[c]{@{}c@{}}
+%                Cooling water systems
+%            \end{tabular}
+%            &
+%            &
+%            &
+%            \\
+%            \hline
+%            \textbf{Negligible}
+%            &
+%            &
+%            &
+%            &
+%            &
+%            \\
+%            \hline
+%        \end{longtable}
+%    }
+%
+%    \textbf{\tiny\cite{bor23a}\tiny\hspace{0.05in}\bibentry{bor23a}}
+%
+%\end{frame}
+
+
+%\begin{frame}{Fault tree for dry-out failure}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.93\textwidth]{risk/fault-trees/dry-out.png}
+%        \caption{Fault trees should be precise, clear, and detailed. This could use improvements.}
+%    \end{figure}
+%\end{frame}
+
+
+%\begin{frame}{References}
+    \bibliographystyle{neup}
+%    \tiny
+    \nobibliography{borrelli}
+%\end{frame}
+
+
+%\begin{frame}[plain]{}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.65\textwidth]{final.jpg}
+%        \caption{}
+%    \end{figure}
+%\end{frame}
+
+
+%%%%%%%
+%\begin{frame}{}
+%    \begin{columns}
+%
+%        \begin{column}{0.50\textwidth}
+%            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=21pt,leftmargin=*,label=(\arabic*)]
+%                \item[]
+%                \item[]
+%            \end{enumerate}
+%        \end{column}
+%
+%        \begin{column}{0.50\textwidth}
+%            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=21pt,leftmargin=*,label=(\arabic*)]
+%                \item[]
+%                \item[]
+%            \end{enumerate}
+%        \end{column}
+%
+%    \end{columns}
+%\end{frame}
+
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.75\textwidth]{wsc.png}
+%        \caption{\acs{wsc}}
+%    \end{figure}
+%%%%%%%
+
+
+\end{document}
