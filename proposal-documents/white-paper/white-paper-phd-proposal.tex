@@ -131,18 +131,49 @@
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
 \usepackage{titlesec,titletoc}
+%%%
+\titleformat{\part}{\normalfont\normalsize\bfseries\filcenter}{\thepart}{}{}[]
+\titlespacing*\part{0pt}{0.50\baselineskip}{0.25\baselineskip}
+
+\titleformat{\section}[runin]{\normalfont\normalsize\bfseries}{\thesection.}{0.5em}{}[]
+\titlespacing*\section{0pt}{0.50\baselineskip}{0.50\baselineskip}
+
+\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesection\alph{subsection}.}{0.25em}{}[]
+\titlespacing*\subsection{0pt}{0.40\baselineskip}{0.50\baselineskip}
+
+\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{\roman{subsubsection}.}{0.25em}{}[]
+\titlespacing*\subsubsection{9pt}{0.25\baselineskip}{0.50\baselineskip}
+
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{-1em}{}[]
+\titlespacing*\paragraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
+
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.25em}{}[]
+\titlespacing*\subparagraph{15pt}{0.25\baselineskip}{0.50\baselineskip}
+%%%
+%\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
+%\titlespacing*\part{0pt}{0.65\baselineskip}{0.20\baselineskip}
+%\titleformat{\section}{\normalfont\normalsize\bfseries\filcenter}{\thesection}{}{}[]
+%\titlespacing*\section{0pt}{0.50\baselineskip}{0.15\baselineskip}
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+%\titlespacing*\subsection{0pt}{0.45\baselineskip}{0.25\baselineskip}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+%\titlespacing*\paragraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.35\baselineskip}{0.25\baselineskip}
+%%%
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
-\titleformat{\part}{\normalfont\large\bfseries}{\thepart}{}{}[]
-\titlespacing*\part{0pt}{0.95\baselineskip}{0.75\baselineskip}
-\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[.]
-\titlespacing*\section{0pt}{0.65\baselineskip}{0.55\baselineskip}
-\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
-\titlespacing*\subsection{0pt}{0.50\baselineskip}{0.35\baselineskip}
-\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
-\titlespacing*\paragraph{0pt}{0.45\baselineskip}{0.25\baselineskip}
-\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
-\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+%\titleformat{\part}{\normalfont\large\bfseries}{\thepart}{}{}[]
+%\titlespacing*\part{0pt}{0.50\baselineskip}{0.75\baselineskip}
+%\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[]
+%\titleformat{\section}{\normalfont\large\bfseries\filcenter}{\thesection}{}{}[]
+%\titlespacing*\section{0pt}{0.75\baselineskip}{0.45\baselineskip}
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+%\titlespacing*\subsection{0pt}{0.45\baselineskip}{0.25\baselineskip}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+%\titlespacing*\paragraph{0pt}{0.35\baselineskip}{0.15\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.30\baselineskip}{0.10\baselineskip}
 %\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
 %\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
 %\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
@@ -430,7 +461,7 @@
 %%%%% linenumbering
 \linenumbers %toggle line numbers
 \pagewiselinenumbers %reset line numbers on new page
-\modulolinenumbers[1] %line numbering interval
+\modulolinenumbers[5] %line numbering interval
 %%%%%
 
 
@@ -448,26 +479,35 @@
 
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
 
-\part*{Abstract}
+\part*{Overview}
 
 
-\section*{Overview} 
+\section{Proposed research} 
 
 
-\section*{Overall objective}
+\section{Overall objective}
 
 
-\section*{Motivation}
-\subsection*{Context}
+\section{Motivation}
+\subsection{Context}
 
 
-\section*{Novelty of the work}
+\section{Novelty of the work}
 
 
-\section*{Relevant literature}
+\section{Relevant literature}
 
 
-\section*{Logical path to work accomplishment} 
+\section{Methodoloy}
+
+
+\part*{Major Outcomes \& Deliverables}
+
+
+\section{Preliminary results}
+
+
+\section{Research scope} 
 \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
     \item\textbf{Workscope title} 
         \begin{enumerate}[series=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
@@ -480,8 +520,9 @@
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Goals}
-The goals of this Workscope are \ldots .
+\begin{enumerate}[series=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=0ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
 \begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
@@ -496,8 +537,9 @@ The goals of this Workscope are \ldots .
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Goals}
-The goals of this Workscope are \ldots .
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=0ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
 \begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
@@ -512,8 +554,9 @@ The goals of this Workscope are \ldots .
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Goals}
-The goals of this Workscope are \ldots .
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=0ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
 \begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
@@ -528,8 +571,9 @@ The goals of this Workscope are \ldots .
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Goals}
-The goals of this Workscope are \ldots .
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=0ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
 \begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
@@ -552,18 +596,23 @@ The goals of this Workscope are \ldots .
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Goals}
-The goals of this Workscope are \ldots .
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=0ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
+\newpage
+
+
+\part*{\textbf{Timeframe for Execution}}
 {\small
 \begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|}
 %        \captionsetup{margin=-9pt}
-        \caption*{\textbf{Timeframe for execution of proposed project.}}
+        \caption*{}
         \label{tab-timeline}\\
         \hline
         \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{TASKS}}}&
-        \multicolumn{5}{|c|}{\textbf{MONTH}}
+        \multicolumn{5}{|c|}{\textbf{MONTH/YEAR}}
         \\
         \cline{2-6}
         &
