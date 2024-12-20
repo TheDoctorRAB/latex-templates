@@ -1,0 +1,477 @@
+%%%%%
+%@TheDoctorRAB
+%standard journal format
+%%%%%
+%
+%REFERENCES
+%
+%neup.bst - numbered citations in order of appearance, short author list with et al in reference section
+%nsf.bst - numbered citations in order of appearance, full author list in references section
+%standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
+%ans.bst is for ANS only. 
+%
+%author = {Lastname, Firstname and Lastname, Firstname and Lastname, Firstname} for all bst formats
+%bst renders the author list itself
+%
+%author = {{Nuclear Regulatory Commission}} if the author is an organization, institution, etc., and not people
+%
+%title = {{}} for all
+%
+%for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
+%standard.bst \cite{-} - Borrelli (2021) in the text
+%standard.bst lists references alphabetically
+%the rest list numerically
+%%%%%
+
+
+%%%%% general 
+\documentclass[11pt,a4paper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+\usepackage{mypythonhighlight,verbatim}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+\usepackage[inline]{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=black,citecolor=black,urlcolor=blue} 
+\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{soul}
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{nameref}
+\usepackage{parskip}
+\usepackage[font=itshape]{quoting}
+\usepackage{upgreek,textgreek}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+\usepackage{times}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references
+\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+%\usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\setlength{\bibsep}{7pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+%\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+\usepackage[singlelinecheck=false,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
+\captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+\captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% cross referencing files
+%\usepackage{xr} %for revisions - will cross reference from one file to here
+%\externaldocument{/path/to/auxfilename} %aux file needed
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[title,toc]{appendix}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}} %for cleveref to use Appendix
+\crefname{paragraph}{Section}{Sections}
+\usepackage{titlesec,titletoc}
+%\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
+%\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
+%\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
+%\titlespacing*\part{0pt}{0.00\baselineskip}{0.75\baselineskip}
+%\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[.]
+%\titlespacing*\section{0pt}{0.65\baselineskip}{0.35\baselineskip}
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+%\titlespacing*\subsection{0pt}{0.50\baselineskip}{0.25\baselineskip}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+%\titlespacing*\paragraph{0pt}{0.45\baselineskip}{0.25\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
+\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.5em}{}[.]
+\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%\st{} does strikethrough using soul package but does not like acronyms
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% todonotes
+\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+
+
+%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
+\newcommandx{\ral}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+%\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+
+
+% highlighting 
+%\DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
+%\makeatletter
+%    \if@todonotes@disabled
+%    \newcommand{\hlh}[2]{#1}
+%    \else
+%    \newcommand{\hlh}[2]{\han{#2}\hlc{#1}}
+%    \fi
+%    \makeatother
+
+%\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
+%\makeatletter
+%    \if@todonotes@disabled
+%    \newcommand{\hlj}[2]{#1}
+%    \else
+%    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
+%    \fi
+%    \makeatother
+
+\DeclareRobustCommand{\hlf}[1]{{\sethlcolor{lightmauve}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlb}[2]{#1}
+    \else
+    \newcommand{\hlb}[2]{\rab{#2}\hlf{#1}}
+    \fi
+    \makeatother
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% table contents
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{0.25em}{2em}} %change first for indentation of label; second for title
+\makeatother
+
+\setcounter{tocdepth}{5}
+
+\makeatletter
+\renewcommand\listoffigures{%
+    \@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoftables{%
+    \@starttoc{lot}%
+}
+\makeatother
+
+\makeatletter
+\newcommand*\ftp{\fontsize{16.5}{17.5}\selectfont}
+\makeatother
+%%%%%
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+\lhead{\scriptsize Latex guidelines}
+\chead{\scriptsize \textit{Prof. R. A. Borrelli -- \acl{ui} $\sq$ \acl{iff}}}
+\rhead{\scriptsize \today}
+\rfoot{\thepage}
+
+
+%%%%% citations
+% do not use \acf in author field; screws up alphabetical on standard.bst
+%%%%%
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%%%%%
+
+
+\begin{document}
+
+
+\section{General}
+Latex is going to make your life far easier. You will be producing better technical documents with the highest efficiency. Yes, the learning curve is not easy. However, tex files have been prepared in advance to ease your path. 
+
+
+\section{Why?}
+The advantage of latex is that is automates literally all of the clerical nonsense in document preparation that wastes so, so much time. For example, when references have to be numbered; [1], [2], and then you or co-authors make changes to the content. The renumbering is a waste of time and invites errors. Then, on top of references, there are section numbers, equations, figures, tables. That time all adds up quick. Not with latex. All done on compile. Acronyms too. 
+
+%There are a lot of documents to prepare when submitting a manuscript to the journal. These are all teed up in the document-package folder. \textit{Do them last.} Start by actually writing the paper with the draft-manuscript.tex file. The rest is leftover from before the digital age.
+
+\section{Images}
+Put all images in a single folder (with subfolders). The templates have the \verb=\graphicspath{-}= setup so you don't have to specify it in the file, just the subfolder/filename. If you're fancy, you can set up an environmental variable in your local space to a single image repository and not copy the image directory over and over for each new tex document. In Overleaf, just make an \verb=img= folder.
+
+\section{Citations}
+References are probably the biggest advantage with latex. References are stored in a \verb=filename.bib= file. See samples. Then specifcy that filename in the tex file. A \verb=bst= file determines the references format. I set up three citations formats -- \verb=neup.bsf, standard.bst, nsf.bst=. \verb=neup.bst= is just a short version of \verb=nsf.bst=. Both of those are for numbering. The correct line has to be selected in the preamble in the references section. It is labeled which to select depending on what format is desired. The \verb=bst= file is designated in the citations section in the tex file along with the \verb=bib= file. 
+
+For standard.bst, you have to use \verb=\citep{bor20a}=. This gives (Borrelli, 2020) in the text. It's a common form for most journals. If you do \verb=\cite{bor20a}=, then you get Borrelli (2020) in the text. 
+
+The latter helps if you want to write something like -- 
+\begin{quote}
+    Borrelli (2020) argues that object-orientied programming can effectively model safeguards-by-design.
+\end{quote}
+
+For multiple citations, just do \verb=\citep{bor20a,clo19a}= and it will do (Borrelli 2020; Clooney 2019) automatically. 
+
+If you have to use \verb=nsf.bst=, then \verb=\citep= and \verb=\cite= both with just give \texttt{[1]}, but if you used \verb=\cite= with standard and switch to \verb=nsf.bst=, then you have to put `Ref.' in front of it, so it's a pain. I've submitted all my papers with \verb=standard.bst= and literally no reviewer has commented on it. For proposals, it saves space to use numbering. For journal papers, reviewers prefer the author names in the citationi, in the text, so they can easily see that. And, what is even better about latex is that if you mouse over the reference, the full citation pops up. Clicking on the citation will take you to that entry in wherever the references section is in the document.
+
+\subsection{Making citations}\label{sec-make-cite}
+References can be input into one single \verb=bib= file or multiple files. I use multiple files because I set an environmental variable in my local space and that way I do not have to copy the same references over and over. In Overleaf, just upload the files to a \verb=bib= folder, and these can be just designated in the citations section. In general, people go way overboard on the citation information or use ridiculous types. All that is needed is enough for someone to do a quick search and find the citation quickly. Really, I have only used \verb=@article= for a journal paper, \verb=@misc= for a technical report and anything else, like a news article, \verb=@conference= for a conference proceedings. I also use, less frequently, \verb=@book= and \verb=@incollection=. The latter is rare. Anything outside of these can be covered with \verb=@misc=. Web page addresses are not needed. If using the digital object identifier, do not include \verb=doi.org=, just start with \verb=10.1012\...whatever=. If the journal article volume and page number or report number is available, then do not use the digital object identifier. Only use it if there is not any other information. Do not use \verb=@techreport= because it renders `Tec. Rep.' in the citation list, and it drives me up the wall. For techical reports, use \verb=@misc= with the report number in the \verb=note= = \verb={{}}= field. Everyone knows it is a technical report. 
+
+Keep the \verb={{}}= for \verb=title= = \verb={{}}= and \verb=note= = \verb={{}}= because it will output verbatim what is in the field. 
+
+For a journal paper, you don't need the issue number; the volume is sufficient, and you don't need the page range; the starting page is sufficient. 
+
+For authors of any reference type, the format is --
+\begin{quote}
+    \verb=@author= = \verb={Borrelli, R. A. and Clooney, George}=
+\end{quote}
+
+I'm throwing George a bone giving him the last author credit. Note there is no comma between author names. On compile, latex will look for the comma for the names and will crash if the comma is somewhere else. Also note that author name order depends on the \verb=bst= file. No need to change the formatting of any of the fields. So nice!
+
+Enter all authors into the author field, even if there's 17. \verb=standard.bst= is set up to add `et al.' if there are more than two of them inline, in the text of the document. All the authors will be rendered in the references section. 
+
+\verb=nsf.bst= will also list all the authors in the references. \acs{nsf} requires this. It's also just a courtesy to include everyone on a paper. \verb=neup.bst= will render only the first author with the first name abbreviated and `et al.' in the references section. Use this if references are included in the page limitations, which is patently absurd, but I don't make the rules. Just say something like -- `Please limit references to 2 pages.' Not that difficult. Because then when reviwers look at the references, if they count in the page limits, they're going to say, `Well you didn't include this paper or that'; i.e., `You didn't put mine in', and no matter how thorough you are, that's always going to happen. 
+
+If the author is an organization, like an \acs{nrc} report, then just do -- 
+\begin{quote}
+    \verb=@author= = \verb={{Nuclear Regulatory Commission}}= 
+\end{quote}
+with the double \verb={{}}=.
+
+
+\newpage
+
+
+\section{Manuscript}
+\subsection{Sections}
+Section numbering is not required. Use -- 
+
+\verb=\section{},\subsection{},\subsubsection{},\paragraph{},\subparagraph{}=. 
+
+Additionally, each of these can be customized in the `toc and glossaries' section. For a journal paper, the defaults are fine. For other documents, like a proposal, where page limits are a concern, I have other templates with the headings customized. The sections in this document are the defaults, except the 4th and 5th level headings, which I modified to look like the rest. 
+
+%The \verb=\section{}= level headings are suggestions, but generally common to journal papers. I strongly recommend to keep Motivation and Goals. I typically like to separate Results; where you talk about the data, and Discussion; where you say what the data means and why it's important. Future Work is always important because it tells reviewers that you know the context of the work. You can also discuss here if you've made any assumptions, how you can test/verify them, etc.
+
+\subsection{Acronyms}
+One of the biggest advantages of latex is the automation of the acronyms. This is especially important in any technical document because they are always loaded with acronyms.
+
+I set up acronyms with shortcuts to make it easy, easy, easy. There is an acronyms.tex file that I continually add to that anyone can access. Then you can just include that file in the text document with \verb=\input{$ACRONYM/acronyms}= where \verb=$ACRONYM= is just the path to the file. In Overleaf, just make an acronym folder. 
+
+The format is --
+\begin{quote}
+    \verb=\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}=
+\end{quote}
+
+Shortcuts are -- 
+\begin{quote}
+    `full'\\
+    \verb=\acf{nrc}= = United States Nuclear Regulatory Commission (NRC)\\
+    The () are automatic.
+    \\ \\
+    `long'\\
+    \verb=\acl{nrc}= = United States Nuclear Regulatory Commission
+    No ().
+    \\ \\
+    `short'\\
+    \verb=\acs{nrc}= = NRC
+\end{quote}
+
+Additionally, the above codes with with `p' on the end; i.e., \verb=\acfp{}=, pluralizes the entry. So --
+\begin{quote}
+    \verb=\acfp{smr}= = Small Modular Reactors (SMRs)\\
+    The `s' is automatically rendered.
+\end{quote}
+
+Observe --
+\begin{enumerate}[topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex,label=(\arabic*)]
+    \item\acf{smr}
+    \item\acfp{smr}
+    \item\acf{ui}
+    \item\acf{dbe}
+    \item\acfp{dbe}
+    \item\acsp{dbe}
+\end{enumerate}
+
+So, all the acronyms are automated, but you still have to type them into a glossary? Call Lana Kane because nooooooopppppe. Adding \verb=\printnoidxglossary= automatically generates a list on compiling, with a section title. Or, you can make your own title. Latex only compiles the acronyms used in the document. Therefore, just having a giant list of them makes sense. And, mousing over the acronyms pops up its entry in the Acronyms section, just like the references. 
+
+Trust me, this will save uncountable keystrokes. AND - the acronym tags work in \verb=\section{}=, etc.
+
+\subsection*{Clever references}
+The \verb=\cleveref= package is probably the most powerful package in all of latex. 
+
+All you need is to input a \verb=\label{something}= next to what you want to reference; figure, table, section, equation --
+\begin{quote}
+\verb=\section{Making citations}\label{sec-make-cite}=
+\end{quote}
+
+Then, all that's needed anywhere in the document is to use \verb=\cref{sec-make-cite}=. 
+
+Observe --
+\begin{quote}
+    See \cref{sec-make-cite} for guidance on how to prepare a bibliography.
+\end{quote}
+
+No need to type in `Section'. 
+
+Let's try one more. 
+
+Einstein came up with the famous formula --
+\begin{equation}\label{eq-mc2}
+    e = mc^2
+\end{equation}
+
+Note here that the `(1)' is also automatically generated on compile. 
+
+Now, using clever references, we can see that \cref{eq-mc2} relates mass to energy proportional to the speed of light. 
+
+Use \verb=\Cref{tab-name}= for tables. 
+
+With page limits, the package can abbreviate; Sec., Fig., Eq. Also, Figures and Equations are automatically pluralized if using \verb=\cref{eq-name,eq-othername}=. 
+
+Another example --
+\begin{equation}\label{eq-newton-second}
+    F = ma
+\end{equation}
+
+Two of the most important matematical relationships are also two of the simplest, as we see in \cref{eq-mc2,eq-newton-second}.
+
+Finally, a note on best practices in labeling -- I use sec-, fig-, tab-, eq- so I know to what I'm referencing. Also, it is good practice if multiple authors are working on a centralized document, like you would for Overleaf. 
+
+
+\section{Wrapping up for now}
+The information here should be enough to get going with latex on the templates that I have provided. This tex file is in my public latex-templates github repository. Feel free to fork and submit a pull request with other tips and tricks. 
+
+
+\newpage
+
+
+\begin{appendices}
+
+
+%%%%% use for toc
+%    \titleformat{\part}{\normalfont\Large\bfseries\filcenter}{\thepart}{0ex}{}[]
+%    \part*{Appendices}
+%%%%%
+
+
+    \setcounter{section}{0}
+    \renewcommand{\thesection}{\Roman{section}}
+    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+
+
+    \section{Acronyms}
+    \printnoidxglossary[title={}]
+
+
+\end{appendices}
+
+
+\end{document}
