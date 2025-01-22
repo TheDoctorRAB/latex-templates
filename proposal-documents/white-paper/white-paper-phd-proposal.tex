@@ -40,7 +40,7 @@
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
-\graphicspath{{../img/}} %path to graphics
+\graphicspath{{$TEXIMG/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
@@ -332,123 +332,8 @@
 %%%%%
 
 
-%%%%%%% citations
-\begin{filecontents}{references.bib}
-    @misc{
-        nye15a,
-        author = {Nye, Jr., Joseph S.},
-        title = {{The World Needs an Arms-control Treaty for Cybersecurity}},
-        year = {2015},
-        note = {{The Washington Post}}
-    }
-    @article{
-        mil20a,
-        author = {Miller, James N.},
-        title = {No to no first use — for now},
-        journal = {Bulletin of the Atomic Scientists},
-        volume = {76},
-        pages = {8},
-        year  = {2020}
-    }
-    @incollection{
-        mil17a,
-        author = {Miller, Steven E.},
-        title = {{Cyber Threats, Nuclear Analogies? Divergent Trajectories in Adapting to New Dual-Use Technologies}},
-        booktitle = {Understanding Cyber Conflict: 14 Analogies},
-        publisher = {Georgetown University Press},
-        year = {2017},
-        editor = {Perkovich, George and Levite, Ariel E.},
-        pages = {161}
-    }
-    @conference{
-        ben20a,
-        author = {Benjamin, Jacob and Haney, Michael},
-        title = {{Nonproliferation of Cyber Weapons}},
-        year = { 2020},
-        organization = {Symposium on Cyber Warfare, Cyber Defense, \& Cyber Security },
-        address = {Las Vegas, Nevada}
-    }
-\end{filecontents}
-%%%%%%%
-
-
 %%%%% acronyms
-% alphabetical ordering is automated
-\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
-\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
-\newacronym{inl}{INL}{Idaho National Laboratory}
-\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{anl}{ANL}{Argonne National Laboratory}
-\newacronym{npp}{NPP}{Nuclear Power Plant}
-\newacronym{smr}{SMR}{Small Modular Reactor}
-\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
-\newacronym{nus}{NuScale}{NuScale Power, LLC}
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
-\newacronym{ci}{CI}{Consistency Index}
-\newacronym{cr}{CR}{Consistency Ratio}
-\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
-\newacronym{lwr}{LWR}{Light Water Reactor}
-\newacronym{eia}{EIA}{U.S. Energy Information Administration}
-\newacronym{oer}{OER}{Online Educational Resource}
-\newacronym{lms}{LMS}{Learning Management System}
-\newacronym{cps}{CPS}{Cyber-Physical Systems}
-\newacronym{nsf}{NSF}{National Science Foundation}
-\newacronym{wsc}{WSC}{Western Services Corporation}
-\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
-\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
-\newacronym{pwr}{PWR}{Pressurized Water Reactor}
-\newacronym{bwr}{BWR}{Boiling Water Reactor}
-\newacronym{roi}{ROI}{Return on Investment}
-\newacronym{ic}{I\&C}{Instrumentation \& Controls}
-\newacronym{mwe}{MWe}{Megawatts-electric}
-\newacronym{ics}{ICS}{Industrial Control Systems}
-\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
-\newacronym{ip}{IP}{Internet Protocol}
-\newacronym{udp}{UDP}{User Datagram Protocol}
-\newacronym{tva}{TVA}{Tennessee Valley Authority}
-\newacronym{plc}{PLC}{Programmable Logic Controller}
-\newacronym{vfd}{VFD}{Variable Frequency Drive}
-\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
-\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
-\newacronym{mim}{MITM}{Man in the Middle}
-\newacronym{dos}{DDoS}{Distributed Denial of Service}
-\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
-\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
-\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
-\newacronym{cs}{CS}{Critical System}
-\newacronym{loc}{LOCA}{Loss of Coolant Accident}
-\newacronym{hmi}{HMI}{Human Machine Interface}
-\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
-\newacronym{bol}{BOL}{Beginning-of-Life}
-\newacronym{eol}{EOL}{End-of-Life}
-\newacronym{mol}{MOL}{Middle-of-Life}
-\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
-\newacronym{ccc}{CCC}{Computing Community Consortium}
-\newacronym{neu}{NEUP}{Nuclear Energy University Program}
-\newacronym{doe}{DOE}{United States Department of Energy}
-\newacronym{nei}{NEI}{Nuclear Energy Institute}
-\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
-\newacronym{rcs}{RCS}{Reactor Cooling System}
-\newacronym{con}{IC}{Initial Condition}
-\newacronym{csi}{CSIS}{Center for Strategic \& International Studies}
-\newacronym{pcap}{PCAP}{packet capture file}
-\newacronym{dc}{DC}{Direct-Current}
-\newacronym{ac}{AC}{Alternating-Current}
-\newacronym{iff}{UIIF}{Idaho Falls Center for Higher Education}
-\newacronym{snl}{SNL}{Sandia National Laboratory}
-\newacronym{cie}{CIE}{Cyber-Informed Engineering}
-\newacronym{cds}{CRDS}{Control Rod Drive System}
-\newacronym{cdm}{CRDM}{Control Rod Drive Mechanism}
-\newacronym{fma}{FMEA}{Failure Modes \& Effects Analysis}
-\newacronym{rpn}{RPN}{Risk Priority Number}
-\newacronym{scr}{SCR}{silicon controller rectifier}
-\newacronym{hvc}{HVAC}{Heating, Ventilation \& Air Conditioning}
-\newacronym{ttb}{TTB}{Time-to-Boil}
-\newacronym{sis}{SIS}{Safety Instrumented System}
-%\newacronym{}{}{}
+\input{$ACRONYM/acronyms}
 %%%%%
 
 %%%%% spacing
