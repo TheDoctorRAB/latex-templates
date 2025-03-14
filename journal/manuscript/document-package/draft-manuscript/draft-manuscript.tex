@@ -278,8 +278,8 @@
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize Subject}
-\chead{\scriptsize \textit{First Author et al. -- Draft Manuscript}}
+\lhead{\scriptsize \acs{mcp}}
+\chead{\scriptsize \textit{Lastname et al. -- Draft Manuscript}}
 \rhead{\scriptsize \today}
 \rfoot{\thepage}
 %%%%%
@@ -324,6 +324,9 @@
 \end{titlepage}
 
 
+\pagenumbering{gobble}
+
+
 \listoftodos[Notes] %Mouseover acronyms, figure/table number, citations for more information.
 
 
@@ -340,8 +343,11 @@
 %%%%% linenumbering
 \linenumbers %toggle line numbers
 \pagewiselinenumbers %reset line numbers on new page
-\modulolinenumbers[3] %line numbering interval
+\modulolinenumbers[5] %line numbering interval
 %%%%%
+
+
+\pagenumbering{arabic}
 
 
 \section*{Abstract}
@@ -430,6 +436,19 @@ Major results and implications include -
 
 
 \newpage
+
+
+%%%%% header and footer
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%\lhead{\scriptsize }
+%\chead{\scriptsize }
+%\rhead{\scriptsize }
+%\lfoot{\scriptsize }
+\rfoot{\thepage}
+\nolinenumbers
+%%%%%
 
 
 \section*{Acknowledgements}
