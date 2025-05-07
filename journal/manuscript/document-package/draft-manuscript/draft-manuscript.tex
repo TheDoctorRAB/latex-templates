@@ -278,9 +278,10 @@
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize \acs{mcp}}
-\chead{\scriptsize \textit{Lastname et al. -- Draft Manuscript}}
+\lhead{\scriptsize Journal}
+\chead{\scriptsize \textit{Topic/Short title}}
 \rhead{\scriptsize \today}
+\lfoot{\scriptsize Lastname et al.\\\textit{Draft Manuscript}}
 \rfoot{\thepage}
 %%%%%
 
@@ -324,7 +325,7 @@
 \end{titlepage}
 
 
-\pagenumbering{gobble}
+\thispagestyle{empty} 
 
 
 \listoftodos[Notes] %Mouseover acronyms, figure/table number, citations for more information.
@@ -347,22 +348,25 @@
 %%%%%
 
 
-\pagenumbering{arabic}
+\thispagestyle{empty} 
 
 
 \section*{Abstract}
 
 
-\newpage
+%\newpage
 
 
-\printnoidxglossary
+%\printnoidxglossary
 
 
 \newpage
 %\section*{Table of Contents}
 %\tableofcontents
 %\newpage
+
+
+\setcounter{page}{1}
 
 
 \section{Introduction} \label{sec-intro}
@@ -457,9 +461,15 @@ Major results and implications include -
 \newpage
 
 
+%%%%%%% citations
+%
+%%% make sure $BIBREF contains the path to each bib file in .bashrc
+%
 \bibliographystyle{standard}
 \setlength{\bibhang}{0pt}
-\bibliography{references}
+\bibliography{}
+%
+%%%%%%%
 
 
 \newpage
@@ -527,6 +537,7 @@ Major results and implications include -
 
 \newpage
 
+
 %\begin{figure}[h!]
 %    \centering
 %    \includegraphics[width=0.X\textwidth]{.png}
@@ -538,8 +549,7 @@ Major results and implications include -
 \newpage
 
 
-
-%\begin{appendices}
+\begin{appendices}
 
 
 %%%%% use for toc
@@ -548,15 +558,22 @@ Major results and implications include -
 %%%%%
 
 
-%    \setcounter{section}{0}
-%    \renewcommand{\thesection}{\Roman{section}}
-%    \titleformat{\section}{\normalfont\large\bfseries}{Appendix \thesection:}{1ex}{}[]
+    \setcounter{section}{0}
+    \renewcommand{\thesection}{\Roman{section}}
+    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+
+
+    \section{Acronyms}
+    \printnoidxglossary[title={}]
+
+
+%\newpage
 
 
 %    \section{Just appendix title} \label{app-}
 
 
-%\end{appendices}
+\end{appendices}
 
 
 \end{document}
