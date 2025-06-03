@@ -38,6 +38,7 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor=black,citecolor=black,urlcolor=blue} 
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny,textwidth=15mm]{todonotes} %makes colored boxes for commenting
+
 %%%%% colors
 %http://latexcolor.com/
 %https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
@@ -47,6 +48,14 @@
 \definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+%%%%%%
+
+%%%%%% user added 
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{nameref}
+%\usepackage{parskip}
+\usepackage[font=itshape]{quoting}
+%%%%%%%
 
 % Use Times for math font and text font.
 \RequirePackage[T1]{fontenc}
@@ -96,7 +105,7 @@
 \renewcommand\subsection{\@startsection
 	{subsection}{1}{0pt}%		%name, level, indent
 	{-\baselineskip}%		%beforeskip
-	{.75\baselineskip}%		%afterskip
+	{.71\baselineskip}%		%afterskip
 	{\reset@font\bf}%
 }
 
