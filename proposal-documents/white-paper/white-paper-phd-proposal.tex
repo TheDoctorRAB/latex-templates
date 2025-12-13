@@ -132,7 +132,7 @@
 \makenoidxglossaries
 \usepackage{titlesec,titletoc}
 %%%
-\titleformat{\part}{\normalfont\normalsize\bfseries\filcenter}{\thepart}{}{}[]
+\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
 \titlespacing*\part{0pt}{0.50\baselineskip}{0.25\baselineskip}
 
 \titleformat{\section}[runin]{\normalfont\normalsize\bfseries}{\thesection.}{0.5em}{}[]
@@ -592,13 +592,35 @@
 }
 
 
+\part*{Contribution to Advancing State of the Art}
+This project will advance the state-of-the-art in nuclear fuel cycle analysis by --
+\begin{enumerate*}[series=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=*]
+    \item ; 
+    \item ;
+    \item .
+\end{enumerate*}
+
+
 \newpage
+
+
+%%%%% header and footer
+\nolinenumbers
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%\lhead{\scriptsize }
+%\chead{\scriptsize }
+%\rhead{\scriptsize }
+%\lfoot{\scriptsize }
+\rfoot{\thepage}
+%%%%%
 
 
 \part*{References}
 \bibliographystyle{nsf}
 \setlength{\bibhang}{0pt}
-\bibliography{references}
+\bibliography{}
 
 
 \newpage

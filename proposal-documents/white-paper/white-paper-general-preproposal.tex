@@ -299,42 +299,6 @@
 \rfoot{\thepage}
 %%%%%
 
-\begin{filecontents}{references.bib} 
-    @misc{
-        nye15a,
-        author = {Nye, Jr., Joseph S.},
-        title = {{The World Needs an Arms-control Treaty for Cybersecurity}},
-        year = {2015},
-        note = {{The Washington Post}}
-    }
-    @article{
-        mil20a,
-        author = {Miller, James N.},
-        title = {No to no first use — for now},
-        journal = {Bulletin of the Atomic Scientists},
-        volume = {76},
-        pages = {8},
-        year  = {2020}
-    }
-    @incollection{
-        mil17a,
-        author = {Miller, Steven E.},
-        title = {{Cyber Threats, Nuclear Analogies? Divergent Trajectories in Adapting to New Dual-Use Technologies}},
-        booktitle = {Understanding Cyber Conflict: 14 Analogies},
-        publisher = {Georgetown University Press},
-        year = {2017},
-        editor = {Perkovich, George and Levite, Ariel E.},
-        pages = {161}
-    }
-    @conference{
-        ben20a,
-        author = {Benjamin, Jacob and Haney, Michael},
-        title = {{Nonproliferation of Cyber Weapons}},
-        year = { 2020},
-        organization = {Symposium on Cyber Warfare, Cyber Defense, \& Cyber Security },
-        address = {Las Vegas, Nevada}
-    }
-\end{filecontents}
 
 %%%%% acronyms
 \input{$ACRONYM/acronyms}
@@ -354,6 +318,7 @@
 
 \noindent Text of call.
 
+
 \newpage
 
 
@@ -367,7 +332,7 @@
 %%%%% linenumbering
 \linenumbers %toggle line numbers
 \pagewiselinenumbers %reset line numbers on new page
-\modulolinenumbers[1] %line numbering interval
+\modulolinenumbers[5] %line numbering interval
 %%%%%
 
 
@@ -853,7 +818,7 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 \bibliographystyle{nsf}
 %\bibliographystyle{neup}
 \setlength{\bibhang}{0pt}
-\bibliography{references}
+\bibliography{}
 
 
 %%%%%%% wrap figure around text
