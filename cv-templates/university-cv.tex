@@ -103,16 +103,14 @@
 %\titleformat{\part}{\normalfont\Large\bfseries\filcenter}{\thepart}{}{}[]
 %\titlespacing*\part{0pt}{0.95\baselineskip}{0.75\baselineskip}
 
-%\titleformat{\section}[hang]{\normalfont\normalsize\bfseries}{\MakeUppercase{\sectiontitlename}\thesection}{}{\MakeUppercase}[]
-%\titlespacing*\part{0pt}{0\baselineskip}{0\baselineskip}
+\titleformat{\section}[hang]{\normalfont\normalsize\bfseries}{\MakeUppercase{\sectiontitlename}\thesection}{}{\MakeUppercase}[]
+\titlespacing*\part{0pt}{0\baselineskip}{0\baselineskip}
+
 %\titleformat{\section}{\normalfont\normalsize\bfseries\scshape}{\thesection}{}{}[]
 %\titlespacing*\section{0pt}{0.95\baselineskip}{0.15\baselineskip}
 
-\titleformat{\section}{\normalfont\normalsize\bfseries\scshape}{\thesection}{}{}[]
-\titlespacing*\section{0pt}{0.50\baselineskip}{0\baselineskip}
-
-\titleformat{\subsection}{\normalfont\normalsize\bfseries\scshape}{\thesubsection}{}{}[]
-\titlespacing*\subsection{0pt}{0\baselineskip}{0\baselineskip}
+\titleformat{\subsection}{\normalfont\Large\bfseries\scshape}{\thesubsection}{}{}[]
+\titlespacing*\subsection{0pt}{0.55\baselineskip}{0.10\baselineskip}
 
 \titleformat{\subsubsection}[runin]{\normalfont\large\bfseries\scshape}{\thesubsubsection}{}{}[]
 \titlespacing*\subsubsection{0pt}{0.30\baselineskip}{0.05\baselineskip}
@@ -176,12 +174,12 @@
 \pagestyle{fancy}
 \fancyhf{} %page number on bottom right
 \renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-%\lhead{\scriptsize }
-%\chead{\scriptsize }
-%\rhead{\scriptsize } 
-\lfoot{\scriptsize Prof. R. A. Borrelli -- \textit{Vita} \\ \today}
+\lhead{\scriptsize BORRELLI, Robert Angelo}
+%\chead{\scriptsize \textit{Vita}}
+\rhead{\scriptsize Page \thepage} 
+%\lfoot{\scriptsize }
 %\cfoot{\scriptsize } 
-\rfoot{\thepage} %page number
+%\rfoot{\thepage} %page number
 %%%%%
 
 
@@ -193,36 +191,51 @@
 \begin{document}
 
 
-\nobibliography{borrelli} %bib files
+\nobibliography{borrelli-ui} %bib files
 \bibliographystyle{resume} %custom bst file
 
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
-
-\vspace{0.50\baselineskip}
-
-{\centering
-    \textbf{
-        \textsc{Robert Angelo Borrelli\\
-        Associate Professor\\
-        }
-        {\small 
-            University of Idaho $\sq$ Idaho Falls Center for Higher Education \\
-            Department of Nuclear Engineering and Industrial Management \\
-            Center for Advanced Energy Studies $\sq$ 995 MK Simpson Boulevard $\sq$ Idaho Falls ID 83401\\
-            rborrelli@uidaho.edu $\sq$ \href{https://thedoctorrab.github.io/}{@TheDoctorRAB}}
-    }
-\par}
+\thispagestyle{empty} %start with page number 1 on second page
 
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+\begin{center}{\Large\textbf{CURRICULUM VITAE}\\\normalsize University of Idaho}\end{center}
+
+\begin{spacing}{1.5}
+\begin{longtable}{p{4.5 in}p{2.0 in}}
+    \sj{name} Robert Angelo Borrelli 
+    & \sj{date} \today
+    \\
+    \sj{rank or title} Associate Professor
+    & 
+    \\
+    \sj{department} \acl{nem}
+    &
+    \\
+    \sj{office location and campus zip} \acs{cae} 83401
+    &
+    \begin{enumerate}[topsep=0pt,itemsep=-0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.05in,label=(\arabic*)]
+            \vspace{-0.235in}
+%        \item[]\sj{phone} 208.533.8122
+%        \item[]\sj{fax} 208.526.8255
+        \item[]\sj{email} rborrelli@uidaho.edu
+        \item[]\sj{web} \href{https://thedoctorrab.github.io/}{@TheDoctorRAB}
+    \end{enumerate}
+    \\
+    \sj{date of first employment at ui} 2015.07.13
+    &
+    \\
+    \sj{date of tenure} 2021.05.20
+    &
+    \\
+    \sj{date of present rank or title} 2021.05.20
+    &
+\end{longtable}
+\end{spacing}
 
 
-\vspace{0.50\baselineskip}
-
-
-\section*{Education}
+\section*{Education Beyond High School}
     \begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Degrees}
         \item[]\textbf{Doctor of Philosophy --  Nuclear Engineering}\hfill{\textit{2006}}
         \item[]\textbf{University of California -- Berkeley}
         \item[]\textit{Radionuclide transport modeling with bentonite extrusion}
@@ -239,14 +252,15 @@
     \end{enumerate}
 
 
-\section*{Research Experience}
+\section*{Experience}
     \begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Teaching, Extension, and Research Appointments}
         \item[]\textbf{\acl{ui} $\sq$ \acl{iff}}\hfill{\textit{2015--}}
         \item[]\textbf{Associate Professor $\sq$ \acl{nem}}\hfill{\textit{2021--}}
         \item[]\textbf{Assistant Professor $\sq$ \acl{nem}}\hfill{\textit{2015--21}}
         \item[]\textit{Affiliate Faculty -- \acl{ece} $\sq$ \acl{ui}}\hfill{\textit{2025--}}
         \item[]\textit{Coordinator -- Nuclear Technology Management Certificate}\hfill{\textit{2023--}}
-        \item[]\textit{Affiliate -- \acl{epi} $\sq$ \acl{bsu}}\hfill{\textit{2019--}}
+        \item[]\textit{Affiliate -- \acl{epi} \acl{bsu}}\hfill{\textit{2019--}}
         \item[]\textit{Coordinator -- Nuclear Decommissioning \& Used Fuel Management Certificate}\hfill{\textit{2019--}}
         \item[]\textit{State of Idaho Professional Engineer -- Faculty Restricted }\hfill{\textit{2019--}}
         \item[]\textit{Coordinator -- Nuclear Criticality Safety Certificate}\hfill{\textit{2015--}}
@@ -278,8 +292,9 @@
     \end{enumerate}
 
 
-\section*{Related Professional Experience}
+\section*{Experience}
     \begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Non-Academic Employment including Armed Forces}
         \item[]\textbf{Assistant Radiation Safety Officer}\hfill{\textit{1996-99}}
         \item[]\textbf{Leslie C. Wilbur Nuclear Reactor Facility}
         \item[]\textbf{Worcester Polytechnic Institute}
@@ -299,234 +314,151 @@
     \end{enumerate}
 
 
-\section*{Grants and Contracts Awarded}
-    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
-        \item Sean McBride (\acs{pi}) - Idaho State University, Dakota Roberson (co-\acs{pi}), R. A. Borrelli (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho. Industrial Cyber Security Research and Training Laboratory. National Institute of Standards and Technology. \textbf{\$2,875,000}. 2024.08.01 - 2026.07.31. [\textit{non-competitive}]
-        \item Michael Haney (\acs{pi}), R. A. Borrelli (co-\acs{pi}), Dakota Roberson (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho, Ben Lampe (co-\acs{pi}), Sean McBride (co-\acs{pi}) - Idaho State University. Secure Cyberspace and Resilient Industrial Systems Workforce Development. \acl{igm} $\sq$ \acl{hrc}. \textbf{\$700,000.} 2024.07.01 - 2025.06.30. [\textit{Borrelli \acs{pi} 2024.07.01}]
-        \item Kathleen Ara{\'u}jo (\acs{pi}), Cassie Koerner (co-\acs{pi}) - Boise State University, Stephanie Malin (co-\acs{pi}) - Colorado State University, Daniel Cardenas (co-\acs{pi}) - National Tribal Energy Association, R. A. Borrelli (co-\acs{pi}) - University of Idaho, Weston Eaton (co-\acs{pi}), Temple Stoellinger (Senior Personnel), Steven Smutko (Senior Personnel), Rachael Budowle (Senior Personnel) - University of Wyoming, Majia Nadesan (co-\acs{pi}) - Arizona State University, Julia Haggerty (co-\acs{pi}), Lee Spangler (Senior Personnel) - Montana State University, Denia Djoki{\'c} (co-\acs{pi}) University of Michigan, Sarah Robey (co-\acs{pi}) - Idaho State University. Common ground: Legitimacy in consent-based siting for interim nuclear waste storage. \acl{doe} Consent-Based Siting for Interim Storage Program - Community Engagement Opportunities. \textbf{\$2,000,000.} 2023.08.01 - 2025.07.31.
-        \item Andrew Kliskey (\acs{pi}) - Idaho \acs{eps} Director, Karla Eitel (co-\acs{pi}), Alistair Smith (co-\acs{pi}) - University of Idaho, Donna Lybecker (co-\acs{pi}) - Idaho State University, Kathleen Ara{\'u}jo (co-\acs{pi}) Boise State University. \href{https://www.idahoepscor.org/i-crews}{RII Track-1: Idaho Community-engaged Resilience for Energy-Water Systems (I-CREWS)}. National Science Foundation \acs{eps}. \textbf{\$24,000,000.} 2023.09.01 - 2028.08.31.\footnote{Technical Proposal Writing Team.}\textsuperscript{,}\footnote{University of Idaho Research Team.}  [\textit{Modeling Group Lead 2025.09.01}] [\textit{Treasure Valley Site Planning Team 2026.01.16}]
-        \item Michael Haney (\acs{pi}), R. A. Borrelli (co-\acs{pi}), Dakota Roberson (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho, Ben Lampe (co-\acs{pi}), Sean McBride (co-\acs{pi}) - Idaho State University. Secure Cyberspace and Resilient Industrial Systems Workforce Development. Idaho Global Entrepreneurial Mission (IGEM) --  Higher Education Research Council \textbf{\$700,000.} 2023.07.01 - 2024.06.30.
-        \item Michael Haney (\acs{pi}), R. A. Borrelli (co-\acs{pi}), Dakota Roberson (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho, Ben Lampe (co-\acs{pi}), Sean McBride (co-\acs{pi}) - Idaho State University. Secure Cyberspace and Resilient Industrial Systems Workforce Development. Idaho Global Entrepreneurial Mission (IGEM) --  Higher Education Research Council \textbf{\$693,000.} 2022.07.01 - 2023.06.30.
-        \item R. A. Borrelli (\acs{pi}), Michael Haney (co-\acs{pi}) - University of Idaho. Cyber-informed design, education, and training for cyberthreat resiliency with real-time nuclear reactor simulation. University of Idaho. Operation: Resubmission Support. \textbf{\$34,122.} 2022.04.30 - 2022.09.30.
-        \item Thomas A. Ulrich (\acs{pi}) - Idaho National Laboratory, R. A. Borrelli (co-\acs{pi}) - University of Idaho. User evaluation of the NuScale simulator at the Center for Advanced Energy Studies. CAES programmatic funding. \textbf{\$50,000.} 2022.03.01 - 2022.09.30.
-        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Dennis D. Keiser, Jr., (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Connecting U-Mo Fuel Processing, Microstructure, and Irradiation Performance. \textbf{\$23,823.} 2021.06.01-2022.01.31.
-        \item R. A. Borrelli (\acs{pi}), Jason Barnes (Senior Adviser) - University of Idaho. Experimental determination of interactions between the radiation fields of Dragonfly’s MMRTG and Titan’s environment. Idaho NASA \acs{eps} Research Initiation Grant. \textbf{\$82,962}. 2021.05.01 - 2022.04.30.
-        \item R. A. Borrelli (\acs{pi}) - University of Idaho. Online educational resources for nuclear engineering courses. University of Idaho Think Open Fellowship. \textbf{\$1200}. 2021.01.01 - 2021.05.31. 
-    %    \item Athi Varuttamaseni (\acs{pi}), Shinjae Yoo (co-\acs{pi}) - Brookhaven National Laboratory, R. A. Borrelli (co-\acs{pi}) - University of Idaho. Adaptive control and monitoring platform for autonomous operation of advanced reactors. NEUP 20-19280. \textbf{\$1,000,000.} 2020.10.01 - 2023.09.30.
-        \item Lee Ostrom (\acs{pi}), Richard N. Christensen, R. A. Borrelli, Haiyan Zhao (co-\acs{pi}s) - University of Idaho. ORED Fall 2019 EIS: Portable XFR for use in supporting material research. ORED Equipment and Infrastructure Support. \textbf{\$40,000.} 2019.12.01 - 2020.11.30
-        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Mark. D. DeHart (co-\acs{pi}) - Idaho National Laboratory. Application and enhancement of MAMMOTH depletion capabilities. \textbf{\$33,521.} 2020.01.13 - 2020.12.31.
-        \item Richard N. Christensen (\acs{pi}), R. A. Borrelli, Michael G. McKellar, Michael Haney, David Arcilesi (co-\acs{pi}s) - University of Idaho, Richard Jacobson (co-\acs{pi}) Idaho State University. NuScale Simulator at the Center for Advanced Energy Studies. \acl{doe} Scientific Infrastructure Support for Consolidated Innovative Nuclear Research. \textbf{\$321,525.} 2019.10.01 - 2022.09.30. [\textit{\acs{pi} - NuScale Simulator Laboratory - 2022.01.07}]
-        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Dennis D. Keiser, Jr., (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Connecting U-Mo Fuel Processing, Microstructure, and Irradiation Performance. \textbf{\$127,866.} 2018.10.01-2021.05.31.
-        \item R. A. Borrelli (\acs{pi}), Richard N. Christensen (co-\acs{pi}) - University of Idaho, Brian J. Jaques (co-\acs{pi}) - Boise State University, Piyush Sabharwall (co-\acs{pi}) - Idaho National Laboratory, Mark Delligatti (co-\acs{pi}) - Table Rock, LLC, Sakae Casting USA, LLC (co-\acs{pi}). Modeling and design of borated aluminium cask for used fuel cooling. Idaho Global Entrepreneurial Mission (IGEM) - Idaho Commerce. \textbf{\$237,898.} 2018.01.01-2019.05.31.
-        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Dennis D. Keiser, Jr., (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Connecting U-Mo Fuel Processing, Microstructure, and Irradiation Performance. \textbf{\$36,180.} 2017.11.01-2018.05.31.
-        \item R. A. Borrelli (\acs{pi}), Lee Ostrom (Senior Advisor) - University of Idaho, Stephen G. Johnson (Senior Advisor) - Idaho National Laboratory. Performance assessment of americium as fuel in radioisotope thermoelectric generators for deep space exploration. Idaho NASA \acs{eps} Research Initiation Grant. \textbf{\$55,000.} 2017.08.01-2018.04.30.
-        \item Kelley M. Verner (\acs{pi}), R. A. Borrelli, Marc T. Skinner, Emma K. Redfoot, Jieun Lee, Seth Dustin, John Peterson (co-\acs{pi}s) - University of Idaho. Increasing the Go-on Rate in Southeast Idaho Through the Nexus of Food, Energy, and Water. University of Idaho Vandals Big Ideas Project. \textbf{\$23,984.} 2017.07.01-2018.06.30.
-        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Jason Hales (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Idaho National Laboratory Code Documentation. \textbf{\$35,435.} 2016.10.01-2017.06.30.
-        \item Vivek Utgikar (\acs{pi}), Fatih Aydogan, Krishnan Raja, Raghunath Kanakala, R. A. Borrelli, Haiyan Zhao, Matthew Swenson (co-\acs{pi}s) - University of Idaho. University of Idaho Nuclear Engineering Faculty Development Program. United States Regulatory Commission Faculty Development Grant. \textbf{\$434,048.} 2015.09.29 - 2019.09.30.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Major Equipment Acquisitions}
-        \item[]\acl{wsc} \acl{pwr} \acl{npp} Simulator.
-    \end{enumerate}
-
-
-\section*{Refereed Journal Publications}
-    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
-        \item\bibentry{koe26a}.
-        \item\bibentry{wai26a}.
-        \item\bibentry{har26a}.
-        \item\bibentry{ber25a}.
-%        \item\bibentry{bau25a}.
-        \item\bibentry{bau25b}.
-        \item\bibentry{kof25a}.
-        \item\bibentry{man24a}.
-        \item\bibentry{cal23a}.
-        \item\bibentry{men23a}.
-        \item\bibentry{roo23a}.
-        \item\bibentry{roo23b}.
-        \item\bibentry{wai23a}.
-        \item\bibentry{wid23a}.
-        \item\bibentry{chr22a}.
-        \item\bibentry{man22a}.
-        \item\bibentry{men22a}.
-        \item\bibentry{men22b}.
-        \item\bibentry{red22a}.
-        \item\bibentry{red22b}.
-        \item\bibentry{wid22a}.
-        \item\bibentry{dus21a}.
-        \item\bibentry{dus21b}.
-        \item\bibentry{men21a}.
-        \item\bibentry{tac21a}.
-        \item\bibentry{wid21a}.
-        \item\bibentry{wid21b}.
-        \item\bibentry{bor20a}.
-        \item\bibentry{car20a}.
-        \item\bibentry{car20b}.
-        \item\bibentry{chr20a}.
-        \item\bibentry{chr20b}.
-        \item\bibentry{nov20a}.
-        \item\bibentry{lee19a}.
-        \item\bibentry{lee19b}.
-        \item\bibentry{pet19a}.
-        \item\bibentry{red18a}.
-        \item\bibentry{bor17a}.
-        \item\bibentry{lee17a}.
-        \item\bibentry{bor16a}.
-        \item\bibentry{bor14a}.
-        \item\bibentry{bor14b}.
-        \item\bibentry{bor14c}.
-        \item\bibentry{bor13a}.
-        \item\bibentry{bor13b}.
-        \item\bibentry{bor11a}.
-        \item\bibentry{bor08a}.
-        \item\bibentry{bor08b}.
-    \end{enumerate}
-        
-
-\section*{Refereed Conference Proceedings}
-    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
-        \item\bibentry{cfbor26a}.
-        \item\bibentry{cfwai26a}.
-        \item\bibentry{cfkoe25a}.
-        \item\bibentry{cfbal25a}.
-        \item\bibentry{cfbor24a}.
-        \item\bibentry{cfwai23a}.
-        \item\bibentry{cfwhe23a}.
-        \item\bibentry{cfroo22a}.
-        \item\bibentry{cfhan21a}.
-        \item\bibentry{cfric20a}.
-        \item\bibentry{cfbor19a}.
-        \item\bibentry{cfchr19a}.
-        \item\bibentry{cfkol19a}.
-        \item\bibentry{cfmac19a}.
-        \item\bibentry{cfpet19a}.
-        \item\bibentry{cfbor18a}.
-        \item\bibentry{cfbor18b}.
-        \item\bibentry{cfdus18a}.
-        \item\bibentry{cflee18a}.
-        \item\bibentry{cfbor17a}.
-        \item\bibentry{cflee17a}.
-        \item\bibentry{cfpet17a}.
-        \item\bibentry{cfred17a}.
-        \item\bibentry{cfred17b}.
-        \item\bibentry{cfbor16a}.
-        \item\bibentry{cfbor13a}.
-        \item\bibentry{cfbor13b}.
-        \item\bibentry{cfbor12a}.
-        \item\bibentry{cfbor11a}.
-        \item\bibentry{cfbor10a}.
-        \item\bibentry{cfbor10b}.
-        \item\bibentry{cfbor09a}.
-        \item\bibentry{cfbor09b}.
-        \item\bibentry{cfbor08a}.
-        \item\bibentry{cfbor07a}.
-        \item\bibentry{cfbor07b}.
-        \item\bibentry{cfbor06a}.
-        \item\bibentry{cfbor96a}.
-    \end{enumerate}
-
-
-\section*{Book contributions}
-    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
-        \item\bibentry{bmac19a}.
-        \item\bibentry{bbor15a}.
-    \end{enumerate}
-
-
-\section*{Non-Refereed Technical Reports}
-    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
-        \item\bibentry{rwai23a}.
-        \item\bibentry{rara21a}.
-        \item\bibentry{rdus20a}.
-        \item\bibentry{rbor19a}.
-        \item\bibentry{rbor18a}.
-        \item\bibentry{rahn15a}.
-        \item\bibentry{rahn12a}.
-        \item\bibentry{rhec12a}.
-        \item\bibentry{rahn11a}.
-        \item\bibentry{rahn10a}.
-        \item\bibentry{rahn10b}.
-        \item\bibentry{rbor10a}.
-        \item\bibentry{rahn09a}.
-        \item\bibentry{rbor07a}.
-        \item\bibentry{rbor07b}.
-        \item\bibentry{rbor07c}.
-        \item\bibentry{rahn06a}.
-    \end{enumerate}
-
-
-\section*{Conference Presentations}
-    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
-        \item\bibentry{pbor26a}.
-        \item\bibentry{pwai26a}.
-        \item\bibentry{pkoe25a}.
-        \item\bibentry{pbal25a}.
-        \item\bibentry{pbor24a}.
-        \item\bibentry{pwai23a}.
-        \item\bibentry{pwhe23a}.
-        \item\bibentry{proo22a}.
-        \item\bibentry{proo22b}.
-        \item\bibentry{phan21a}.
-        \item\bibentry{pcut20a}.
-        \item\bibentry{pric20a}.
-        \item\bibentry{pbor19a}.
-        \item\bibentry{pchr19a}.
-        \item\bibentry{pkol19a}.
-        \item\bibentry{pmac19a}.
-        \item\bibentry{ppet19a}.
-        \item\bibentry{ppet19b}.
-        \item\bibentry{pbor18a}.
-        \item\bibentry{pbor18b}.
-        \item\bibentry{pdus18a}.
-        \item\bibentry{phuf18a}.
-        \item\bibentry{plee18a}.
-        \item\bibentry{pbor17a}.
-        \item\bibentry{plee17a}.
-        \item\bibentry{ppet17a}.
-        \item\bibentry{pred17a}.
-        \item\bibentry{pred17b}.
-        \item\bibentry{pbor16a}.
-        \item\bibentry{pbor13a}.
-        \item\bibentry{pbor13b}.
-        \item\bibentry{pbor12a}.
-        \item\bibentry{pbor11a}.
-        \item\bibentry{pbor10a}.
-        \item\bibentry{pbor10b}.
-        \item\bibentry{pbor09a}.
-        \item\bibentry{pbor09b}.
-        \item\bibentry{pbor08a}.
-        \item\bibentry{pbor07a}.
-        \item\bibentry{pbor07b}.
-        \item\bibentry{pbor06a}.
-    \end{enumerate}
-
-
-\section*{Other Presentations}
-    \begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Invited talks}
-        \item[]\textit{\acl{iae}}
-        \item[]Knowledge Management Assist Visits for Education and Training Providers\hfill{\textit{2021 virtual}}
+\section*{Teaching Accomplishments}
+    \begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Areas of Specialization} Neutronics, risk assessment, pyroprocessing, nuclear fuel cycle analysis, safeguards, security, nuclear cybersecurity, nuclear integrated hybrid energy systems, regulatory analysis, energy policy
     \end{enumerate}
     \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{\acl{ui} $\sq$ \acl{iff}}
-        \item[]Strategies and success for ethical research\hfill{\textit{2018--19; 2022}}
-        \item[]Vandal Advantage Graduate Student Orientation\hfill{\textit{2017--19}}
-        \item[]P3/TRIO Upward Bound STEM Day Presentation\hfill{\textit{2015}}
+        \item[]\textbf{University of Idaho $\sq$ Idaho Falls Center for Higher Education}
+        \item[]\textbf{\acl{nem}}
+        \item[]\textbf{Used Fuel Management \& Nuclear Power Plant Decommissioning Certificate}\hfill{\textit{Offered variably as needed}}
+        \item[]\textit{NE514: Nuclear Safety}
+        \item[]The focus of this course is on the approach to nuclear safety for the commercial nuclear industry. Historical events serve as a basis for learning to investigate how nuclear energy policy has affected approaches to safety developed in the United States. Additionally, how safety approaches affect the nuclear industry will be covered. Several different classes of nuclear facilities will be studied. Relevant current events will be highlighted.
     \end{enumerate}
     \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{Stanford University}
-        \item[]Pre-Collegiate Summer Institutes\hfill{\textit{2014}}
+        \item[]\textit{NE516: Nuclear Rules \& Regulations}
+        \item[]The focus of this course is on the rules and regulations that govern the commercial nuclear industry. Historical events serve as a basis for learning to investigate how nuclear energy policy has developed in the United States. This includes not only current regulations but important development that led to major policy changes. Additionally, how current regulations affect the nuclear industry will be covered. Facilities studied will include research, commercial, and government. Relevant current events will be highlighted.
     \end{enumerate}
     \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Seminars}
-        \item[]\acl{utk} Nuclear Engineering Department\hfill{\textit{2019}}
+        \item[]\textit{NE527: Nuclear Materials, Transportation, Storage}\hfill{\textit{in development}}
+        \item[]The focus of this course is on the scope and sequencing of activities necessary to comply with the rules and regulations that govern storage, transport, and disposal of nuclear materials. The course is mainly focused on spent nuclear fuel management, Department of Energy high-level waste management, and NRC regulated activities. The course is based on United States nuclear facilities and nuclear power plants.
     \end{enumerate}
     \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Lightning Talks}
-        \item[]Future of Nuclear Waste Education -- Massachutsetts Institute of Technology\hfill{\textit{2022}}
-        \item[]\acl{inl} Nuclear Science and Technology Collaborative Planning Meeting\hfill{\textit{2018}}
-        \item[]\acl{inl} National and Homeland Security Collaborative Planning Meeting\hfill{\textit{2018}}
-        \item[]\acl{inl} Energy \& Environment Collaborative Planning Meeting\hfill{\textit{2017}}
+        \item[]\textit{NE587: Nuclear Facility Decommissioning}
+        \item[]The focus of this course is on the scope and sequencing of activities necessary to comply with the rules and regulations that govern decommissioning of nuclear facilities. The course is mainly focused on the NRC regulated activities, as these are both stricter and more regimented when compared to the DOE/DOD regulated activities. However, most of the rules apply to both. The course is based on D\&D experience in the US, both for facilities which have successfully completed the process and for facilities currently in the process.
+    \end{enumerate}
+    \begin{enumerate}[topsep=15pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Courses Taught}
+        \item[]\textbf{\acl{ui} $\sq$ \acl{iff}}
+        \item[]\textbf{\acl{nem}}
+        \item[]\textit{NE587: Nuclear Facility Decommissioning}\hfill{\textit{Fall 2025}}
+        \item[]\hfill{\textit{supervising instructor}}
+        \item[]The focus of this course is on the scope and sequencing of activities necessary to comply with the rules and regulations that govern decommissioning of nuclear facilities. The course is mainly focused on the NRC regulated activities, as these are both stricter and more regimented when compared to the DOE/DOD regulated activities. However, most of the rules apply to both. The course is based on D\&D experience in the US, both for facilities which have successfully completed the process and for facilities currently in the process.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE585: Nuclear Fuel Cycle Analysis}\hfill{\textit{Fall 2023--; 2017}}
+        \item[]This course presents the nuclear fuel cycle can as an holistic system with components related in many complex ways. This course focuses on systems analysis of components that comprise the nuclear fuel cycle to understand the contemporary challenges facing nuclear energy. Topics include reactor design, critical size, reactor statics and dynamics, advanced reactor design, and back-end management; siting, fuel management, interim storage, repository design. Students will also gain facility with MCNP. 
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE529: Risk Assessment}\hfill{\textit{Spring 2021--; 2016--19}}
+        \item[]This course is designed to provide students with an understanding of how to perform a comprehensive risk assessment applicable to a wide variety of engineering problems in many different disciplines. The course will focus on failure mode and effect analysis, fault tree analysis, probabilistic risk analysis, and human reliability analysis. The course will also cover fundamental probability and statistics content.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE544: Reactor Analysis -- Statics and Kinetics}\hfill{\textit{Spring 2022 --}}
+        \item[]\hfill{\textit{supervising instructor}}
+        \item[]The purpose of this course is to study nuclear theory in the context of nuclear reactor engineering; concepts relating to the design and operation of nuclear reactors will be discussed. Content includes development of mathematical expressions describing the relevant nuclear processes as well as their physical implications. This course will involve the application of several common analytical tools used for the design and evaluation of nuclear systems.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE450: Principles of Nuclear Engineering}\hfill{\textit{Fall 2015--22}}
+        \item[]In this course, an overview of fundamental nuclear engineering principles and how these are practically applied to contemporary, nuclear engineering problems will be presented.  The topics covered in this course include: nuclear physics and reactions, materials science, radiation protection, energy production, fuel cycle analysis, advanced reactor design, fusion, nonproliferation, back-end management, and risk assessment and safety.  Throughout the course, the ethical considerations with regards to engineering problems within these fields will also be discussed.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Python \acs{mcp} Development for Molten Fuel Salt Handling}\hfill{\textit{Spring 2025}}
+        \item[]In this course, a series of Python Scripts are developed to construct \acs{mcp} input decks that will be applied to establish criticality safety fuel handling controls for molten fuel salt.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Nuclear Power Plant Decommissioning Education}\hfill{\textit{Fall 2023}}
+        \item[]As variable energy sources increasingly penetrate the United States energy market, the economics of nuclear energy has weakened. This has led to planned plant closures. Under NRC regulations, these plants must be decommissioned; i.e., safe removal from service and reduction of radioactivity to permissible levels in order to release the property. These activities will require specialized training. The market for decommissioning in North America was valued at \$1.92B in 2019, and it is projected to increase to \$3.35B in 2027. A significant, skilled, and technically proficient workforce will be needed to complete these activities safely and within regulations. Currently, there are no programs in the US specifically focused on decommissioning workforce training. This course will develop a nuclear power plant decommissioning asynchronous, online graduate course as part of the University of Idaho Nuclear Power Plant Decommissioning Graduate Certificate.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Computation and modeling of nuclear systems}\hfill{\textit{Fall 2020}}
+        \item[]Using published nuclear computational modeling references, this course will examine prior efforts to simplify the neutron transport and depletion calculations for advanced reactor designs, such as high-temperature pebble-bed reactors. These include efforts to model heterogeneous stochastic media, such as TRISO fuel particles dispersed in a graphite matrix. Deterministic neutron transport in stochastic media has resulted in several new methods developed in order to address the challenges associated with modeling them, however, comparison of the proposed and implemented methods has been largely absent. Other challenges facing the modeling of pebble-bed reactors include the depletion calculations for individual pebbles. Because of the flow of pebbles through the core, and the recirculation of said pebbles in most modern designs, the depletion of individual pebbles can affect the criticality of the system as well as the temperature profile of individual pebbles, which was demonstrated to have significant safety implications based on the operation of the German AVR pebble-bed system. To these ends, this course will identify relevant literature regarding these topics and the feasibility of implementing these methods in modern nuclear modeling tools, such as the Griffin tool in development at Idaho National Laboratory.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Heterogeneity comparisons of intermediate enrichment uranium in critical systems}\hfill{\textit{Fall 2020}}
+        \item[]The ICSBEP handbook contains descriptions and evaluations of critical experiments conducted in facilties throughout the world. The reach of the handbook stretches to the beginning of the history of nuclear engineering. As part of that history, a number of critical experiments have been conducted using arrays of fissile material in the intermediate enrichment range, which is defined for the purposes of this course as ten to forty percent (10\%-40\%). In those evaluations, a variety of methods have been discussed and described which convert a system of known or unknown degree of heterogeneity into a simplified homogeneous model, which is a traditional method for examining the critical characteristics of multiplying systems. The specific methodology for this conversion varies between evaluations and is explained in some cases, where other cases are less descriptive. It is of interest to the field of nuclear criticality safety to improve the understanding of the effect of heterogeneity on the critical characteristics of multiplying fissile systems, particularly in the range of intermediate enrichment. It is of further interest to the field that a methodology be established which can be used to evaluate these types of systems for practical nuclear criticality safety applications, especially the development of nuclear criticality safety limits.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Computation of spherical critical volume for nuclear criticality safety applications} \hfill{\textit{Fall 2020}}
+        \item[]The nuclear safety guide, Critical Dimensions of Systems Containing U-235, Pu-239, and U-233 contains a graph of minimum critical volumes as a function of U-235 enrichment in homogeneous and heterogeneous hydrogen-moderated systems. This graph includes a wide extrapolation between the data for ten percent enrichment and ninety-three percent enrichment. A similar graph appears in Anomalies of Nuclear Criticality without the extrapolation. This graph shows a clear transition at approximately thirty-five percent enrichment between two different types of systems. It is clear that there is a difference between the extrapolated minimum spherical critical volumes and the calculated critical volumes. As part of the development of nuclear criticality safety methodology for intermediate-enrichment uranium systems, it is necessary to more fully evaluate and explain the nature of the transition point. This work will attempt to re-create and expand on the data used to produce this graph and more fully evaluate the nature of the minimum critical volume for intermediate-enrichment systems. The secondary objective will be the proposal of nuclear criticality safety rules which could be applied to these data to ensure that fissionable material operations in this range of enrichment can be conducted safely.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Subcritical multiplication} \hfill{\textit{Fall 2020}}
+        \item[]Using published fundamental nuclear data for thermal neutrons, this course will examine the relationship between processes of fission and capture and develop models for reactivity worth as a function of thermal fission and capture cross-sections and local thermal flux. This course will include evaluation of tests in zero-power reactors. The Advanced Test Reactor (ATR) physics analyses rely heavily on measurement results from the Advanced Test Reactor Critical Facility (ATRC). These results are easily delivered in terms of reactivity worth, but the results are almost never directly applicable to ATR due to differences in thermal neutron flux. Reactivity worth is not a fundamental property of a material and indeed is not a characteristic property of a given piece of reactor hardware if the hardware is to be irradiated in a new neutron environment. However, translating reactivity worth of a piece of hardware in ATRC to a pair of macroscopic cross-sections essentially characterizes the hardware with constants that will be applicable in any subsequent location in ATR or ATRC. Therefore, reactivity worth in a new irradiation position can be predicted by calculation.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Historical examinations of heterogeneity in nuclear criticality safety} \hfill{\textit{Spring 2020}}
+        \item[]Using published nuclear criticality safety references, this course will conduct an examination of the effect of heterogeneity with respect to nuclear criticality safety. As part of the history of nuclear criticality safety, a number of critical experiments have been conducted using arrays of fissile material in an attempt to quantify the effect of heterogeneity in the determination of safe handling limits. In these attempts, a number of low-enriched experiments were examined and converted in their critical dimensions to establish a useful baseline from which other limits could be extrapolated. It is of interest to the field of nuclear criticality safety to improve the understanding of the effect of heterogeneity on the critical characteristics of multiplying fissile systems, particularly in the range of intermediate enrichment. It is of further interest to the field that a methodology be established which can be used to evaluate these types of systems for practical nuclear criticality safety applications, especially the development of nuclear criticality safety limits. To that end, this course will identify relevant data in the literature used to generate historical experiments and apply MCNP to model these experiments in order to understand and evaluate assumptions and restrictions raised in the experiments.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Heterogeneity comparisons of intermediate enrichment uranium in critical systems}\hfill{\textit{Spring 2020}}
+        \item[]Using the International Criticality Safety Benchmark Evaluation Project (ICSBEP) handbook of evaluated critical experiments, conduct an examination of the effect of heterogeneity in intermediate-enrichment uranium systems. The ICSBEP handbook contains descriptions and evaluations of critical experiments conducted in facilities throughout the world. The reach of the handbook stretches to the beginning of the history of nuclear engineering. In those evaluations, a variety of methods have been discussed and described which convert a system of known or unknown degree of heterogeneity into a simplified homogeneous model, which is a traditional method for examining the critical characteristics of multiplying systems. The specific methodology for this conversion varies between evaluations and is explained in some cases, where other cases are less descriptive. It is of interest to the field of nuclear criticality safety to improve the understanding of the effect of heterogeneity on the critical characteristics of multiplying fissile systems, particularly in the range of intermediate enrichment. It is of further interest to the field that a methodology be established which can be used to evaluate these types of systems for practical nuclear criticality safety applications, especially the development of nuclear criticality safety limits. This course will identify and evaluate relevant benchmark experiments for heterogeneity effects using MCNP to establish new baseline models from the benchmark handbook.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE502: Nuclear integrated energy systems} \hfill{\textit{Spring 2020}}
+        \item[]Nuclear renewable hybrid energy systems enable a nuclear reactor to load follow with a renewable energy source. These must be designed to distribute energy dynamically by supplying electricity to the grid while using either thermal or electrical energy for industrial applications. This takes advantage of the flexible distribution of electricity or heat to maximize profit. The industrial process serves as a load sink for the excess heat or electricity produced by the nuclear reactor. Economic challenges to the current United States nuclear light water reactor (LWR) fleet have led to early plant closures. While LWRs primarily deliver baseload electricity, there is no reason why nuclear energy produced by these reactors cannot be used to provide energy to a range of industrial applications. This directed study course will identify feasible systems, products, and commodities that could be produced by existing nuclear plants. As part of this, cost and potential profitability will be analyzed within the context of market structures and grid reliability.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE527: Nuclear material storage, transport, disposal} \hfill{\textit{Spring 2020}}
+        \item[]There is a wide range of nuclear materials that are stored, transported and disposed of each day. The materials include medical radioisotopes, new fuel pellets, used fuel, and industrial radioisotopes. This course will cover the regulations that govern nuclear material storage, transportation and disposal, as well as the engineering requirements and practical aspects of handling these materials.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE535: Nuclear Criticality Safety I}\hfill{\textit{Spring 2022; 2020}}
+        \item[]This course applies uses the foundation of applied nuclear physics to develop and explain the international and domestic rules and practices that are used to prevent inadvertent criticality in fuel cycle applications such as used fuel storage and processing.
+    \end{enumerate}
+    \begin{enumerate}[topsep=9pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Diablo Valley College}
+        \item[]\textbf{Architecture and Engineering}
+        \item[]\textbf{Adjunct Professor}
+        \item[]\textit{ENGIN110: Introduction to Engineering}\hfill{\textit{2013--15}}
+        \item[]This course introduces students to fundamental engineering principles. Students learn how these are applied to contemporary engineering problems through laboratory exercises, homework assignments, design projects, interviews with professional engineers, and field trips to engineering companies. Topics include: materials science, risk assessment and safety, critical problem-solving, engineering analysis, engineering design processes, project development, engineering software, and presentation tools. The role of the engineer in society, professionalism, and engineering ethics are major themes. The emphasis is on creative problem-solving, teamwork, and effective communication, both in presentation and writing.
+    \end{enumerate}
+    \begin{enumerate}[topsep=9pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{University of California --Berkeley}
+        \item[]\textbf{Nuclear Engineering}
+        \item[]\textbf{Instructor}
+        \item[]\textit{NE375: Teaching Techniques in Nuclear Engineering}\hfill{\textit{2006; 2010--11}}
+        \item[]This course acquaints \acfp{gsi} with teaching techniques for courses in the Department of Nuclear Engineering. The \acs{gsi} will have several duties far beyond grading assignments and/or examinations: conducting discussion sessions, review lectures, or laboratory experiments. The \acs{gsi}, therefore, needs to develop the appropriate tools to use when facing these pedagogical challenges. Three students from the 2010 course received the Outstanding Graduate Student Instructor Award given by the UC-Berkeley \acl{gsi} Teaching \& Resource Center.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{\acl{gsi}}
+        \item[]\textit{E124: Ethics and the Impact of Technology on Society}\hfill{\textit{2004--06}}
+        \item[]Conducted multiple discussion sections on a weekly basis and review lectures
+        \item[]Supervised research projects based on current, ethical and scientific issues 
+        \item[]Assessed individual student presentations, projects, and overall course grading
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{IDS110: Introduction to Computing}\hfill{\textit{2004}}
+        \item[]Conducted multiple laboratory sessions on a weekly basis
+        \item[]Supervised undergraduate research projects focused on web based education
+        \item[]Assessed laboratory assignments and project grading
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE92: Issues in Nuclear Science and Engineering}\hfill{\textit{2000; 2002}}
+        \item[]Conducted multiple laboratory sessions on a weekly basis
+        \item[]Supervised undergraduate research projects focused on web based education
+        \item[]Assessed laboratory assignments and project grading
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{NE275: Principles and Methods of Risk Analysis}\hfill{\textit{2001}}
+        \item[]This graduate course requires a deeper understanding of the subject matter, due to the student body. The course was one of three in the curriculum with the highest credit load. The main responsibility in this was to advise and grade semester projects and presentations based on risk assessments of engineering systems.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Reader}
+        \item[]\textit{NE150: Introduction to Nuclear Reactor Theory}\hfill{\textit{2003}}
+        \item[]\textit{NE104: Radiation Detection and Nuclear Instrumentation Laboratory}\hfill{\textit{2002}}
+        \item[]\textit{NE107: Introduction to Imaging}\hfill{\textit{2001}}
+        \item[]\textit{NE120: Nuclear Materials}\hfill{\textit{2000}}
+        \item[]Supervised laboratory sessions
+        \item[]Assessed examinations, homework assignments, laboratory reports, final grades
+        \item[]Conducted review lectures
+    \end{enumerate}
+    \begin{enumerate}[topsep=9pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{University of Tokyo}
+        \item[]\textbf{Nuclear Engineering \& Management}
+        \item[]\textbf{Part Time Lecturer}
+        \item[]\textit{Technical English for Scientists}\hfill{\textit{2007--08}}
+        \item[]This course provided the opportunity for non-native English speaking students to develop technical communication skills; i.e., presenting scientific and technical material to an informed audience at an international conference. In this course, the ‘assertion evidence design’ concept for technical presentation of scientific topics was applied to student research interests. Transmutable skills focused on the professional communication of scientific research in various public speaking formats and a comfortable familiarity with the English language to establish a stronger foundation for technical writing.
     \end{enumerate}
 
 
@@ -776,8 +708,282 @@
     \end{longtable}
 
 
-\section*{University Service}
+\section*{Materials Developed}
+    \begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Open Educational Resources} 
+        \item[]Open source educational materials were compiled in order to produce an online textbook as a supplement to existing commercial textbooks. An online textbook allows flexibility to augment course content without requiring multiple textbooks. It also allows the educational content of a course to be more closely aligned with the desired learning outcomes. Two online texts have been developed -- \href{https://uidaho.pressbooks.pub/nuclearengineering}{Principles of Nuclear Engineering} and \href{https://uidaho.pressbooks.pub/riskassessment}{Risk Assessment}.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Courses}
+        \item[]\textit{NE450: Principles of Nuclear Engineering}
+        \item[]\textit{NE514: Nuclear Safety} -- (adapted, with about 40\% new material)
+        \item[]\textit{NE516: Nuclear Rules \& Regulations} -- (adapted, with about 40\% new material)
+        \item[]\textit{NE527: Nuclear Materials Storage, Disposal, Transport} -- (under development)
+        \item[]\textit{NE529: Risk Assessment}
+        \item[]\textit{NE535: Criticality Safety I}
+        \item[]\textit{NE585: Nuclear Fuel Cycles}
+        \item[]\textit{NE587: Nuclear Facility Decommissioning} -- (collaboration with David Haar)
+        \item[]\textit{CORS234: The Science of Engineering and Technology in the Modern World} -- (Nuclear physics module)
+    \end{enumerate}
+
+
+\section*{Scholarship Accomplishments}
     \begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Publications, Exhibitions, Performances, Recitals}\hfill{\textit{\textsuperscript{+}Students}}
+        \item[]\textbf{Refereed/Peer Reviewed Journal Publications}
+    \end{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
+        \item\bibentry{koe26a}.
+        \item\bibentry{wai26a}.
+        \item\bibentry{har26a}.
+        \item\bibentry{ber25a}.
+%        \item\bibentry{bau25a}.
+        \item\bibentry{bau25b}.
+        \item\bibentry{kof25a}.
+        \item\bibentry{man24a}.
+        \item\bibentry{cal23a}.
+        \item\bibentry{men23a}.
+        \item\bibentry{roo23a}.
+        \item\bibentry{roo23b}.
+        \item\bibentry{wai23a}.
+        \item\bibentry{wid23a}.
+        \item\bibentry{chr22a}.
+        \item\bibentry{man22a}.
+        \item\bibentry{men22a}.
+        \item\bibentry{men22b}.
+        \item\bibentry{red22a}.
+        \item\bibentry{red22b}.
+        \item\bibentry{wid22a}.
+        \item\bibentry{dus21a}.
+        \item\bibentry{dus21b}.
+        \item\bibentry{men21a}.
+        \item\bibentry{tac21a}.
+        \item\bibentry{wid21a}.
+        \item\bibentry{wid21b}.
+        \item\bibentry{bor20a}.
+        \item\bibentry{car20a}.
+        \item\bibentry{car20b}.
+        \item\bibentry{chr20a}.
+        \item\bibentry{chr20b}.
+        \item\bibentry{nov20a}.
+        \item\bibentry{lee19a}.
+        \item\bibentry{lee19b}.
+        \item\bibentry{pet19a}.
+        \item\bibentry{red18a}.
+        \item\bibentry{bor17a}.
+        \item\bibentry{lee17a}.
+        \item\bibentry{bor16a}.
+        \item\bibentry{bor14a}.
+        \item\bibentry{bor14b}.
+        \item\bibentry{bor14c}.
+        \item\bibentry{bor13a}.
+        \item\bibentry{bor13b}.
+        \item\bibentry{bor11a}.
+        \item\bibentry{bor08a}.
+        \item\bibentry{bor08b}.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Refereed/Peer Reviewed Conference Proceedings}
+    \end{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
+        \item\bibentry{cfbor26a}.
+        \item\bibentry{cfwai26a}.
+        \item\bibentry{cfkoe25a}.
+        \item\bibentry{cfbal25a}.
+        \item\bibentry{cfbor24a}.
+        \item\bibentry{cfwai23a}.
+        \item\bibentry{cfwhe23a}.
+        \item\bibentry{cfroo22a}.
+        \item\bibentry{cfhan21a}.
+        \item\bibentry{cfric20a}.
+        \item\bibentry{cfbor19a}.
+        \item\bibentry{cfchr19a}.
+        \item\bibentry{cfkol19a}.
+        \item\bibentry{cfmac19a}.
+        \item\bibentry{cfpet19a}.
+        \item\bibentry{cfbor18a}.
+        \item\bibentry{cfbor18b}.
+        \item\bibentry{cfdus18a}.
+        \item\bibentry{cflee18a}.
+        \item\bibentry{cfbor17a}.
+        \item\bibentry{cflee17a}.
+        \item\bibentry{cfpet17a}.
+        \item\bibentry{cfred17a}.
+        \item\bibentry{cfred17b}.
+        \item\bibentry{cfbor16a}.
+        \item\bibentry{cfbor13a}.
+        \item\bibentry{cfbor13b}.
+        \item\bibentry{cfbor12a}.
+        \item\bibentry{cfbor11a}.
+        \item\bibentry{cfbor10a}.
+        \item\bibentry{cfbor10b}.
+        \item\bibentry{cfbor09a}.
+        \item\bibentry{cfbor09b}.
+        \item\bibentry{cfbor08a}.
+        \item\bibentry{cfbor07a}.
+        \item\bibentry{cfbor07b}.
+        \item\bibentry{cfbor06a}.
+        \item\bibentry{cfbor96a}.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Book contributions}
+    \end{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
+        \item\bibentry{bmac19a}.
+        \item\bibentry{bbor15a}.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Non-Refereed Technical Reports}
+    \end{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
+        \item\bibentry{rwai23a}.
+        \item\bibentry{rara21a}.
+        \item\bibentry{rdus20a}.
+        \item\bibentry{rbor19a}.
+        \item\bibentry{rbor18a}.
+        \item\bibentry{rahn15a}.
+        \item\bibentry{rahn12a}.
+        \item\bibentry{rhec12a}.
+        \item\bibentry{rahn11a}.
+        \item\bibentry{rahn10a}.
+        \item\bibentry{rahn10b}.
+        \item\bibentry{rbor10a}.
+        \item\bibentry{rahn09a}.
+        \item\bibentry{rbor07a}.
+        \item\bibentry{rbor07b}.
+        \item\bibentry{rbor07c}.
+        \item\bibentry{rahn06a}.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Conference Presentations}
+    \end{enumerate}
+    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
+        \item\bibentry{pbor26a}.
+        \item\bibentry{pwai26a}.
+        \item\bibentry{pkoe25a}.
+        \item\bibentry{pbal25a}.
+        \item\bibentry{pbor24a}.
+        \item\bibentry{pwai23a}.
+        \item\bibentry{pwhe23a}.
+        \item\bibentry{proo22a}.
+        \item\bibentry{proo22b}.
+        \item\bibentry{phan21a}.
+        \item\bibentry{pcut20a}.
+        \item\bibentry{pric20a}.
+        \item\bibentry{pbor19a}.
+        \item\bibentry{pchr19a}.
+        \item\bibentry{pkol19a}.
+        \item\bibentry{pmac19a}.
+        \item\bibentry{ppet19a}.
+        \item\bibentry{ppet19b}.
+        \item\bibentry{pbor18a}.
+        \item\bibentry{pbor18b}.
+        \item\bibentry{pdus18a}.
+        \item\bibentry{phuf18a}.
+        \item\bibentry{plee18a}.
+        \item\bibentry{pbor17a}.
+        \item\bibentry{plee17a}.
+        \item\bibentry{ppet17a}.
+        \item\bibentry{pred17a}.
+        \item\bibentry{pred17b}.
+        \item\bibentry{pbor16a}.
+        \item\bibentry{pbor13a}.
+        \item\bibentry{pbor13b}.
+        \item\bibentry{pbor12a}.
+        \item\bibentry{pbor11a}.
+        \item\bibentry{pbor10a}.
+        \item\bibentry{pbor10b}.
+        \item\bibentry{pbor09a}.
+        \item\bibentry{pbor09b}.
+        \item\bibentry{pbor08a}.
+        \item\bibentry{pbor07a}.
+        \item\bibentry{pbor07b}.
+        \item\bibentry{pbor06a}.
+    \end{enumerate}
+    \begin{enumerate}[topsep=15pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Invited talks}
+        \item[]\textit{\acl{iae}}
+        \item[]Knowledge Management Assist Visits for Education and Training Providers\hfill{\textit{2021 virtual}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{\acl{ui} $\sq$ \acl{iff}}
+        \item[]Strategies and success for ethical research\hfill{\textit{2018--19; 2022}}
+        \item[]Vandal Advantage Graduate Student Orientation\hfill{\textit{2017--19}}
+        \item[]P3/TRIO Upward Bound STEM Day Presentation\hfill{\textit{2015}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textit{Stanford University}
+        \item[]Pre-Collegiate Summer Institutes\hfill{\textit{2014}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Seminars}
+        \item[]\acl{utk} Nuclear Engineering Department\hfill{\textit{2019}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Lightning Talks}
+        \item[]Future of Nuclear Waste Education -- Massachutsetts Institute of Technology\hfill{\textit{2022}}
+        \item[]\acl{inl} Nuclear Science and Technology Collaborative Planning Meeting\hfill{\textit{2018}}
+        \item[]\acl{inl} National and Homeland Security Collaborative Planning Meeting\hfill{\textit{2018}}
+        \item[]\acl{inl} Energy \& Environment Collaborative Planning Meeting\hfill{\textit{2017}}
+    \end{enumerate}
+
+
+\section*{Grants and Contracts Awarded}
+    \begin{enumerate}[topsep=0pt,itemsep=0.75ex,partopsep=0ex,parsep=0ex,leftmargin=0.50in,rightmargin=0.50in,label=(\arabic*)]
+        \item Sean McBride (\acs{pi}) - Idaho State University, Dakota Roberson (co-\acs{pi}), R. A. Borrelli (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho. Industrial Cyber Security Research and Training Laboratory. National Institute of Standards and Technology. \textbf{\$2,875,000}. 2024.08.01 - 2026.07.31. [\textit{non-competitive}]
+        \item Michael Haney (\acs{pi}), R. A. Borrelli (co-\acs{pi}), Dakota Roberson (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho, Ben Lampe (co-\acs{pi}), Sean McBride (co-\acs{pi}) - Idaho State University. Secure Cyberspace and Resilient Industrial Systems Workforce Development. \acl{igm} $\sq$ \acl{hrc}. \textbf{\$700,000.} 2024.07.01 - 2025.06.30. [\textit{Borrelli \acs{pi} 2024.07.01}]
+        \item Kathleen Ara{\'u}jo (\acs{pi}), Cassie Koerner (co-\acs{pi}) - Boise State University, Stephanie Malin (co-\acs{pi}) - Colorado State University, Daniel Cardenas (co-\acs{pi}) - National Tribal Energy Association, R. A. Borrelli (co-\acs{pi}) - University of Idaho, Weston Eaton (co-\acs{pi}), Temple Stoellinger (Senior Personnel), Steven Smutko (Senior Personnel), Rachael Budowle (Senior Personnel) - University of Wyoming, Majia Nadesan (co-\acs{pi}) - Arizona State University, Julia Haggerty (co-\acs{pi}), Lee Spangler (Senior Personnel) - Montana State University, Denia Djoki{\'c} (co-\acs{pi}) University of Michigan, Sarah Robey (co-\acs{pi}) - Idaho State University. Common ground: Legitimacy in consent-based siting for interim nuclear waste storage. \acl{doe} Consent-Based Siting for Interim Storage Program - Community Engagement Opportunities. \textbf{\$2,000,000.} 2023.08.01 - 2025.07.31.
+        \item Andrew Kliskey (\acs{pi}) - Idaho \acs{eps} Director, Karla Eitel (co-\acs{pi}), Alistair Smith (co-\acs{pi}) - University of Idaho, Donna Lybecker (co-\acs{pi}) - Idaho State University, Kathleen Ara{\'u}jo (co-\acs{pi}) Boise State University. \href{https://www.idahoepscor.org/i-crews}{RII Track-1: Idaho Community-engaged Resilience for Energy-Water Systems (I-CREWS)}. National Science Foundation \acs{eps}. \textbf{\$24,000,000.} 2023.09.01 - 2028.08.31.\footnote{Technical Proposal Writing Team.}\textsuperscript{,}\footnote{University of Idaho Research Team.}  [\textit{Modeling Group Lead 2025.09.01}] [\textit{Treasure Valley Site Planning Team 2026.01.16}]
+        \item Michael Haney (\acs{pi}), R. A. Borrelli (co-\acs{pi}), Dakota Roberson (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho, Ben Lampe (co-\acs{pi}), Sean McBride (co-\acs{pi}) - Idaho State University. Secure Cyberspace and Resilient Industrial Systems Workforce Development. Idaho Global Entrepreneurial Mission (IGEM) --  Higher Education Research Council \textbf{\$700,000.} 2023.07.01 - 2024.06.30.
+        \item Michael Haney (\acs{pi}), R. A. Borrelli (co-\acs{pi}), Dakota Roberson (co-\acs{pi}), Constantinos Kolias (co-\acs{pi}) - University of Idaho, Ben Lampe (co-\acs{pi}), Sean McBride (co-\acs{pi}) - Idaho State University. Secure Cyberspace and Resilient Industrial Systems Workforce Development. Idaho Global Entrepreneurial Mission (IGEM) --  Higher Education Research Council \textbf{\$693,000.} 2022.07.01 - 2023.06.30.
+        \item R. A. Borrelli (\acs{pi}), Michael Haney (co-\acs{pi}) - University of Idaho. Cyber-informed design, education, and training for cyberthreat resiliency with real-time nuclear reactor simulation. University of Idaho. Operation: Resubmission Support. \textbf{\$34,122.} 2022.04.30 - 2022.09.30.
+        \item Thomas A. Ulrich (\acs{pi}) - Idaho National Laboratory, R. A. Borrelli (co-\acs{pi}) - University of Idaho. User evaluation of the NuScale simulator at the Center for Advanced Energy Studies. CAES programmatic funding. \textbf{\$50,000.} 2022.03.01 - 2022.09.30.
+        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Dennis D. Keiser, Jr., (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Connecting U-Mo Fuel Processing, Microstructure, and Irradiation Performance. \textbf{\$23,823.} 2021.06.01-2022.01.31.
+        \item R. A. Borrelli (\acs{pi}), Jason Barnes (Senior Adviser) - University of Idaho. Experimental determination of interactions between the radiation fields of Dragonfly’s MMRTG and Titan’s environment. Idaho NASA \acs{eps} Research Initiation Grant. \textbf{\$82,962}. 2021.05.01 - 2022.04.30.
+        \item R. A. Borrelli (\acs{pi}) - University of Idaho. Online educational resources for nuclear engineering courses. University of Idaho Think Open Fellowship. \textbf{\$1200}. 2021.01.01 - 2021.05.31. 
+    %    \item Athi Varuttamaseni (\acs{pi}), Shinjae Yoo (co-\acs{pi}) - Brookhaven National Laboratory, R. A. Borrelli (co-\acs{pi}) - University of Idaho. Adaptive control and monitoring platform for autonomous operation of advanced reactors. NEUP 20-19280. \textbf{\$1,000,000.} 2020.10.01 - 2023.09.30.
+        \item Lee Ostrom (\acs{pi}), Richard N. Christensen, R. A. Borrelli, Haiyan Zhao (co-\acs{pi}s) - University of Idaho. ORED Fall 2019 EIS: Portable XFR for use in supporting material research. ORED Equipment and Infrastructure Support. \textbf{\$40,000.} 2019.12.01 - 2020.11.30
+        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Mark. D. DeHart (co-\acs{pi}) - Idaho National Laboratory. Application and enhancement of MAMMOTH depletion capabilities. \textbf{\$33,521.} 2020.01.13 - 2020.12.31.
+        \item Richard N. Christensen (\acs{pi}), R. A. Borrelli, Michael G. McKellar, Michael Haney, David Arcilesi (co-\acs{pi}s) - University of Idaho, Richard Jacobson (co-\acs{pi}) Idaho State University. NuScale Simulator at the Center for Advanced Energy Studies. \acl{doe} Scientific Infrastructure Support for Consolidated Innovative Nuclear Research. \textbf{\$321,525.} 2019.10.01 - 2022.09.30. [\textit{\acs{pi} - NuScale Simulator Laboratory - 2022.01.07}]
+        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Dennis D. Keiser, Jr., (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Connecting U-Mo Fuel Processing, Microstructure, and Irradiation Performance. \textbf{\$127,866.} 2018.10.01-2021.05.31.
+        \item R. A. Borrelli (\acs{pi}), Richard N. Christensen (co-\acs{pi}) - University of Idaho, Brian J. Jaques (co-\acs{pi}) - Boise State University, Piyush Sabharwall (co-\acs{pi}) - Idaho National Laboratory, Mark Delligatti (co-\acs{pi}) - Table Rock, LLC, Sakae Casting USA, LLC (co-\acs{pi}). Modeling and design of borated aluminium cask for used fuel cooling. Idaho Global Entrepreneurial Mission (IGEM) - Idaho Commerce. \textbf{\$237,898.} 2018.01.01-2019.05.31.
+        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Dennis D. Keiser, Jr., (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Connecting U-Mo Fuel Processing, Microstructure, and Irradiation Performance. \textbf{\$36,180.} 2017.11.01-2018.05.31.
+        \item R. A. Borrelli (\acs{pi}), Lee Ostrom (Senior Advisor) - University of Idaho, Stephen G. Johnson (Senior Advisor) - Idaho National Laboratory. Performance assessment of americium as fuel in radioisotope thermoelectric generators for deep space exploration. Idaho NASA \acs{eps} Research Initiation Grant. \textbf{\$55,000.} 2017.08.01-2018.04.30.
+        \item Kelley M. Verner (\acs{pi}), R. A. Borrelli, Marc T. Skinner, Emma K. Redfoot, Jieun Lee, Seth Dustin, John Peterson (co-\acs{pi}s) - University of Idaho. Increasing the Go-on Rate in Southeast Idaho Through the Nexus of Food, Energy, and Water. University of Idaho Vandals Big Ideas Project. \textbf{\$23,984.} 2017.07.01-2018.06.30.
+        \item R. A. Borrelli (\acs{pi}) - University of Idaho, Jason Hales (co-\acs{pi}) - Idaho National Laboratory. Graduate Research Assistantship: Idaho National Laboratory Code Documentation. \textbf{\$35,435.} 2016.10.01-2017.06.30.
+        \item Vivek Utgikar (\acs{pi}), Fatih Aydogan, Krishnan Raja, Raghunath Kanakala, R. A. Borrelli, Haiyan Zhao, Matthew Swenson (co-\acs{pi}s) - University of Idaho. University of Idaho Nuclear Engineering Faculty Development Program. United States Regulatory Commission Faculty Development Grant. \textbf{\$434,048.} 2015.09.29 - 2019.09.30.
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Major Equipment Acquisitions}
+        \item[]\acl{wsc} \acl{pwr} \acl{npp} Simulator.
+    \end{enumerate}
+
+\section*{Honors and Awards}
+    \begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{\acl{ui} \acl{ans} Student Section}
+        \item[]Samuel Glasstone Award for Public Service -- Second Place\hfill{\textit{2019}}
+        \item[]Certificate of Distinction\hfill{\textit{2019--}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{University of California --Berkeley}
+        \item[]Nuclear Engineering Department Block Grant Fellowship\hfill{\textit{2005}}
+        \item[]Outstanding Graduate Student Instructor Award\hfill{\textit{2003}}
+        \item[]Katherina S. DeSharton Fellowship\hfill{\textit{1999}}
+        \item[]Hamilton Family Memorial Fellowship\hfill{\textit{1999}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{\acl{doe} $\sq$ \acl{ocm}}
+        \item[]Civilian Radioactive Waste Management Fellowship\hfill{\textit{2000--04}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{\acl{nei}}
+        \item[]National Academy for Nuclear Training Fellowship\hfill{\textit{1999}}
+    \end{enumerate}
+
+
+\section*{Service}
+    \begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Major Committee Assignments}
         \item[]\textbf{\acl{ui}}
         \item[]\textit{Chair}
         \item[]Faculty Affairs Committee\hfill{\textit{2025--26}}
@@ -790,11 +996,10 @@
         \item[]Faculty Compensation Committee \hfill{\textit{2025--6}}
         \item[]Promotion -- Chemical \& Biological Engineering \hfill{2025}
         \item[]Strategic Planning Focus Group \hfill{\textit{2025}}
-        \item[]Scientific Misconduct Committee \hfill{\textit{2025--26}}
         \item[]Faculty Senate -- College of Engineering \hfill{\textit{2024--27}}
+        \item[]Scientific Misconduct Committee \hfill{\textit{2025--26}}
         \item[]Faculty Affairs Committee\hfill{\textit{2024--26}}
         \item[]Faculty Appeals Hearing Board Committee\hfill{\textit{2024--25}}
-        \item[]Scientific Misconduct Committee Alternate \hfill{\textit{2024--25}}
         \item[]Promotion \& Tenure, College of Engineering \hfill{\textit{2020--23}}
         \item[]\acl{nrc} Student Fellowship Oversight Committee
         \item[]\acl{nem} Bylaws Committee
@@ -804,9 +1009,6 @@
         \item[]\textit{Organizer}
         \item[]American Nuclear Society Graduate School Fair \hfill{\textit{2020 -- 22}}
         \item[]\acs{nna} Fellowship Information Symposia for Idaho Universities \hfill{\textit{2017 -- }}
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]Faculty Advisor -- \acl{ans} Student Section\hfill{\textit{2015--}}
     \end{enumerate}
     \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
         \item[]\textbf{Faculty Search Committees}
@@ -823,10 +1025,8 @@
         \item[]\textbf{Faculty Search Committees}
         \item[]Nuclear Engineering\hfill{\textit{2018}}
     \end{enumerate}
-
-
-\section*{Professional \& Scholarly Oganizations}
-\begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+    \begin{enumerate}[topsep=15pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Professional and Scholarly Organizations}
         \item[]\textbf{National}
         \item[]\textit{\acl{ans}}
         \item[]National Program Screening Subcommittee\hfill{\textit{2022--}}
@@ -848,17 +1048,59 @@
         \item[]\textit{Idaho Section of the \acl{ans}}
         \item[]Treasurer\hfill{\textit{2022--}}
         \item[]Board of Directors\hfill{\textit{2018; 2020}}
-        \item[]Nuclear Science Week Planning\hfill{\textit{2017}}
-        \item[]Community Service\hfill{\textit{2015--}}
+        \item[]Nuclear Science Week Planning Committee\hfill{\textit{2017}}
+        \item[]Community Service Committee\hfill{\textit{2015--}}
     \end{enumerate}
-
-
-\section*{Professional \& Scholarly Activities}
-    \begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{\acl{ui}}
+        \item[]Faculty Advisor -- \acl{ans} Student Section\hfill{\textit{2015--}}
+    \end{enumerate}
+    \begin{enumerate}[topsep=15pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Peer Reviewer}
+        \item[]\textbf{\acl{ans}}
+        \item[]Advances in Nuclear Nonproliferation Technology and Policy
+        \item[]Annual \& Winter Meetings 
+        \item[]Fuel Cycle and Waste Management Division John Randall Scholarship 
+        \item[]\hspace*{0.15in} Chair\hfill{\textit{2022 -- 23}} 
+        \item[]Instrumentation, Control \& Human-Machine Interface Technologies
+        \item[]International High-Level Radioactive Waste Management Conference
+        \item[]Student Conferences
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Journals}
+        \item[]Advances in Engineering Software 
+        \item[]Annals of Nuclear Energy 
+        \item[]Energy Science \& Engineering 
+        \item[]IEEE Transactions on Nuclear Science 
+        \item[]International Journal of Nuclear Energy 
+        \item[]Nuclear Engineering and Design 
+        \item[]Nuclear Engineering and Technology 
+        \item[]Progress in Nuclear Energy 
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Government}
+        \item[]Nuclear Science User Facilities 
+        \item[]\acs{doe} Advanced Research Projects Agency-Energy Concept Papers
+        \item[]\acs{doe} Advanced Research Projects Agency-Energy Review Panel
+        \item[]\acs{doe} Office of Nuclear Energy, Consolidated Innovative Nuclear Research 
+        \item[]\acs{doe} SBIR/STTR Phase I Release 2 
+        \item[]\acs{doe} SBIR/STTR Phase II Release 1 
+        \item[]\acs{doe} SBIR/STTR Phase II Release 2 
+    \end{enumerate}
+    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Other}
+        \item[]Louisiana Board of Regents Support Fund R \& D Grants Programs
+        \item[]Clays in Natural \& Engineered Barriers for Radioactive Waste Confinement
+        \item[]Bonneville Power Administration, Office of Technology Innovation 
+        \item[]John Wiley \& Sons, Inc. 
+        \item[]Khalifa University of Science and Technology 
+\end{enumerate}
+    \begin{enumerate}[topsep=15pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
+        \item[]\textbf{Professional Activities}
         \item[]\textbf{Conference Committees}
         \item[]\textit{\acl{ans}}
         \item[]Technical Program Committee, International High Level Radioactive Waste Management, Washington, D.C.\hfill{\textit{2025}}
-        \item[]Technical Program Committee, Advances in Nuclear Nonproliferation Technology and Policy, Orlando, Florida\hfill{\textit{2016; 2018}}
+        \item[]Technical Program, Advances in Nuclear Nonproliferation Technology and Policy, Orlando, Florida\hfill{\textit{2016; 2018}}
         \item[]\hspace*{0.15in} Co-Chair\hfill{\textit{2018}}
     \end{enumerate}
     \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
@@ -937,199 +1179,6 @@
         \item[]\textit{Stanford University}
         \item[]\textit{Center for International Security and Cooperation}
         \item[]Technical implications of nuclear energy system options\hfill{\textit{2011}}
-    \end{enumerate}
-
-
-\section*{Peer Reviewer}
-    \begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{\acl{ans}}
-        \item[]Advances in Nuclear Nonproliferation Technology and Policy
-        \item[]Annual \& Winter Meetings 
-        \item[]Fuel Cycle and Waste Management Division John Randall Scholarship 
-        \item[]\hspace*{0.15in} Chair\hfill{\textit{2022 -- 23}} 
-        \item[]Instrumentation, Control \& Human-Machine Interface Technologies
-        \item[]International High-Level Radioactive Waste Management Conference
-        \item[]Student Conferences
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Journals}
-        \item[]Advances in Engineering Software 
-        \item[]Annals of Nuclear Energy 
-        \item[]Energy Science \& Engineering 
-        \item[]IEEE Transactions on Nuclear Science 
-        \item[]International Journal of Nuclear Energy 
-        \item[]Nuclear Engineering and Design 
-        \item[]Nuclear Engineering and Technology 
-        \item[]Progress in Nuclear Energy 
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Government}
-        \item[]Nuclear Science User Facilities 
-        \item[]\acs{doe} Advanced Research Projects Agency-Energy Concept Papers
-        \item[]\acs{doe} Advanced Research Projects Agency-Energy Review Panel
-        \item[]\acs{doe} Office of Nuclear Energy, Consolidated Innovative Nuclear Research 
-        \item[]\acs{doe} SBIR/STTR Phase I Release 2 
-        \item[]\acs{doe} SBIR/STTR Phase II Release 1 
-        \item[]\acs{doe} SBIR/STTR Phase II Release 2 
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Other}
-        \item[]Louisiana Board of Regents Support Fund R \& D Grants Programs
-        \item[]Clays in Natural \& Engineered Barriers for Radioactive Waste Confinement
-        \item[]Bonneville Power Administration, Office of Technology Innovation 
-        \item[]John Wiley \& Sons, Inc. 
-        \item[]Khalifa University of Science and Technology 
-\end{enumerate}
-
-
-\section*{Teaching Experience}
-    \begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{University of Idaho $\sq$ Idaho Falls Center for Higher Education}
-        \item[]\textbf{\acl{nem}}
-        \item[]\textbf{Used Fuel Management \& Nuclear Power Plant Decommissioning Certificate}\hfill{\textit{Offered variably as needed}}
-        \item[]\textit{NE514: Nuclear Safety}
-        \item[]The focus of this course is on the approach to nuclear safety for the commercial nuclear industry. Historical events serve as a basis for learning to investigate how nuclear energy policy has affected approaches to safety developed in the United States. Additionally, how safety approaches affect the nuclear industry will be covered. Several different classes of nuclear facilities will be studied. Relevant current events will be highlighted.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE516: Nuclear Rules \& Regulations}
-        \item[]The focus of this course is on the rules and regulations that govern the commercial nuclear industry. Historical events serve as a basis for learning to investigate how nuclear energy policy has developed in the United States. This includes not only current regulations but important development that led to major policy changes. Additionally, how current regulations affect the nuclear industry will be covered. Facilities studied will include research, commercial, and government. Relevant current events will be highlighted.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE527: Nuclear Materials, Transportation, Storage}\hfill{\textit{in development}}
-        \item[]The focus of this course is on the scope and sequencing of activities necessary to comply with the rules and regulations that govern storage, transport, and disposal of nuclear materials. The course is mainly focused on spent nuclear fuel management, Department of Energy high-level waste management, and NRC regulated activities. The course is based on United States nuclear facilities and nuclear power plants.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE587: Nuclear Facility Decommissioning}
-        \item[]The focus of this course is on the scope and sequencing of activities necessary to comply with the rules and regulations that govern decommissioning of nuclear facilities. The course is mainly focused on the NRC regulated activities, as these are both stricter and more regimented when compared to the DOE/DOD regulated activities. However, most of the rules apply to both. The course is based on D\&D experience in the US, both for facilities which have successfully completed the process and for facilities currently in the process.
-    \end{enumerate}
-    \begin{enumerate}[topsep=15pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{\acl{ui} $\sq$ \acl{iff}}
-        \item[]\textbf{\acl{nem}}\hfill{\textit{Regularly scheduled}}
-        \item[]\textit{NE587: Nuclear Facility Decommissioning}\hfill{\textit{Fall 2025}}
-        \item[]\hfill{\textit{supervising instructor}}
-        \item[]The focus of this course is on the scope and sequencing of activities necessary to comply with the rules and regulations that govern decommissioning of nuclear facilities. The course is mainly focused on the NRC regulated activities, as these are both stricter and more regimented when compared to the DOE/DOD regulated activities. However, most of the rules apply to both. The course is based on D\&D experience in the US, both for facilities which have successfully completed the process and for facilities currently in the process.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE585: Nuclear Fuel Cycle Analysis}\hfill{\textit{Fall 2023--; 2017}}
-        \item[]This course presents the nuclear fuel cycle can as an holistic system with components related in many complex ways. This course focuses on systems analysis of components that comprise the nuclear fuel cycle to understand the contemporary challenges facing nuclear energy. Topics include reactor design, critical size, reactor statics and dynamics, advanced reactor design, and back-end management; siting, fuel management, interim storage, repository design. Students will also gain facility with MCNP. 
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE529: Risk Assessment}\hfill{\textit{Spring 2021--; 2016--19}}
-        \item[]This course is designed to provide students with an understanding of how to perform a comprehensive risk assessment applicable to a wide variety of engineering problems in many different disciplines. The course will focus on failure mode and effect analysis, fault tree analysis, probabilistic risk analysis, and human reliability analysis. The course will also cover fundamental probability and statistics content.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE544: Reactor Analysis -- Statics and Kinetics}\hfill{\textit{Spring 2022 --}}
-        \item[]\hfill{\textit{supervising instructor}}
-        \item[]The purpose of this course is to study nuclear theory in the context of nuclear reactor engineering; concepts relating to the design and operation of nuclear reactors will be discussed. Content includes development of mathematical expressions describing the relevant nuclear processes as well as their physical implications. This course will involve the application of several common analytical tools used for the design and evaluation of nuclear systems.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE450: Principles of Nuclear Engineering}\hfill{\textit{Fall 2015--22}}
-        \item[]In this course, an overview of fundamental nuclear engineering principles and how these are practically applied to contemporary, nuclear engineering problems will be presented.  The topics covered in this course include: nuclear physics and reactions, materials science, radiation protection, energy production, fuel cycle analysis, advanced reactor design, fusion, nonproliferation, back-end management, and risk assessment and safety.  Throughout the course, the ethical considerations with regards to engineering problems within these fields will also be discussed.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Python \acs{mcp} Development for Molten Fuel Salt Handling}\hfill{\textit{Spring 2025}}
-        \item[]In this course, a series of Python Scripts are developed to construct \acs{mcp} input decks that will be applied to establish criticality safety fuel handling controls for molten fuel salt.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Nuclear Power Plant Decommissioning Education}\hfill{\textit{Fall 2023}}
-        \item[]As variable energy sources increasingly penetrate the United States energy market, the economics of nuclear energy has weakened. This has led to planned plant closures. Under NRC regulations, these plants must be decommissioned; i.e., safe removal from service and reduction of radioactivity to permissible levels in order to release the property. These activities will require specialized training. The market for decommissioning in North America was valued at \$1.92B in 2019, and it is projected to increase to \$3.35B in 2027. A significant, skilled, and technically proficient workforce will be needed to complete these activities safely and within regulations. Currently, there are no programs in the US specifically focused on decommissioning workforce training. This course will develop a nuclear power plant decommissioning asynchronous, online graduate course as part of the University of Idaho Nuclear Power Plant Decommissioning Graduate Certificate.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Computation and modeling of nuclear systems}\hfill{\textit{Fall 2020}}
-        \item[]Using published nuclear computational modeling references, this course will examine prior efforts to simplify the neutron transport and depletion calculations for advanced reactor designs, such as high-temperature pebble-bed reactors. These include efforts to model heterogeneous stochastic media, such as TRISO fuel particles dispersed in a graphite matrix. Deterministic neutron transport in stochastic media has resulted in several new methods developed in order to address the challenges associated with modeling them, however, comparison of the proposed and implemented methods has been largely absent. Other challenges facing the modeling of pebble-bed reactors include the depletion calculations for individual pebbles. Because of the flow of pebbles through the core, and the recirculation of said pebbles in most modern designs, the depletion of individual pebbles can affect the criticality of the system as well as the temperature profile of individual pebbles, which was demonstrated to have significant safety implications based on the operation of the German AVR pebble-bed system. To these ends, this course will identify relevant literature regarding these topics and the feasibility of implementing these methods in modern nuclear modeling tools, such as the Griffin tool in development at Idaho National Laboratory.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Heterogeneity comparisons of intermediate enrichment uranium in critical systems}\hfill{\textit{Fall 2020}}
-        \item[]The ICSBEP handbook contains descriptions and evaluations of critical experiments conducted in facilties throughout the world. The reach of the handbook stretches to the beginning of the history of nuclear engineering. As part of that history, a number of critical experiments have been conducted using arrays of fissile material in the intermediate enrichment range, which is defined for the purposes of this course as ten to forty percent (10\%-40\%). In those evaluations, a variety of methods have been discussed and described which convert a system of known or unknown degree of heterogeneity into a simplified homogeneous model, which is a traditional method for examining the critical characteristics of multiplying systems. The specific methodology for this conversion varies between evaluations and is explained in some cases, where other cases are less descriptive. It is of interest to the field of nuclear criticality safety to improve the understanding of the effect of heterogeneity on the critical characteristics of multiplying fissile systems, particularly in the range of intermediate enrichment. It is of further interest to the field that a methodology be established which can be used to evaluate these types of systems for practical nuclear criticality safety applications, especially the development of nuclear criticality safety limits.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Computation of spherical critical volume for nuclear criticality safety applications} \hfill{\textit{Fall 2020}}
-        \item[]The nuclear safety guide, Critical Dimensions of Systems Containing U-235, Pu-239, and U-233 contains a graph of minimum critical volumes as a function of U-235 enrichment in homogeneous and heterogeneous hydrogen-moderated systems. This graph includes a wide extrapolation between the data for ten percent enrichment and ninety-three percent enrichment. A similar graph appears in Anomalies of Nuclear Criticality without the extrapolation. This graph shows a clear transition at approximately thirty-five percent enrichment between two different types of systems. It is clear that there is a difference between the extrapolated minimum spherical critical volumes and the calculated critical volumes. As part of the development of nuclear criticality safety methodology for intermediate-enrichment uranium systems, it is necessary to more fully evaluate and explain the nature of the transition point. This work will attempt to re-create and expand on the data used to produce this graph and more fully evaluate the nature of the minimum critical volume for intermediate-enrichment systems. The secondary objective will be the proposal of nuclear criticality safety rules which could be applied to these data to ensure that fissionable material operations in this range of enrichment can be conducted safely.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Subcritical multiplication} \hfill{\textit{Fall 2020}}
-        \item[]Using published fundamental nuclear data for thermal neutrons, this course will examine the relationship between processes of fission and capture and develop models for reactivity worth as a function of thermal fission and capture cross-sections and local thermal flux. This course will include evaluation of tests in zero-power reactors. The Advanced Test Reactor (ATR) physics analyses rely heavily on measurement results from the Advanced Test Reactor Critical Facility (ATRC). These results are easily delivered in terms of reactivity worth, but the results are almost never directly applicable to ATR due to differences in thermal neutron flux. Reactivity worth is not a fundamental property of a material and indeed is not a characteristic property of a given piece of reactor hardware if the hardware is to be irradiated in a new neutron environment. However, translating reactivity worth of a piece of hardware in ATRC to a pair of macroscopic cross-sections essentially characterizes the hardware with constants that will be applicable in any subsequent location in ATR or ATRC. Therefore, reactivity worth in a new irradiation position can be predicted by calculation.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Historical examinations of heterogeneity in nuclear criticality safety} \hfill{\textit{Spring 2020}}
-        \item[]Using published nuclear criticality safety references, this course will conduct an examination of the effect of heterogeneity with respect to nuclear criticality safety. As part of the history of nuclear criticality safety, a number of critical experiments have been conducted using arrays of fissile material in an attempt to quantify the effect of heterogeneity in the determination of safe handling limits. In these attempts, a number of low-enriched experiments were examined and converted in their critical dimensions to establish a useful baseline from which other limits could be extrapolated. It is of interest to the field of nuclear criticality safety to improve the understanding of the effect of heterogeneity on the critical characteristics of multiplying fissile systems, particularly in the range of intermediate enrichment. It is of further interest to the field that a methodology be established which can be used to evaluate these types of systems for practical nuclear criticality safety applications, especially the development of nuclear criticality safety limits. To that end, this course will identify relevant data in the literature used to generate historical experiments and apply MCNP to model these experiments in order to understand and evaluate assumptions and restrictions raised in the experiments.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Heterogeneity comparisons of intermediate enrichment uranium in critical systems}\hfill{\textit{Spring 2020}}
-        \item[]Using the International Criticality Safety Benchmark Evaluation Project (ICSBEP) handbook of evaluated critical experiments, conduct an examination of the effect of heterogeneity in intermediate-enrichment uranium systems. The ICSBEP handbook contains descriptions and evaluations of critical experiments conducted in facilities throughout the world. The reach of the handbook stretches to the beginning of the history of nuclear engineering. In those evaluations, a variety of methods have been discussed and described which convert a system of known or unknown degree of heterogeneity into a simplified homogeneous model, which is a traditional method for examining the critical characteristics of multiplying systems. The specific methodology for this conversion varies between evaluations and is explained in some cases, where other cases are less descriptive. It is of interest to the field of nuclear criticality safety to improve the understanding of the effect of heterogeneity on the critical characteristics of multiplying fissile systems, particularly in the range of intermediate enrichment. It is of further interest to the field that a methodology be established which can be used to evaluate these types of systems for practical nuclear criticality safety applications, especially the development of nuclear criticality safety limits. This course will identify and evaluate relevant benchmark experiments for heterogeneity effects using MCNP to establish new baseline models from the benchmark handbook.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE502: Nuclear integrated energy systems} \hfill{\textit{Spring 2020}}
-        \item[]Nuclear renewable hybrid energy systems enable a nuclear reactor to load follow with a renewable energy source. These must be designed to distribute energy dynamically by supplying electricity to the grid while using either thermal or electrical energy for industrial applications. This takes advantage of the flexible distribution of electricity or heat to maximize profit. The industrial process serves as a load sink for the excess heat or electricity produced by the nuclear reactor. Economic challenges to the current United States nuclear light water reactor (LWR) fleet have led to early plant closures. While LWRs primarily deliver baseload electricity, there is no reason why nuclear energy produced by these reactors cannot be used to provide energy to a range of industrial applications. This directed study course will identify feasible systems, products, and commodities that could be produced by existing nuclear plants. As part of this, cost and potential profitability will be analyzed within the context of market structures and grid reliability.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE527: Nuclear material storage, transport, disposal} \hfill{\textit{Spring 2020}}
-        \item[]There is a wide range of nuclear materials that are stored, transported and disposed of each day. The materials include medical radioisotopes, new fuel pellets, used fuel, and industrial radioisotopes. This course will cover the regulations that govern nuclear material storage, transportation and disposal, as well as the engineering requirements and practical aspects of handling these materials.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE535: Nuclear Criticality Safety I}\hfill{\textit{Spring 2022; 2020}}
-        \item[]This course applies uses the foundation of applied nuclear physics to develop and explain the international and domestic rules and practices that are used to prevent inadvertent criticality in fuel cycle applications such as used fuel storage and processing.
-    \end{enumerate}
-    \begin{enumerate}[topsep=9pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Diablo Valley College}
-        \item[]\textbf{Architecture and Engineering}
-        \item[]\textbf{Adjunct Professor}
-        \item[]\textit{ENGIN110: Introduction to Engineering}\hfill{\textit{2013--15}}
-        \item[]This course introduces students to fundamental engineering principles. Students learn how these are applied to contemporary engineering problems through laboratory exercises, homework assignments, design projects, interviews with professional engineers, and field trips to engineering companies. Topics include: materials science, risk assessment and safety, critical problem-solving, engineering analysis, engineering design processes, project development, engineering software, and presentation tools. The role of the engineer in society, professionalism, and engineering ethics are major themes. The emphasis is on creative problem-solving, teamwork, and effective communication, both in presentation and writing.
-    \end{enumerate}
-    \begin{enumerate}[topsep=9pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{University of California --Berkeley}
-        \item[]\textbf{Nuclear Engineering}
-        \item[]\textbf{Instructor}
-        \item[]\textit{NE375: Teaching Techniques in Nuclear Engineering}\hfill{\textit{2006; 2010--11}}
-        \item[]This course acquaints \acfp{gsi} with teaching techniques for courses in the Department of Nuclear Engineering. The \acs{gsi} will have several duties far beyond grading assignments and/or examinations: conducting discussion sessions, review lectures, or laboratory experiments. The \acs{gsi}, therefore, needs to develop the appropriate tools to use when facing these pedagogical challenges. Three students from the 2010 course received the Outstanding Graduate Student Instructor Award given by the UC-Berkeley \acl{gsi} Teaching \& Resource Center.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{\acl{gsi}}
-        \item[]\textit{E124: Ethics and the Impact of Technology on Society}\hfill{\textit{2004--06}}
-        \item[]Conducted multiple discussion sections on a weekly basis and review lectures
-        \item[]Supervised research projects based on current, ethical and scientific issues 
-        \item[]Assessed individual student presentations, projects, and overall course grading
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{IDS110: Introduction to Computing}\hfill{\textit{2004}}
-        \item[]Conducted multiple laboratory sessions on a weekly basis
-        \item[]Supervised undergraduate research projects focused on web based education
-        \item[]Assessed laboratory assignments and project grading
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE92: Issues in Nuclear Science and Engineering}\hfill{\textit{2000; 2002}}
-        \item[]Conducted multiple laboratory sessions on a weekly basis
-        \item[]Supervised undergraduate research projects focused on web based education
-        \item[]Assessed laboratory assignments and project grading
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textit{NE275: Principles and Methods of Risk Analysis}\hfill{\textit{2001}}
-        \item[]This graduate course requires a deeper understanding of the subject matter, due to the student body. The course was one of three in the curriculum with the highest credit load. The main responsibility in this was to advise and grade semester projects and presentations based on risk assessments of engineering systems.
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Reader}
-        \item[]\textit{NE150: Introduction to Nuclear Reactor Theory}\hfill{\textit{2003}}
-        \item[]\textit{NE104: Radiation Detection and Nuclear Instrumentation Laboratory}\hfill{\textit{2002}}
-        \item[]\textit{NE107: Introduction to Imaging}\hfill{\textit{2001}}
-        \item[]\textit{NE120: Nuclear Materials}\hfill{\textit{2000}}
-        \item[]Supervised laboratory sessions
-        \item[]Assessed examinations, homework assignments, laboratory reports, final grades
-        \item[]Conducted review lectures
-    \end{enumerate}
-    \begin{enumerate}[topsep=9pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{University of Tokyo}
-        \item[]\textbf{Nuclear Engineering \& Management}
-        \item[]\textbf{Part Time Lecturer}
-        \item[]\textit{Technical English for Scientists}\hfill{\textit{2007--08}}
-        \item[]This course provided the opportunity for non-native English speaking students to develop technical communication skills; i.e., presenting scientific and technical material to an informed audience at an international conference. In this course, the ‘assertion evidence design’ concept for technical presentation of scientific topics was applied to student research interests. Transmutable skills focused on the professional communication of scientific research in various public speaking formats and a comfortable familiarity with the English language to establish a stronger foundation for technical writing.
-    \end{enumerate}
-
-
-\section*{Teaching Materials Developed}
-    \begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{Open Educational Resources} 
-        \item[]Open source educational materials were compiled in order to produce an online textbook as a supplement to existing commercial textbooks. An online textbook allows flexibility to augment course content without requiring multiple textbooks. It also allows the educational content of a course to be more closely aligned with the desired learning outcomes. Two online texts have been developed -- \href{https://uidaho.pressbooks.pub/nuclearengineering}{Principles of Nuclear Engineering} and \href{https://uidaho.pressbooks.pub/riskassessment}{Risk Assessment}.
     \end{enumerate}
 
 
@@ -1253,8 +1302,7 @@
         \item[]\textbf{Advanced Summer School of Radioactive Waste Disposal with Social-Scientific Literacy}
         \item[]\textit{University of California -- Berkeley}\hfill{\textit{2009; 2011}}
         \item[]\textit{Hawai'i Tokai International College }\hfill{\textit{2010}}
-        \item[]
-This advanced summer school was established in conjunction with the Department of Nuclear Engineering \& Management at the University of Tokyo and the Department of Nuclear Engineering at the University of California--Berkeley to provide \acs{phd} students and early-career nuclear engineers with education in social sciences and engineering. The goal was to foster a next generation of engineers capable of understanding the public and societal needs, contributing to the societal decision making, and taking a responsible role as engineering experts in society. The discussant leads student group activities by stimulating questions from students and corroborating with the chair to develop a summary of lectures.
+        \item[]This advanced summer school was established in conjunction with the Department of Nuclear Engineering \& Management at the University of Tokyo and the Department of Nuclear Engineering at the University of California--Berkeley to provide \acs{phd} students and early-career nuclear engineers with education in social sciences and engineering. The goal was to foster a next generation of engineers capable of understanding the public and societal needs, contributing to the societal decision making, and taking a responsible role as engineering experts in society. The discussant leads student group activities by stimulating questions from students and corroborating with the chair to develop a summary of lectures.
     \end{enumerate}
     \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
         \item[]\textbf{Minner Fellows Program}
@@ -1300,29 +1348,6 @@ This advanced summer school was established in conjunction with the Department o
         \item[]\textit{Best Practices for Working with the \acs{dod}} \hfill{\textit{2021; 2023}}
         \item[]\textit{Defense \acl{eps}\hfill{\textit{2021}}}
         \item[]\textit{\acs{nsf} Broader Impacts 101 Workshop}\hfill{\textit{2021}}
-    \end{enumerate}
-
-
-\section*{Honors and Awards}
-    \begin{enumerate}[topsep=0pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{\acl{ui} \acl{ans} Student Section}
-        \item[]Samuel Glasstone Award for Public Service -- Second Place\hfill{\textit{2019}}
-        \item[]Certificate of Distinction\hfill{\textit{2019--}}
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{University of California --Berkeley}
-        \item[]Nuclear Engineering Department Block Grant Fellowship\hfill{\textit{2005}}
-        \item[]Outstanding Graduate Student Instructor Award\hfill{\textit{2003}}
-        \item[]Katherina S. DeSharton Fellowship\hfill{\textit{1999}}
-        \item[]Hamilton Family Memorial Fellowship\hfill{\textit{1999}}
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{\acl{doe} $\sq$ \acl{ocm}}
-        \item[]Civilian Radioactive Waste Management Fellowship\hfill{\textit{2000--04}}
-    \end{enumerate}
-    \begin{enumerate}[topsep=7pt,itemsep=-0ex,partopsep=0ex,parsep=0ex,leftmargin=*,label=(\arabic*)]
-        \item[]\textbf{\acl{nei}}
-        \item[]National Academy for Nuclear Training Fellowship\hfill{\textit{1999}}
     \end{enumerate}
 
 
