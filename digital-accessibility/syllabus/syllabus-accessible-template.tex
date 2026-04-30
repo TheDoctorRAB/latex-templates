@@ -1,0 +1,339 @@
+%%%%%
+%
+% Prof. R. A. Borrelli
+% University of Idaho
+% Idaho Falls Center for Higher Education
+% Nuclear Engineering & Industrial Management
+%
+% @TheDoctorRAB
+%
+%
+%%%%%
+%
+% Digitally accesible latex syllabus template
+%
+%%%%%
+%
+% REQUIREMENTS
+%
+% Latest version of TeXLive
+% 
+% Template can be compiled with pdflatex
+% Use show-pdf-tags --xml filename.pdf to see tags
+%
+%%%%%
+%
+% METHODOLODY
+%
+% Unfortunately, all the customization that makes latex great hinders accessibility
+% 
+% Do not customize enumerate or itemize
+% Keep section headings in order \section, \subsection, \subsubsection
+% Do not skip - \section, \subsubsection
+% Either the equation environment or the $e = mc^2$ works
+% Graphics need alternative text
+% \includegraphics[width=0.20\textwidth,alt={department logo}]{ne-logo.png}
+% Do not load titlesec or titletoc
+% \href{}{} does not provide alt text, so just be descriptive with the link text
+% Acronyms work fine
+% longtable may have issues
+%
+%%%%%
+
+
+%%%%% enable tagging for accessibility
+\RequirePackage{pdfmanagement-testphase}
+\DocumentMetadata{
+    tagging=on,
+    pdfversion=2.0,
+    pdfstandard=ua-2,
+    lang=en-US,
+    debug={log=all},
+    testphase={latest,tagpdf},
+    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+}
+\tagpdfsetup{math/alt/use}
+%%%%%
+
+
+%%%%% general 
+\documentclass[11pt,letterpaper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
+\usepackage{graphicx}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
+\usepackage[inline]{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{soul}
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage{parskip}
+\usepackage{cmap}
+%%%%%
+
+
+%%%%% links and tags for accessibility
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={Syllabus},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={syllabus},
+    pdflanguage={en-US},
+    pdfsubject={syllabus},
+    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref} %must be loaded after hyperref
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+\usepackage{times}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references
+%\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+\usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\setlength{\bibsep}{7pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+%\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+\usepackage[singlelinecheck=false,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
+\captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+\captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[toc,title]{appendix}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% todonotes
+\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{Name},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+%%%%%
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+\lhead{\scriptsize NE529}
+\chead{\scriptsize \textit{Risk assessment}}
+\rhead{\scriptsize \acl{ui}}
+\rfoot{\thepage}
+%%%%%
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms} %see acronyms.tex in the latex-templates
+%%%%%
+
+%%%%% spacing
+%\onehalfspacing %linespacing
+%\setstretch{1.05} %linespacing
+%\spacing{1.25} %equivalent to 1.5 line spacing in Word
+%%%%%
+
+
+%%%%% linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[1] %line numbering interval
+%%%%%
+
+
+\begin{document}
+
+
+{\centering 
+    \textbf{NE529 -- Risk Assessment\\
+    }
+    \acl{ui} -- \acl{iff}\\
+    \acl{nem}
+\par
+}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
+
+\section{Objective}
+Provide an understanding of risk assessment and related techniques for contemporary engineering problems.
+
+
+\section{Content}
+This course is designed to provide students with an understanding of how to perform a comprehensive risk assessment applicable to a wide variety of engineering problems in many different disciplines. The course will focus on failure mode and effect analysis, fault tree analysis, probabilistic risk analysis, and human reliability analysis. The course will also cover fundamental probability and statistics in terms of frequency analysis. 
+
+\section{Learning Outcomes}
+In this course, students will --
+\begin{itemize}
+    \item Implement various risk assessment tools to analyze risks of engineering systems.
+    \item Generate risk mitigation strategies. 
+    \item Interpret the social, political, and technical issues surrounding risk perception and communication. 
+\end{itemize}
+
+
+\section{Delivery}
+Class will be in person each week. Assignments will typically be due at the next class period but will be stipulated. Submission will be through email for the time being until the course is transferred to Canvas. All materials will be stored on Canvas. Students are expected to check the course site periodically for any updates, news, and discussions. 
+
+
+\section{Literature} 
+Lecture material has been compiled from the literature and research body of the field. The listed textbooks are only for reference. There are two online `textbooks' stored on the University site -- \href{https://uidaho.pressbooks.pub/nuclearengineering/}{Principles of Nuclear Engineering} and \href{https://uidaho.pressbooks.pub/riskassessment/}{Risk Assessment}. Each of these contain open source literature and lecture content to supplement the nuclear engineering curriculum and are free to use. Additional course literature will be available on \href{https://piazza.com/}{piazza}. 
+\begin{enumerate}[item-label=(\arabic*)]
+    \item Risk assessment: Tools, techniques, and their applications, 2nd ed. Lee T. Ostrom, Cheryl A. Wilhelmsen, 978-1119483465 (2019).
+    \item Risk Assessment in the Federal Government: Managing the Process. National Research Council, 0-309-59880-X (1983).
+    \item Guidelines for Hazard Evaluation Procedures, 3rd Edition. Center for Chemical Process Safety, 978-0-471-97815-2 (2008). 
+\end{enumerate}
+
+
+\section{\acl{ai}}
+\acs{ai} can offer some assistance in terms of literature searches, coding, or other lower level tasks. \acs{ai} should not be used as a component in the research and writing process. \acs{ai} should also not be used for technical work assigned in the homework projects. Unauthorized use of \acs{ai} will be considered a violation of academic integrity as stipulated in the \href{http://www.uidaho.edu/student-affairs/dean-of-students/student-conduct/student-code-of-conduct}{Code of Student Conduct}.
+
+
+\section{Communications}
+Canvas will be used for now for regular questions and discussions related to the course. Personal issues can be discussed over email. Meetings can also be made by appointment. 
+
+
+\section{Professionalism}
+Review the \href{http://www.uidaho.edu/student-affairs/dean-of-students/student-conduct/student-code-of-conduct}{Code of Student Conduct} pertaining to cheating and plagiarism. Realistically, professional engineering work is team-oriented. While it is ok to work in groups, students will submit their own original work for the course. 
+
+
+\section{Civility}
+Conversation and dialogue about the course both online and in person is encouraged. Everyone in this course will be treated with mutual respect and civility. The instructor will moderate all discussion and make the final decision on any contentious content. Additional resources to request support include --
+\begin{itemize}    \item\href{https://www.uidaho.edu/student-affairs/dean-of-students}{Office of the Dean of Students}
+    \item\href{https://www.uidaho.edu/current-students/ctc/counseling}{Counseling \& Testing Center}
+    \item\href{https://www.uidaho.edu/diversity/edu}{Office of Equity and Diversity}
+    \item\href{https://www.uidaho.edu/ocri}{Office of Civil Rights and Investigations}
+\end{itemize}
+
+
+\section{Respect for Diversity}
+The diversity that students bring to this class is a resource, strength, and benefit. Course materials and related content have been curated to be respectful of gender, sexual orientation, disability, age, socioeconomic status, ethnicity, race, culture, perspective, and other background characteristics. Any suggestions to improve the value of diversity in this course are encouraged and appreciated.
+
+
+\section{Disability Access and Reasonable Accommodations}
+The \acl{ui} is committed to ensuring an accessible learning environment where course or instructional content are usable by all students and faculty. If you believe that you require disability-related academic adjustments for this class (including pregnancy-related disabilities), please contact Center for Disability Access and Resources (CDAR) to discuss eligibility. A current accommodation letter from CDAR is required before any modifications, above and beyond what is otherwise available for all other students in this class will be provided. Please be advised that disability-related academic adjustments are not retroactive. For a complete listing of services and current business hours visit the \href{https://www.uidaho.edu/current-students/cdar}{Center for Disability Access and Resources}.
+
+
+\section{Prerequisites}
+There are no course requirements needed to take this course. However, students should have facility in the typical skills acquired in any accredited undergraduate engineering or technology curriculum --
+\begin{itemize}
+    \item Chemistry
+    \item Physics
+    \item Calculus
+    \item Differential equations
+    \item Linear algebra
+    \item Engineering mathematics
+    \item Technical writing
+    \item Statistics
+\end{itemize}
+
+Additional recommended skills include -- 
+\begin{itemize}
+    \item Command line
+    \item Python
+    \item Matlab or equivalent
+    \item Scientific and engineering graphing skills
+    \item LaTex (templates provided)
+\end{itemize}
+
+
+\section{Assignments \& grading}
+\begin{itemize}
+    \item[]Homework -- 0.50
+    \item[]Project report -- 0.48
+    \item[]Project presentation -- 0.02
+\end{itemize}
+
+
+\end{document}

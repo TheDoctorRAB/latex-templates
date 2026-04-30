@@ -1,4 +1,6 @@
 # latex-templates
-Latex templates for all sorts of useful things. 
+Latex templates for a variety of documents for STEM faculty.
 
-Fork and pull back to the appropriate branch with descriptive comments on the changes. 
+Prof. R. A. Borrelli
+University of Idaho
+Nuclear Engineering
