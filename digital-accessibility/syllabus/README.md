@@ -3,5 +3,7 @@ Example accessible syllabus that meets Title II compliance for NE529: Risk Asses
 
 
 Prof. R. A. Borrelli
+
 University of Idaho
+
 Nuclear Engineering
