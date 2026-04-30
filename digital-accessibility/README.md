@@ -12,8 +12,6 @@ Latex has to be less customized to meet compliance.
 The Ally checker in Canvas was used to verify accessibility. 
 
 
-Prof. R. A. Borrelli
-
-University of Idaho
-
-Nuclear Engineering
+Prof. R. A. Borrelli  
+University of Idaho  
+Nuclear Engineering  
