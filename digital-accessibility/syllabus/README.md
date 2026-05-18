@@ -1,5 +1,5 @@
 # latex-templates
-Example accessible syllabus that meets Title II compliance for NE529: Risk Assessment.
+Example accessible syllabi that meets Title II compliance.
 
 
 Prof. R. A. Borrelli  

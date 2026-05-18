@@ -1,42 +1,31 @@
 %%%%%
-%
-% Prof. R. A. Borrelli
-% University of Idaho
-% Idaho Falls Center for Higher Education
-% Nuclear Engineering & Industrial Management
-%
-% @TheDoctorRAB
-%
+%@TheDoctorRAB
 %%%%%
 %
-% Digitally accesible latex syllabus template
-%
+%%%%%
+%PDF tagging accessible file
+%compile with pdflatex
+%run $show-pdf-tags --xml filename.pdf
 %%%%%
 %
-% REQUIREMENTS
-%
-% Latest version of TeXLive
-% 
-% Template can be compiled with pdflatex
-% Use show-pdf-tags --xml filename.pdf to see tags
-%
 %%%%%
+%REFERENCES
+%neup.bst - numbered citations in order of appearance, short author list with et al in reference section
+%nsf.bst - numbered citations in order of appearance, full author list in references section
+%standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
+%ans.bst is for ANS only. 
 %
-% METHODOLODY
+%author = {Lastname, Firstname and Lastname, Firstname and Lastname, Firstname} for all bst formats
+%bst renders the author list itself
 %
-% Unfortunately, all the customization that makes latex great hinders accessibility
-% 
-% Do not customize enumerate or itemize
-% Keep section headings in order \section, \subsection, \subsubsection
-% Do not skip - \section, \subsubsection
-% Either the equation environment or the $e = mc^2$ works
-% Graphics need alternative text
-% \includegraphics[width=0.20\textwidth,alt={department logo}]{ne-logo.png}
-% Do not load titlesec or titletoc
-% \href{}{} does not provide alt text, so just be descriptive with the link text
-% Acronyms work fine
-% longtable may have issues
+%author = {{Nuclear Regulatory Commission}} if the author is an organization, institution, etc., and not people
 %
+%title = {{}} for all
+%
+%for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
+%standard.bst \cite{-} - Borrelli (2021) in the text
+%standard.bst lists references alphabetically
+%the rest list numerically
 %%%%%
 
 
@@ -58,7 +47,9 @@
 %%%%% general 
 \documentclass[11pt,letterpaper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
-\usepackage[pagewise]{lineno} %line numbering
+\usepackage[pagewise]{lineno} %linenumbering restarts each page
+%\usepackage[running]{lineno} %linenumbering continuous
+\usepackage{mmap} %helps make pdfs copy and paste
 \usepackage{setspace}
 \usepackage{ulem} %strikethrough - do not \sout{\cite{}}
 \usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
@@ -66,13 +57,15 @@
 \usepackage{tablefootnote}
 \usepackage{footnotehyper}
 \usepackage{float}
+%\usepackage{mypythonhighlight,verbatim}
+%\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
 \graphicspath{{$TEXIMG/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
-\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
-\usepackage[inline]{enumitem}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+%\usepackage[inline]{enumitem} %https://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex-dev/latex-lab/latex-lab-enumitem.pdf
 \usepackage{boldline}
 \usepackage{makecell}
 \usepackage{booktabs}
@@ -93,11 +86,10 @@
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
 \usepackage{parskip}
-\usepackage{cmap}
 %%%%%
 
 
-%%%%% links and tags for accessibility
+%%%%% links and tags
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -158,11 +150,37 @@
 %%%%%
 
 
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% cross referencing files
+%\usepackage{xr} %for revisions - will cross reference from one file to here
+%\externaldocument{/path/to/auxfilename} %aux file needed
+%%%%%
+
+
 %%%%% toc and glossaries
 \usepackage[toc,title]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
-\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
+%do not load titlesec,titletoc
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%\st{} does strikethrough using soul package but does not like acronyms
+\newcommand{\blucell}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\grycekk}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\whicell}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
 
 
@@ -175,6 +193,7 @@
 \definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+
 \newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
 \newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
 \newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
@@ -185,6 +204,7 @@
 \newcommand{\acf}{\acrfull} %full acronym
 \newcommand{\acl}{\acrlong} %long acronym
 \newcommand{\acs}{\acrshort} %short acronym
+
 \newcommand{\acfp}{\acrfullpl} %full acronym plural
 \newcommand{\aclp}{\acrlongpl} %long acronym plural
 \newcommand{\acsp}{\acrshortpl} %short acronym plural
@@ -192,13 +212,77 @@
 
 
 %%%%% todonotes
-\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{Name},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+
+
+%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\rab}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+%\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+
+
+% highlighting 
+\DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlh}[2]{#1}
+    \else
+    \newcommand{\hlh}[2]{\han{#2}\hlc{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlj}[2]{#1}
+    \else
+    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hlf}[1]{{\sethlcolor{lightmauve}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlb}[2]{#1}
+    \else
+    \newcommand{\hlb}[2]{\rab{#2}\hlf{#1}}
+    \fi
+    \makeatother
 %%%%%
+
 
 %%%%% table alignments
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% table contents
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoffigures{%
+    \@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoftables{%
+    \@starttoc{lot}%
+}
+\makeatother
+
+\makeatletter
+\newcommand*\ftp{\fontsize{16.5}{17.5}\selectfont}
+\makeatother
 %%%%%
 
 
@@ -208,14 +292,14 @@
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
 \lhead{\scriptsize NE529}
-\chead{\scriptsize \textit{Risk assessment}}
+\chead{\scriptsize \textit{Risk Assessment}}
 \rhead{\scriptsize \acl{ui}}
 \rfoot{\thepage}
 %%%%%
 
 
 %%%%% acronyms
-\input{$ACRONYM/acronyms} %see acronyms.tex in the latex-templates
+\input{$ACRONYM/acronyms}
 %%%%%
 
 %%%%% spacing
@@ -227,8 +311,7 @@
 
 %%%%% linenumbering
 %\linenumbers %toggle line numbers
-%\pagewiselinenumbers %reset line numbers on new page
-%\modulolinenumbers[1] %line numbering interval
+%\modulolinenumbers[5] %line numbering interval
 %%%%%
 
 
@@ -238,7 +321,7 @@
 {\centering 
     \textbf{NE529 -- Risk Assessment\\
     }
-    \acl{ui} -- \acl{iff}\\
+    \acl{ui} $\sq$ \acl{iff}\\
     \acl{nem}
 \par
 }
@@ -255,7 +338,7 @@ This course is designed to provide students with an understanding of how to perf
 
 \section{Learning Outcomes}
 In this course, students will --
-\begin{itemize}
+\begin{itemize}[begin-vspace=0ex,item-vspace=-0.5ex,begin-extra-vspace=1ex,para-vspace=1ex,left-margin=2.25ex,item-indent=0ex]
     \item Implement various risk assessment tools to analyze risks of engineering systems.
     \item Generate risk mitigation strategies. 
     \item Interpret the social, political, and technical issues surrounding risk perception and communication. 
@@ -263,11 +346,11 @@ In this course, students will --
 
 
 \section{Delivery}
-Class will be in person each week. Assignments will typically be due at the next class period but will be stipulated. Submission will be through email for the time being until the course is transferred to Canvas. All materials will be stored on Canvas. Students are expected to check the course site periodically for any updates, news, and discussions. 
+Class will be in person each week. Assignments will typically be due at the next class period but will be stipulated. Submission will be through email for the time being until the course is transferred to Canvas. All materials will be stored on the \href{https://piazza.com/}{Piazza learning management site} currently until the course is transferred to Canvas. Students are expected to check the course site periodically for any updates, news, and discussions. 
 
 
 \section{Literature} 
-Lecture material has been compiled from the literature and research body of the field. The listed textbooks are only for reference. There are two online `textbooks' stored on the University site -- \href{https://uidaho.pressbooks.pub/nuclearengineering/}{Principles of Nuclear Engineering} and \href{https://uidaho.pressbooks.pub/riskassessment/}{Risk Assessment}. Each of these contain open source literature and lecture content to supplement the nuclear engineering curriculum and are free to use. Additional course literature will be available on \href{https://piazza.com/}{piazza}. 
+Some of the lecture material has been compiled from the literature. The other listed textbooks are only for reference. There are two \acf{oer} `textbooks' stored on the University site -- \href{https://uidaho.pressbooks.pub/nuclearengineering/}{Principles of Nuclear Engineering \acs{oer}} and \href{https://uidaho.pressbooks.pub/riskassessment/}{Risk Assessment \acs{oer}}. The former contains a lot of material, especially pertaining to \acs{mcp}. Each of these contain open source literature and lecture content to supplement the nuclear engineering curriculum and are free to use. Additional course literature will be available on the \href{https://piazza.com/}{piazza learning management site}. 
 \begin{enumerate}[item-label=(\arabic*)]
     \item Risk assessment: Tools, techniques, and their applications, 2nd ed. Lee T. Ostrom, Cheryl A. Wilhelmsen, 978-1119483465 (2019).
     \item Risk Assessment in the Federal Government: Managing the Process. National Research Council, 0-309-59880-X (1983).
@@ -280,7 +363,7 @@ Lecture material has been compiled from the literature and research body of the 
 
 
 \section{Communications}
-Canvas will be used for now for regular questions and discussions related to the course. Personal issues can be discussed over email. Meetings can also be made by appointment. 
+The \href{https://piazza.com/}{Piazza learning management site} will be used for now for regular questions and discussions related to the course. Personal issues can be discussed over email. Meetings can also be made by appointment. 
 
 
 \section{Professionalism}
@@ -289,7 +372,8 @@ Review the \href{http://www.uidaho.edu/student-affairs/dean-of-students/student-
 
 \section{Civility}
 Conversation and dialogue about the course both online and in person is encouraged. Everyone in this course will be treated with mutual respect and civility. The instructor will moderate all discussion and make the final decision on any contentious content. Additional resources to request support include --
-\begin{itemize}    \item\href{https://www.uidaho.edu/student-affairs/dean-of-students}{Office of the Dean of Students}
+\begin{itemize}[begin-vspace=0ex,item-vspace=-0.5ex,begin-extra-vspace=1ex,para-vspace=1ex,left-margin=2.25ex,item-indent=0ex]
+    \item\href{https://www.uidaho.edu/student-affairs/dean-of-students}{Office of the Dean of Students}
     \item\href{https://www.uidaho.edu/current-students/ctc/counseling}{Counseling \& Testing Center}
     \item\href{https://www.uidaho.edu/diversity/edu}{Office of Equity and Diversity}
     \item\href{https://www.uidaho.edu/ocri}{Office of Civil Rights and Investigations}
@@ -306,7 +390,7 @@ The \acl{ui} is committed to ensuring an accessible learning environment where c
 
 \section{Prerequisites}
 There are no course requirements needed to take this course. However, students should have facility in the typical skills acquired in any accredited undergraduate engineering or technology curriculum --
-\begin{itemize}
+\begin{itemize}[begin-vspace=0ex,item-vspace=-0.5ex,begin-extra-vspace=1ex,para-vspace=1ex,left-margin=2.25ex,item-indent=0ex]
     \item Chemistry
     \item Physics
     \item Calculus
@@ -318,7 +402,7 @@ There are no course requirements needed to take this course. However, students s
 \end{itemize}
 
 Additional recommended skills include -- 
-\begin{itemize}
+\begin{itemize}[begin-vspace=0ex,item-vspace=-0.5ex,begin-extra-vspace=1ex,para-vspace=1ex,left-margin=2.25ex,item-indent=0ex]
     \item Command line
     \item Python
     \item Matlab or equivalent
@@ -328,11 +412,27 @@ Additional recommended skills include --
 
 
 \section{Assignments \& grading}
-\begin{itemize}
-    \item[]Homework -- 0.50
-    \item[]Project report -- 0.48
-    \item[]Project presentation -- 0.02
+\begin{itemize}[begin-vspace=0ex,item-vspace=-0.5ex,begin-extra-vspace=1ex,para-vspace=1ex,left-margin=2.25ex,item-indent=0ex]
+    \item Homework -- 0.50
+    \item Project report -- 0.48
+    \item Project presentation -- 0.02
 \end{itemize}
+
+
+\newpage
+
+
+\begin{appendices}
+
+
+    \renewcommand{\thesection}{\Roman{section}}
+
+
+    \section{Acronyms}
+    \printnoidxglossary[title={}]
+
+
+\end{appendices}
 
 
 \end{document}
