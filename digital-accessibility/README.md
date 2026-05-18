@@ -10,7 +10,7 @@ show-pdf-tags --xml filename.pdf to see the tagging.
 Latex has to be less customized to meet compliance.
 
 Do not even load titlsec,titletoc.  
-Currently have no figured out how to cusomtize sections. 
+Currently have not figured out how to cusomtize sections. 
 
 With tagging=on, and loading enumitem.sty, latex-lab-enumitem is automatically loaded by the kernal.  
 There are new parameters that have to be used instead of topsep=0ex,itemsep=1ex.  
