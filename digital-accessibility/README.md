@@ -17,9 +17,12 @@ There are new parameters that have to be used instead of topsep=0ex,itemsep=1ex.
 [latex-lab-enumitem](https://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex-dev/latex-lab/latex-lab-enumitem.pdf)  
 See the sample files for examples. 
 
-With using series= and resume =, load enumext.sty and use the 'untagged' options, topsep=0ex,itemsep=0ex.  
+With using series= and resume=, load enumext.sty and use topsep=0ex,itemsep=0ex.  
 enumext does not take leftmargin=X  
-Comment out enumitem.sty
+Comment out enumitem.sty  
+Do not load enumitem.sty and enumext.sty together.
+
+The white-paper directory has an example accessible file with longtable.
 
 The Ally checker in Canvas was used to verify accessibility. 
 
