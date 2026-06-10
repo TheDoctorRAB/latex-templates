@@ -1,0 +1,942 @@
+%@TheDoctorRAB
+%
+%presentation template for class slides and research presentations
+%allows for citations in slide and a list at the end
+%
+%%%%%
+%
+%REFERENCES
+%
+%neup.bst - numbered citations in order of appearance, short author list with et al in reference section
+%nsf.bst - numbered citations in order of appearance, full author list in references section
+%standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
+%ans.bst is for ANS only. 
+%
+%author = {Lastname, Firstname and Lastname, Firstname and Lastname, Firstname} for all bst formats
+%bst renders the author list itself
+%
+%author = {{Nuclear Regulatory Commission}} if the author is an organization, institution, etc., and not people
+%
+%title = {{}} for all
+%
+%for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
+%standard.bst \cite{-} - Borrelli (2021) in the text
+%standard.bst lists references alphabetically
+%the rest list numerically
+%
+%
+%%% citations on slides 
+%
+% \citep{xxxnna} where the citation should go
+%
+% \blfootnote{\fontsize\cite{xxxnna}\fontsize\bibentry{xxxnna}}\\ 
+% before \end{frame}
+% footnotes aren't working for some reason
+%
+% this works
+% \tiny\cite{xxxnna}\tiny\hspace{0.05in}\bibentry{xxxnna}\\ 
+% before \end{frame}
+%%%%%
+
+
+%%%%% enable tagging for accessibility
+%\RequirePackage{pdfmanagement-testphase}
+%\DocumentMetadata{
+%    tagging=off,
+%    pdfversion=2.0,
+%    pdfstandard=ua-2,
+%    lang=en-US,
+%    debug={log=all},
+%    testphase={latest,tagpdf},
+%    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+%}
+%\tagpdfsetup{math/alt/use}
+%%%%%
+
+
+%%%%% presentation settings
+\documentclass[aspectratio=1610,pdftex,dvipsnames,compress,xcolor={dvipsnames}]{beamer}
+\usetheme{Boadilla}
+\usecolortheme{seahorse}
+\beamertemplatenavigationsymbolsempty
+\addtobeamertemplate{footnote}{\hskip -2em}{} %pushes footnote to margin
+%%% font style - can add size, etc.
+%https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+\setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{footline}{series=\bfseries}
+\setbeamerfont{author}{series=\bfseries}
+\setbeamerfont{institute}{series=\bfseries}
+\setbeamerfont{date}{series=\bfseries}
+\setbeamertemplate{page number in head/foot}[framenumber] %just gives slide number; comment out for 1/7, 2/7...
+%\setbeamertemplate{caption}[numbered] %number tables and figures
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+%sam root
+\definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+%%% general
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+%%% set slides
+\setbeamercolor{background canvas}{bg=BackGround}
+%%%
+\setbeamercolor{block title}{bg=Silver,fg=Black}
+\setbeamercolor{block body}{bg=Silver!20,fg=Black}
+\setbeamercolor{block title alerted}{bg=Black,fg=Silver}
+\setbeamercolor{block body alerted}{bg=PrideGold,fg=Black}
+\setbeamercolor{alerted text}{fg=Silver}
+\setbeamercolor*{block title example}{bg=PrideGold,fg=Black}
+\setbeamercolor*{block body example}{bg=PrideGold!20,fg=Black}
+%%%
+\setbeamercolor*{palette primary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette secondary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette tertiary}{bg=PrideGold,fg=Black}
+%%%
+\setbeamercolor*{titlelike}{bg=PrideGold,fg=Black}
+\setbeamercolor*{title}{bg=PrideGold,fg=Black}
+\setbeamercolor*{item}{fg=PrideGold}
+\setbeamercolor*{caption name}{fg=PrideGold}
+%%%
+\setbeamercolor*{sidebar}{fg=PrideGold,bg=Black}
+\setbeamercolor*{title in sidebar}{fg=PrideGold}
+\setbeamercolor*{author in sidebar}{fg=PrideGold}
+\setbeamercolor*{section in sidebar}{fg=PrideGold}
+%%%
+\setbeamercolor{section in toc}{fg=Black}
+\setbeamercolor{subsection in toc}{fg=Black}
+%%%
+\setbeamercolor{page number in head/foot}{fg=Black,bg=PrideGold}
+%\setbeamercolor{footline}{bg=Black}
+%%%
+\setbeamercolor{bibliography entry author}{fg=Black}
+\setbeamercolor{bibliography entry note}{fg=Black}
+\setbeamercolor{bibliography entry title}{fg=Black}
+%%%
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+
+%%%%%
+
+
+%%%%% general 
+\usepackage{cmap} %math
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{graphicx}
+\usepackage{mypythonhighlight,verbatim}
+\usepackage{filecontents}
+\usepackage{footnotehyper}
+\usepackage{float}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+\usepackage[inline]{enumitem}
+\setlist[itemize]{label=\textbullet}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+%\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{soul}
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage{microtype} %improves typography for pdf
+\usepackage[pdftex,dvipsnames]{colortbl} %change font color
+\usepackage[font=itshape]{quoting}
+\usepackage[export]{adjustbox} %export allows valign in \includegraphics
+%%%%%
+
+
+%%%%% links and tags
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+%    pdftitle={lecture},
+%    pdfauthor={R. A. Borrelli},
+%    pdfkeywords={lecture},
+%    pdflanguage={en-US},
+%    pdfsubject={lecture},
+%    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+\usepackage{times}
+%\renewcommand{\sfdefault}{ubuntu}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references
+%\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+\usepackage[numbers,sort&compress]{natbib} %for [1-3] - use neup.bst; nsf.bst isn't working
+\usepackage{bibentry}
+%%%
+\setbeamertemplate{bibliography entry title}{} %deletes linebreaks for in slide references
+\setbeamertemplate{bibliography entry article}{}
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+%%%
+\setlength{\bibsep}{7pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+%\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+\usepackage[singlelinecheck=false,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
+\captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+\captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% cross referencing files
+%\usepackage{xr} %for revisions - will cross reference from one file to here
+%\externaldocument{/path/to/auxfilename} %aux file needed
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%\st{} does strikethrough using soul package but does not like acronyms
+\newcommand{\blucell}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\grycekk}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\whicell}{\cellcolor{antiquewhite}} %use to shade in table cell
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% todonotes
+\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+%\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%%%
+%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[author=\textbf{Food for thought},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+%\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+%%% highlighting 
+\DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlh}[2]{#1}
+    \else
+    \newcommand{\hlh}[2]{\han{#2}\hlc{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlj}[2]{#1}
+    \else
+    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hlf}[1]{{\sethlcolor{lightmauve}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlb}[2]{#1}
+    \else
+    \newcommand{\hlb}[2]{\rab{#2}\hlf{#1}}
+    \fi
+    \makeatother
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% user commands
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.\hfill} %bibliography ordered list has numbers left flush
+\makeatother
+
+
+\AtBeginSection[]{
+    \begin{frame}[plain]{}
+         
+         \vfill
+
+         \centering
+         \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{titlelike}
+             \usebeamerfont{title}\insertsectionhead\par
+         \end{beamercolorbox}
+
+         \vfill
+
+     \end{frame}
+ }
+%%%%%
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%%%%%
+
+
+%%%%% linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[1] %line numbering interval
+%%%%%
+
+
+%%%%% title page
+\addtocounter{framenumber}{-1} %does not count the title slide in the slide count
+\title[Nuclear Siting Tools]{A \acl{cgc} case study\\for\\Nuclear Siting Tools}
+\author[\acs{ans} Annual Meeting -- Denver, CO]{R. A. Borrelli $\sq$ Denia Djoki{\'c}\\}
+\institute[]{
+        \includegraphics[width=0.25\textwidth,valign=c]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}
+        \quad\quad
+        \includegraphics[width=0.10\textwidth,valign=c]{logo/university-of-michigan/fastest-path-zero/umich-fpz-stack.png}\\
+        \vspace*{0.25in}
+        \acl{ans} Annual Meeting -- Denver, Colorado\\
+    }
+\date{2026.06.03}
+%\titlegraphic{\includegraphics[width=0.20\textwidth]{logo/i-crews/icrews-modified.png}}
+%https://www.adobe.com/acrobat/online/pdf-to-ppt.html
+%%%%%
+
+
+%%%%%
+%\logo{\includegraphics[width=0.05\textwidth]{logo/i-crews/icrews-modified.png}} %lower right on every slide
+%%%%%
+
+
+\begin{document}
+
+
+\nobibliography* %allows \bibentry citations in the footers of frames; NOT affect putting bibliography slide at the end
+
+
+%%%%% title page with no footer
+{
+    \setbeamertemplate{footline}{}
+    \begin{frame}[plain]{}
+        \titlepage
+    \end{frame}
+}
+%%%%%
+
+
+%\section{\acl{snf} across the \acs{usa}}
+
+
+%\begin{frame}[plain]{}
+%
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.75\textwidth]{nuclear-fuel-cycle/back-end/nuclear-waste/nei-waste-map-us.png}
+%%        \caption{}
+%    \end{figure}
+%
+%    \vspace*{\fill}
+%    \textbf{\tiny\cite{nei22a}\tiny\hspace{0.05in}\bibentry{nei22a}}
+%\end{frame}
+
+
+\section{\acl{cbs} of \acl{snf}}
+
+
+\addtocounter{framenumber}{-1} 
+\begin{frame}
+    \frametitle{2021 \acl{caa} allocated funds for `expenses necessary for nuclear waste disposal activities \ldots'}
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]`\ldots including storage activities'
+        \item[]\acs{doe} awarded \$26M to thirteen (now twelve) consortia across the nation for building capacity in \acf{cbs}
+        \item[]Support more comprehensive community engagement to collaborate with stakeholders to manage \acs{snf} effectively
+        \item[]Not actual siting
+        \item[]Process and frameworks
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Twelve consortia awarded across the country}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={nationwide consortia}]{common-ground-consortium/consortia.png}
+        \caption{Nationwide consortia}
+    \end{figure}
+    \textbf{\tiny\cite{doe23c}\tiny\hspace{0.05in}\bibentry{doe23c}}
+\end{frame}
+
+
+\section{The \acf{cgc}}
+
+
+\addtocounter{framenumber}{-2} 
+\begin{frame}
+    \frametitle{\acs{cgc} spans several institutions across the intermountain west and Denia at the \acl{um}} 
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]With Nation Tribal Energy Association
+        \item[]Ended in March 2026
+        \item[]But we got a \acs{neu}!
+        \item[]Centered on public input
+        \item[]Research focus on historical lessons, types of public decision-making, and state-specific and/or cross-jurisdictional challenges in \acl{cbs} of critical infrastructure
+        \item[]Providing recommendations to \acs{doe}
+    \end{enumerate}
+
+    \vspace*{\fill}
+    \textbf{\tiny\cite{ara26a}\tiny\hspace{0.05in}\bibentry{ara26a}}\\
+    \textbf{\tiny\cite{cfkoe25a}\tiny\hspace{0.05in}\bibentry{cfkoe25a}}\\
+    \textbf{\tiny\cite{cfbor24a}\tiny\hspace{0.05in}\bibentry{cfbor24a}}
+\end{frame}
+
+
+\section{Motivation \& Goals}
+
+
+\addtocounter{framenumber}{-1} 
+\begin{frame}
+    \frametitle{Lots of executive orders were issued in 2024 for nuclear energy growth}
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]400 \acs{gwe} by 2025!
+        \item[]Deploying reactors at military bases
+        \item[]Recycling \& reprocessing
+        \item[]Hopefully pyroprocessing for Christina and me
+        \item[]Increasing domestic fuel production
+        \item[]July 4th milestone
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{All this growth really requires strong back end management policy}
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]More \acs{snf} facilities are going to be needed at the least
+        \item[]Communities or localities may want help in terms of technical feasibility, local capacity to host a site
+        \item[]There are some tools out there that could provide site screening information
+        \item[]We critically reviewed and tested some of them within this context 
+        \item[]Based on community accessibility and utility just for an \acs{snf} \acf{cis} for now
+        \item[]Because we were only funded for that at the time
+        \item[]Subset of a larger study for journal submission
+        \item[]Just four today
+    \end{enumerate}
+\end{frame}
+
+
+\section{\acf{sta}}
+
+
+\addtocounter{framenumber}{-1} 
+\begin{frame}
+    \frametitle{\acs{sta} examines feasibility for advanced nuclear facility siting}
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]Population, socioeconomics, safety, regulations, etc.
+        \item[]Comparative analysis for different sites
+        \item[]Site Exploration option with economic, proximity, reference, safety data layers
+    \end{enumerate}
+
+    \vspace*{\fill}
+    \textbf{\tiny\cite{fpz23b}\tiny\hspace{0.05in}\bibentry{fpz23b}}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{sta} example for Bonneville County siting}
+
+    \begin{columns}[c]
+
+        \begin{column}{0.70\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\textwidth,alt={Bonneville county}]{environmental-justice-tools/bonneville-stand-exploration.png}
+                \caption{User generated}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.30\textwidth}
+            \begin{small}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Red -- protected lands
+                \item[]Blue -- Electric generators
+                \item[]Yellow -- Brownfield site
+            \end{enumerate}
+                \vspace{0.15in}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]\acs{sta} could be useful for screening
+                \item[]Could use more information on regulations 
+                \item[]And more on the criteria themselves
+            \end{enumerate}
+            \end{small}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{\acf{tra}}
+
+
+\addtocounter{framenumber}{-1} 
+\begin{frame}
+    \frametitle{\acs{tra} is a \acs{gis} web tool developed by \acs{onl} for transportation routing}
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]Databases for highway, rail, waterways
+        \item[]Select origin and destination to generate route
+        \item[]Optimize transportation under distance, preferred routes, time
+        \item[]Layers are county boundaries, critical infrastructure, population, etc.
+    \end{enumerate}
+
+    \vspace*{\fill}
+    \textbf{\tiny\cite{pet18b}\tiny\hspace{0.05in}\bibentry{pet18b}}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{tra} national population density with railways}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.85\textwidth,alt={population density with railways}]{environmental-justice-tools/tragis-rail.png}
+        \caption{User generated}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{tra} transport from Richland to Naturita}
+
+    \begin{columns}[c]
+
+        \begin{column}{0.70\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\textwidth,alt={richland to naturita transportation}]{environmental-justice-tools/tragis-naturita.png}
+                \caption{User generated}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.30\textwidth}
+            \begin{tiny}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Southern route includes Idaho
+                \item[]Direct route goes through Idaho
+                \item[]Node based generation 
+                \item[]1300 miles \& 32 hours
+            \end{enumerate}
+                \vspace{0.15in}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Several data layers
+                \item[]Multiple travel modes
+                \item[]Nodes not shown beforehand; only after destination
+                \item[]Communities might investigate locations of critical infrastructure, population
+                \item[]Communities would not be planning transportation routes though
+            \end{enumerate}
+            \end{tiny}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{\acf{lit}}
+
+
+\begin{frame}
+    \frametitle{\acs{lit} (\acs{onl}) to evaluate areas for storage}
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]Compare up to two locations
+        \item[]Three main areas of functionality --
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Explore -- Evaluate areas of interest
+                \item[]Access -- Select assessment considerations
+                \item[]Compare -- Generate assessment reports
+            \end{enumerate}
+    \end{enumerate}
+
+    \vspace*{\fill}
+    \textbf{\tiny\cite{le23a}\tiny\hspace{0.05in}\bibentry{le23a}}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{lit} site screening criteria for Bonneville county}
+
+    \begin{columns}[c]
+
+        \begin{column}{0.70\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\textwidth,alt={Bonneville county site screening}]{environmental-justice-tools/lit-bonneville.png}
+                \caption{User generated}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.30\textwidth}
+            \begin{small}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Layers include Critical Habitat for Endangered and Threatened Species, Coastal Barriers, Federally Designated Lands, etc.
+                \item[]Energy facilities, floodplains, hazardous facilities
+            \end{enumerate}
+                \vspace{0.15in}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]West is wide open
+                \item[]East has been flagged under the criteria
+            \end{enumerate}
+            \end{small}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{lit} site screening for Bonneville county with all assessment considerations included}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth,alt={Bonneville county site screening}]{environmental-justice-tools/lit-bonneville-assessment.png}
+        \caption{User generated}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{lit} comparison for Bonneville county \& Southwest Wyoming}
+
+    \begin{columns}[c]
+
+        \begin{column}{0.70\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\textwidth,alt={comparing Bonneville county and southwest Wyoming}]{environmental-justice-tools/lit-compare.png}
+                \caption{User generated}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.30\textwidth}
+            \begin{small}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Tried to select similar area
+                \item[]Same assessment considerations
+            \end{enumerate}
+                \vspace{0.15in}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Wyoming offers more land due to lower population density
+                \item[]\acs{lit} offers limited capabilities
+                \item[]Granularity only down to counties
+                \item[]Comparison feature is useful
+            \end{enumerate}
+            \end{small}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{\acf{str}}
+
+
+\addtocounter{framenumber}{-1} 
+\begin{frame}
+    \frametitle{\acs{str} is a \acs{gis} decision tool for \acs{snf} transport}
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]Designed by \acs{doe}
+        \item[]Generates routes by user selected options; e.g., minimizing distance, population, etc.
+        \item[]Select various sites; e.g., infrastructure, police, airports, casinos, etc.
+        \item[]Select origin, destination, transportation method
+        \item[]Multiple transport modes
+    \end{enumerate}
+
+    \vspace*{\fill}
+    \textbf{\tiny\cite{abk16a}\tiny\hspace{0.05in}\bibentry{abk16a}}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{str} transport from Richland to Pueblo}
+
+    \begin{columns}[c]
+
+        \begin{column}{0.70\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\textwidth,alt={transport from Richland to Pueblo}]{nuclear-fuel-cycle/back-end/nuclear-waste/start-columbia-population.png}
+                \caption{User generated}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.30\textwidth}
+            \begin{small}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Heavy haul truck
+                \item[]Minimize population with 800 m buffer
+                \item[]3500 miles
+            \end{enumerate}
+                \vspace{0.15in}
+            \begin{enumerate}%[item-label=(\arabic*)]
+                \item[]Windy route due to buffer
+                \item[]Not much detail
+                \item[]Difficulty in selecting cities
+                \item[]Could be used to identify critical sites on a route
+            \end{enumerate}
+            \end{small}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{Discussion}
+
+
+\addtocounter{framenumber}{-1} 
+\begin{frame}
+    \frametitle{These tools have drawbacks} 
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]Some tools could not be included due to the change in funding mandate
+        \item[]Could not get access to \acs{ors} -- Looked promising from literature
+        \item[]A lot of redundancy across all tools studied -- Silos
+        \item[]\acs{tra} \& \acs{str} are basically the same
+        \item[]\acs{tra} seemed better with options and detail
+        \item[]Same for \acs{sta} over \acs{lit}
+        \item[]Major drawback is that the sites require registration
+        \item[]Communities may be wary of privacy issues or if the tool owners may be collecting data without consent
+        \item[]Cannot download the images as jpg, png
+        \item[]Use of the tools in the literature was not prevalent
+        \item[]More transparency on data sources should be provided
+        \item[]Lack of open source accessibility
+        \item[]Would be difficult for public at large use without assistance
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{On the other hand, how could we aid in community decisionmaking?} 
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]Site screening and transportation routes do offer use if only just to see critical sites
+        \item[]Could be used for public comments
+        \item[]Community could use tools to develop a go/no-protocol in a siting process
+        \item[]Honestly, not that great overall
+        \item[]Easy to see what fixes are needed
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Tools pros \& cons}
+    \scriptsize
+        \begin{longtable}{|L{0.14\linewidth}|L{0.25\linewidth}|L{0.23\linewidth}|L{0.13\linewidth}|}
+            \caption{Summary of tools}
+            \label{tab-tools-1}\\
+            \hline
+            \textbf{Tool}
+            &\textbf{Use}
+            &\textbf{Features}
+            &\textbf{Limits}
+            \\
+            \hline
+
+
+            \href{https://fptz.org/}{\acs{sta} site}
+            & For advanced reactor siting. 
+            & Site Exploration methodology could be useful for community planners for screening. Selecting criteria was easy to perform.
+            & Cannot download the map. Criteria lacked sufficient explanations. Registration required.
+            \\
+            \hline
+        
+
+            \href{https://webtragis.ornl.gov/login}{\acs{tra} site}
+            & Modeling transportation routing. Uses \acs{gis} to identify optimal means of transportation for user selected parameters.
+            & Intuitive \acs{gui} allows selection of a lot of layers including population density and Tribal lands. Can combine transport routes manually. 
+            & Cannot download the map as a .jpg, etc. National parks, wilderness not included in layers. Cannot just click on the map to plan route; Transportation `nodes' are not shown on the map. Registration required.
+            \\
+            \hline
+
+
+            \href{https://lite.ornl.gov/#/}{\acs{lit} site}
+            & Evaluate areas of interest for interim storage using a pre-configured assessment considerations.
+            & Presents a map of screening criteria and assessment considerations down to the county level. Areas can also be compared. Descriptions of the criteria and considerations is provided.  
+            & Cannot download the map as a .jpg., etc. Lacking granularity. Registration required. 
+            \\
+            \hline
+
+         
+            \href{https://start.energy.gov/}{\acs{str} site}
+            & Geospatial decision-support tool developed for evaluating routing options and other aspects of transporting \acs{snf}.
+            & Variety of data layers. Printable map options. Can select different transportation modes for one shipping route. Can select for distance, time, population buffer. Can select a wide range of infrastructure to filter.
+            & Hard to select cities, etc., for destinations. Have to zoom in significantly to select a destination. Map renders slowly. 
+            \\
+            \hline
+    \end{longtable}
+\end{frame}
+
+
+\section{Wrapping up}
+
+
+\addtocounter{framenumber}{-1} 
+\begin{frame}{What is next?} 
+    \begin{enumerate}%[item-label=(\arabic*)]
+        \item[]There are a few more tools to check out
+        \item[]Propose a methodology for \acl{cbs} incorporating some of the tools
+        \item[]For effective back-end management, community autonomy can be prioritized by providing the necessary tools for informed, independent decision-making
+        \item[]Finish the journal paper
+    \end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}[plain]{}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{/home/borrelli/Media/Camera/20260404_120110.jpg}
+%        \caption{}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{References}
+    \bibliographystyle{neup}
+    \tiny
+    \bibliography{
+        araujo,
+        borrelli,
+        doe,
+        environmental-justice-tools,
+        federal,
+        nuclear-disposal,
+        nuclear-general,
+        nuclear-storage,
+        nuclear-waste,
+        yucca-mountain}
+\end{frame}
+
+
+%%%%%%%
+%\begin{frame}{}
+%    \begin{columns}
+%
+%        \begin{column}{0.50\textwidth}
+%            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=21pt,leftmargin=*,label=(\arabic*)]
+%                \item[]
+%                \item[]
+%            \end{enumerate}
+%        \end{column}
+%
+%        \begin{column}{0.50\textwidth}
+%            \begin{enumerate}[series=outerlist,topsep=0pt,itemsep=21pt,leftmargin=*,label=(\arabic*)]
+%                \item[]
+%                \item[]
+%            \end{enumerate}
+%        \end{column}
+%
+%    \end{columns}
+%\end{frame}
+
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.75\textwidth]{wsc.png}
+%        \caption{\acs{wsc}}
+%    \end{figure}
+%%%%%%%
+
+
+\begin{frame}[allowframebreaks]{Acronyms}
+    \printnoidxglossary
+\end{frame}
+
+
+\end{document}
