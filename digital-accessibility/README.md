@@ -1,11 +1,13 @@
-# latex-templates
+# digital accessibility
 Latex templates for pdf tagging under Title II compliance.
 
-Update texlive to the latest version.
+Update texlive to the latest version 2026.
+
+Remove \RequiredPackage{pdfmanagement} or \RequiredPackage{pdfmanagement-testphase} for texlive 2026.
 
 Compile with pdflatex.
 
-show-pdf-tags --xml filename.pdf to see the tagging.
+show-pdf-tags --xml filename.pdf to see the tagging or exiftool filename.pdf
 
 Latex has to be less customized to meet compliance.
 
@@ -25,6 +27,10 @@ Do not load enumitem.sty and enumext.sty together.
 The white-paper directory has an example accessible file with longtable.
 
 The Ally checker in Canvas was used to verify accessibility. 
+
+
+# issues
+Sometimes Ally will give a 'language not set error' when exiftool shows the language with the exact same preamble as a perfect score. Recompiling a few times so far has worked. It seems similar to when something like the linenumbers or acronym list don't initially compile and a recompile fixes it. 
 
 
 Prof. R. A. Borrelli  
