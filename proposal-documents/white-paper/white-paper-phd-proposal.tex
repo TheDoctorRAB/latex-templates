@@ -323,11 +323,10 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
-%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize Name}
-%\lhead{\scriptsize PNUCENE-D-22-xxxxx}
-\chead{\scriptsize \textit{PhD White Paper Project Proposal}}
-\rhead{\scriptsize \today}
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%\lhead{\scriptsize }
+%\chead{\scriptsize }
+\lfoot{\scriptsize\textit{Name -- \acs{phd} White Paper Project Proposal}\\\today}
 \rfoot{\thepage}
 %%%%%
 
@@ -343,26 +342,32 @@
 %%%%%
 
 
-%%%%% linenumbering
-\linenumbers %toggle line numbers
-\pagewiselinenumbers %reset line numbers on new page
-\modulolinenumbers[5] %line numbering interval
-%%%%%
-
-
 \begin{document}
+
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
 
 {\centering 
     \textbf{Title\\
     PhD White Paper Project Proposal\\
     }
-    Name\\
+    Student Name\\
+    Advisor Name\\
     University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
     Department of Nuclear Engineering and Industrial Management
 \par
 }
 
+
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
+
+%%%%% linenumbering
+\linenumbers %toggle line numbers
+\modulolinenumbers[5] %line numbering interval
+%%%%%
+
 
 \part*{Overview}
 
@@ -605,15 +610,11 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 
 
 %%%%% header and footer
-\nolinenumbers
-\pagestyle{fancy}
-\fancyhf{} %move page number to bottom right
+\pagestyle{fancyplain}
+\fancyhf{} %clear header and footer 
 \renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-%\lhead{\scriptsize }
-%\chead{\scriptsize }
-%\rhead{\scriptsize }
-%\lfoot{\scriptsize }
-\rfoot{\thepage}
+\rfoot{\fancyplain{}{\thepage}}
+\nolinenumbers
 %%%%%
 
 

@@ -27,7 +27,10 @@
 %%%%% general 
 \documentclass[11pt,a4paper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
-\usepackage[pagewise]{lineno} %line numbering
+\usepackage{lscape}
+\usepackage[graphicx]{realboxes}
+\usepackage[pagewise]{lineno} %line numbering restart
+%\usepackage[running]{lineno} %line numbering continuous
 \usepackage{setspace}
 \usepackage{ulem} %strikethrough - do not \sout{\cite{}}
 \usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
@@ -41,6 +44,7 @@
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
 \graphicspath{{$TEXIMG/}} %path to graphics
+%\graphicspath{{../img/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
@@ -118,7 +122,7 @@
 
 
 %%%%% watermark
-\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+\usepackage[firstpage,vpos=0.73\paperheight]{draftwatermark}
 \SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
 \SetWatermarkScale{0.20}
 %%%%%
@@ -193,12 +197,12 @@
 
 
 %%%%% todonotes
-\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
-\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+\newcommandx{\cmt}[2][1=]{\todo[noline,author=\textbf{ATTN: Lan},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\kat}[2][1=]{\todo[noline,author=\textbf{ATTN: Kathy},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
 \newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 
 
-%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
+\newcommandx{\icr}[2][1=]{\todo[author=\textbf{\acs{icr}},tickmarkheight=0.25cm,backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
 \newcommandx{\ral}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
@@ -206,23 +210,23 @@
 
 
 % highlighting 
-%\DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
-%\makeatletter
-%    \if@todonotes@disabled
-%    \newcommand{\hlh}[2]{#1}
-%    \else
-%    \newcommand{\hlh}[2]{\han{#2}\hlc{#1}}
-%    \fi
-%    \makeatother
+\DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlh}[2]{#1}
+    \else
+    \newcommand{\hlh}[2]{\cmt{#2}\hlc{#1}}
+    \fi
+    \makeatother
 
-%\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
-%\makeatletter
-%    \if@todonotes@disabled
-%    \newcommand{\hlj}[2]{#1}
-%    \else
-%    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
-%    \fi
-%    \makeatother
+\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hli}[2]{#1}
+    \else
+    \newcommand{\hli}[2]{\icr[noline]{#2}\hld{#1}}
+    \fi
+    \makeatother
 
 \DeclareRobustCommand{\hlf}[1]{{\sethlcolor{lightmauve}\hl{#1}}}
 \makeatletter
@@ -253,7 +257,7 @@
 \renewcommand*\l@section{\@dottedtocline{1}{0.25em}{2em}} %change first for indentation of label; second for title
 \makeatother
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{5}
 
 \makeatletter
 \renewcommand\listoffigures{%
@@ -277,11 +281,10 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
-%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize Journal}
-\chead{\scriptsize \textit{Topic/Short title}}
-\rhead{\scriptsize \today}
-\lfoot{\scriptsize Lastname et al.\\\textit{Draft Manuscript}}
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%lhead{\scriptsize}
+%\chead{\scriptsize}
+\lfoot{\scriptsize Author et al. -- Group\\\textit{Draft Manuscript -- Subject}}
 \rfoot{\thepage}
 %%%%%
 
@@ -293,6 +296,7 @@
 
 %%%%% acronyms
 \input{$ACRONYM/acronyms}
+%\input{../acronyms/acronyms}
 %%%%%
 
 
@@ -343,7 +347,6 @@
 
 %%%%% linenumbering
 \linenumbers %toggle line numbers
-\pagewiselinenumbers %reset line numbers on new page
 \modulolinenumbers[5] %line numbering interval
 %%%%%
 
@@ -361,6 +364,8 @@
 
 
 \newpage
+
+
 %\section*{Table of Contents}
 %\tableofcontents
 %\newpage
@@ -443,14 +448,10 @@ Major results and implications include -
 
 
 %%%%% header and footer
-\pagestyle{fancy}
-\fancyhf{} %move page number to bottom right
+\pagestyle{fancyplain}
+\fancyhf{} %clear header and footer 
 \renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-%\lhead{\scriptsize }
-%\chead{\scriptsize }
-%\rhead{\scriptsize }
-%\lfoot{\scriptsize }
-\rfoot{\thepage}
+\rfoot{\fancyplain{}{\thepage}}
 \nolinenumbers
 %%%%%
 
@@ -552,25 +553,15 @@ Major results and implications include -
 \begin{appendices}
 
 
-%%%%% use for toc
-%    \titleformat{\part}{\normalfont\Large\bfseries\filcenter}{\thepart}{0ex}{}[]
-%    \part*{Appendices}
-%%%%%
-
-
+%%%%% formatting
     \setcounter{section}{0}
     \renewcommand{\thesection}{\Roman{section}}
     \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+%%%%%
 
 
     \section{Acronyms}
     \printnoidxglossary[title={}]
-
-
-%\newpage
-
-
-%    \section{Just appendix title} \label{app-}
 
 
 \end{appendices}
