@@ -3,7 +3,7 @@
 %%%%%
 %
 %%%%%
-%standard white paper/preproposal format
+%standard report format for journal papers
 %%%%%
 %
 %%%%%
@@ -65,12 +65,11 @@
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
-%\graphicspath{{$TEXIMG/}} %path to graphics
+\graphicspath{{$TEXIMG/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
-\usepackage{enumext}
-%\usepackage[inline]{enumitem} %https://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex-dev/latex-lab/latex-lab-enumitem.pdf
+\usepackage[inline]{enumitem} %https://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex-dev/latex-lab/latex-lab-enumitem.pdf
 \usepackage{boldline}
 \usepackage{makecell}
 \usepackage{booktabs}
@@ -91,7 +90,6 @@
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
 \usepackage{parskip}
-\usepackage{multicol}
 %%%%%
 
 
@@ -102,12 +100,12 @@
     linkcolor=black,
     citecolor=black,
     urlcolor=blue,
-    pdftitle={Preproposal}, %turn off if tagging off
-    pdfauthor={R. A. Borrelli}, %turn off if tagging off
-    pdfkeywords={preproposal}, %turn off if tagging off
-    pdflanguage={en-US}, %turn off if tagging off
-    pdfsubject={preproposal}, %turn off if tagging off
-    pdfdisplaydoctitle=true  %turn off if tagging off
+    pdftitle={Report},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={report},
+    pdflanguage={en-US},
+    pdfsubject={report},
+    pdfdisplaydoctitle=true 
 } 
 \usepackage[capitalise]{cleveref} %must be loaded after hyperref
 %%%%%
@@ -149,7 +147,7 @@
 \setlength{\columnsep}{1.00mm}
 \usepackage[singlelinecheck=false,labelfont=bf]{caption}
 \usepackage{subcaption}
-\captionsetup[table]{justification=centering,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
 \captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
 \captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
 \captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
@@ -173,20 +171,7 @@
 \usepackage[toc,title]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
-%\usepackage{titlesec,titletoc} %turn on if tagging off and below
-%%%
-%\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
-%\titlespacing*\part{0pt}{0.95\baselineskip}{0.50\baselineskip}
-%\titleformat{\section}[runin]{\normalfont\normalsize\bfseries}{\thesection.}{0.5em}{}[]
-%\titlespacing*\section{0pt}{0.50\baselineskip}{0.50\baselineskip}
-%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesection\alph{subsection}.}{0.25em}{}[]
-%\titlespacing*\subsection{0pt}{0.40\baselineskip}{0.50\baselineskip}
-%\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{\roman{subsubsection}.}{0.25em}{}[]
-%\titlespacing*\subsubsection{9pt}{0.25\baselineskip}{0.50\baselineskip}
-%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{-1em}{}[]
-%\titlespacing*\paragraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
-%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.25em}{}[]
-%\titlespacing*\subparagraph{15pt}{0.25\baselineskip}{0.50\baselineskip}
+%do not load titlesec,titletoc
 %%%%%
 
 
@@ -206,7 +191,6 @@
 %%%%% colors
 %http://latexcolor.com/
 %https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
-\definecolor{pridegold}{rgb}{241,179,0}
 \definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
 \definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
@@ -214,7 +198,7 @@
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
 
-\newcommand{\x}{\cellcolor{pridegold}} %use to shade in table cell
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
 \newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
 \newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
@@ -311,9 +295,10 @@
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize NE585}
-\chead{\scriptsize \textit{White Paper Project Proposal}}
+\lhead{\scriptsize NE585 -- Nuclear fuel cycles}
+\chead{\scriptsize \textit{Topic}}
 \rhead{\scriptsize \today}
+\lfoot{\scriptsize Name}
 \rfoot{\thepage}
 %%%%%
 
@@ -324,11 +309,41 @@
 %%%%%
 
 
+\begin{document}
+
+
+\begin{titlepage}
+    \title{Title}
+    \author{
+        Name
+        \\ \\
+        University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
+        Department of Nuclear Engineering and Industrial Management
+        \\ \\ \\
+        email
+    }
+\clearpage % not have page number on title page
+\maketitle
+\vspace*{\fill}
+\begin{flushright}{
+        \noindent Number of pages - \pageref{LastPage} \\
+        \noindent Number of tables - \totaltables \\
+        \noindent Number of figures - \totalfigures 
+}
+\end{flushright}
+\thispagestyle{empty} % start with page number 1 on second page
+\end{titlepage}
+
+
+\thispagestyle{empty}
+
+
 %%%%% spacing
-%\onehalfspacing %linespacing
+\onehalfspacing %linespacing
 %\setstretch{1.05} %linespacing
 %\spacing{1.25} %equivalent to 1.5 line spacing in Word
 %%%%%
+
 
 %%%%% linenumbering
 \linenumbers %toggle line numbers
@@ -336,217 +351,88 @@
 %%%%%
 
 
-\begin{document}
+\section*{Executive Summary} \label{exec-summ}
+One page
 
 
-{\centering 
-    \textbf{Title\\
-    NE585 -- Nuclear Fuel Cycle Analysis Design Project\\
-    }
-    \vspace{0.10in}
-    Name\\
-    University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
-    Department of Nuclear Engineering and Industrial Management
-\par
-}
-
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+\newpage
 
 
-\section{Proposed Research}
+\thispagestyle{fancy}
+\setcounter{page}{1}
 
 
-\section{Motivation}
+\section{Introduction} \label{sec-introduction}
+Expand on the white paper in this section to introduce the project.
+
+\subsection{Motivation}
+
+\subsection{Goals}
 
 
-\section{Importance \& Relevance to Course Objectives}
+\newpage
 
 
-\section{Background}
-\subsection{Topic}
-
-\subsection{Another topic}
-
-\subsection{Related research}
+\section{Background} \label{sec-background}
+Give a good technical overview of your topic with literature references.
 
 
-\section{Methodology}
-\subsection{One part of the methodology}
-
-\subsection{Another part of the methodology}
+\newpage
 
 
-\section{Major Outcomes \& Deliverables}
+\section{Process model} \label{sec-process-model}
+`Derive' the process model. Include all the necessary data needed. Provide diagrams, etc.
+
+Be as technical as possible, and include a solid qualitative analysis. Include and justify any assumptions.
 
 
-\begin{enumext}[series=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* --},align=left]
-    \item\textbf{.} 
-        \begin{enumext}[series=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},labelsep=2.5ex,align=left,list-offset=-12ex]
-            \item\textit{.}
-            \item\textit{.}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[series=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left]
-    \item\textit{.}
-\end{enumext}
+\newpage
 
 
-\begin{enumext}[resume=outerlist]
-    \item\textbf{.}
-        \begin{enumext}[resume=innerlist]
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                \end{enumext*}
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                    \item .
-                    \item .
-                \end{enumext*}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[resume=milestone]
-    \item\textit{.}
-\end{enumext}
+\section{\acs{mcp} model} \label{sec-mcnp}
+Provide the \acs{mcp} model screenshot the configuration in the visual editor. Explain what you are modeling and why it is important. Include the input file in an appendix.
 
 
-\begin{enumext}[resume=outerlist]
-    \item\textbf{.}
-        \begin{enumext}[resume=innerlist]
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                \end{enumext*}
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                    \item .
-                    \item .
-                \end{enumext*}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[resume=milestone]
-    \item\textit{.}
-\end{enumext}
+\newpage
 
 
-\begin{enumext}[resume=outerlist]
-    \item\textbf{Crosscutting discussions \& Follow on activities.} 
-        \begin{enumext}[resume=innerlist]
-            \item\textit{Identify lessons learned.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                \end{enumext*}
-            \item\textit{Develop future work.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item . 
-                    \item . 
-                    \item .
-                \end{enumext*}
-            \item\textit{\acf{rv}.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                   \item Reproducibility -- .
-                   \item Validation -- .
-                \end{enumext*}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[resume=milestone]
-    \item\textit{Apply lessons learned for future research and engage colleagues in new collaborations.}
-\end{enumext}
+\section{Results and discussion} \label{sec-results-discussion}
+Present and analyze results.
 
 
-\section{Contribution to Advancing State of the Art}
-This project will advance the state-of-the-art in nuclear fuel cycle analysis by --
-\begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=3]
-    \item A; 
-    \item B;
-    \item C.
-\end{enumext*}
+\newpage
 
 
-\section{\textbf{Timeframe for Execution}}
-\tagpdfsetup{table/header-rows=1}
-\begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|}
-        \caption{Project Timeline}
-        \label{tab-timeline}
-        \\
-        \hline
-        \multicolumn{1}{|c|}{\textbf{TASKS}}& 
-        \textbf{AUG}& 
-        \textbf{SEP}& 
-        \textbf{OCT}& 
-        \textbf{NOV}& 
-        \textbf{DEC}
-        \\
-        \hline
-        \endfirsthead
-        I. 
-        &\x
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        II. 
-        &\x
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        III. 
-        &\x 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        IV. 
-        &\x
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        V. 
-        &\x 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        VI. 
-        &\x 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        VII.
-        & 
-        & 
-        & 
-        & 
-        &\x 
-        \\
-        \hline
-\end{longtable}
+\section{Cross cutting discussions} \label{sec-cross-cutting}
+Briefly discuss cross cutting issues related to the project.
+
+
+\newpage
+
+
+\section{Future work} \label{sec-future-work}
+Outside the scope of the project, what additional work could be done using the existing model? What enhancements can be made to the model and for what purpose(s)?
+
+
+\newpage
+
+
+\section{Lessons learned} \label{sec-lessons}
+What you personally learned over the course of the project
+
+
+\newpage
+
+
+\section{Summary remarks} \label{sec-summary}
+Summarize. 
+
+Major results and implications include - 
+\begin{itemize}[begin-vspace=0ex,item-vspace=-0.5ex,begin-extra-vspace=1ex,para-vspace=1ex,left-margin=2.25ex,item-indent=0ex]
+    \item
+    \item
+    \item
+\end{itemize}
 
 
 \newpage
@@ -561,12 +447,96 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 %%%%%
 
 
-\bibliographystyle{nsf}
-\setlength{\bibhang}{0pt}
-\bibliography{}
+\section{Acknowledgements}
 
 
 \newpage
+
+
+%%%%%%% citations
+%
+%%% make sure $BIBREF contains the path to each bib file in .bashrc
+%%% make sure Overleaf has the latexmkrc pointing to where the bib and bst are located
+%
+\bibliographystyle{nsf}
+\setlength{\bibhang}{0pt}
+\bibliography{
+}
+%
+%%%%%%%
+
+
+\newpage
+
+
+\section{Tables}
+
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables%
+}
+
+\newpage
+
+
+%\setlength{\arrayrulewidth}{0.3mm}
+%\begin{longtable}{|l|c|c|}
+%    \caption{Gas processing constraints}
+%    \label{tab-gas-processing}
+%    \\
+%    \hline
+%    \textbf{Constraint}
+%    &\textbf{Regular grade}
+%    &\textbf{Premium grade}
+%    \\
+%    \hline
+%    Raw gas
+%    & 7 m\textsuperscript{3}/ton
+%    & 11 m\textsuperscript{3}/ton
+%    \\
+%    \hline
+%    Production time
+%    & 10 h/ton
+%    & 8 h/ton
+%    \\
+%    \hline
+%    Storage
+%    & 9 tons
+%    & 6 tons
+%    \\
+%    \hline
+%    Profit
+%    & \$150/ton
+%    & \$175/ton
+%    \\
+%    \hline
+%\end{longtable}
+
+
+\newpage
+
+
+\section{Figures}
+
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures%
+}
+
+
+\newpage
+
+
+%\begin{figure}[h!]
+%    \centering
+%    \includegraphic[width=0.X\textwidth]{.png}
+%    \caption[short]{}
+%    \label{fig-label-name}
+%\end{figure}
+
+%\newpage
 
 
 \begin{appendices}
@@ -577,6 +547,9 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 %%%%%
 
 
+    \section{\acs{mcp} input decks} \label{app-mcnp}
+
+
 \newpage
 
 
@@ -585,17 +558,6 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 
 
 \end{appendices}
-
-
-%wrap figure around text
-%move to wherever in the text 
-%{l} fixes it on the left margin
-%{L} floats
-%\begin{wrapfigure}{l}{0.x\textwidth}
-%       \includegraphics[width=0.(x-2)\textwidth]{}
-%    \caption{}
-%    \label{fig-}
-%\end{wrapfigure}
 
 
 \end{document}
