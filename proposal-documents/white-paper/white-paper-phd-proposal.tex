@@ -89,7 +89,7 @@
 %\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
 \usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
 \setlength{\bibsep}{7pt} %sets space between references
-%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\renewcommand{\bibsection}{} %suppresses large 'references' heading
 %\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
 %%%%%
 
@@ -188,15 +188,13 @@
 %\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
 \newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
 %\st{} does strikethrough using soul package but does not like acronyms
-\newcommand{\blucell}{\cellcolor{aliceblue}} %use to shade in table cell
-\newcommand{\grycekk}{\cellcolor{lightgray}} %use to shade in table cell
-\newcommand{\whicell}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
 
 
 %%%%% colors
 %http://latexcolor.com/
 %https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\definecolor{pridegold}{rgb}{241,179,0}
 \definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
 \definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
@@ -204,7 +202,7 @@
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
 
-\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\x}{\cellcolor{pridegold}} %use to shade in table cell
 \newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
 \newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
@@ -350,12 +348,12 @@
 
 {\centering 
     \textbf{Title\\
-    PhD White Paper Project Proposal\\
+    \acs{phd} White Paper Project Proposal\\
     }
     Student Name\\
     Advisor Name\\
-    University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
-    Department of Nuclear Engineering and Industrial Management
+    \acl{ui} $\sq$ \acl{iff}\\
+    \acl{nem}
 \par
 }
 
