@@ -32,6 +32,8 @@ The Ally checker in Canvas was used to verify accessibility.
 # issues
 Sometimes Ally will give a 'language not set error' when exiftool shows the language with the exact same preamble as a perfect score. Recompiling a few times so far has worked. It seems similar to when something like the linenumbers or acronym list don't initially compile and a recompile fixes it. 
 
+See also the [The LaTeX Tagged PDF Project](https://latex3.github.io/tagging-project/) for updates on packages.
+
 
 Prof. R. A. Borrelli  
 University of Idaho  
