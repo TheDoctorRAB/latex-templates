@@ -11,6 +11,8 @@ ltx-talk is already included in the 2026 tex-live installation.
 
 [Examples](https://www.texdev.net/ltx-talk/examples/)
 
+So far, going line by line and just searching how to convert is the current practice. 
+
 
 Prof. R. A. Borrelli  
 University of Idaho  
