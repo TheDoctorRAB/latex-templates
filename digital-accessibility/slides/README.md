@@ -11,7 +11,14 @@ ltx-talk is already included in the 2026 tex-live installation.
 
 [Examples](https://www.texdev.net/ltx-talk/examples/)
 
+
 So far, going line by line and just searching how to convert is the current practice. 
+
+## ltx-talk issues
+ltx-talk leaves a lot to be desired in terms of the flexible customiztion that beamer offers. The slides are just not going to look that good. The captions package does not work. 
+
+
+Figure and table captions cannot easily be customized. Allowframebreaks also does not work, so printing acronyms is effectively useless. There is
 
 
 Prof. R. A. Borrelli  
