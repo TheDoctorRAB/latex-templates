@@ -1,0 +1,989 @@
+% @TheDoctorRAB
+%
+% presentation template for class slides Title II digital accessibility
+% compile with pdflatex
+%
+%%%%%
+
+
+%%%%% enable tagging for accessibility
+\DocumentMetadata{
+    tagging=on,
+    check-tagging-status,
+    pdfversion=2.0,
+    pdfstandard=ua-2,
+    lang=en-US,
+    debug={log=all},
+    testphase={latest,tagpdf},
+    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+}
+\tagpdfsetup{math/alt/use}
+%%%%%
+
+
+%%%%% presentation settings
+\documentclass[aspect=1610,pdftex]{ltx-talk}
+\tagpdfsetup{role/new-tag=frametitle/H1} %makes frametitle tag as H1
+
+
+%%% slide footer
+\EditInstance{footer}{std}{
+    element-order={author,title,institute,framenumber},
+    separator={\hfill},
+    background-color=PrideGold,
+    font=\bfseries\tiny,
+    right-hspace=3.5mm
+}
+\geometry{bmargin=0.40cm,footskip=0.27cm} %vertically move footer text and reduce box thickness
+
+
+%%% slide header
+\EditInstance{header}{std}{color=black,font=\large\bfseries\hspace*{-0.75cm},background-color=PrideGold,height=2.10cm}
+\EditInstance{frametitle}{header}{font=\LARGE}
+\geometry{headsep=0.53cm} %vertically move frametitle text and toggle with height
+
+% linewrap
+\makeatletter
+\let\old@frametitle\frametitle
+\renewcommand{\frametitle}[1]{%
+  \old@frametitle{\parbox{0.99\linewidth}{\raggedright #1}}%
+}
+\makeatother
+
+
+%%% titlepage
+\EditInstance{titlepage-element}{title}{font=\bfseries\Large}
+\EditInstance{titlepage-element}{subtitle}{font=\bfseries\large,after-skip=0.10in}
+\EditInstance{titlepage-element}{author}{font=\bfseries}
+\EditInstance{titlepage-element}{institute}{font=\bfseries,after-skip=0.15in}
+\EditInstance{titlepage-element}{date}{
+    font=\bfseries,
+    tag-end={\vspace{0.25in}\includegraphics[width=0.20\textwidth,alt={department logo}]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}}
+}
+
+
+%%% caption setup -- caption package is not compatible with ltx-talk 
+\makeatletter
+\def\fnum@figure{\textbf{\figurename~\thefigure}}
+\makeatother
+
+
+%%% slide background color
+\AddToHook{shipout/background}{
+  \put(0cm, -\paperheight){
+    \color{BackGround}\rule{\paperwidth}{\paperheight}
+  }
+}
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\usepackage[dvipsnames]{xcolor}
+\usepackage[pdftex,dvipsnames]{colortbl} %change font color
+\usepackage[many]{tcolorbox}
+\definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+\newcommand{\x}{\cellcolor{PrideGold}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+%%%%%
+
+
+%%%%% general 
+\usepackage{fancyhdr}
+\usepackage{mmap} %math
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{graphicx}
+%\usepackage{mypythonhighlight,verbatim}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+%\usepackage[inline]{enumitem}
+\usepackage{enumext}
+\setlist[itemize]{label=\textbullet}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage{microtype} %improves typography for pdf
+%%%%%
+
+
+%%%%% links and tags
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={lecture},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={lecture},
+    pdflanguage={en-US},
+    pdfsubject={lecture},
+    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+%\usepackage{times}
+\renewcommand{\sfdefault}{ubuntu}
+%arial - uncomment next two lines
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references ----- natbib does not work with ltx-talk
+\usepackage[style=numeric-comp,backend=biber]{biblatex}
+%addbibresource{} %bib files go here
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[toc,title]{appendix}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% start frame 1 after title page
+\makeatletter
+    \ExplSyntaxOn
+    \AtBeginDocument{
+  % Force the underlying frame-counter mechanism to step backward
+  % This offsets the titlepage from registering an output slide slot
+  \int_gadd:Nn \c@frame{-1}
+    }
+    \ExplSyntaxOff
+\makeatother
+
+
+%%%%% section environment conflicts with printnoidxglossary
+\makeatletter
+\newif\if@skipsectionhook
+\@skipsectionhookfalse
+
+\AddToHook{cmd/section/after}{%
+  \if@skipsectionhook
+    %do absolutely nothing inside the glossary context
+  \else
+    %section enviroment customization
+    \begin{frame}
+        \thispagestyle{plain}
+        \centering
+        \color{structure}
+        \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,top=17pt,bottom=17pt]
+            \LARGE\bfseries
+            \UseName{l__talk_section_tl}
+        \end{tcolorbox}
+    \end{frame}%
+  \fi
+}
+%%% custom glossary macro
+\newcommand{\printglossaryframe}[1][Glossary]{%
+  \global\@skipsectionhooktrue   % Turn off the section slide builder globally
+  \begin{frame}
+    \frametitle{#1}              % Assign slide header text safely
+    \printnoidxglossaries       % Render the index elements
+  \end{frame}
+  \global\@skipsectionhookfalse  % Instantly turn the section slide builder back on
+}
+\makeatother
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%%%%%
+
+
+%%%%% linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[1] %line numbering interval
+%%%%%
+
+
+%%%%% title page
+\title[short-title={NE585 - Nuclear fuel cycles}]{
+    \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,valign=center,top=11pt,bottom=11pt]
+        NE585\\NUCLEAR FUEL CYCLES\\Nuclear engineering basics\\1
+    \end{tcolorbox}
+}
+\author[short-author={@TheDoctorRAB}]{R. A. Borrelli}
+\institute{\acl{ui}}
+\date{\acl{iff}}
+%%%%%
+
+
+\begin{document}
+
+
+\maketitle[framestyle=plain] %no header and footer
+
+
+\begin{frame}
+    \frametitle{Learning objectives}
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Demonstrating fundamental concepts in nuclear physics
+        \item[]Analyzing decay data to identify radionuclides
+        \item[]Summarizing different decay mechanisms
+        \item[]Book -- Chapter 2
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Learning nodes}
+            \begin{enumext}[topsep=0pt,itemsep=7pt,label=(\arabic*)]
+                \item[]\textbf{Relativity}
+                \item[]\textbf{Atomic structure}
+                \item[]\textbf{Binding energy}
+                \item[]\textbf{Q-value}
+                \item[]\textbf{Radioactivity}
+                \item[]\textbf{Chart of the nuclides}
+                \item[]\textbf{Decay chains}
+                \item[]\textbf{Half life}
+            \end{enumext}
+\end{frame}
+
+
+\section{Relativity}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{We apply energy from nuclear reactions and radiation interactions with matter}
+    \begin{equation}
+        E_{REST} = m_0 c^2
+    \end{equation}
+
+    \begin{equation}
+        E = m c^2
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Rest mass energy for an electron -- $0.511 \; MeV$
+        \item[]Save that for later
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Energy released or energy injected}
+    \begin{columns}
+
+        \begin{column}{0.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.75\textwidth,alt={fission}]{class/ne585/fission.jpg}
+                \caption{Fission}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.75\textwidth,alt=fusion]{class/ne585/fusion.jpg}
+                \caption{Fusion}
+            \end{figure}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Determine the energy of a fusion neutron that is not at rest}
+    \begin{equation}
+        m = \frac{m_0}{\sqrt{1-(\frac{v^2}{c})^2}} \rightarrow E = m c^2
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]With $v = 5.2 \times 10^7 \; m/s$, that is about $0.17c$; not negligible
+        \item[]So we have to compute the not rest mass
+        \item[]$m_0(n) = 1.674927211 \times 10^{-27} \; kg$
+        \item[]Fusion neutron at that speed has $E = 14.5 \; MeV$
+        \item[]For relativistic calculations use MeV
+    \end{enumext}
+\end{frame}
+
+
+\section{Atomic structure}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{The shell model describes how subatomic particles are arranged}
+    \begin{columns}
+
+        \begin{column}{0.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.55\textwidth,alt={calcium shell model}]{class/ne585/calcium.jpg}
+                \caption{Calcuim shell model}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.65\textwidth,alt={phosphorus shell model}]{class/ne585/phosphorus.jpg}
+                \caption{Phosphorus shell model}
+            \end{figure}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Notation}
+    \begin{equation}
+        ^{A}_{Z}Q_{A-Z} = ^{235}_{92}U_{143}
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Periodic table of the elements}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth,alt={periodic table of the elements}]{class/ne585/periodic.table.jpg}
+        \caption{Periodic table of the elements}
+    \end{figure}
+\end{frame}
+
+
+\section{Binding energy}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{There are four fundamental forces of interaction}
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Gravity -- Obvious
+        \item[]\textit{Strong nuclear -- Holds the nucleus together}
+        \item[]Electromagnetic -- Basically electrons \& magnetism
+        \item[]Weak nuclear -- Changes the flavor of quarks
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{To blow out a nucleus, a lot of energy is needed}
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Would it be constant or variable per nucleus?
+        \item[]Why would you want to blow out the nucleus?
+    \end{enumext}
+
+    \begin{equation}
+        \Delta m = (A-Z)m_n - Zm_p - M
+    \end{equation}
+
+    \begin{equation}
+        \Delta m(^{239}_{94}Pu) = 1759 \; MeV = 7.40 \; \frac{MeV}{nucleon}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]This energy corresponds to a velocity of 0.88c
+        \item[]$931.5 \; \frac{MeV}{amu}$
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Binding energy is used to compare atomic stability, reaction energy, probability of fission/fusion}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.35\textwidth,alt={binding energy curve}]{class/ne585/binding.energy.jpg}
+        \caption{Binding energy curve}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Light nuclei get more stable by fusion; heavy nuclei get more stable by fission}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={inverted binding energy curve}]{class/ne585/binding.energy.invert.jpg}
+        \caption{Inverted binding energy curve}
+    \end{figure}
+\end{frame}
+
+
+\section{Q-value}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{The Q-value for a reaction indicates energy requirements}
+
+    \begin{equation}
+        ^6_3Li \; (n,\alpha) \; ^3_1H
+    \end{equation}
+
+    \begin{equation}
+        ^6_3Li + ^1_0n \rightarrow ^4_2\alpha + ^3_1H
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=15pt,label=(\arabic*)]
+        \item Conservation of nucleons
+        \item Conservation of charge
+        \item Conservation of momentum
+        \item Conservation of energy
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Compute the Q value for this reaction}
+
+    \begin{equation}
+        ^6_3Li + ^1_0n \rightarrow ^4_2\alpha + ^3_1H
+    \end{equation}
+
+    \begin{equation}
+        Q = [(M_{Li} + M_n) - (M_{\alpha} + M_H)]c^2
+    \end{equation}
+
+    \begin{equation}
+        Q = 4.78 \; MeV
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]$Q > 0 \rightarrow \; ?$
+        \item[]$Q < 0 \rightarrow \; ?$
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{What is the energy of fission from thorium and uranium fuel cycles?}
+
+    \begin{equation}
+        ^1_0n + ^{235}_{92}U \rightarrow ^{92}_{36}Kr + ^{141}_{56}Ba + ^1_0n + ^1_0n + ^1_0n  
+    \end{equation}
+
+    \begin{equation}
+        ^1_0n + ^{233}_{92}U \rightarrow ^{92}_{36}Kr + ^{141}_{56}Ba + ^1_0n   
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]For comparison, burning a carbon atom releases 4 eV
+    \end{enumext}
+\end{frame}
+
+
+\section{Radioactivity}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{Scientists in late 1800s made discoveries which would change the course of science, medicine, and history}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={1903 Nobel Prize in physics winners}]{class/ne585/nobel.jpg}
+        \caption{1903 Nobel Prize in physics winners}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Radiation is energy as particles or electromagnetic waves, like sunshine}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.40\textwidth,alt={chart of the electromagnetic spectrum}]{class/ne585/waves.jpg}
+        \caption{Chart of the electromagnetic spectrum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Radiation is energy as particles or electromagnetic waves}
+    \begin{columns}
+
+        \begin{column}{0.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.75\textwidth,alt={radiation shielding materials}]{class/ne585/shielding.jpg}
+                \caption{Radiation shielding materials}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.75\textwidth,alt={radiation shielding materials}]{class/ne585/shielding2.jpg}
+                \caption{Radiation shielding materials}
+            \end{figure}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Radiation is energy as particles or electromagnetic waves}
+    Charged particles are --
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item protons (+)
+        \item alpha (++)
+        \item beta (+/-)
+        \item heavy ions (varying)
+        \item U,Pu (3+,4+,5+,6+)
+        \item[]Neutrons have no charge, but are also ionizing
+        \item[]Ionizing rays are x-rays, g-rays, cosmic rays
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ernest Rutherford discovered the three main kinds of radioactive decay (Chemistry Nobel 08)}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.35\textwidth,alt={types of radioactive decay}]{class/ne585/radioactivity.jpg}
+        \caption{Types of radioactive decay}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Alpha particle decay is the ejection of a helium atom from a heavy nucleus}
+
+    \begin{equation}
+        ^{238}_{92}U \rightarrow ^{234}_{90}Th + ^{4}_{2}\alpha  
+    \end{equation}
+
+    \begin{equation}
+        Q = 4.268 \; MeV
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Sometimes nucleus decays to excited state and then emits a gamma ray (for any kind of radiation)
+        \item[]Discrete energy spectrum
+        \item[]Some \% decay at certain energy
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Radium-226 decays to radon-222}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={radium-226 decay}]{class/ne585/alpha.con.jpg}
+        \caption{Radium-226 decay}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{$\beta^-$ particle decay occurs for unstable nuclei with excessive neutrons}
+
+    \begin{equation}
+        ^{19}_{8}O \rightarrow ^{19}_{9}F + \beta^{-} + \overline{\nu} 
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]The neutron is converted to a proton and a beta negative (electron) and anti-neutrino (momentum) are ejected
+        \item[]Sometimes nucleus decays to excited state and then emits a gamma ray (for any kind of radiation)
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Gold-198 decays to mercury-198}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={gold-198 decay}]{class/ne585/beta.con.jpg}
+        \caption{Gold-198 decay}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{$\beta^+$ particle decay occurs for unstable nuclei with deficient neutrons}
+
+    \begin{equation}
+        ^{11}_{6}C \rightarrow ^{11}_{5}B + \beta^{+} + \nu 
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]The proton is converted to a neutron and a beta positive (positron) and neutrino (momentum) are ejected
+        \item[]Sometimes nucleus decays to excited state and then emits a gamma ray (for any kind of radiation)
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Sodium-22 decays to neon-22}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={sodium-22 decay}]{class/ne585/betaplus.con.jpg}
+        \caption{Sodium-22 decay}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{In both forms of beta decay, the energies are exhibited by a continuous energy spectrum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.30\textwidth,alt={beta decay energy spectrum}]{class/ne585/beta.spectrum.jpg}
+        \caption{Beta decay energy spectrum}
+    \end{figure}
+
+    \begin{equation}
+        \overline{E}(\beta^-)=0.3E_{MAX}
+    \end{equation}
+
+    \begin{equation}
+        \overline{E}(\beta^+)=0.4E_{MAX}
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Electron capture also occurs for unstable nuclei with deficient neutrons}
+
+    \begin{equation}
+        ^{22}_{11}Na \rightarrow \epsilon^- + ^{22}_{10}Ne + \nu 
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]The K shell electron (not free) is absorbed by the nucleus to convert the proton to a neutron
+        \item[]Sometimes nucleus decays to excited state and then emits a gamma ray (for any kind of radiation)
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Electron is captured by the nucleus}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.30\textwidth,alt={notional electron capture}]{class/ne585/ec.shell.jpg}
+        \caption{Notional electron capture}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Electron capture and $\beta^+$ are competing processes}
+
+    \begin{equation}
+        ^{22}_{11}Na \rightarrow \epsilon^- + ^{22}_{10}Ne + \nu 
+    \end{equation}
+
+    \begin{equation}
+        ^{22}_{11}Na \rightarrow ^{22}_{10}Ne + \beta^{+} + \nu 
+    \end{equation}
+
+    \begin{equation}
+        Q = 2.842 \; MeV
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]$Q > 1.022 \; MeV$ positron favored
+        \item[]$Q < 1.022 \; MeV$ electron capture favored
+        \item[]Why?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{$\gamma$-ray emission is not a decay mode, but superfast de-excitation of the nucleus}
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Interactions of gamma rays with matter is a very important branch of nuclear physics
+    \end{enumext}
+\end{frame}
+
+
+\section{Chart of the nuclides}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{Chart of the nuclides wide shot}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.80\textwidth,alt={chart of the nuclides}]{class/ne585/chart.jpg}
+        \caption{Chart of the nuclides}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Chart of the nuclide example}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.30\textwidth,alt={chart of the nuclides example}]{class/ne585/chart.example.jpg}
+        \caption{Chart of the nuclides example}
+    \end{figure}
+\end{frame}
+
+
+\section{Decay chains}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{Thorium decays to lead}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={thorium decay chain}]{class/ne585/th232.chain.jpg}
+        \caption{Thorium decay chain}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Neptunium decays to thallium}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={neptunium decay chain}]{class/ne585/np237.chain.jpg}
+        \caption{Neptunium decay chain}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Uranium-238 decays to lead}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={uranium-238 decay chain}]{class/ne585/u238.chain.jpg}
+        \caption{Uranium-238 decay chain}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Uranium-235 decays to lead}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={uranium-235 decay chain}]{class/ne585/u235.chain.jpg}
+        \caption{Uranium-235 decay chain}
+    \end{figure}
+\end{frame}
+
+
+\section{Half life}
+
+
+\addtocounter{frame}{-1}
+\begin{frame}
+    \frametitle{A radioactive isotope decays with a unique characteristic time}
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Decay is stochastic, characterized by Poisson distribution
+        \item[]So the decay of any one radionuclide cannot be predicted
+        \item[]The probability per time that a nucleus will decay is a constant
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Decay is described by a Poisson process}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\href{https://stattrek.com/probability-distributions/poisson.aspx}{Poisson process notes}
+        \item[]Occurrences are randomly distributed in time
+        \item[]What is the `occurrence' here?
+        \item[]Homogeneous, long term decay rate is constant
+    \end{enumext}
+
+    \begin{equation}
+        \mu \equiv \lambda \Delta t
+    \end{equation}
+
+    \begin{equation}
+        P(n) = e^{-\mu} \cdot \frac{\mu^n}{n!}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]\href{https://uidaho.pressbooks.pub/riskassessment/chapter/statistical-moments/}{Defintion of expected value and variance on the \acs{oer}}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{A radioactive isotope decays with a unique characteristic time}
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]$n(t)$ atoms at $t$ have decayed in $dt$
+    \end{enumext}
+
+    \begin{equation}
+        \lambda n(t) dt
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]The number of atoms that decay on average in the interval $t,(t+dt)$ can be expressed as --
+    \end{enumext}
+
+    \begin{equation}
+        -dn(t)=\lambda n(t) dt
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]You should be able to solve this for $n(0)=n_0$
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Radionuclides are characterized by half life}
+
+    \begin{equation}
+        t_{\frac{1}{2}}=\frac{ln 2}{\lambda}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Half life can be derived from the decay law
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{A radionuclide is `negligible' after 10 half-lives have elapsed}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={notional half life}]{class/ne585/half.life.example.jpg}
+        \caption{Notional half life}
+    \end{figure}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Why would this be important?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{How was half-life discovered?}
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Rutherford discovered alpha and beta particle decay
+        \item[]In the course of, he noticed that there was a characteristic time
+        \item[]Basically observed decay time was the same for each atom
+        \item[]Experiments with thorium led to the discovery of radon
+        \item[]Then observing the radon gas led to the decay/half-life (65 s)
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Gold-198 graphical half life}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={gold-198 half life}]{class/ne585/au198.linear.jpg}
+        \caption{Gold-198 half life}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Engineers like straight lines}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={gold-198 half life on log scale}]{class/ne585/au198.log.jpg}
+        \caption{Gold-198 half life on a log scale}
+    \end{figure}
+
+    \begin{enumext}[topsep=0pt,itemsep=21pt,label=(\arabic*)]
+        \item[]Slope of the line is the decay constant
+    \end{enumext}
+\end{frame}
+
+
+\printglossaryframe[Acronyms]
+
+
+\section{End of presentation}
+
+
+\end{document}

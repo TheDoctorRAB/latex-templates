@@ -1,0 +1,2304 @@
+% @TheDoctorRAB
+%
+% presentation template for class slides Title II digital accessibility
+% compile with pdflatex
+%
+%%%%%
+
+
+%%%%% enable tagging for accessibility
+\DocumentMetadata{
+    tagging=on,
+    check-tagging-status,
+    pdfversion=2.0,
+    pdfstandard=ua-2,
+    lang=en-US,
+    debug={log=all},
+    testphase={latest,tagpdf},
+    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+}
+\tagpdfsetup{math/alt/use}
+%%%%%
+
+
+%%%%% presentation settings
+\documentclass[aspect=1610,pdftex]{ltx-talk}
+\tagpdfsetup{role/new-tag=frametitle/H1} %makes frametitle tag as H1
+
+
+%%% slide footer
+\EditInstance{footer}{std}{
+    element-order={author,title,institute,framenumber},
+    separator={\hfill},
+    background-color=PrideGold,
+    font=\bfseries\tiny,
+    right-hspace=3.5mm
+}
+\geometry{bmargin=0.40cm,footskip=0.27cm} %vertically move footer text and reduce box thickness
+
+
+%%% slide header
+\EditInstance{header}{std}{color=black,font=\large\bfseries\hspace*{-0.75cm},background-color=PrideGold,height=2.10cm}
+\EditInstance{frametitle}{header}{font=\LARGE}
+\geometry{headsep=0.53cm} %vertically move frametitle text and toggle with height
+
+% linewrap
+\makeatletter
+\let\old@frametitle\frametitle
+\renewcommand{\frametitle}[1]{%
+  \old@frametitle{\parbox{0.99\linewidth}{\raggedright #1}}%
+}
+\makeatother
+
+
+%%% titlepage
+\EditInstance{titlepage-element}{title}{font=\bfseries\Large}
+\EditInstance{titlepage-element}{subtitle}{font=\bfseries\large,after-skip=0.10in}
+\EditInstance{titlepage-element}{author}{font=\bfseries}
+\EditInstance{titlepage-element}{institute}{font=\bfseries,after-skip=0.15in}
+\EditInstance{titlepage-element}{date}{
+    font=\bfseries,
+    tag-end={\vspace{0.25in}\includegraphics[width=0.20\textwidth,alt={department logo}]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}}
+}
+
+
+%%% caption setup -- caption package is not compatible with ltx-talk 
+\makeatletter
+\def\fnum@figure{\textbf{\figurename~\thefigure}}
+\makeatother
+
+
+%%% slide background color
+\AddToHook{shipout/background}{
+  \put(0cm, -\paperheight){
+    \color{BackGround}\rule{\paperwidth}{\paperheight}
+  }
+}
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\usepackage[dvipsnames]{xcolor}
+\usepackage[pdftex,dvipsnames]{colortbl} %change font color
+\usepackage[many]{tcolorbox}
+\definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+\newcommand{\x}{\cellcolor{PrideGold}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+%%%%%
+
+
+%%%%% general 
+\usepackage{fancyhdr}
+\usepackage{mmap} %math
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{graphicx}
+%\usepackage{mypythonhighlight,verbatim}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+%\usepackage[inline]{enumitem}
+\usepackage{enumext}
+\setlist[itemize]{label=\textbullet}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage{microtype} %improves typography for pdf
+%%%%%
+
+
+%%%%% links and tags
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={lecture},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={lecture},
+    pdflanguage={en-US},
+    pdfsubject={lecture},
+    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+%\usepackage{times}
+\renewcommand{\sfdefault}{ubuntu}
+%arial - uncomment next two lines
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references ----- natbib does not work with ltx-talk
+\usepackage[style=numeric-comp,backend=biber]{biblatex}
+%addbibresource{} %bib files go here
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[toc,title]{appendix}
+\usepackage[acronym,nomain,nonumberlist,nogroupskip]{glossaries}
+\makenoidxglossaries
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% start frame 1 after title page
+\makeatletter
+    \ExplSyntaxOn
+    \AtBeginDocument{
+  % Force the underlying frame-counter mechanism to step backward
+  % This offsets the titlepage from registering an output slide slot
+  \int_gadd:Nn \c@frame{-1}
+    }
+    \ExplSyntaxOff
+\makeatother
+
+
+%%%%% section environment conflicts with printnoidxglossary
+\makeatletter
+\newif\if@skipsectionhook
+\@skipsectionhookfalse
+
+\AddToHook{cmd/section/after}{%
+  \if@skipsectionhook
+    %do absolutely nothing inside the glossary context
+  \else
+    %section enviroment customization
+    \begin{frame}
+        \thispagestyle{plain}
+        \centering
+        \color{structure}
+        \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,top=17pt,bottom=17pt]
+            \LARGE\bfseries
+            \UseName{l__talk_section_tl}
+        \end{tcolorbox}
+    \end{frame}%
+  \fi
+}
+%%% custom glossary macro
+\newcommand{\printglossaryframe}[1][Glossary]{%
+  \global\@skipsectionhooktrue   % Turn off the section slide builder globally
+  \begin{frame}
+      \vspace*{0.10in}
+      \tiny
+    \frametitle{#1}              % Assign slide header text safely
+      \printnoidxglossaries       % Render the index elements
+  \end{frame}
+  \global\@skipsectionhookfalse  % Instantly turn the section slide builder back on
+}
+\makeatother
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%%%%%
+
+
+%%%%% linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[1] %line numbering interval
+%%%%%
+
+
+%%%%% title page
+\title[short-title={NE585 - Nuclear fuel cycles}]{
+    \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,valign=center,top=11pt,bottom=11pt]
+        NE585\\NUCLEAR FUEL CYCLES\\Front end of the nuclear fuel cycle\\3
+    \end{tcolorbox}
+}
+\author[short-author={@TheDoctorRAB}]{R. A. Borrelli}
+\institute{\acl{ui}}
+\date{\acl{iff}}
+%%%%%
+
+
+\begin{document}
+
+
+\maketitle[framestyle=plain] %no header and footer
+
+
+\begin{frame}
+    \frametitle{Learning objectives}
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item[]Demonstrating how the nuclear fuel cycle is an holistic system
+        \item[]Explaining why the nuclear fuel cycle is what it is
+        \item[]Apply principle of \acs{swu}
+        \item[]Model a nominal solvent extraction system
+        \item[]Model enrichment processes
+        \item[]Demonstrate principles of enrichment and converstion
+        \item[]Some of Chapter 4 in the book
+        \item[]Check out the \href{http://pandoraspromise.com/}{Pandora's promise movie} if it's still on Netflix
+        \item[]There's a lot of pictures here
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Learning nodes}
+    \begin{columns}[c]
+
+        \begin{column}{0.50\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+                \item[]\textbf{Nuclear fuel cycle overview}
+                \item[]\textbf{Locations of current domestic fleet}
+                \item[]\textbf{Plant closures}
+                \item[]\textbf{Nuclear power around the world}
+                \item[]\textbf{Planned construction}
+                \item[]\textbf{Components of the nuclear fuel cycle}
+                \item[]Mining
+                \item[]Milling
+                \item[]Conversion
+                \item[]Enrichment
+                \item[]\acf{swu}
+                \item[]Fuel fabrication
+            \end{enumext}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+                \item[]\hfill\textbf{Macro reactor operation}
+                \item[]\hfill \acs{cp1}
+                \item[]\hfill Hanford B reactor
+                \item[]\hfill \acs{eb1}
+                \item[]\hfill \acs{eb2}
+                \item[]\hfill \acs{trt} 
+                \item[]\hfill Military use
+                \item[]\hfill\textbf{Reactor concepts}
+                \item[]\hfill Generations
+                \item[]\hfill \acs{pwr}
+                \item[]\hfill \acs{bwr}
+                \item[]\hfill \acs{cdu}
+                \item[]\hfill\textbf{Aqueous reprocessing}
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{More learning nodes}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\textbf{Enrichment}
+        \item[]History
+        \item[]Processing
+        \item[]Tails
+        \item[]\textbf{Conversion}
+        \item[]Processing
+    \end{enumext}
+\end{frame}
+
+
+\section{Nuclear fuel cycle overview}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Nuclear fuel cycle}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={nuclear fuel cycle}]{class/ne585/nuclear.fuel.cycle1.jpg}
+        \caption{Nuclear fuel cycle}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Nuclear fuel cycle}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={nuclear fuel cycle}]{class/ne585/nuclear.fuel.cycle2.jpg}
+        \caption{Nuclear fuel cycle}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Nuclear fuel cycle}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.35\textwidth,alt={nuclear fuel cycle}]{class/ne585/nuclear.fuel.cycle3.jpg}
+        \caption{Nuclear fuel cycle}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Look at the fuel cycle as systems engineering}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Mining
+        \item[]Making the fuel (saw Areva plant in Richland)
+        \item[]What a reactor does and the different kinds
+        \item[]Recycling (what kinds and how)
+        \item[]Back-end management (storage and disposal)
+        \item[]The fuel cycle has a lot of technical but institutional issues too
+        \item[]How are they functionally dependent? 
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The fuel used in the commercial reactors is $UO_2$ or $ (Pu+U)O_2$}
+    \begin{columns}[c]
+
+        \begin{column}{0.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\textwidth,alt={nuclear fuel cycle}]{class/ne585/cycle.components.jpg}
+                \caption{Nuclear fuel cycle}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]\textbf{Front end} -- Making the fuel and putting it in the reactor
+                \item[]\textbf{Back end} -- What happens when you take it out of the reactor
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{Locations of current domestic fleet}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acl{npp} sites}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={nuclear power plant sites}]{class/ne585/nuclear.reactor.sites.jpg}
+        \caption{\acl{npp} sites}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Currently operating \acsp{npp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={currently operating plants}]{class/ne585/power-reactors-operating.png}
+        \caption{Currently operating \acsp{npp}}
+    \end{figure}
+\end{frame}
+
+
+\section{\href{https://www.nrc.gov/reactors/operating/list-power-reactor-units.html}{\acs{nrc} list of power reactor units}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{npp} years of operation}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={nuclear plant years of operation}]{class/ne585/plant.life.cycle.jpg}
+        \caption{\acs{npp} years of operation}
+    \end{figure}
+\end{frame}
+
+
+\section{\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/fuel-cycle-overview/}{Plant closures list on the \acs{oer}}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Recent plant closures}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={recent plant closures}]{class/ne585/plant.closures.jpg}
+        \caption{Recent plant closures}
+    \end{figure}
+\end{frame}
+
+
+\section{Let's look at other nations}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acsp{npp} in Europe}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={power plants in Europe}]{class/ne585/europe.jpg}
+        \caption{\acsp{npp} in Europe}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acsp{npp} in Japan}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={power plants in Japan}]{class/ne585/japan.jpg}
+        \caption{\acsp{npp} in Japan}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Where are they going to dispose of everything?}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,alt={power plants in Japan}]{class/ne585/japan2.jpg}
+        \caption{\acsp{npp} in Japan}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Same problem with Korea}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={power plants in Korea}]{class/ne585/korea.jpg}
+        \caption{\acsp{npp} in Korea}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acsp{npp} in Asia}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={power plants in Asia}]{class/ne585/asia.jpg}
+        \caption{\acsp{npp} in Asia}
+    \end{figure}
+\end{frame}
+
+
+\section{\href{https://www.world-nuclear.org/information-library/current-and-future-generation/plans-for-new-reactors-worldwide.aspx}{Plans For New Reactors Worldwide from the World Nuclear Association}}
+\section{Components of the nuclear fuel cycle}
+\section{Mining}
+
+
+\addtocounter{frame}{-3} 
+\begin{frame}
+    \frametitle{We have to find uranium first}
+    \begin{columns}[c]
+
+        \begin{column}{0.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.65\textwidth,alt={uranium global deposits}]{class/ne585/uranium.world.jpg}
+                \caption{Uranium global deposits}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)] 
+                \item[]\href{https://www.uxc.com/p/price/eur}{$U_3O_8$ Nuclear Fuel Price Indicators}
+                \item[]Extract the ore from the ground
+                \item[]What do you do if you don't have it?
+                \item[]Check out Australia
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{Milling}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Uranium ore is refined by milling}
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]The ore contains $UO_2, \; UO_3$ and other heavy metal oxides
+        \item[]Usually using solvents to leach it from the ground
+        \item[]Then it is chemically treated to obtain `yellowcake'
+        \item[]Lots of contaminated scrap is produced though (mill tailings)
+        \item[]Usually dumped as sludge in ponds (lots)
+        \item[]Radioisotopes (radon), heavy metals, chemicals, etc.
+        \item[]We have plenty of uranium resources
+        \item[]But what if we decide it is too harmful to mine?
+    \end{enumext}
+\end{frame}
+
+
+\section{Conversion}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{$U_3O_8$ is converted to $UF_6$ prior to enrichment}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Mined U contains $^{234}U$, $^{235}U$, $^{238}U$, .0054\%, .72\%
+        \item[]Because it is a gas at not so high temperature which is easier for enrichment
+    \end{enumext}
+\end{frame}
+
+
+\section{Enrichment}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{$UF_6$ gas is then enriched with $^{235}U$}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Enriched to 3\% to 5\%
+        \item[]The byproduct is depleted uranium DU
+        \item[]Used for armor and bullets
+        \item[]Any idea why?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Enrichment uses centrifuge cascasdes}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={centrifuge cascade}]{class/ne585/centrifuges.jpg}
+        \caption{Centrifuge cascades}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Enrichment takes advantage of thermodynamics}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,alt={centrifuge process}]{class/ne585/centrifuge.jpg}
+        \caption{Centrifuge process}
+    \end{figure}
+\end{frame}
+
+
+\section{\acf{swu}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{swu} is the to enrich uranium from natural abundance to reactor/weapon grade}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Dumb acronyms are why people hate nuclear
+        \item[]\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/swu/}{\acs{oer} documents on \acs{swu}} 
+    \end{enumext}
+
+    \begin{equation}
+        x_F = 0.0072
+    \end{equation}
+
+    \begin{equation}
+        x_P = 0.03 - 0.05
+    \end{equation}
+
+    \begin{equation}
+        x_W = 0.0002 - 0.0003
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Amount of feed for target product increases linearly with $x_P$ by mass conservation
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Enrichment is just based on mass conservation}
+    \begin{columns}[c]
+
+        \begin{column}{0.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\textwidth,alt={mass conservation}]{class/ne585/mass.conservation.jpg}
+                \caption{Mass conservation}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \begin{equation}
+                F = P + W
+            \end{equation}
+
+            \begin{equation}
+                F \cdot x_F = P \cdot x_P + W \cdot x_W
+            \end{equation}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{swu} measures thermodynamic work to separate isotopes}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\acs{swu} has units of kg because of course it does
+        \item[]Separation potential is a measure of differences in Gibbs free energy
+    \end{enumext}
+
+    \begin{equation}
+        SWU \equiv [P \cdot V(x_P)+W \cdot V(x_W)]-F \cdot V(x_F)
+    \end{equation}
+
+    \begin{equation}
+        V(x_i) \equiv (2x_i - 1) \cdot ln \frac{x_i}{1-x_i}
+    \end{equation}
+    
+    \begin{equation}
+        \frac{SWU}{P} = V(x_P) + \frac{W}{P}V(x_W) - \frac{F}{P}V(x_F)
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]The derivation is based on entropy changes
+        \item[]Change in entropy in \href{https://drive.google.com/file/d/0B1ENwqH9aCq5UnZ4NHNCdHZfN1U/view?resourcekey=0-WXKzU2rJK0q2qVPJcDhutQ}{binary mixture of gases (paper in \acs{oer})}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{What stands out?}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={SWU curve varies with enrichment}]{class/ne585/swu.jpg}
+        \caption{\acs{swu} curve varies with enrichment}
+    \end{figure}
+\end{frame}
+
+
+\section{Fuel Fabrication}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}{The fuel fabrication process (\acsp{lwr}) makes ceramic $UO_2$ pellets}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Why ceramic?
+        \item[]Is there anything better?
+        \item[]Fuel rods contain a Zr-based alloy
+        \item[]\href{https://inis.iaea.org/collection/NCLCollectionStore/_Public/47/032/47032411.pdf}{Paper on generating hydrogen gas}
+    \end{enumext}
+
+    \begin{equation}
+        Zr+2H_2O \rightarrow ZrO_2+2H_2
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]That's kind of what happened at \href{https://www.nature.com/news/2011/110322/full/471417a.html}{Fukushima (article on Nature)}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Fuel pellet}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={fuel pellet}]{class/ne585/pellet.jpg}
+        \caption{Fuel pellet}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{How much energy do you get from one atom of uranium versus carbon?}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.40\textwidth,alt={uranium fuel pellet and assembly}]{class/ne585/pwr.jpg}
+        \caption{Uranium fuel pellet and assembly}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Assemblies are about 12 feet tall}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,alt={BWR assembly}]{class/ne585/bwr.jpg}
+        \caption{\acs{bwr} assembly}
+    \end{figure}
+\end{frame}
+
+
+\section{Macro reactor operation}
+\section{\acf{cp1}}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{The first man made reactor was constructed at the University of Chicago in 1942}
+    \begin{columns}[c]
+
+        \begin{column}{0.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.65\textwidth,alt={Chicago Pile 1}]{class/ne585/cp1.jpg}
+                \caption{\acl{cp1}}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/front-end-of-the-fuel-cycle-2/}{University of Chicago videos on the \acs{oer}}
+                \item[]Made of uranium and graphite blocks
+                \item[]Cadmium coated rods
+                \item[]And I have a piece of the graphite
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{Let's look at pictures of the Hanford B reactor}
+\section{Same design as CP1}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={Hanford B Reactor}]{class/ne585/hb1.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={Hanford B Reactor}]{class/ne585/hb2.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.35\textwidth,alt={Hanford B Reactor}]{class/ne585/hb3.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.35\textwidth,alt={Hanford B Reactor}]{class/ne585/hb4.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb5.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb6.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb7.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb8.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb9.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb10.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb11.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb12.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb13.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb14.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Hanford B Reactor}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Hanford B Reactor}]{class/ne585/hb15.jpg}
+        \caption{Hanford B Reactor}
+    \end{figure}
+\end{frame}
+
+
+\section{Natural reactor}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{A natural reactor actually happened about 2 billion years ago}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/nuclear-fuel-cycle-system/}{Fuel cycle on the \acs{oer}}
+        \item[]\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/neutronics/}{Neutronics on the \acs{oer}}
+        \item[]16 sites operated for about $10^5$ years at 100 kW thermal
+        \item[]French company found samples of 0.60\% of $^{235}U$
+        \item[]How much is there normally?
+        \item[]Uranium rich mineral deposits were infiltrated by groundwater which served as moderator
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Oklo location}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={Oklo location}]{class/ne585/oklo.location.jpg}
+        \caption{Oklo location}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{How the Oklo reactors worked}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={How the Oklo reactors worked}]{class/ne585/oklo.jpg}
+        \caption{How the Oklo reactors worked}
+    \end{figure}
+\end{frame}
+
+
+\section{\acs{eb1}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{eb1} was the first reactor to generate electricity}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]In 1951 -- now a museum, open to the public for free
+        \item[]\href{https://inl.gov/experimental-breeder-reactor-i/}{Location of \acs{eb1}}
+        \item[]About 200 kW of electricity
+        \item[]Also was a breeder and first to confirm Fermi’s theory
+        \item[]`Fast' reactor, metal fuel and molten salt designs
+        \item[]Then the commercial reactors switched to ceramic and water
+        \item[]Why?
+        \item[]Now the so called Generation IV reactor designs use metals and salts 
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} lit up 4 light bulbs}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={nuclear power first generating electricity}]{class/ne585/ebr1.light.jpg}
+        \caption{\acs{eb1} lit up 4 light bulbs}
+    \end{figure}
+\end{frame}
+
+
+\section{More pictures}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={ebr-1 museum}]{class/ne585/ebr1.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={ebr-1 museum}]{class/ne585/ebr2.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={ebr-1 museum}]{class/ne585/ebr3.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={ebr-1 museum}]{class/ne585/ebr4.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={ebr-1 museum}]{class/ne585/ebr5.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={ebr-1 museum}]{class/ne585/ebr6.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={ebr-1 museum}]{class/ne585/ebr7.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={ebr-1 museum}]{class/ne585/ebr8.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={ebr-1 museum}]{class/ne585/ebr9.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={ebr-1 museum}]{class/ne585/ebr10.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.15\textwidth,alt={ebr-1 museum}]{class/ne585/ebr11.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={ebr-1 museum}]{class/ne585/ebr12.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={ebr-1 museum}]{class/ne585/ebr13.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb1} museum}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={ebr-1 museum}]{class/ne585/ebr14.jpg}
+        \caption{\acs{eb1} museum}
+    \end{figure}
+\end{frame}
+
+
+\section{\acs{eb2}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{eb2} is an \acf{sfr} design for 62.5 \acs{mwt} that operated from 1964 to 1994}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]19 \acs{mwe} electricity operated for 30 years with no accidents
+        \item[]Engineering scale facility
+        \item[]Breeder reactor with onsite reprocessing (pyroprocessing)
+        \item[]\href{https://youtu.be/Sp1Xja6HlIU}{Famous test of passive safety systems video}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{eb2} schematics}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={core schematics}]{class/ne585/ebrii.jpg}
+        \caption{\acs{eb2} schematics}
+    \end{figure}
+\end{frame}
+
+
+\section{\acs{trt}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{trt} is an air cooled, graphite moderated thermal reactor}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Operation from 1959 to 1994
+        \item[]Transient reactor tests to simulate all sorts of reactor accidents
+        \item[]George Imel
+        \item[]Restarted and working on experiments!
+        \item[]Because of Fukushima, \acs{trt} accident tolerant fuels
+        \item[]Everyone is excited
+        \item[]100 kW; transients up to 19 GW
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{trt} in person}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.30\textwidth,alt={treat reactor}]{class/ne585/treat.jpg}
+        \caption{\acs{trt}}
+    \end{figure}
+\end{frame}
+
+
+\section{Military use}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Nuclear reactors are used on submarines and aircraft carriers}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\href{https://www.independent.co.uk/life-style/history/a-day-that-shook-the-world-first-nuclear-submarine-launched-2189571.html}{Newsreels on the Nautilus launch in 1954}
+        \item[]25 year life span
+        \item[]Nimitz-class aircraft carriers have 2 reactors, about 100 \acs{mwe}, 23 year life span
+        \item[]How about now?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Nautilus submarine}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={Nautilus submarine}]{class/ne585/nautilus.jpg}
+        \caption{Nautilus submarine}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Aircraft carriers have reactors too}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={aircraft carrier}]{class/ne585/carrier.jpg}
+        \caption{Aircraft carrier enters the danger zone. \href{https://youtu.be/siwpn14IE7E}{Top Gun theme classic.}}
+    \end{figure}
+\end{frame}
+
+
+\section{Reactor concepts}
+\section{Generations}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Reactors were first built in the 1950s}
+    \begin{columns}[c]
+
+        \begin{column}{0.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\textwidth,alt={reactor generations}]{class/ne585/generation.jpg}
+                \caption{Reactor generations}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]Gen IV is essentially based on Gen I
+                \item[]Different material for fuels and coolant
+                \item[]Moderators not needed for some
+                \item[]Passive safety systems
+                \item[]Proliferation issues -- so they say
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{\acs{pwr}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{The \acs{pwr} heats water but does not boil}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={pressurized water reactor}]{class/ne585/pwr.system.jpg}
+        \caption{\acs{pwr}}
+    \end{figure}
+\end{frame}
+
+
+\section{\acs{bwr}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{The \acs{bwr} does boil water in the reactor vessel}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={boiling water reactor}]{class/ne585/bwr.system.jpg}
+        \caption{\acs{bwr}}
+    \end{figure}
+\end{frame}
+
+
+\section{\acs{cdu}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{The \acs{cdu} design uses heavy water (moderator) and natural uranium (also thermal)}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={candu reactor}]{class/ne585/CANDU.jpg}
+        \caption{\acs{cdu}}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{More on \acs{cdu}}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Used in Canada and marketed to other nations
+        \item[]South Korea, China, India have some
+        \item[]\acs{pwr} design (two loops)
+        \item[]The heavy water is less absorbing so natural U can be used
+        \item[]But also more collisions would be needed than in \acsp{lwr}
+        \item[]The core would be bigger
+        \item[]But can use used fuel from \acsp{lwr} and a Th cycle
+        \item[]So is there an advantage?  Technical?  Institutional?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The \acs{cdu} design uses heavy water (moderator) and natural uranium (also thermal)}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={Homer Simpson}]{class/ne585/simpsons.jpg}
+        \caption{Homer Simpson is bad at his job}
+    \end{figure}
+\end{frame}
+
+
+\section{Aqueous reprocessing}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Aqueous recycling is the commercially available process for \acsp{lwr}}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/countercurrent-solvent-extraction/}{More information in the \acs{oer}}
+        \item[]Terry Todd leading expert
+        \item[]Major nations are France, Japan, Russia, India
+        \item[]`Recycle' is better for the brand
+        \item[]About 1\% 235U and 1\% Pu in used fuel
+        \item[]The most common is \acs{pur}
+        \item[]This uses an organic phosphate and nitric acid
+        \item[]Solvent extraction process where U and Pu are separated
+        \item[]Then created into \acs{mox} fuel
+        \item[]So for \acs{pur} what is a big risk?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{pur} flowsheet}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,alt={purex flowsheet}]{class/ne585/purex.jpg}
+        \caption{\acs{pur} flowsheet}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{U and Pu are chemically separated through organic solvent equilibrium extraction}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]U and Pu exist in a number of valence states
+        \item[]Because of different redox potentials, reduction or oxidation can be done to one without disturbing the other
+        \item[]Each exhibits different solubilities in organic solvent \acs{tbp}
+    \end{enumext}
+
+    \begin{enumext}[topsep=0pt,itemsep=7pt,label=(\arabic*)]
+        \item Chop up everything, remove \acs{fp} gases, dissolve in aqueous solution
+        \item Separate U/Pu from fission products by dissolving in solvent
+        \item Reduce Pu to 3+ because it is highly insoluble in solvent (U 6+)
+        \item Back extract Pu into aqueous solution  
+        \item Strip U from solvent into aqueous solution
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{U and Pu are chemically separated through organic solvent equilibrium extraction}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Aqueous solution is nitric acid
+        \item[]Does generate a lot of liquid waste
+        \item[]Mass transfer to solvent phase -- extraction  
+        \item[]Mass transfer to aqueous phase --`` stripping
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Mass transfer operates in a continuous, multistage, countercurrent mode}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]High separation factor
+        \item[]High processing rates
+        \item[]Streams flow countercurrently, so concentration is relatively constant
+        \item[]Solvent must be recycled because it's not cheap
+        \item[]First applied to extract Pu for weapons production in 1952 at Hanford site
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Metals in 4+ and 6+ are extracted}
+    \begin{equation}
+        (UO_2)^{2+}(aq) + 2(NO_3)^-(aq) + 2TPB(o) \leftrightarrow UO_2(NO_3)_2 \cdot 2TBP(o)
+    \end{equation}
+    
+    \begin{equation}
+        An^{4+}(aq) + 4NO_3^-(aq) + 2TBP(o) \leftrightarrow An_2(NO_3)_4 \cdot 2TBP(o)
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Pu (as 4+) co-extracted with U
+        \item[]Anything 3+ or lower is not
+        \item[]Waste is vitrified into a borosilicate glass waste form for disposal
+        \item[]Well characterized material with 50+ years of scientific study
+        \item[]Very stable
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{pur} mass conservation}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={purex stage extraction}]{class/ne585/purex.flow.jpg}
+        \caption{\acs{pur} stage extraction}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Typical mass conservation is used to model solvent extraction}
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]This is from Benedict
+        \item[]Distribution coefficient = organic/aqueous phase concentration at equilibrium
+    \end{enumext}
+
+    \begin{equation}
+        D \equiv \frac{y}{x}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]When an aqueous solution of an extractable component is brought into equilibrium with an immiscible solvent for the component and the two phases are then separated, the component will be found distributed between the two phases
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{We then derive the material balance on the extractable component}
+    \begin{equation}
+        Fz = Fx + Ey
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]With $D$ for the system defined before
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{pur} single stage extraction}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.50\textwidth,alt={single stage extraction}]{class/ne585/single.stage.jpg}
+        \caption{\acs{pur} single stage extraction}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Derive the concentration that is extracted}
+    \begin{equation}
+        D \equiv \frac{y}{x}
+    \end{equation}
+    
+    \begin{equation}
+        Fz = Fx + Ey
+    \end{equation}
+    
+    \begin{equation}
+        \therefore y = \frac{Dz}{1+\frac{ED}{F}}
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]And the fraction extracted is -- 
+    \end{enumext}
+
+    \begin{equation}
+        \rho = \frac{Ey}{Fz} = \frac{1}{1+\frac{F}{ED}}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]For design then, you only need 3 parameters
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Derive the solvent feed needed for a given extraction fraction}
+    \begin{equation}
+        \frac{E}{F} = \frac{\rho}{D(1 - \rho)}
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]What is the functional dependence of $E(\rho)$?
+        \item[]Amount of used fuel isn't actually a variable 
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Reduce the amount of solvent by using multiple contact stages}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]With many stages, high extraction fraction can be obtained
+        \item[]Solvent is expensive, so recycling stages are also added to strip out extract
+        \item[]Multiple components can be extracted from organic phase if $D$ is different enough
+        \item[]So this would be needed to completely separate U, Pu
+        \item[]Physical conditions affecting $D$ --
+            \begin{enumext}[topsep=0pt,itemsep=3pt,label=(\arabic*)]
+                \item[]Element extracted
+                \item[]Redox potential of aqueous phase
+                \item[]Solvent
+                \item[]Concentrations
+                \item[]$[H^+]_{aq}$
+            \end{enumext}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{pur} flowsheet}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,alt={purex flowsheet}]{class/ne585/purex.jpg}
+        \caption{\acs{pur} flowsheet}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Multistage extraction}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={multistage extraction}]{class/ne585/multistage.jpg}
+        \caption{Multistage extraction}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Multistage extraction engineering diagram}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={multistage extraction engineering diagram}]{class/ne585/engineering.flow.jpg}
+        \caption{Multistage extraction engineering diagram}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Now apply same mass conservation to multistage extraction}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Assume equilibrium between phases
+        \item[]Material balance on extractable component below stage $n$ --
+    \end{enumext}
+
+    \begin{equation}
+        Ey_0 + Fx_n = Ey_{n-1} + Fx_1
+    \end{equation}
+
+    \begin{equation}
+        y_{n-1} - y_0 = \frac{F}{E}(x_n-x_1)
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]$\therefore$ for any stage -- 
+    \end{enumext}
+
+    \begin{equation}
+        y_n \equiv D_nx_n
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{A McCabe-Thiele diagram can be used for constructing graphical solution for for stage concentrations}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\href{http://ljs.academicdirect.org/A20/079_094.pdf}{Journal of Science article on Simulation of Multistage Countercurrent Liquid-Liquid Extraction} 
+        \item[]Basically gives the number of stages for an extraction concentration $x_F$
+        \item[]By graphing $y_{n-1} - y_0 = \frac{F}{E}(x_n-x_1)$ on $y$ versus $x$
+        \item[]Construct operating line to satisfy the above and pass through $x_1,y_0$ with slope $\frac{F}{E}$ relative to equilibrium line $y_n = D_nx_n$
+        \item[]Cannot really change equilibrium line because it is based on $D$
+        \item[]Reduce the concentration of the extractable component from $x_F$ to $x_1$ with $\frac{F}{E}$
+        \item[]Start at $x_1,y_0$ and move up
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{McCabe-Thiele diagram}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.50\textwidth,alt={McCabe-Thiele diagram}]{class/ne585/mccabe.jpg}
+        \caption{McCabe-Thiele diagram}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Derive the extraction factor for multiple stages}
+    \begin{equation}
+        \rho \equiv \frac{Ey_N}{Fx_F}
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Or -- 
+    \end{enumext}
+
+    \begin{equation}
+        1 - \rho = \frac{x_1}{x_F}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]What does this tell us?
+        \item[]And feed ratio can be defined in terms of $f(\rho)$ as --
+    \end{enumext}
+
+    \begin{equation}
+        \frac{E}{F} = \frac{\rho x_F}{y_N-y_0}
+    \end{equation}
+\end{frame}
+
+
+\section{How many stages for complete extraction?}
+\section{What does that look like on McCabe-Thiele?}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Apply these concepts to model multistage extraction based on \href{http://wwwcourses.sens.buffalo.edu/ce407/notes/ce407_notes_Lecture03.pdf}{Kremser equation course notes}}
+    \begin{equation}
+        y_{n-1} - y_0 = \frac{F}{E}(x_n-x_1)
+    \end{equation}
+    
+    \begin{equation}
+        y_n \equiv D_nx_n
+    \end{equation}
+    
+    \begin{equation}
+        \beta \equiv \frac{DE}{F}
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Then -- 
+    \end{enumext}
+
+    \begin{equation}
+        y_n = \beta (y_{n-1} - y_0) + Dx_1
+    \end{equation}
+
+    \begin{equation}
+        y_N = \frac{\beta^N - 1}{\beta - 1}(Dx_1-y_0) +y_0
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{This can also be applied if there are two extractable components in the feed}
+    \begin{equation}
+        D_A \; D_B \; \beta_A \; \beta_B
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Define decontamination factor. What does this mean?
+    \end{enumext}
+
+    \begin{equation}
+        f_{AB} \equiv \frac{\rho_A}{\rho_B}
+    \end{equation}
+
+    \begin{equation}
+        f_{AB} = \frac{\beta_A}{\beta_B}(\frac{\beta^N_A - 1}{\beta^N_B - 1})(\frac{\beta^{N+1}_B - 1}{\beta^{N+1}_A - 1}), \; y_0 = 0
+    \end{equation}
+\end{frame}
+
+
+\section{Conversion \& Enrichment}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Uranium enrichment derived from World War II}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Needed to make bombs
+        \item[]Then used the uranium for submarines 
+        \item[]When moving to commercial power, infrastructure already in place
+        \item[]Gaseous diffusion first invented at Oak Ridge
+        \item[]Uranium hexafluoride used for enrichment
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Yellowcake needs to be purified first}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Impurities are rare earths, chlorine cadmium
+        \item[]Uranium readily forms chemical compounds (lots of oxidation states)
+        \item[]Can be extracted by organic solvents
+        \item[]Uranium forms complexes that can be precipitated out
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{There are different forms that are mined}
+    \begin{equation}
+        \begin{aligned}
+            & xUO_2 \cdot yUO_3
+            \\
+            & 0 < y/x < 2
+        \end{aligned}
+    \end{equation}
+    
+    \begin{equation}
+        K_2O \cdot 2UO_3 \cdot V_2O_5 \cdot xH_2O
+    \end{equation}
+
+    \begin{equation}
+        CaO \cdot 2UO_3 \cdot P_2O_5 \cdot xH_2O
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Goal is to get it as $UO_3^{2+}$ and then acid or alkaline leaching
+    \end{enumext}
+
+    \begin{equation}
+        UO_3 + 2H^+ \rightarrow UO_2^{2+} + H_2O
+    \end{equation}
+
+    \begin{equation}
+        UO_2 + 2Fe^{3+} \rightarrow UO_2^{2+} + 2Fe^{2+}
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Acid leaching is like \acs{pur} using organic solvent}
+    \begin{equation}
+        UO_2^{2+} + 2NO_3 + 2TBP \rightarrow UO_2(NO_3)_2 \cdot 2TBP
+    \end{equation}
+    
+    \begin{equation}
+        UO_2(NO_3)_2 + 2H_2O_2 + H_2O \rightarrow UO_4 \cdot 2H_2O + 2HNO_3
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Precipitates uranium peroxide
+    \end{enumext}
+
+    \begin{equation}
+        2Na_2S_2O_3 + UO_4 + H_2O \rightarrow Na_2S_4O_6 + UO_3 + 2NaOH
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Or use ammonium hydroxide
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Acid leaching is like \acs{pur} using organic solvent}
+    \begin{equation}
+        UO_2^{2+} + 6NH_4(OH) \rightarrow (NH_4)_2U_2O_7 + 4NH_4^+ + 3H_2O
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Then dry and calcine to get $UO_3$
+        \item[]If alkaline leaching is used, recover $U_3O_8$
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Uranium hexafluoride has favorable properties}
+    \begin{columns}[c]
+
+        \begin{column}{0.45\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.65\textwidth,alt={uranium hexafluoride phase diagram}]{class/ne585/uf6.phase.diagram.jpg}
+                \caption{Uranium hexafluoride phase diagram}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.55\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]Solid at room temperature
+                \item[]Easy to handle
+                \item[]Relatively low pressure
+                \item[]Not too high temperature to sublimate
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Conversion applies hydrofluor process}
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Crushed $U_3O_8$ and $UO_3$ is reduced by hydrogen to get `crude' $UO_2$
+    \end{enumext}
+
+    \begin{equation}
+        U_3O_8 + 2H_2 \rightarrow 3UO_2 + 2H_2O
+    \end{equation}
+    
+    \begin{equation}
+        UO_3 + H_2 \rightarrow UO_2 + H_2O
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Conversion applies hydrofluor process}
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Then --
+    \end{enumext}
+
+    \begin{equation}
+        UO_2 + 4HF \rightarrow UF_4 + 2H_2O
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]$UF_4$ is a solid green salt with a high melting point ($1700^oF$)
+        \item[]Treated with fluorine gas and distilled -- 
+    \end{enumext}
+
+    \begin{equation}
+        UF_4 + F_2 \rightarrow UF_6
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Enrichment based on different diffusion rates}
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Separation factor --
+    \end{enumext}
+
+    \begin{equation}
+        \alpha \equiv \frac{v_5}{v_8} = \sqrt{\frac{m_8}{m_5}}
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=8pt,label=(\arabic*)]
+        \item[]Based on kinetic energy of the molecule $kT = \frac{1}{2}mv^2$
+        \item[]This just says lighter molecules move faster
+        \item[]$\alpha = 1.004289$ for uranium enrichment
+        \item[]Higher value, easier enrichment
+        \item[]This isn't that high
+        \item[]Low enrichment takes a lot of energy
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Cascades are designed to enrich}
+    \begin{columns}[c]
+
+        \begin{column}{0.45\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\textwidth,alt={centrifuge diffusion}]{class/ne585/enrichment.stage.jpg}
+                \caption{Centrifuge diffusion}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.55\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]Basic operation is the stage
+                \item[]Join stages to form cells
+                \item[]Cells form unit
+                \item[]Together all that is a cascade
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Enriching and stripping stages added for efficiency}
+    \begin{columns}[c]
+
+        \begin{column}{0.40\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.45\textwidth,alt={gas diffusion cascade}]{class/ne585/Gas_Diffusion.jpg}
+                \caption{Gas diffusion cascade}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.60\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]Feed enters to A-1
+                \item[]Enriched feed goes through B-2
+                \item[]Depleted through the bottom stage
+                \item[]Moving up is higher enrichment
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Enrichment based on mass conservation}
+    \begin{columns}[c]
+
+        \begin{column}{0.40\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\textwidth,alt={mass conservation}]{class/ne585/enrichment_material.flow.jpg}
+                \caption{Mass conservation}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.60\textwidth}
+            \begin{equation}
+                F = P + W
+            \end{equation}
+            
+            \begin{equation}
+                x_F F = x_P P +x_W W
+            \end{equation}
+            
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]Separation factor ratio between product and tails --
+            \end{enumext}
+            
+            \begin{equation}
+                \alpha \equiv \frac{x_P(1-x_P)^{-1}}{x_W(1-x_W)^{-1}}
+            \end{equation}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{And mass flow}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]$x_F$ = weight fraction $^{235}U$ feed into system
+        \item[]$x_P$ = weight fraction $^{235}U$ product (enrichment target)
+        \item[]$x_W$ = weight fraction $^{235}U$ waste stream (depleted U)
+        \item[]$F$ = mass flow rate feed
+        \item[]$P$ = mass flow rate product
+        \item[]$W$ = mass flow rate waste stream
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Derive feed factor}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]$x_F$ fixed at 0.00711
+        \item[]$x_P$ enrichment target
+        \item[]$x_w$ 0.002 - 0.003 depends on company
+        \item[]Feed factor gives mass of U needed to feed into system for target enrichment  --
+    \end{enumext}
+
+    \begin{equation}
+        \frac{F}{P} = \frac{x_P-x_W}{x_F-x_w}
+    \end{equation}
+\end{frame}
+    
+
+\begin{frame}
+    \frametitle{Derive feed factor}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Similarly waste factor --
+    \end{enumext}
+
+    \begin{equation}
+        \frac{W}{P} = \frac{x_P-x_F}{x_F-x_W} = \frac{F}{P} - 1
+    \end{equation}
+\end{frame}
+
+
+\section{How are tails managed?}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Only one company enriches by gaseous diffusion}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]1992 -- United States Enrichment Corporation established under Energy Policy Act
+        \item[]1998 -- privatized with so you can buy stock
+        \item[]Operates plant in Paducah up to 5\%
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Enrichment also done by centrifuge}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]1970 -- \href{https://urenco.com/}{URENCO established with United Kingdom, Dutch, Germany}
+        \item[]1977 -- Construction of US plant in Ohio, but Reagan scrapped it in favor of laser
+        \item[]Rotating drum causes centrifugal force to compress gas molecules to the outer wall
+        \item[]Velocity of molecules separates differing those of differing weights
+        \item[]Light molecules collect near center of drum
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Still based on conservation of mass}
+    \begin{columns}[c]
+
+        \begin{column}{0.25\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.65\textwidth,alt={gas centrifuge}]{class/ne585/gas.centrifuge.jpg}
+                \caption{Gas centrifuge}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.75\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+                \item[]Lighter $U^{235}$ molecules collect toward center
+                \item[]Rotational motion of he centrifuge accelerates gas molecules toward  wall
+                \item[]Counteracting diffusive force thermal motion of molecules seeks to distribute the gas evenly
+                \item[]Two forces balance to create a dynamic equilibrium
+                \item[]Pressure distribution in the rotor that is function of the molecular mass
+            \end{enumext}
+            
+            \begin{equation}
+                \alpha = exp^{\frac{(m_8-m_5) \omega^2 a^2}{2RT}} \approx 1 + \frac{(m_8-m_5) \omega^2 a^2}{2RT}
+            \end{equation}
+            
+            \begin{equation}
+                p(r) = p_0 exp^{\frac{m \omega^2 r^2}{2RT}}
+            \end{equation}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Design based on separative power}
+    \begin{equation}
+        SWU = \frac{\pi \rho DL}{2}(\frac{\Delta m \omega^2}{2RT})^2
+    \end{equation}
+    
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]density of uranium hexafluoride; isotope self-diffusion; mass difference; length of rotor
+        \item[]Proportional to length and 4th power of speed
+        \item[]Inverse to temperature squared
+        \item[]What does this say about how to design the centrifuge?
+        \item[]It's actually small \acs{swu} per centrifuge, so up to 100,000 needed forr 9 million SWU/y
+        \item[]That would be needed for industrial scale
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{There are only 3 companies in the USA interested in centrifuges}
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item[]USEC Inc. (USEC)
+        \item[]\href{https://www.nirs.org/les/}{Louisiana Energy Services (LES)}
+        \item[]AREVA Enrichment Services (AES)
+        \item[]USEC submitted application to operate a commercial facility
+        \item[]American Centrifuge Plant (ACP) August 2004
+        \item[]\acs{nrc} issued a license April 2007 
+        \item[]Construction of the facility is currently on hold (did not get \acs{doe} grant)
+        \item[]Chapter 11 in 2014 -- now called \href{http://www.centrusenergy.com/}{Centrus Energy Corp}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Louisiana Energy Services activity}
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item[]LES submitted license application NRC December 2003 for a 3 million \acs{swu}/year facility
+        \item[]One-third of the United States demand
+        \item[]Lea County, New Mexico
+        \item[]June 2006 -- \acs{nrc} issued LES a license to construct and operate
+        \item[]Began operations in June 2010 while continuing construction
+        \item[]Part of \href{https://www.urenco.com/global-operations}{URENCO}
+        \item[]July 2014 -- All cascades operational
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{AREVA Enrichment Services (AES) activity}
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item[]December 2008 -- AES submitted a license application for Eagle Rock Enrichment Facility to \acs{nrc}
+        \item[]18 miles west of Idaho Falls! 
+        \item[]September 2010 -- \acs{nrc} issued the \href{https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1951/index.html}{Safety Evaluation Report (NUREG-1951)}
+        \item[]February 2011 -- \href{https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1945/index.html}{Final Environmental Impact Statement (NUREG-1945)}
+        \item[]October 2011 -- \href{http://www.new.areva.com/EN/operations-780/the-eagle-rock-enrichment-facility-enrichment-by-centrifugation.html}{\acs{nrc} issued AES license to construct and operate the Eagle Rock Enrichment Facility}
+        \item[]\href{http://www.wise-uranium.org/epusarc.html}{Construction currently inactive status update}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Lasers can be used for enrichment}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={shark with laser beams}]{class/ne585/shark.png}
+        \caption{Shark with laser beam}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Is laser enrichment any good?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Started in 1985
+        \item[]Absorption spectrum of uranium metal vapor
+        \item[]More than 300,000 lines at visible wavelengths
+        \item[]Sufficient displacement between lines
+        \item[]Selective excitation of $^{235}U$ based on laser wavelength
+        \item[]Requires liquid uranium at $2300^oC$
+        \item[]Laser at 5915 angstroms to excite $^{235}U$
+        \item[]Ultraviolet light at 3100 angstroms ionizes $^{235}U$
+        \item[]Then it is collected in a Faraday cup
+        \item[]Low throughput, high temperature, high energy
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Current developments}
+    \begin{columns}[c]
+
+        \begin{column}{0.45\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\textwidth,alt={laser enrichment}]{class/ne585/laser.enrichment.jpg}
+                \caption{Laser enrichment}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.55\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+                \item[]\href{https://www.world-nuclear-news.org/Articles/US-government-approves-GLE-restructure}{GE got an operating license article on World Nuclear News}
+                \item[]Doesn't seem like much progress, limited testing with DU in Paducah
+                \item[]Different process than what we were just talking about though 
+                \item[]Looking to construct in Wilmington
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Han shot first!}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={Han Solo shoots Greedo}]{class/ne585/han.solo.jpg}
+        \caption{Han Solo shoots Greedo}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Molecular separation uses uranium hexafluoride}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Uses different vibrational and rotational states between isotopes
+        \item[]Almost the same procedure
+        \item[]$^{235}U$ molecule is dissociated and precipitates to a $^{235}UF_5$ powder
+        \item[]Need to reduce the vapor pressure to 77K
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Underrated 80s gem}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={Real Genius scene}]{class/ne585/real.genius.jpg}
+        \caption{Real Genius}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{SILEX seems to be state of the art}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Uses carbon dioxide laser at 10.8 um and amplified to 16 um
+        \item[]Infrared spectrum
+        \item[]Preferentially excites $^{235}UF_5$
+        \item[]Again trapped electromagnetically
+        \item[]Still inefficient due to laser frequency
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Price used to be set by government}
+    \begin{columns}[c]
+
+        \begin{column}{0.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\textwidth,alt={swu price}]{class/ne585/swu.png}
+                \caption{\acs{swu} price}
+            \end{figure}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]From Atomic Energy Act 1954
+                \item[]Prices then set by USEC based on market conditions
+                \item[]Used to be high because of high energy requirements of gaseous diffusion plants
+                \item[]What now?
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{World capacity is estimated at 60 million \acs{swu}}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\href{http://www.world-nuclear.org/information-library/nuclear-fuel-cycle/conversion-enrichment-and-fabrication/uranium-enrichment.aspx}{World enrichment capacity}
+        \item[]US demand at 15 million \acs{swu} per year
+        \item[]Import a lot from Europe, Russia, China
+        \item[]What's the problem here?
+    \end{enumext}
+\end{frame}
+
+
+\printglossaryframe[Acronyms]
+
+
+\section{End of presentation}
+
+
+\end{document}

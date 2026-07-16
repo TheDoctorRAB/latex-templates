@@ -1,0 +1,1279 @@
+% @TheDoctorRAB
+%
+% presentation template for class slides Title II digital accessibility
+% compile with pdflatex
+%
+%%%%%
+
+
+%%%%% enable tagging for accessibility
+\DocumentMetadata{
+    tagging=on,
+    check-tagging-status,
+    pdfversion=2.0,
+    pdfstandard=ua-2,
+    lang=en-US,
+    debug={log=all},
+    testphase={latest,tagpdf},
+    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+}
+\tagpdfsetup{math/alt/use}
+%%%%%
+
+
+%%%%% presentation settings
+\documentclass[aspect=1610,pdftex]{ltx-talk}
+\tagpdfsetup{role/new-tag=frametitle/H1} %makes frametitle tag as H1
+
+
+%%% slide footer
+\EditInstance{footer}{std}{
+    element-order={author,title,institute,framenumber},
+    separator={\hfill},
+    background-color=PrideGold,
+    font=\bfseries\tiny,
+    right-hspace=3.5mm
+}
+\geometry{bmargin=0.40cm,footskip=0.27cm} %vertically move footer text and reduce box thickness
+
+
+%%% slide header
+\EditInstance{header}{std}{color=black,font=\large\bfseries\hspace*{-0.75cm},background-color=PrideGold,height=2.10cm}
+\EditInstance{frametitle}{header}{font=\LARGE}
+\geometry{headsep=0.53cm} %vertically move frametitle text and toggle with height
+
+% linewrap
+\makeatletter
+\let\old@frametitle\frametitle
+\renewcommand{\frametitle}[1]{%
+  \old@frametitle{\parbox{0.99\linewidth}{\raggedright #1}}%
+}
+\makeatother
+
+
+%%% titlepage
+\EditInstance{titlepage-element}{title}{font=\bfseries\Large}
+\EditInstance{titlepage-element}{subtitle}{font=\bfseries\large,after-skip=0.10in}
+\EditInstance{titlepage-element}{author}{font=\bfseries}
+\EditInstance{titlepage-element}{institute}{font=\bfseries,after-skip=0.15in}
+\EditInstance{titlepage-element}{date}{
+    font=\bfseries,
+    tag-end={\vspace{0.25in}\includegraphics[width=0.20\textwidth,alt={department logo}]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}}
+}
+
+
+%%% caption setup -- caption package is not compatible with ltx-talk 
+\makeatletter
+\def\fnum@figure{\textbf{\figurename~\thefigure}}
+\makeatother
+
+
+%%% slide background color
+\AddToHook{shipout/background}{
+  \put(0cm, -\paperheight){
+    \color{BackGround}\rule{\paperwidth}{\paperheight}
+  }
+}
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\usepackage[dvipsnames]{xcolor}
+\usepackage[pdftex,dvipsnames]{colortbl} %change font color
+\usepackage[many]{tcolorbox}
+\definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+\newcommand{\x}{\cellcolor{PrideGold}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+%%%%%
+
+
+%%%%% general 
+\usepackage{fancyhdr}
+\usepackage{mmap} %math
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{graphicx}
+%\usepackage{mypythonhighlight,verbatim}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+%\usepackage[inline]{enumitem}
+\usepackage{enumext}
+\setlist[itemize]{label=\textbullet}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage{microtype} %improves typography for pdf
+%%%%%
+
+
+%%%%% links and tags
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={lecture},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={lecture},
+    pdflanguage={en-US},
+    pdfsubject={lecture},
+    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+%\usepackage{times}
+\renewcommand{\sfdefault}{ubuntu}
+%arial - uncomment next two lines
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references ----- natbib does not work with ltx-talk
+\usepackage[style=numeric-comp,backend=biber]{biblatex}
+%addbibresource{} %bib files go here
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[toc,title]{appendix}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% start frame 1 after title page
+\makeatletter
+    \ExplSyntaxOn
+    \AtBeginDocument{
+  % Force the underlying frame-counter mechanism to step backward
+  % This offsets the titlepage from registering an output slide slot
+  \int_gadd:Nn \c@frame{-1}
+    }
+    \ExplSyntaxOff
+\makeatother
+
+
+%%%%% section environment
+%\AddToHook{cmd/section/after}{%
+%    \begin{frame}
+%        \thispagestyle{plain}
+%        \centering
+%        \color{structure}
+%    \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,top=17pt,bottom=17pt]
+%        \LARGE\bfseries
+%        \UseName{l__talk_section_tl} % Retrieves the current section text safely
+%    \end{tcolorbox}
+%  \end{frame}%
+%}
+
+
+%%%%% section environment conflicts with printnoidxglossary
+\makeatletter
+\newif\if@skipsectionhook
+\@skipsectionhookfalse
+
+\AddToHook{cmd/section/after}{%
+  \if@skipsectionhook
+    %do absolutely nothing inside the glossary context
+  \else
+    %section enviroment customization
+    \begin{frame}
+        \thispagestyle{plain}
+        \centering
+        \color{structure}
+        \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,top=17pt,bottom=17pt]
+            \LARGE\bfseries
+            \UseName{l__talk_section_tl}
+        \end{tcolorbox}
+    \end{frame}%
+  \fi
+}
+%%% custom glossary macro
+\newcommand{\printglossaryframe}[1][Glossary]{%
+  \global\@skipsectionhooktrue   % Turn off the section slide builder globally
+  \begin{frame}
+    \frametitle{#1}              % Assign slide header text safely
+    \printnoidxglossaries       % Render the index elements
+  \end{frame}
+  \global\@skipsectionhookfalse  % Instantly turn the section slide builder back on
+}
+\makeatother
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%%%%%
+
+
+%%%%% linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[1] %line numbering interval
+%%%%%
+
+
+%%%%% title page
+\title[short-title={NE585 - Nuclear fuel cycles}]{
+    \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,valign=center,top=11pt,bottom=11pt]
+        NE585\\NUCLEAR FUEL CYCLES\\Monte Carlo methods \& \acs{mcp} \\5
+    \end{tcolorbox}
+}
+\author[short-author={@TheDoctorRAB}]{R. A. Borrelli}
+\institute{\acl{ui}}
+\date{\acl{iff}}
+%%%%%
+
+
+\begin{document}
+
+
+\maketitle[framestyle=plain] %no header and footer
+
+
+\begin{frame}
+    \frametitle{Learning objectives}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Modeling of nuclear systems
+        \item[]Demonstrating skill with with \acs{mcp}
+        \item[]Developing input files
+        \item[]Interpreting output
+        \item[]Lots of content on the \href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/mcnp/}{\acs{oer} \acs{mcp} section}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Learning nodes}
+    \begin{columns}[c]
+
+        \begin{column}{0.50\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+                \item[]\textbf{Monte Carlo theory}
+                \item[]Approximating an integral  
+                \item[]Computing $\pi$
+                \item[]Multidimensional integration
+                \item[]Random sampling
+                \item[]Boltzmann transport equation
+                    \vspace{0.15in}
+                \item[]\textbf{Solution procedure}
+                \item[]Assumptions
+                \item[]Superposition
+                    \vspace{0.15in}
+                \item[]\textbf{Random numbers}
+            \end{enumext}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+                \item[]\hfill\textbf{\acs{mcp} modeling}
+                \item[]\hfill What it does
+                \item[]\hfill Particle tracking
+                \item[]\hfill Tally
+                \item[]\hfill Input decks
+                \item[]\hfill Geometry
+                \item[]\hfill Neutron flux example
+                \item[]\hfill Surfaces
+                \item[]\hfill Sense
+                \item[]\hfill Cells
+                \item[]\hfill Universes
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{More learning nodes}
+    \begin{columns}[c]
+
+        \begin{column}{0.50\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+                \item[]\textbf{Other tips}
+                    \vspace{0.15in}
+                \item[]\textbf{Additional information}
+                \item[]\textbf{\acs{mcp} quality control}
+                \item[]Mean \& variance
+                \item[]Other statistical checks
+                    \vspace{0.15in}
+                \item[]\textbf{Criticality}
+                    \vspace{0.15in}
+                \item[]\textbf{Variance reduction}
+            \end{enumext}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{Monte Carlo theory}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Monte Carlo simulates particle transport}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Particles like neutrons, but photons too
+        \item[]Because we're engineers we are going to focus more on application than theory
+        \item[]There are a lot of Monte Carlo codes (OpenMC)
+        \item[]We will use the latest version of \acs{mcp}
+    \end{enumext}
+\end{frame}
+
+
+\section{Fundamentals of Monte Carlo particle transport\\Forrest B. Brown}
+\section{\href{https://mcnp.lanl.gov/pdf_files/TechReport_2005_LANL_LA-UR-05-4983_Brown.pdf}{LA-UR-05-4983 slides}}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Monte Carlo was invented by von Neumann}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Fairly successful guy
+        \item[]Basically invented what we call `scientific computing'
+        \item[]Monte Carlo is highly accurate but expensive computationally
+        \item[]\acs{mcp} can be run on just about all architectures but use linux
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Monte Carlo methods solve the transport equation}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Mathematical approach is for importance sampling, convergence, variance reduction, random sampling techniques, eigenvalue calculation schemes
+        \item[]Simulation approach is for collision physics, tracking, tallying
+        \item[]Monte Carlo methods solve integral problems, so consider the integral form of the Boltzmann equation
+        \item[]Most theory on Monte Carlo deals with fixed-source problems
+        \item[]Eigenvalue problems are needed for criticality and reactor physics calculations
+        \item[]Should know basic statistics
+    \end{enumext}
+\end{frame}
+
+
+\section{Approximating an integral}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Monte Carlo approximates the area under a curve}
+    \begin{equation}
+        G = \int_0^1 g(x)dx
+    \end{equation}
+
+    \begin{equation}
+        g(x) = \sqrt{1-x^2}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]May not always be able to compute the integral
+    \end{enumext}
+
+    \begin{equation}
+        G \approx \frac{1}{N} \sum_{k=1}^{N} \sqrt{1-x_k^2}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Choose randomly -- $x \in (0,1)$
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Monte Carlo approximates the area under a curve}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Or --
+    \end{enumext}
+
+    \begin{equation}
+        x_k^2+y_k^2 \leq 1, k = 1,..,N
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Sample x and y and count a 'hit' if less than 1
+    \end{enumext}
+
+    \begin{equation}
+        G \approx (1 \cdot 1)\frac{hits}{N}
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Analytical solution can be obtained here}
+    \begin{columns}[c]
+
+        \begin{column}{0.55\textwidth}
+            \begin{equation}
+                G = \frac{1}{2}(x\sqrt{1-x^2}-sin^{-1} x)
+            \end{equation}
+
+            \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+                \item[]So the Monte Carlo routine can be checked
+                \item[]Code on \href{https://github.com/TheDoctorRAB/education/blob/master/src/monte.carlo.simple.py}{GitHub}
+                \item[]See also Brown 1-6
+            \end{enumext}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.65\textwidth,alt={circle}]{class/ne585/circle.png}
+                \caption{Unit circle}
+            \end{figure}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{Computing $\pi$}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Use Monte Carlo to compute $\pi$}
+    \begin{equation}
+        x^2 + y^2 = r^2
+    \end{equation}
+
+    \begin{equation}
+        A = \pi r^2
+    \end{equation}
+
+    \begin{enumext}[topsep=-3pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Sample $x \in (0,r)$
+        \item[]Sample $y \in (0,r)$
+        \item[]That is the first quadrant of the circle
+        \item[]Record hits
+        \item[]Divide hits by sample number like before
+        \item[]\Large $\therefore \pi \approx 4 \cdot \frac{hits}{N}$
+    \end{enumext}
+\end{frame}
+
+
+\section{Multidimensional integration}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Monte Carlo is good for multidimensional integration}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]The procedure is the same
+    \end{enumext}
+
+    \begin{equation}
+        G = \int_{a_1}^{b_1} \ldots \int_{a_n}^{b_n} g(r_1, \ldots ,r_n) dr_1 \ldots dr_n
+    \end{equation}
+
+    \begin{equation}
+        G \approx (b_1-a_1) \ldots (b_n-a_n) \frac{1}{N} \sum_{k=1}^N g(r_1^k, \ldots ,r_n^k)
+    \end{equation}
+
+    \begin{equation}
+        r_n^k \in (a_n,b_n)
+    \end{equation}
+\end{frame}
+
+
+\section{Random sampling}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{The key to Monte Carlo methods is the notion of random sampling}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]For a given pdf $p(x)$ produce actual $Xs$ distributed in the same way
+        \item[]Models the outcome of physical events
+        \item[]Neutron scatting, absorption, fission
+        \item[]1-8 -- 1-10
+    \end{enumext}
+\end{frame}
+
+
+\section{Boltzmann transport equation}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Monte Carlo is used to simulate the transport equation}
+    \begin{equation}
+        \Psi(\underline{r},\underline{v}) = \int[\int\Psi(\underline{r}', \underline{v}') C(\underline{v}'\rightarrow\underline{v}) d\underline{v}' + Q(\underline{r}',\underline{v})] T(\underline{r}'\rightarrow\underline{r}) d\underline{r}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]$\Psi(\underline{r}, \underline{v})$ -- particle collision density
+        \item[]$Q(\underline{r}', \underline{v})$ -- source term
+        \item[]$C(\underline{v}' \rightarrow \underline{v})$ -- collision; change velocity at fixed position
+        \item[]$T(\underline{r}' \rightarrow \underline{r})$ -- transport; change position at fixed velocity
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The source term can become exceedingly complex}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]$Q(\underline{r},\underline{v}) = S(\underline{r},\underline{v})$ -- fixed source
+        \item[]$Q(\underline{r},\underline{v})= S(\underline{r},\underline{v}) + \int \Psi(\underline{r},\underline{v}') F(\underline{v}' \rightarrow \underline{v},\underline{r}) d\underline{v}'$ -- fixed source + fission
+        \item[]$Q(\underline{r},\underline{v}) = \frac{1}{k} \int \Psi(\underline{r},\underline{v}') F(\underline{v}' \rightarrow \underline{v},\underline{r}) d\underline{v}'$ -- eigenvalue
+    \end{enumext}
+\end{frame}
+
+
+\section{Solution procedure}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Start with some assumptions}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Static, homogeneous medium
+        \item[]Time independent
+        \item[]Markovian (important)
+        \item[]Neglect relativistic effects
+        \item[]Particles `fly' in straight lines
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Develop a Markov scheme with superposition}
+    \begin{equation}
+        p \equiv (\underline{r},\underline{v})
+    \end{equation}
+
+    \begin{equation}
+        R(p' \rightarrow p) \equiv C(\underline{v}' \rightarrow \underline{v},\underline{r}') \cdot T(\underline{r}' \rightarrow \underline{r},\underline{v})
+    \end{equation}
+
+    \begin{equation}
+        \Psi(p) = \sum_{k=0}^{\infty} \Psi_k(p)
+    \end{equation}
+
+    \begin{equation}
+        \Psi_0(p) = \int Q(r',v) T(r' \rightarrow r,v)dr'
+    \end{equation}
+
+    \begin{equation}
+        \Psi_k(p)=\int \Psi_{k-1}(p') \cdot R(p' \rightarrow p)dp'
+    \end{equation}
+
+    \begin{enumext}[topsep=-3pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Note that collision $(k)$ then only depends on $(k-1)$
+        \item[]That's the trick of Markov
+    \end{enumext}
+\end{frame}
+
+
+\section{Histories}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Then, develop several histories}
+    \begin{equation}
+        \Psi_k(p) = \int \Psi_{k-1}(p') \cdot R(p' \rightarrow p)dp'
+    \end{equation}
+
+    \begin{equation}
+        \Psi_k(p) = \int \Psi_0(p_0) \cdot R(p_0 \rightarrow p_1) R(p_1 \rightarrow p_2) \cdots R(p_{k-1} \rightarrow p_k)dp_0 \cdots dp_{k-1}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]`Tally' the occurrences for each collision of each history
+        \item[]Generate $(p_0,p_1,p_2,...)$ by randomly sampling from pdfs for source and transition
+        \item[]Histories are a sequence of these states
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Simulate particle history from birth to death}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Random walk for a single particle
+        \item[]Collisions are modeled by physics equations and cross sections
+        \item[]Model free-flight between collisions using computational geometry
+        \item[]Tally the occurrences of events in each region
+        \item[]Save any secondary particles, analyze them later
+        \item[]Then do tons of histories
+        \item[]History = original particle + progeny
+        \item[]Geometry then is extremely important and can be convoluted
+    \end{enumext}
+\end{frame}
+
+
+\section{Skipping ahead}
+\section{Random numbers}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Random number generation (26--49)}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Why is this important?
+        \item[]Linear congruential random number generators
+        \item[]Lots of history of use
+    \end{enumext}
+
+    \begin{equation}
+        s_{k+1} = [g \cdot s_k + c] mod(2^N)
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Don't want to repeat numbers (50--81)
+        \item[]\acs{mcp} uses $g = 5^{19}, \; N = 63$ and adjustable
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Random sampling (82--117)}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Probability and statistics
+        \item[]Key to Monte Carlo
+        \item[]Gives several routines for common distributions
+    \end{enumext}
+\end{frame}
+
+
+\section{\acs{mcp}}
+\section{What it does}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{\acs{mcp} is a very useful code to do all sorts of particle analysis}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Calculating critical core size for all different types of reactors
+        \item[]Nearly anything statistically physics based
+        \item[]Skill in \acs{mcp} will help with other coding adventures
+        \item[]Good for a basis in nuclear engineering research and other courses
+        \item[]More interested in this class getting to use it for basic problems than higher level techniques
+    \end{enumext}
+\end{frame}
+
+
+\section{Particle tracking}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{What happens to a particle?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Born in the source or emerges from a collision
+        \item[]Sample flight distance using total cross sections; i.e., probabilities
+        \item[]Determine which isotope the interaction is with using cross sections
+        \item[]Determine which interaction type for that isotope using cross sections
+        \item[]Determine the energy and direction of the exiting particle with random sampling
+        \item[]Determine if secondary particles were produced
+        \item[]Biasing + weight adjustments
+        \item[]Tallies of quantities of interest
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{How the flight distance is sampled}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Particle at $(x_0,y_0,z_0)$ traveling with direction $(u,v,w)$
+        \item[]Sample free flight distance
+        \item[]pdf, cdf for flight distance $s$ --
+    \end{enumext}
+
+    \begin{equation}
+        f(s) = \Sigma_T e^{-\Sigma_T s}
+    \end{equation}
+
+    \begin{equation}
+        F(s) = 1 - e^{-\Sigma_T s}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Find $s$ by random sampling --
+    \end{enumext}
+
+    \begin{equation}
+        s = -\frac{ln(1 - \xi)}{\Sigma_T}
+    \end{equation}
+\end{frame}
+
+
+\section{Tally}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{What does mcnp actually tally? (206)}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]During a history, tally the events of interest
+        \item[]Upon completing a history, accumulate total scores and squares
+        \item[]After completing all histories, compute mean scores and standard deviations
+        \item[]Average flux in a cell (see paper)
+        \item[]Current or flux through a cell wall
+        \item[]Criticality (KCODE)
+        \item[]Detectors
+        \item[]\acsp{rtg}
+    \end{enumext}
+\end{frame}
+
+
+\section{Input decks}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Making the input deck is not that hard}
+    \begin{enumext}[topsep=0pt,itemsep=0pt,label=(\arabic*)]
+        \item[]\textbf{Geometry}
+        \item[]Cylinders are the easiest to do
+        \item[]Visual editor/plotter
+        \item[]\textbf{Materials}
+        \item[]See compendium
+        \item[]\textbf{Source}
+        \item[]\texttt{SDEF} for sources
+        \item[]\texttt{KCODE} for criticality
+        \item[]\textbf{Scores \& Tallies}
+        \item[]Designate flux, detector, etc.
+        \item[]Variance reduction if needed after
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{mcp} is FORTRAN so it is FICKLE}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Length -- $cm$
+        \item[]Energy -- $MeV$
+        \item[]Mass density -- $g/cc$
+        \item[]Atom density -- $atoms/barn-cm$
+        \item[]\textbf{Do NOT use tabs}
+        \item[]Get a real text editor
+        \item[]Cards can only span 7th column to 80th column but you can wrap
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The input deck structure is very specific}
+    \begin{enumext}[topsep=0pt,itemsep=-5pt,label=(\arabic*)]
+        \item[]\texttt{One Line Problem Title Card}
+        \item[]\texttt{Cell cards}
+        \item[]\texttt{.}
+        \item[]\texttt{.}
+        \item[]\texttt{.}
+        \item[]\texttt{BLANK LINE}
+        \item[]\texttt{Surface cards}
+        \item[]\texttt{.}
+        \item[]\texttt{.}
+        \item[]\texttt{.}
+        \item[]\texttt{BLANK LINE}
+        \item[]\texttt{Data cards}
+        \item[]\texttt{.}
+        \item[]\texttt{.}
+        \item[]\texttt{.}
+    \end{enumext}
+\end{frame}
+
+
+\section{Geometry}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Geometry is fickle and an acquired skill (126)}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Define surfaces
+        \item[]Define cells using surfaces \& operators (intersection, union, complement)
+        \item[]Can also group cells together into a universe, repeat that universe in a lattice arrangement, and embed that universe inside another cell
+        \item[]Assign materials to cells
+        \item[]Assign other properties to cells (e.g., importance weights)
+        \item[]Define tallies using cell or surface numbers
+    \end{enumext}
+\end{frame}
+
+
+\section{\href{https://github.com/TheDoctorRAB/mcnpx.decks}{Neutron flux example on github}}
+\section{Surfaces}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Surfaces can be lots of different geometries}
+    \begin{equation}
+        F(x,y,z) = ax^2 + by^2 + cz^2 + dxy + eyz + fxz + gx + hy + jz + k = 0
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[] A surface is infinite and closed
+        \item[] But you just specify constants on the cards (nothing to actually solve)
+    \end{enumext}
+
+    \begin{equation}
+        x^2 + y^2 -R^2 = 0
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\texttt{10     CZ 20}
+        \item[] Just a vertical cylinder (infinite) with 20 cm radius
+        \item[] Keep access to the manual to look up surface cards -- see 128
+    \end{enumext}
+\end{frame}
+
+
+\section{Sense}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Here's where things get weird}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]`Sense' is how a point is defined relative to a surface
+        \item[]For a given point in space $(x,y,z)$, the sense is where it is wrt surface
+    \end{enumext}
+
+    \begin{equation}
+        F(x,y,z) < 0 \; inside
+    \end{equation}
+
+    \begin{equation}
+        F(x,y,z) > 0 \; outside
+    \end{equation}
+
+    \begin{equation}
+        F(x,y,z) = 0 \; on
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Sense of surfaces}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={sense of surfaces}]{class/ne585/mcnp_basic.surface.jpg}
+       \caption{Sense of surfaces}
+    \end{figure}
+\end{frame}
+
+
+\section{Cells}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Surfaces define cells}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Each has a distinct volume because they are defined by density (134-5)
+        \item[]Intersection, union, of defined surfaces; NOT cell
+    \end{enumext}
+    \begin{enumext}[topsep=5pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\texttt{100    1 -2.03                -10 11 -12                 \$metal/salt-filled cathode basket}
+        \item[]\texttt{101    2 -3.58    (10:-11)    -12 -13 14                 \$MgO cathode basket}
+        \item[]\texttt{102    3 -0.00178 (12:13:-14) -15 16 -17                 \$Ar content in equipment}
+        \item[]\texttt{103    4 -7.92    (15:-16:17) -18 -19 20                 \$steel equipment}
+        \item[]\texttt{104    3 -0.00178 (18:19:-20) -50 51 -52 53 54 -55       \$rest of SE}
+        \item[]\texttt{110    3 -0.00178             -52 53 54 -55 -61 70       \$SW hot cell}
+        \item[]\texttt{111    3 -0.00178              54 -55 -61 62 70 -72      \$NW hot cell}
+        \item[]\texttt{112    3 -0.00178             -50 51 54 -55 62 -72       \$NE hot cell}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Finite cylinder with equal radius and height}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\texttt{10     CZ  22.23        \$metal/cathode basket radius}
+        \item[]\texttt{11     PZ  100          \$metal/cathode basket above the floor}
+        \item[]\texttt{12     PZ  122.23       \$metal/cathode basket height+floor height}
+    \end{enumext}
+    \begin{enumext}[topsep=11pt,itemsep=11pt,label=(\arabic*)]
+        \item[]100 cm above the floor
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Use the union operator to assemble larger cells or get around harder shapes}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\texttt{10     CZ  22.23         \$metal/cathode basket radius}
+        \item[]\texttt{11     PZ  100           \$metal/cathode basket above the floor}
+        \item[]\texttt{12     PZ  122.23        \$metal/cathode basket height+floor height}
+        \item[]\texttt{13     CZ  27.23         \$5 cm thick MgO cathode basket}
+        \item[]\texttt{14     PZ  95            \$height above the floor/cathode basket bottom}
+            \vspace{0.10in}
+        \item[]\texttt{100    (10:-11)  -12 -13 14   \$MgO cathode basket}
+    \end{enumext}
+    \begin{enumext}[topsep=19pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Use of \href{https://github.com/TheDoctorRAB/igem}{\texttt{NOT} cell on github} is actually cleaner 
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Intersection and union}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={intersection and union}]{class/ne585/mcnp_surface.union.jpg}
+       \caption{Intersection and union}
+    \end{figure}
+\end{frame}
+
+
+\section{Universes}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Universes are useful for repeating units}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\href{https://github.com/TheDoctorRAB/igem}{Universe example on github}
+        \item[]Or `nested geometries' at multiple levels
+        \item[]For a reactor core
+        \item[]Remember `unit cells' from reactor theory?
+        \item[]Group a collection of cells into a universe
+        \item[]Use VisEd for help on geometries
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Building universes}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.40\textwidth,alt={building universes}]{class/ne585/mcnp_universe.jpg}
+       \caption{Building universes}
+    \end{figure}
+\end{frame}
+
+
+\section{Other tips}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Other tips}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Someone already has made the same error as you -- look it up
+        \item[]Do not have coinciding surfaces
+        \item[]Check the model space with VisEd or the plotter
+        \item[]It will show where there are problems
+        \item[]Use the \href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/mcnp/}{compendium in the \acs{oer}} to get weight fractions of common materials
+        \item[]Then look up the cross section libraries (.70c, etc.) in Appendix G
+    \end{enumext}
+\end{frame}
+
+
+\section{Additional information}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Additional information in the slides}
+    \begin{enumext}[topsep=0pt,itemsep=-3pt,label=(\arabic*)]
+        \item[]\textbf{HTGR modeling (148-165)}
+        \item[]TRISO pebbles
+        \item[]Example of embedded universes
+        \item[]\textbf{Collision physics (166-205)}
+        \item[]How particles travel
+        \item[]Interactions
+        \item[]Determine which isotope the interaction is with  
+        \item[]Determine which interaction type for that isotope  
+        \item[]Determine the energy \& direction of the exiting particle  
+        \item[]Determine if secondary particles were produced  
+        \item[]Sample flight distance  
+        \item[]Biasing + weight adjustments  
+        \item[]Tallies of quantities of interest based on pdfs
+    \end{enumext}
+\end{frame}
+
+
+\section{\acs{mcp} quality control}
+\section{Mean \& variance}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Really we only need mean and variance for most problems}
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]For random variable $x$ of function $r(x)$ with pdf $f(x)$
+    \end{enumext}
+
+    \begin{equation}
+         \mu \equiv \int r(x)f(x)dx
+    \end{equation}
+
+    \begin{equation}
+        \sigma^2 \equiv \int r^2(x)f(x)dx -\mu^2
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Monte Carlo randomly samples to get moments}
+    \begin{equation}
+        \overline{r} \approx \frac{1}{N}\sum_{j=1}^N r(x_j)
+    \end{equation}
+
+    \begin{equation}
+        \sigma^2_{\overline{r}} \approx \frac{1}{N-1}(\frac{1}{N}\sum_{j=1}^N r(x_j) - \overline{r}^2)
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item[]This is based on the law of large numbers  
+        \item[]Sample average will approach the true expected value with increasing $N$ 
+        \item[]Central limit theorem states it will take on a normal distribution (210)
+        \item[]So the tally is the most probable result (basically)
+    \end{enumext}
+\end{frame}
+
+
+\section{Statistical checks}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Statistical checks are provided for each tally}
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item[]Relative error ($R$) = standard deviation/mean
+        \item[]$R$ should decrease with increasing sqrt $N$ smoothly
+        \item[]\acs{fom} is a measure of relative error and computer time
+        \item[]\acs{fom} should be roughly constant
+        \item[]\acf{vov} is relative variance of $R$
+        \item[]Essentially verifies the central limit theorem
+        \item[]Decrease smoothly with $N$
+        \item[]Explained in depth in the manual
+        \item[]Statistical checks are to avoid undersampling
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Statistical checks are provided for each tally}
+    \tiny
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item[]\textbf{Mean}
+        \item A nonmonotonic behavior (no up or down trend) in the estimated mean as a function of the number histories $N$ for the last half of the problem
+        \item[]\textbf{R}
+        \item An acceptable magnitude of the estimated $R$ of the estimated mean (less than 0.05 for a point detector tally or less than 0.10 for a non-point detector tally)
+        \item A monotonically decreasing $R$ as a function of the number histories $N$ for the last half of the problem
+        \item $N^{0.5}$ decrease in the $R$ as a function of $N$ for the last half of the problem
+        \item[]\textbf{\acs{vov}}
+        \item The magnitude of the estimated \acs{vov} should be less than 0.10 for all types of tallies
+        \item A monotonically decreasing \acs{vov} as a function of $N$ for the last half of the problem
+        \item A $\frac{1}{N}$ decrease in the \acs{vov} as a function of $N$ for the last half of the problem
+        \item[]\textbf{\acs{fom}}
+        \item A statistically constant value of \acs{fom} as a function of $N$ for the last half of the problem
+        \item A nonmonotonic behavior in \acs{fom} as a function of $N$ for the last half of the problem
+        \item[] $FOM \equiv \frac{1}{R^2 T}$
+        \item[]\textbf{f(x)}
+        \item The SLOPE (see page 2–127 Pareto fit) of the 25 to 201 largest positive (negative with a negative DBCN(16) entry) history scores $x$ should be greater than 3.0 so that the second moment will exist if the SLOPE is extrapolated to infinity
+    \end{enumext}
+\end{frame}
+
+
+\section{Criticality}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{For criticality, a little different (247)}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Assume an initial $k$ ($k = 1$, just use default \texttt{KCODE}; \texttt{KSRC = x y z} for a point in the middle of the source)  
+        \item[]Fission sites are sampled from the initial source distribution
+        \item[]Follow a `batch' of histories to estimate $k$ (collectively called cycles)
+        \item[]When they converge, discard the tallies
+        \item[]Then start the new iterations until variances decrease
+        \item[]The idea is to run from 1 to N+D cycles (D = discard number) to converge the initial guess
+        \item[]Then run for $N$ cycles to get a confident $k$
+        \item[]The gist is when obtaining $k$, the value is statistically robust
+        \item[]Typically, just start with the \acs{mcp} defaults and that should be good enough
+        \item[]Having some reasonable idea of the theory can help with higher level problems
+    \end{enumext}
+\end{frame}
+
+
+\section{Variance reduction}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{mcp} also comes with many many variance reduction techniques (310)}
+    \tiny
+    \begin{enumext}[series=checks,topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Increase $N$ for the first move (or cycles)
+        \item[]\textbf{Modified sampling}
+        \item[]Modify the pdfs for physics interactions to favor events/tallies of interest
+        \item[]\textbf{Population control}
+        \item[]Use splitting/roulette to increase particles in certain geometric regions
+        \item[]Control number of samples taken in specified regions of the phase space
+        \item[]\acf{wwg} and importance functions
+        \item[]\textbf{Truncation}
+        \item[]Kill particles in uninteresting parts of problem
+        \item[]May be necessary in order to sample rare events
+        \item[]More samples (with less weight each) $\rightarrow$ smaller variance in tallies
+        \item[]\textbf{Deterministic methods}
+        \item[]Replace portions of a particle random walk by the expected results obtained from a deterministic calculation
+        \item[]Not a huge problem with basic criticality problems
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{There are cards to do this so you don't have to actually code}
+    \begin{equation}
+        \mu = \int r(x)\frac{f(x)}{g(x)}g(x)dx
+    \end{equation}
+
+    \begin{equation}
+        \sigma^2 = [r(x)\frac{f(x)}{g(x)}]^2g^2(x)dx - \mu^2
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]Choose $g(x)$ to reduce variance; e.g., $R$, \acs{vov}
+        \item[]Favor directions more important to tallies
+        \item[]Change weights, importance, bias pdfs, and so much more
+        \item[]It isn't a science and comes with experience
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Different problems have different approaches}
+    \tiny
+    \begin{enumext}[series=techniques,topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item Time and energy cutoffs
+        \item Geometry splitting \& roulette
+        \item \acsp{wwg}
+        \item Exponential transform
+        \item Forced collisions
+        \item Energy splitting \& roulette
+        \item Time splitting \& roulette
+        \item Point and ring detectors
+        \item DXTRAN
+        \item Implicit capture
+        \item Weight cutoff
+        \item General source biasing
+        \item Secondary particle biasing
+        \item Bremsstrahlung energy biasing
+    \end{enumext}
+\end{frame}
+
+
+\section{Keep the manual handy}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Jezebel example}
+    \begin{enumext}[series=techniques,topsep=0pt,itemsep=11pt,label=(\arabic*)]
+        \item[]\href{https://github.com/TheDoctorRAB/mcnpx.decks/blob/master/criticality/jezebel.inp}{\acs{mcp} deck on GitHub}
+        \item[]Set up examples with radii
+        \item[]\href{https://www.osti.gov/servlets/purl/10171566}{Criticality calculations with \acs{mcp} -- Primer}
+    \end{enumext}
+\end{frame}
+
+
+\printglossaryframe[Acronyms]
+
+
+\section{End of presentation}
+
+
+\end{document}

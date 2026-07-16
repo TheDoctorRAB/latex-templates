@@ -1,0 +1,1695 @@
+% @TheDoctorRAB
+%
+% presentation template for class slides Title II digital accessibility
+% compile with pdflatex
+%
+%%%%%
+
+
+%%%%% enable tagging for accessibility
+\DocumentMetadata{
+    tagging=on,
+    check-tagging-status,
+    pdfversion=2.0,
+    pdfstandard=ua-2,
+    lang=en-US,
+    debug={log=all},
+    testphase={latest,tagpdf},
+    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+}
+\tagpdfsetup{math/alt/use}
+%%%%%
+
+
+%%%%% presentation settings
+\documentclass[aspect=1610,pdftex]{ltx-talk}
+\tagpdfsetup{role/new-tag=frametitle/H1} %makes frametitle tag as H1
+
+
+%%% slide footer
+\EditInstance{footer}{std}{
+    element-order={author,title,institute,framenumber},
+    separator={\hfill},
+    background-color=PrideGold,
+    font=\bfseries\tiny,
+    right-hspace=3.5mm
+}
+\geometry{bmargin=0.40cm,footskip=0.27cm} %vertically move footer text and reduce box thickness
+
+
+%%% slide header
+\EditInstance{header}{std}{color=black,font=\large\bfseries\hspace*{-0.75cm},background-color=PrideGold,height=2.10cm}
+\EditInstance{frametitle}{header}{font=\LARGE}
+\geometry{headsep=0.53cm} %vertically move frametitle text and toggle with height
+
+% linewrap
+\makeatletter
+\let\old@frametitle\frametitle
+\renewcommand{\frametitle}[1]{%
+  \old@frametitle{\parbox{0.99\linewidth}{\raggedright #1}}%
+}
+\makeatother
+
+
+%%% titlepage
+\EditInstance{titlepage-element}{title}{font=\bfseries\Large}
+\EditInstance{titlepage-element}{subtitle}{font=\bfseries\large,after-skip=0.10in}
+\EditInstance{titlepage-element}{author}{font=\bfseries}
+\EditInstance{titlepage-element}{institute}{font=\bfseries,after-skip=0.15in}
+\EditInstance{titlepage-element}{date}{
+    font=\bfseries,
+    tag-end={\vspace{0.25in}\includegraphics[width=0.20\textwidth,alt={department logo}]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}}
+}
+
+
+%%% caption setup -- caption package is not compatible with ltx-talk 
+\makeatletter
+\def\fnum@figure{\textbf{\figurename~\thefigure}}
+\makeatother
+
+
+%%% slide background color
+\AddToHook{shipout/background}{
+  \put(0cm, -\paperheight){
+    \color{BackGround}\rule{\paperwidth}{\paperheight}
+  }
+}
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\usepackage[dvipsnames]{xcolor}
+\usepackage[pdftex,dvipsnames]{colortbl} %change font color
+\usepackage[many]{tcolorbox}
+\definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+\newcommand{\x}{\cellcolor{PrideGold}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+%%%%%
+
+
+%%%%% general 
+\usepackage{fancyhdr}
+\usepackage{mmap} %math
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{graphicx}
+%\usepackage{mypythonhighlight,verbatim}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{$TEXIMG/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+%\usepackage[inline]{enumitem}
+\usepackage{enumext}
+\setlist[itemize]{label=\textbullet}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage{microtype} %improves typography for pdf
+%%%%%
+
+
+%%%%% links and tags
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={lecture},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={lecture},
+    pdflanguage={en-US},
+    pdfsubject={lecture},
+    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+%\usepackage{times}
+\renewcommand{\sfdefault}{ubuntu}
+%arial - uncomment next two lines
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references ----- natbib does not work with ltx-talk
+\usepackage[style=numeric-comp,backend=biber]{biblatex}
+%addbibresource{} %bib files go here
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[toc,title]{appendix}
+\usepackage[acronym,nomain,nonumberlist,nogroupskip]{glossaries}
+\makenoidxglossaries
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% start frame 1 after title page
+\makeatletter
+    \ExplSyntaxOn
+    \AtBeginDocument{
+  % Force the underlying frame-counter mechanism to step backward
+  % This offsets the titlepage from registering an output slide slot
+  \int_gadd:Nn \c@frame{-1}
+    }
+    \ExplSyntaxOff
+\makeatother
+
+
+%%%%% section environment
+%\AddToHook{cmd/section/after}{%
+%    \begin{frame}
+%        \thispagestyle{plain}
+%        \centering
+%        \color{structure}
+%    \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,top=17pt,bottom=17pt]
+%        \LARGE\bfseries
+%        \UseName{l__talk_section_tl} % Retrieves the current section text safely
+%    \end{tcolorbox}
+%  \end{frame}%
+%}
+
+
+%%%%% section environment conflicts with printnoidxglossary
+\makeatletter
+\newif\if@skipsectionhook
+\@skipsectionhookfalse
+
+\AddToHook{cmd/section/after}{%
+  \if@skipsectionhook
+    %do absolutely nothing inside the glossary context
+  \else
+    %section enviroment customization
+    \begin{frame}
+        \thispagestyle{plain}
+        \centering
+        \color{structure}
+        \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,top=17pt,bottom=17pt]
+            \LARGE\bfseries
+            \UseName{l__talk_section_tl}
+        \end{tcolorbox}
+    \end{frame}%
+  \fi
+}
+%%% custom glossary macro
+\newcommand{\printglossaryframe}[1][Glossary]{%
+  \global\@skipsectionhooktrue   % Turn off the section slide builder globally
+  \begin{frame}
+      \tiny
+    \frametitle{#1}              % Assign slide header text safely
+    \printnoidxglossaries       % Render the index elements
+  \end{frame}
+  \global\@skipsectionhookfalse  % Instantly turn the section slide builder back on
+}
+\makeatother
+
+
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%%%%%
+
+
+%%%%% linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[1] %line numbering interval
+%%%%%
+
+
+%%%%% title page
+\title[short-title={NE585 - Nuclear fuel cycles}]{
+    \begin{tcolorbox}[colback=PrideGold,boxrule=0pt,arc=5mm,width=\linewidth,halign=center,valign=center,top=11pt,bottom=11pt]
+        NE585\\NUCLEAR FUEL CYCLES\\Back end of the nuclear fuel cycle\\6
+    \end{tcolorbox}
+}
+\author[short-author={@TheDoctorRAB}]{R. A. Borrelli}
+\institute{\acl{ui}}
+\date{\acl{iff}}
+%%%%%
+
+
+\begin{document}
+
+
+\maketitle[framestyle=plain] %no header and footer
+
+
+\begin{frame}
+    \frametitle{Learning objectives}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Interpreting back end of the fuel cycle as an equal component with the front end
+        \item[]Explaining how physical processes in the repository work
+        \item[]Criticizing current back end `policy'
+        \item[]Generating an approach to consent-based siting
+        \item[]Material from my Berkeley courses \& Todai summer schools
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Learning nodes}
+    \begin{columns}[c]
+
+        \begin{column}{0.50\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+                \item[]\textbf{Back-end management overview}
+                \item[]Geologic disposal
+                \item[]Classes of waste
+                \item[]\acf{nwa}
+                \item[]\acf{wpp}
+                \item[]\acf{brc}
+                \item[]Energy policy act
+                \item[]\textbf{Disposal options}
+                \item[]History
+                \item[]Yucca mountain
+                \item[]\acf{tpa}
+            \end{enumext}
+        \end{column}
+
+        \begin{column}{0.50\textwidth}
+            \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+                \item[]\hfill\textbf{Technical basis}
+                \item[]\hfill Design
+                \item[]\hfill Multibarriers \& Defense-in-depth
+                \item[]\hfill Linear programming
+                \item[]\hfill\textbf{Siting}
+                \item[]\hfill Technical
+                \item[]\hfill Consent
+                \item[]\hfill Public engagement
+                \item[]\hfill\textbf{Safety}
+            \end{enumext}
+        \end{column}
+
+    \end{columns}
+\end{frame}
+
+
+\section{Technical \& political}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Back-end management is the most socially science based in the fuel cycle}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Some engineers tend to think the public is ignorant
+        \item[]`Convincing them' is not a solution
+        \item[]Approaches, criteria, for engineering design are affected by social factors
+        \item[]But, to what extent should nuclear engineers understand social factors?
+        \item[]What is the role of engineers in social decision making process?
+        \item[]Understand the social system correctly
+        \item[]Listen to the public
+        \item[]Develop engineering options to explore optimized solution for the people
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{What do you do with the fuel when you take it out of the reactor?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Either the used fuel is reprocessed or disposed
+        \item[]But there is always going to be some high-level waste
+        \item[]High-level waste = highly radioactive, some long-lived, toxic
+        \item[]So far in USA, used fuel is stored in the pool and in dry casks
+        \item[]What's the problem with keeping the spent fuel just lying around?
+        \item[]Who has `active' repositories? How is safety determined?
+        \item[]Watch the \href{https://www.youtube.com/watch?v=ayLxB9fV2y4}{`Into Eternity' movie} if you can
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Why not just hang onto waste until we figure out something better?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Ethics, which is not nearly taken into consideration enough
+        \item[]
+            \begin{quote}
+                \ldots from an ethical standpoint, including long-term safety considerations, our responsibilities to future generations are better discharged by a strategy of final disposal than by reliance on stores which require surveillance, bequeath long-term responsibilities of care, and may in due course be neglected by future societies whose
+structural stability should not be presumed \ldots
+            \end{quote}
+        \item[]The Environmental and Ethical Basis of Geological Disposal of Long-Lived Radioactive Wastes, OECD Nuclear Energy Agency (1995)
+    \end{enumext}
+\end{frame}
+
+
+\section{Waste}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Building the reactors is easy}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]What's the difference between Oklo or Ultra Safe?
+        \item[]The point is to standardize reactor designs for efficient deployment
+        \item[]What's the difference between Yucca Mountain and Onkalo?
+        \item[]Repositories are variable across nations and the world
+        \item[]Acceptance for siting is complex
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{There are different kinds of nuclear waste}
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \tiny
+        \item[]\textbf{\acf{hlw}}
+        \item[]Unreprocessed spent fuel assemblies
+        \item[]Highly radioactive primary waste stream from reprocessing
+        \item[]Containing virtually all fission products and most transuranics except plutonium
+        \item[]\textbf{\acf{tru}}
+        \item[]Non \acs{hlw} contaminated with long-lived transuranics above $100 nCi/g$
+        \item[]\textbf{Uranium mill tailings}
+        \item[]Residues from uranium mining and milling operations containing low concentrations of naturally occurring radioactive materials
+        \item[]\textbf{\acf{llw}}
+        \item[]All non \acs{hlw}, non \acs{tru}; wide variation in physical and chemical forms, activity levels, gloves, etc.
+        \item[]\textbf{\acf{dnd}}
+        \item[]Waste contaminated with small amounts of radioactivity from \acs{dnd} (mostly \acs{llw})
+        \item[]\textbf{Mixed waste}
+        \item[]Contains both radioactive materials and hazardous chemicals
+        \item[]\textbf{Effluents}
+        \item[]Contaminated materials below `de minimus’ levels permitting direct discharge to environment
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{snf} sites}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.40\textwidth,alt={spent nuclear fuel sites}]{class/ne585/snf.sites.jpg}
+        \caption{\acs{snf} sites}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Where else can we put the waste?}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\textwidth,alt={atlantis}]{class/ne585/atlantis.jpg}
+        \caption{Atlantis}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{snf} pool}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.40\textwidth,alt={spent nuclear fuel pool}]{class/ne585/pool.jpg}
+        \caption{\acs{snf} pool}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{snf} dry cask storage}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={spent nuclear fuel storage}]{class/ne585/dry.casks.jpg}
+        \caption{\acs{snf} dry cask storage}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{snf} transport casks}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={spent nuclear fuel transport casks}]{class/ne585/transport.casks.jpg}
+        \caption{\acs{snf} transport casks}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{snf} transport}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={spent nuclear fuel transport by truck}]{class/ne585/transport.jpg}
+        \caption{\acs{snf} transport}
+    \end{figure}
+\end{frame}
+
+
+\section{What are the options to dispose of nuclear waste?}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{What are the technical limitations of these options?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Near surface engineered storage (\acs{llw})
+        \item[]Geologic repository 
+        \item[]Deep borehole
+        \item[]Ice sheet disposal
+        \item[]Sub seabed disposal
+        \item[]Spaaaaaacceeeee!
+        \item[]Interim aboveground
+        \item[]The National Academy of Science judged geologic repositories to be the way waste should be disposed
+        \item[]What do you need to know to dispose the waste in the repository?
+    \end{enumext}
+\end{frame}
+
+
+\section{History}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Waste disposal was thought about from the start}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Commercial nuclear development followed Eisenhower's \href{https://youtu.be/2B8R-umE0s0}{Atoms for Peace speech video on youtube} in 1953
+        \item[]Mid-50s -- US made a decision to take naval nuclear reactor technology and apply it to commercial generation of electrical power using civilian owned reactors
+        \item[]First commercial nuclear power plant was at Shippingport PA  
+        \item[]United States was reprocessing nuclear fuel materials until Carter
+        \item[]1955 -- \acf{nas} was asked what to do about waste 
+        \item[]1957 -- Disposal in cavities mined in salt is suggested as the possibility promising the most practical immediate solution of the problem
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Waste management is a failure because it was not treated as a social problem}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\acs{nas} in 1957 recommended deep disposal in salt 
+        \item[]Lyons Kansas was investigated 1957--72 but scrapped due to public opposition
+        \item[]\acs{wpp} authorized in 1980 and received waste first in 1999
+        \item[]\acs{wpp} -- \acs{tru} waste from weapons program (1992)
+        \item[]1972 -- US abandons repository project at a salt mine in Lyons, KA. Promotes Retrievable Surface Storage Facility as 100-year interim solution
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Waste management lacked a policy direction}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]1975 -- Geologic disposal adopted as preferred alternative
+        \item[]1977 -- Spent fuel reprocessing indefinitely deferred
+        \item[]1982 -- \acs{nwa} lays out comprehensive screening process leading to 2 sites in West and East
+        \item[]Establishes Nuclear Waste Fund, financed by 0.1 cent/kWh nuclear electricity levy
+        \item[]Directs \acs{doe} to begin accepting spent fuel from utilities in 1998
+        \item[]That Nuclear Waste Fund has a lot of money now
+        \item[]1985 -- President Reagan abandons site search in east
+        \item[]1987 -- \acs{nwa} Amendments direct \acs{doe} to focus all site investigation at Yucca Mountain, NV
+        \item[]Ended 2nd repository screening activity
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The saga of disposal is far from over}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]1987 -- Nevada opposed \acs{doe} site characterization and lose in court
+        \item[]1998 -- \acs{doe} `Viability Assessment' finds no technical `showstoppers' to proceeding with Yucca Mountain site 
+        \item[]1999 -- \acs{doe} issues Draft Environmental Impact Statement concluding that disposal at Yucca Mountain would be safer than leaving the waste where it is
+        \item[]2002 -- President approves proceeding with Yucca mountain as nation's first repository
+        \item[]Complex national geologic repository site selection process initiated, then abandoned
+        \item[]Yucca Mountain picked instead
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{doe} didn't do so well either}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\acs{doe} contracts with utilities to take possession of utility spent fuel beginning in 1998, but fails to do so
+        \item[]Leaks of high-level radioactive waste from tanks at \acs{doe} sites in Washington and South Carolina
+        \item[]Disclosures of contamination and excessive radiation doses to workers throughout \acs{doe} nuclear complex over a period of decades
+        \item[]Continuing conflict between federal, state, and local jurisdictions over siting, regulatory issues
+        \item[]There is a lot of work to do to restore public trust
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Yucca mountain is not going to be a waste repository}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Disposing used fuel is a wasted resource
+        \item[]Some will have to be disposed even if we recycle
+        \item[]Reprocessing is a sound technology that has half a century of operational history
+        \item[]And reduces waste volume
+        \item[]Current onsite storage in dry casks is relatively secure
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Consolidated interim storage facilities can offer benefits}
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item[]\textbf{Pros}
+        \item[]Jobs
+        \item[]Growth
+        \item[]\textbf{Cons}
+        \item[]Will become a de facto alternative to disposal
+        \item[]\textit{Could write into law that it cannot; give authority to State to make decsion}
+        \item[]Will be no easier to site than a repository
+        \item[]\textit{That's why they gave us \$2M}
+        \item[]Will reduce momentum to develop a repository
+        \item[]\textit{Everyone agrees we need one}
+        \item[]Back end management needs to be treated as a social problem or there will be no success
+    \end{enumext}
+\end{frame}
+
+
+\section{\acs{wpp} is the first mined repository to receive waste}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acs{wpp} authorized in 1980}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Received waste first in 1999. From \href{https://twitter.com/nuclear94}{Jeff Terry on Twitter}!
+        \item[]Zero accidents recorded, not counting the moron who lost his badge when we were there
+        \item[]\acs{wpp} = \acs{tru} waste
+        \item[]\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/doe-waste-disposal-facilities/}{\acs{wpp} accident report in the \acs{oer}}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,alt={wipp in person}]{class/ne585/wipp1.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp in person}]{class/ne585/wipp2.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp in person}]{class/ne585/wipp3.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp in person}]{class/ne585/wipp4.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp in person}]{class/ne585/wipp5.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp in person}]{class/ne585/wipp6.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp in person}]{class/ne585/wipp7.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp in person}]{class/ne585/wipp8.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acs{wpp}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={wipp schematic}]{class/ne585/wipp.jpg}
+        \caption{\acs{wpp} in person}
+    \end{figure}
+\end{frame}
+
+
+\section{\acf{nwa}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{\acl{nwa} is the basis for \acs{hlw} management}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Established disposal in geologic formation
+        \item[]\acs{doe} sites, constructs, operates the repository
+        \item[]Sites studied: Hanford, Yucca Mountain, Texas
+        \item[]1987 -- \acs{nwa} amended to focus only on Yucca at 70000 \acs{mth}
+        \item[]Supposed to start in 1998
+        \item[]A license application was submitted to \acs{nrc} in 2008
+        \item[]Obama Administration withdrew any further funding
+        \item[]2013 -- Circuit Court ruled for \acs{nrc} to continue safety evaluation
+        \item[]2015 -- \href{https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1949/index.html}{\acs{nrc} Safety Evaluation Report}
+        \item[]2016 -- \href{https://www.nrc.gov/waste/hlw-disposal/key-documents.html}{Working Environmental Impact Statement}
+    \end{enumext}
+\end{frame}
+
+\section{But what happens if the license is granted?}
+\section{How should nuclear facilities be sited?}
+\section{\acl{brc} on America's nuclear future}
+
+
+\addtocounter{frame}{-3} 
+\begin{frame}
+    \frametitle{\acl{brc} was formed to review back-end policy}
+    \tiny
+    \begin{enumext}[series=blue,topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/back-end-of-the-fuel-cycle/}{\acs{brc} report in the \acs{oer}}
+        \item[]Really, because there wasn't any policy
+        \item A new, consent-based approach to siting future nuclear waste management facilities.
+        \item A new organization dedicated solely to implementing the waste management program and empowered with the authority and resources to succeed.
+        \item Access to the funds nuclear utility ratepayers are providing for the purpose of nuclear waste management.
+        \item Prompt efforts to develop one or more geologic disposal facilities.
+        \item Prompt efforts to develop one or more consolidated storage facilities.
+        \item Prompt efforts to prepare for the eventual large-scale transport of spent nuclear fuel and high-level waste to consolidated storage and disposal facilities when such facilities become available.
+        \item Support for continued U.S. innovation in nuclear energy technology and for workforce development.
+        \item Active U.S. leadership in international efforts to address safety, waste management, non-proliferation, and
+security concerns.
+        \item[] Not particularly revolutionary (Prof. Peterson quote), but what other nations are doing around the world
+        \item[] The point of the \acs{brc} was to establish consensus
+    \end{enumext}
+\end{frame}
+
+
+\section{Energy Policy Act}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{The Energy Policy Act (1992) set regulatory framework}
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item[]40CFR197 -- \acs{epa} radioactivity releases
+        \item[]Individual protection standard   
+        \item[]Groundwater protection standard   
+        \item[]Human intrusion standard  
+        \item[]No greater than 15 mrem per year for the maximally-exposed individual during first 10000 years
+        \item[](National average background is 300 mrem)
+        \item[]Parameters describing human activity and behavior `will remain as there are today'
+        \item[]\acs{nrc} verifies compliance with performance assessments, risk-informed approach
+        \item[]10CFR63 -- Construction, operation, closure, 15 mrem limit
+        \item[]1995 -- \acs{nas} review
+        \item[]Extended time frame of peak risk to (of adverse health effects) \textit{1 million years} 
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{1 million years!}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={doctor evil}]{class/ne585/doctor.evil.jpg}
+        \caption{Doctor Evil}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The Energy Policy Act (1992) had \acs{nas} to review the whole issue of disposal}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Can scientifically justifiable analyses of repository behavior over many thousands of years in the future be made?
+        \item[]Recommended the use of a standard that sets a limit on the risk to individuals of adverse
+health effects from releases from the repository is recommended
+        \item[]Extension of time frame from 10000 to a million years
+        \item[]Based on long term stability of the geologic environment
+    \end{enumext}
+\end{frame}
+
+
+\section{Functional components and technical basis}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{What are the functional components for repository performance?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Waste cannot be released to biosphere at unacceptable concentrations
+        \item[]Waste must be removed and isolated from catastrophic natural events or human activity
+        \item[]Must be able to use current technology and engineering at reasonable cost
+        \item[]Widely acceptable performance assessment modeling
+        \item[]\href{https://youtu.be/ayLxB9fV2y4}{Into Eternity movie on youtube}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Waste is inevitably going to get out}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Contain (isolate) waste as long as possible
+        \item[]Maintain engineered barrier system for $10^5 \; y$
+        \item[]Physically isolated in a matrix/waste form (vitrified glass)
+        \item[]Then put that in a canister
+        \item[]During containment, we rely on decay to wipe out most of the radionuclides (at least 300 years)
+        \item[]Which are the two most important in the near term?
+        \item[]Engineers generally agree that maintaining integrity to about 1000 years is possible
+        \item[]When waste does get out, we want controlled release and dispersal based on natural processes
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Controlled release = multi barrier concept}
+    \begin{enumext}[topsep=0pt,itemsep=-3pt,label=(\arabic*)]
+        \item[]Multi barrier concept aka defense in depth
+        \item[]Very common approach in all fields of risk assessment
+        \item[]Redundancy and diversity
+        \item[]Common examples of this?
+        \item[]For the repository, a series of engineered and natural barriers
+        \item[]Multi barrier is an holistic concept
+        \item[]Act in concert
+        \item[]Delay and decay
+        \item[]Host rock
+        \item[]Groundwater
+        \item[]Waste form
+        \item[]Canister
+        \item[]Backfill
+        \item[]Should not have common failure modes  
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Delay and decay means contain and extend transport}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]If containment time is $10 \times$ greater than half life, then all set
+        \item[]Containment for $300 - 1000 \; y$ is effective in eliminating Co-60, Sr-90, Cs-137
+        \item[]Repository will also approach ambient temperature by this time
+        \item[]Non sorbing radionuclides are problematic though
+        \item[]Similarly if transport time is greater than $10 \times$, also set
+        \item[]Want diffusion to dominate over advection
+        \item[]How can this be achieved?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{How are multi barriers applied to repository design?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Waste package is the waste form and canister
+        \item[]Resistant to leaching by groundwater, chemically and physically
+        \item[]\textbf{Backfill}
+        \item[]Placed around everything once its put in there
+        \item[]Inhibits groundwater movement
+        \item[]Chemically inhibitive; clay is negatively charged, radionuclides are postive
+        \item[]\textbf{Geologic structure}
+        \item[]Isolates waste from humans 
+        \item[]Chemically, mechanically stable
+        \item[]Prevents/restricts circulating groundwater
+        \item[]Slows releases to biosphere
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Swedish concept}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={Swedish concept}]{class/ne585/kbs.jpg}
+        \caption{Swedish concept}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{How do we warn the future people of the repository? Or do we?}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.40\textwidth,alt={example repository warning}]{class/ne585/repository.jpg}
+        \caption{Example warning that the repository is there}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Across the world, there are different repository concepts}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Switzerland -- granite
+        \item[]France -- clay
+        \item[]Sweden -- granite
+        \item[]Belguim -- clay
+        \item[]Finland -- granite 
+        \item[]United Kingdom -- granite
+        \item[]Japan -- granite
+        \item[]Korea -- granite
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Each country legally responsible for waste management and disposal}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]All saturated
+        \item[]Most all have the quasi-federal companies
+        \item[]Do we have similar formations in the USA?
+        \item[]What is the best formation?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Siting is a decades long process}
+    \tiny
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item[]\textbf{Before you even start}
+        \item[]Assuming a locality volunteers
+        \item[]Public acceptance, both local and national
+        \item[]In USA, we have extra layer of state government
+        \item[]\textbf{Geology}
+        \item[]Structurally stable geological block 
+        \item[]Not near a tectonic boundary
+        \item[]Avoid faults along which rupture could occur
+        \item[]Avoid areas with abnormally high geothermal
+        \item[]Gradients or with evidence of relatively recent volcanic activity
+        \item[]Mechanical properties should assure stability during operation
+        \item[]Competing land use like parks, oil, gas
+        \item[]Transportation requirements
+        \item[]\textbf{Hydrology}
+        \item[]Fluid transport should not move hazardous material to the biosphere in amounts and rates above prescribed limits
+        \item[]Low permeability
+        \item[]Low flow
+        \item[]System should be capable of being sealed when the repository is closed
+        \item[]Geological record should support predictions favorable for long-term hydrological isolation of the repository site in a perturbed geological environment
+        \item[]Most places in Europe are not like that
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Siting is a decades long process}
+    \footnotesize
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\textbf{Geochemistry}
+        \item[]Heat, radiation should not produce physical, chemical reactions in the rock that would compromise containment
+        \item[]Low oxygen
+        \item[]Low redox potential ($Eh$)
+        \item[]Near neutral $pH$
+        \item[]Low concentrations of complexing anions and organics
+        \item[]Conditions should minimize the rate of dissolution of the waste form (typically reducing)
+        \item[]Water in the repository should not react to increase permeability
+        \item[]Limit mobility of radionuclides and delay or prevent their migration to the biosphere
+        \item[]No area with record of resource extraction
+        \item[]What type of places can you actually site?
+    \end{enumext}
+\end{frame}
+
+
+\section{How long is long term?}
+\section{What are the oldest human constructed formations?}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{Multiple barriers are engineered to provide defense in depth}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]This is the basis for any risk management approach
+        \item[]What actually happens in the repository?
+        \item[]The whole point is that after everything gets put in you close the repository and walk away
+        \item[]It is supposed to function on its own
+        \item[]Why?
+        \item[]Limit exposures in the long term
+        \item[]Compliance demonstrated by the performance assessment
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Know your materials science}
+    \footnotesize
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Corrosion resistant metals with inert oxide surface layer
+        \item[]Low rate of corrosion in water
+        \item[]Advanced materials
+        \item[]New alloy made for Yucca Mountain casks
+        \item[]Compatible with repository environment
+        \item[]Buffer assures slow diffusion and high sorption
+        \item[]Diffusion dominated transport
+        \item[]Long transit time, delay and decay
+        \item[]Constrain corrosion rate
+        \item[]Seal fractures due to construction
+        \item[]Saturated repositories use bentonite
+        \item[]Each has different chemical make up $Na^+,Ca^{++}$ interlayer ions
+        \item[]For unsaturated conditions, use sand over gravel
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Other processes to consider}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Thermal management
+        \item[]Subcritical configuration
+        \item[]Waste form dissolution
+        \item[]Diffusion
+        \item[]Solubility
+        \item[]Corrosion
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{What is each barrier expected to do?}
+    \tiny
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item[]\textbf{Geologic formation}
+        \item[]isolate the \acs{ebs} from biosphere
+        \item[]geomechanical stability
+        \item[]favorable geochemistry
+        \item[]limit groundwater flow
+        \item[]\textbf{Backfill}
+        \item[]contain \acs{ebs}
+        \item[]limit fast release pathways
+        \item[]mechanical stability of tunnels
+        \item[]\textbf{Buffer}
+        \item[]diffusive dominated transport 
+        \item[]isolate canister from formation
+        \item[]conduct heat
+        \item[]\textbf{Canister}
+        \item[]isolate waste for long time period
+        \item[]mechanical stability
+        \item[]conduct heat
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{We want to draw on accepted methods and design bottom-up}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Readily available technologies
+        \item[]Retrievability
+        \item[]Based on well accepted models
+        \item[]Risk informed approach
+        \item[]Environmental modeling
+        \item[]We want to use what we know well so we are confident in results
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Waste must be contained `as long as necessary'}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]This depends on making a robust waste form 
+        \item[]Borosilicate glass or ceramic matrix
+        \item[]`Long enough' so most radionuclides decay away $\approx 1000 \; y$
+        \item[]Significant heat comes from $^{137}Cs$ and $^{90}Sr$
+        \item[]Actinides like Pu, Cm, etc., are long lived, but low radioactivity
+        \item[]They are really toxic though because they are heavy metals
+        \item[]Oxidation state of Np makes it very mobile
+        \item[]Iodine is a negative ion so also very mobile
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{When there is release, it must be diluted and dispersed}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Clay can trap the radionuclides ($\pm$ charges)
+        \item[]A lot of water can dilute the contaminant plume
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The multi-barrier concept is a series of engineered and natural barriers to delay release}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]No common failure modes
+        \item[]Waste form -- dissolution and solubility modeling
+        \item[]Waste container
+        \item[]Buffer -- Diffusion of radionuclides, sorption
+        \item[]Backfill -- Diffusion of radionuclides, sorption
+        \item[]Geological structure -- requires decades long studies
+        \item[]Diffusion, dispersion, advection, sorption modeling, ion exchange
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Swedish storage canister}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={Swedish storage canister}]{class/ne585/kbs.canister.jpg}
+        \caption{Swedish storage canister}
+    \end{figure}
+\end{frame}
+
+
+\section{Yucca Mountain\\\acf{tpa}}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{The \acs{tpa} models all possible scenarios for release }
+    \begin{enumext}[resume=blue,topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\href{https://www.osti.gov/servlets/purl/1142603}{Summary slides by Peter Swift}
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Nevada}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\textwidth,alt={Nevada}]{class/ne585/nevada.map.jpg}
+        \caption{Nevada}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Orignial \acl{ym} timeline}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={original yucca mountain timeline}]{class/ne585/timeline.jpg}
+        \caption{Orignial \acl{ym} timeline}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Aside -- \acs{doe} \& \acs{hlw} is stored at Hanford and Savannah river}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Really made a mess of it
+        \item[]Tanks have leaked into soil
+        \item[]People are worried about toxicity in Columbia River
+        \item[]First large scale plutonium production reactor
+        \item[]Legacy of the cold war
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Yucca mountain has a unique geology compared other repository concepts}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]100 miles northwest of Las Vegas (the wiseguys not happy)
+        \item[]Volcanic tuff
+        \item[]Layers of consolidated, compacted ashfalls from volcanic eruptions occurring more than 10 million years ago 
+        \item[]Underlying the tuff is sedimentary carbonate rock
+        \item[]Repository horizon in unsaturated zone, about 300 meters below the surface, and 300-500 meters above the water table
+        \item[]Two major aquifers in the saturated zone below Yucca Mountain, one in tuff, one in carbonate rock
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Which leads to different operating concepts}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Yucca Mountain would remain open with active ventilation for at least a hundred years
+        \item[]This allows a significant fraction of decay heat to go to the atmosphere and reduces peak post closure temperatures
+        \item[]That's easier to do because the repository is not saturated
+        \item[]Unsaturated zone design allows long term monitoring and, if necessary, retrieval, modification or repair
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The design is also different than the other repositories}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={yucca mountain tunnel design}]{class/ne585/yucca.waste.jpg}
+        \caption{\acl{ym} tunnel design}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\acl{ym} conceptual design}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth,alt={yucca mountain conceptual design}]{class/ne585/yucca.geology.jpg}
+        \caption{\acl{ym} conceptual design}
+    \end{figure}
+\end{frame}
+
+
+\section{What are the failure modes for the repository?}
+\section{What is the world going to look like in $10^3, 10^4, 10^5$ years?}
+
+
+\addtocounter{frame}{-2} 
+\begin{frame}
+    \frametitle{\acl{ym} expected annual dose for ten thousand and one million years}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\textwidth,alt={yucca mountain expected annual dose for ten thousand and one million years}]{class/ne585/yucca.mountain.jpg}
+        \caption{\acl{ym} expected annual dose for ten thousand and one million years}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{What are the failure modes for the repository?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Degradation over time
+        \item[]Natural and engineered barriers
+        \item[]Dissolution and transport of radionuclides in groundwater
+        \item[]Tectonic processes -- folding, faulting, magmatic intrusions, volcanism
+        \item[]Erosion -- wind, water, glaciation
+        \item[]Breaching of barriers by human activity
+        \item[]Aliens
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{The performance assessment predicts how the repository will respond}
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item[]Rate of inflow of groundwater into the repository
+        \item[]Hydrology current, long-term, fracturing, faulting, thermal stresses in host rock
+        \item[]Rate of corrosion of canister, other barriers, and primary waste form
+        \item[]Temperature, oxidation/reduction conditions, materials properties of waste package
+        \item[]Yucca mountain is an oxidizing environment, different than world standards
+        \item[]Radionuclide transport in groundwater, sorption on rock surfaces, actinide chemistry
+        \item[]Biosphere transport in potable water supplies, irrigation water, demography dose 
+        \item[]How safe is safe enough?
+        \item[]Assumptions about future human activities and lifestyles
+        \item[]How far into the future is it reasonable to project disposal system performance?
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Who needs to know the repository is safe?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\textbf{Implementer} -- to have confidence to present and defend a license application
+        \item[]\textbf{Regulator} -- to be able to license the repository
+        \item[]\textbf{Elected Representatives} -- to be justified in taking a decision to proceed
+        \item[]\textbf{Public} -- to have confidence in and accept the whole process
+        \item[]The relative roles and participation is going to vary with location and people
+        \item[]Perception of safety is different for the public
+        \item[]\acs{ala} v precautionary principle
+        \item[]Defining risk for specific context
+        \item[]Risk communication (resiliency) is extremely difficult
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Public trust must be cultivated}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]The arguments they hear should be based upon what they can understand and relate to their experience
+        \item[]They need to see relevant information and that nothing is being hidden
+        \item[]Really public have different priorities and concerns than what experts think
+        \item[]Experts need to develop social science literacy
+        \item[]Consent-based siting should be social science led
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Safety is dependent on an independent regulator}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Assure that post-closure safety meets international accepted standards
+        \item[]Confirm that uncertainty has been properly considered
+        \item[]Are system models complete and valid?
+        \item[]Are appropriate parameter values and ranges identified?
+        \item[]Are analyses conducted to identify processes \& parameters most important to safety?
+        \item[]Are `what if\ldots' scenarios analyzed?
+        \item[]Conduct independent review and assessment of safety
+        \item[]Require Implementer to present multiple lines of evidence
+        \item[]Public comment
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{What evidence could the operator provide?}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]There is no data cohort for a repository
+        \item[]Uncertainties in extrapolating conditions today into the future
+        \item[]Increased confidence from defense-in-depth technical arguments
+        \item[]Matching of time scales between repository assessment and natural/archaeological analogues
+        \item[]Calculated doses can have relatively large uncertainties
+        \item[]Verification/validation of safety assessment codes 
+        \item[]Analyze an analogue using the same component models
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Groundwater flow from \acl{ym}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.20\textwidth,alt={Groundwater flow from yucca mountain}]{class/ne585/groundwater.flow.jpg}
+        \caption{Groundwater flow from \acl{ym}}
+    \end{figure}
+\end{frame}
+
+
+\section{Technical design of a repository}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{What is there to design for the repository?}
+    \footnotesize
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Canister spacing -- Why?
+        \item[]\acs{hlw}is vitrified (not the used fuel) to a glass waste form
+        \item[]\acs{hlw} producers required to have Waste Acceptance Program 
+        \item[]Drift spacing -- $81 \; m$
+        \item[]Mid-pillar peak temperature of $96^oC$
+        \item[]Waste package spacing -- $0.1 \; m$
+        \item[]Average emplacement drift line load -- $1.45 \; kW/m$
+        \item[]Maximum waste package thermal output -- $18.0 kW$
+        \item[]Ventilation flow rate -- $15 \; m^3/s$
+        \item[]23 years of waste emplacement followed by 50 years of forced ventilation following emplacement of the last waste package
+        \item[]Design of the process and the waste form determines thermal load
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Specifications developed by \acs{doe} Environmental Management for the \acs{hlw} Waste Acceptance Program}
+    \tiny
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*)]
+        \item[]\textbf{Chemical}
+        \item[]Waste form -- 20--40 w/o waste oxides, 35--65 w/o silica, 5--10 w/o boron oxide, 10--20 w/o alkali oxides, and other oxide constituents
+        \item[]Chemical composition, crystalline phases expected to be present, and the amount of each crystalline phase should be identified
+        \item[]Oxide composition of waste form should be reported, including all elements (excluding oxygen) present in concentrations greater than 0.5\% of the glass
+        \item[]\textbf{Radionuclide inventory}
+        \item[]Half-lives longer than 10 years that are or will be present in concentrations greater than 0.05\% of total are, be, 0.05\% radioactive inventory shall be reported (indexed to the year 2015 and 3115)
+        \item[]Total quantities of individual radionuclides to be shipped to the repository
+        \item[]Upper limit of these radionuclides for any canistered waste form calculated
+        \item[]Average calculated radionuclide inventory per canister
+        \item[]Quality control by comparing to Environmental Assessment Benchmark Glass
+        \item[]At time of shipment, temperature has to be below $400^oC$
+        \item[]Rules for nonradionuclide hazardous waste
+        \item[]For fissile content for all the isotopes
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{There are multi dimensional constraints on canister loading}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Waste composition in canister
+        \item[]Number of canisters
+        \item[]Materials
+        \item[]Canister dimensions
+        \item[]Radiation
+        \item[]Repository conditions
+        \item[]Storage conditions
+        \item[]Need a systematic way to optimize constraints
+    \end{enumext}
+\end{frame}
+
+
+\section{Linear programming}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Linear programming is a good modeling approach}
+    \footnotesize
+    \begin{enumext}[topsep=0pt,itemsep=-1pt,label=(\arabic*),nosep]
+        \item[]Waste composition --
+    \end{enumext}
+
+    \begin{equation}
+        \overline{N}_W = [x_{W_1}, \ldots, x_{W_i}, \ldots, x_{W_n}]
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Glass composition --
+    \end{enumext}
+
+    \begin{equation}
+        \overline{N}_G = [x_{G_1}, \ldots, x_{G_i}, \ldots, x_{G_n}]
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Total mass of solid waste --
+    \end{enumext}
+
+    \begin{equation}
+        M_S = M_W + M_G
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Solid form composition --
+    \end{enumext}
+
+    \begin{equation}
+        \overline{N}_S = \theta\overline{N}_W + (1 - \theta)\overline{N}_G
+    \end{equation}
+
+    \begin{equation}
+        \theta \equiv \frac{M_W}{M_S}
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Linear programming is widely used for optimization}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Optimize an objective function --
+    \end{enumext}
+
+    \begin{equation}
+        max(f) = \underline{c} \underline{x}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Where $\underline{x}$ is constrained --
+    \end{enumext}
+
+    \begin{equation}
+        \underline{\underline{A}} \; \underline{x} \leq \underline{b}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=5pt,label=(\arabic*)]
+        \item[]$c \equiv$ row vector of coefficients of objective function
+        \item[]$x \equiv$ column vector of independent variables
+        \item[]$A \equiv$ matrix of coefficients of constraint inequalities
+        \item[]$b \equiv$ column vector of RHS of constraint inequalities
+        \item[]$A$ and $b$ would be based on the regulations for the waste form/canister
+    \end{enumext}
+\end{frame}
+
+
+\section{Linear programming example}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Maximize profit for a gas processing plant}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]A gas processing plant receives a fixed amount of raw gas each week
+        \item[]Either regular or premium quality is processed, but only one grade at a time
+        \item[]The plant is open 80 hours per week
+        \item[]Decision variables are quantity of regular gas and premium gas produced per week
+        \item[]Objective function is to maximize profit under given constraints
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Input data for gas processing facility}
+    \setlength{\arrayrulewidth}{0.3mm}
+    \tagpdfsetup{table/header-rows=1}
+    \begin{longtable}{l|c|c}
+        \caption{Gas processing constraints}
+        \label{tab-gas-processing}
+        \\
+        \textbf{Constraint}
+        &\textbf{Regular grade}
+        &\textbf{Premium grade}
+        \\
+        \hline
+        Raw gas
+        & 7 m\textsuperscript{3}/ton
+        & 11 m\textsuperscript{3}/ton
+        \\
+        Production time
+        & 10 h/ton
+        & 8 h/ton
+        \\
+        Storage
+        & 9 tons
+        & 6 tons
+        \\
+        Profit
+        & \$150/ton
+        & \$175/ton
+        \\
+    \end{longtable}
+    
+    \begin{enumext}[topsep=7pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Total gas volume  -- 77 m\textsuperscript{3}/week
+        \item[]Total production time -- 80 h/week
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Derive variables and constraints}
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Independent variables --
+    \end{enumext}
+
+    \begin{equation}
+        \underline{G} = \begin{bmatrix} r \\ p \end{bmatrix}
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Coefficients of objective function --
+    \end{enumext}
+
+    \begin{equation}
+        \underline{c} = [150 \; \; 175]
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Constraints --
+    \end{enumext}
+
+    \begin{equation}
+        \begin{bmatrix} 7 & 11 \\ 10 & 8 \\ 1 & 0 \\ 0 & 1 \end{bmatrix}
+            \cdot
+        \begin{bmatrix} r \\ p \end{bmatrix}
+            \leq
+        \begin{bmatrix} 77 \\ 80 \\ 9 \\ 6 \end{bmatrix}
+    \end{equation}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Derive objective function}
+    \begin{equation}
+        max(P) = [150 \; \; 175]
+            \cdot 
+        \begin{bmatrix} r \\ p \end{bmatrix}
+    \end{equation}
+\end{frame}
+
+
+\section{Linear programming results}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Volume constraint}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={volume constraint}]{class/ne585/gas.volume.jpg}
+        \caption{Volume constraint}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Production constraint}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={production constraint}]{class/ne585/gas.production.jpg}
+        \caption{Production constraint}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Storage constraint}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={storage constraint}]{class/ne585/gas.storage.jpg}
+           \caption{Storage constraint}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Then maximize profit}
+    \tiny
+    \begin{enumext}[topsep=0pt,itemsep=-3pt,label=(\arabic*)]
+        \item[]Typically, it's a good idea to plot the `break even' function --
+    \end{enumext}
+
+    \begin{equation}
+        P = 150r +175p = 0
+    \end{equation}
+
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]Not in feasible space
+        \item[]But we know the points of intersection bounding the feasible space
+        \item[]$(0,0) - (0,6) - (1.7,6) - (4.9,3.9) - (0,8)$
+    \end{enumext}
+
+    \begin{enumext}[topsep=9pt,itemsep=5pt,label=(\arabic*)]
+        \item[]Substitute into the objective function --
+        \item[]$P(0,0) = 0$
+        \item[]$P(0,6) = 1050$
+        \item[]$P(1.7,6) = 1305$
+        \item[]$P(4.9,3.9) = 1418$ 
+        \item[]$P(0,8) = 1400$
+    \end{enumext}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Profit maximization}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\textwidth,alt={profit maximization}]{class/ne585/gas.profit.jpg}
+        \caption{Profit maximization}
+    \end{figure}
+\end{frame}
+
+
+\section{Now for waste oxide loading}
+
+
+\addtocounter{frame}{-1} 
+\begin{frame}
+    \frametitle{Apply to Japanese waste concept}
+    \tiny
+    \begin{enumext}[topsep=0pt,itemsep=1pt,label=(\arabic*)]
+        \item[]\textbf{Objective function}
+        \item[]We want to maximize the amount of waste oxide that can be loaded into an \acs{hlw} form of glass in a stainless steel canister
+        \item[]\textbf{Decision variables}
+        \item[]Waste Oxide Mass in the canister and Glass Oxide Mass in the canister
+        \item[]$M_W, \; M_G$
+        \item[]\textbf{Constraints}
+        \item Total canister weight is 500 kg of waste mass + glass mass
+        \item[]Include 100 kg for mass of the canister
+        \item Volume of waste and glass is 0.15 cubic meters
+        \item Empirical formula for volume constraint --
+        \item[]$\rho = 1230r + 2419 \; \frac{kg}{m^3}$
+        \item[]r = mass fraction of waste in the waste glass
+        \item Heat generation limit is 2300 Watts
+        \item[]$[C N_A \sum_i \frac{E_i \lambda_i x_i}{A_i}] \cdot M_W \leq 2300$
+        \item[]This is tedious to find or compute all the data and not particularly constructive
+        \item[]Just use 9.652
+    \end{enumext}
+\end{frame}
+
+
+\printglossaryframe[Acronyms]
+
+
+\section{End of presentation}
+
+
+\end{document}
