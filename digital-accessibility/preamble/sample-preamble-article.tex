@@ -3,10 +3,6 @@
 %%%%%
 %
 %%%%%
-%standard white paper/preproposal format
-%%%%%
-%
-%%%%%
 %PDF tagging accessible file
 %compile with pdflatex
 %run $show-pdf-tags --xml filename.pdf
@@ -49,11 +45,11 @@
 
 
 %%%%% general 
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,letterpaper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
 \usepackage[pagewise]{lineno} %linenumbering restarts each page
 %\usepackage[running]{lineno} %linenumbering continuous
-\usepackage{mmap} %helps make pdfs copy and paste
+\usepackage{mmap} %helps make pdfs copy and paste - replace with cmap if issues
 \usepackage{setspace}
 \usepackage{ulem} %strikethrough - do not \sout{\cite{}}
 \usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
@@ -65,12 +61,11 @@
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
-%\graphicspath{{$TEXIMG/}} %path to graphics
+\graphicspath{{$TEXIMG/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
-\usepackage{enumext}
-%\usepackage[inline]{enumitem} %https://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex-dev/latex-lab/latex-lab-enumitem.pdf
+\usepackage[inline]{enumitem} %https://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex-dev/latex-lab/latex-lab-enumitem.pdf
 \usepackage{boldline}
 \usepackage{makecell}
 \usepackage{booktabs}
@@ -91,7 +86,6 @@
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
 \usepackage{parskip}
-\usepackage{multicol}
 %%%%%
 
 
@@ -102,12 +96,12 @@
     linkcolor=black,
     citecolor=black,
     urlcolor=blue,
-    pdftitle={Preproposal}, %turn off if tagging off
-    pdfauthor={R. A. Borrelli}, %turn off if tagging off
-    pdfkeywords={preproposal}, %turn off if tagging off
-    pdflanguage={en-US}, %turn off if tagging off
-    pdfsubject={preproposal}, %turn off if tagging off
-    pdfdisplaydoctitle=true  %turn off if tagging off
+    pdftitle={Syllabus},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={syllabus},
+    pdflanguage={en-US},
+    pdfsubject={syllabus},
+    pdfdisplaydoctitle=true 
 } 
 \usepackage[capitalise]{cleveref} %must be loaded after hyperref
 %%%%%
@@ -149,7 +143,7 @@
 \setlength{\columnsep}{1.00mm}
 \usepackage[singlelinecheck=false,labelfont=bf]{caption}
 \usepackage{subcaption}
-\captionsetup[table]{justification=centering,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
 \captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
 \captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
 \captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
@@ -173,20 +167,7 @@
 \usepackage[toc,title]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
-%\usepackage{titlesec,titletoc} %turn on if tagging off and below
-%%%
-%\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
-%\titlespacing*\part{0pt}{0.95\baselineskip}{0.50\baselineskip}
-%\titleformat{\section}[runin]{\normalfont\normalsize\bfseries}{\thesection.}{0.5em}{}[]
-%\titlespacing*\section{0pt}{0.50\baselineskip}{0.50\baselineskip}
-%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesection\alph{subsection}.}{0.25em}{}[]
-%\titlespacing*\subsection{0pt}{0.40\baselineskip}{0.50\baselineskip}
-%\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{\roman{subsubsection}.}{0.25em}{}[]
-%\titlespacing*\subsubsection{9pt}{0.25\baselineskip}{0.50\baselineskip}
-%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{-1em}{}[]
-%\titlespacing*\paragraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
-%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.25em}{}[]
-%\titlespacing*\subparagraph{15pt}{0.25\baselineskip}{0.50\baselineskip}
+%do not load titlesec,titletoc
 %%%%%
 
 
@@ -206,7 +187,6 @@
 %%%%% colors
 %http://latexcolor.com/
 %https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
-\definecolor{pridegold}{rgb}{241,179,0}
 \definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
 \definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
@@ -214,7 +194,7 @@
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
 
-\newcommand{\x}{\cellcolor{pridegold}} %use to shade in table cell
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
 \newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
 \newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
@@ -311,18 +291,16 @@
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize NE585}
-\chead{\scriptsize \textit{White Paper Project Proposal}}
-\rhead{\scriptsize \today}
+\lhead{\scriptsize }
+\chead{\scriptsize }
+\rhead{\scriptsize }
 \rfoot{\thepage}
 %%%%%
 
 
 %%%%% acronyms
 \input{$ACRONYM/acronyms}
-%\input{../acronyms/acronyms}
 %%%%%
-
 
 %%%%% spacing
 %\onehalfspacing %linespacing
@@ -330,240 +308,22 @@
 %\spacing{1.25} %equivalent to 1.5 line spacing in Word
 %%%%%
 
+
 %%%%% linenumbering
-\linenumbers %toggle line numbers
-\modulolinenumbers[5] %line numbering interval
+%\linenumbers %toggle line numbers
+%\modulolinenumbers[5] %line numbering interval
 %%%%%
 
 
 \begin{document}
 
 
-{\centering 
-    \textbf{Title\\
-    NE585 -- Nuclear Fuel Cycle Analysis Design Project\\
-    }
-    \vspace{0.10in}
-    Name\\
-    University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
-    Department of Nuclear Engineering and Industrial Management
-\par
-}
-
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
-
-
-\section{Proposed Research}
-
-
-\section{Motivation}
-
-
-\section{Importance \& Relevance to Course Objectives}
-
-
-\section{Background}
-\subsection{Topic}
-
-\subsection{Another topic}
-
-\subsection{Related research}
-
-
-\section{Methodology}
-\subsection{One part of the methodology}
-
-\subsection{Another part of the methodology}
-
-
-\section{Major Outcomes \& Deliverables}
-
-
-\begin{enumext}[series=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* --},align=left]
-    \item\textbf{.} 
-        \begin{enumext}[series=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},labelsep=2.5ex,align=left,list-offset=-12ex]
-            \item\textit{.}
-            \item\textit{.}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[series=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left]
-    \item\textit{.}
-\end{enumext}
-
-
-\begin{enumext}[resume=outerlist]
-    \item\textbf{.}
-        \begin{enumext}[resume=innerlist]
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                \end{enumext*}
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                    \item .
-                    \item .
-                \end{enumext*}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[resume=milestone]
-    \item\textit{.}
-\end{enumext}
-
-
-\begin{enumext}[resume=outerlist]
-    \item\textbf{.}
-        \begin{enumext}[resume=innerlist]
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                \end{enumext*}
-            \item\textit{.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item .
-                    \item .
-                    \item .
-                \end{enumext*}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[resume=milestone]
-    \item\textit{.}
-\end{enumext}
-
-
-\begin{enumext}[resume=outerlist]
-    \item\textbf{Crosscutting discussions \& Follow on activities.} 
-        \begin{enumext}[resume=innerlist]
-            \item\textit{Identify lessons learned.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                \end{enumext*}
-            \item\textit{Develop future work.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                    \item .
-                    \item . 
-                    \item . 
-                    \item .
-                \end{enumext*}
-            \item\textit{\acf{rv}.}
-                \begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=2]
-                   \item Reproducibility -- .
-                   \item Validation -- .
-                \end{enumext*}
-        \end{enumext}
-\end{enumext}
-
-\begin{enumext}[resume=milestone]
-    \item\textit{Apply lessons learned for future research and engage colleagues in new collaborations.}
-\end{enumext}
-
-
-\section{Contribution to Advancing State of the Art}
-This project will advance the state-of-the-art in nuclear fuel cycle analysis by --
-\begin{enumext*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),columns=3]
-    \item A; 
-    \item B;
-    \item C.
-\end{enumext*}
-
-
-\section{\textbf{Timeframe for Execution}}
-\tagpdfsetup{table/header-rows=1}
-\begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|}
-        \caption{Project Timeline}
-        \label{tab-timeline}
-        \\
-        \hline
-        \multicolumn{1}{|c|}{\textbf{TASKS}}& 
-        \textbf{AUG}& 
-        \textbf{SEP}& 
-        \textbf{OCT}& 
-        \textbf{NOV}& 
-        \textbf{DEC}
-        \\
-        \hline
-        \endfirsthead
-        I. 
-        &\x
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        II. 
-        &\x
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        III. 
-        &\x 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        IV. 
-        &\x
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        V. 
-        &\x 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        VI. 
-        &\x 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        VII.
-        & 
-        & 
-        & 
-        & 
-        &\x 
-        \\
-        \hline
-\end{longtable}
-
-
 \newpage
 
 
-%%%%% header and footer
-\pagestyle{fancyplain}
-\fancyhf{} %clear header and footer 
-\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\rfoot{\fancyplain{}{\thepage}}
-\nolinenumbers
-%%%%%
-
-
-\bibliographystyle{nsf}
-\setlength{\bibhang}{0pt}
-\bibliography{}
+%\bibliographystyle{nsf}
+%\setlength{\bibhang}{0pt}
+%\bibliography{references}
 
 
 \newpage
@@ -572,12 +332,7 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 \begin{appendices}
 
 
-%%%%% formatting
     \renewcommand{\thesection}{\Roman{section}}
-%%%%%
-
-
-\newpage
 
 
     \section{Acronyms}
@@ -585,17 +340,6 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 
 
 \end{appendices}
-
-
-%wrap figure around text
-%move to wherever in the text 
-%{l} fixes it on the left margin
-%{L} floats
-%\begin{wrapfigure}{l}{0.x\textwidth}
-%       \includegraphics[width=0.(x-2)\textwidth]{}
-%    \caption{}
-%    \label{fig-}
-%\end{wrapfigure}
 
 
 \end{document}

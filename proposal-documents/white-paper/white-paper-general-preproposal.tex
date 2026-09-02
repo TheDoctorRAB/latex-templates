@@ -25,7 +25,7 @@
 
 
 %%%%% general 
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,letterpaper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
 \usepackage[pagewise]{lineno} %line numbering
 \usepackage{setspace}
@@ -36,11 +36,12 @@
 \usepackage{tablefootnote}
 \usepackage{footnotehyper}
 \usepackage{float}
-\usepackage{mypythonhighlight,verbatim}
+%\usepackage{mypythonhighlight,verbatim}
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
 \graphicspath{{$TEXIMG/}} %path to graphics
+%\graphicspath{{../../img}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
@@ -67,6 +68,8 @@
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
 \usepackage[capitalise]{cleveref}
+\usepackage{parskip} %\noindent
+\usepackage[font=itshape]{quoting}
 %%%%%
 
 
@@ -88,8 +91,8 @@
 %%%%% references
 %\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
 \usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
-\setlength{\bibsep}{7pt} %sets space between references
-%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\setlength{\bibsep}{0pt} %sets space between references
+\renewcommand{\bibsection}{} %suppresses large 'references' heading
 %\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
 %%%%%
 
@@ -106,7 +109,7 @@
 \setlength{\columnsep}{1.00mm}
 \usepackage[singlelinecheck=false,labelfont=bf]{caption}
 \usepackage{subcaption}
-\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[table]{justification=centering,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
 \captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
 \captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
 \captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
@@ -114,9 +117,9 @@
 
 
 %%%%% watermark
-\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
-\SetWatermarkText{\shortstack{CONFIDENTIAL\\do not distribute}}
-\SetWatermarkScale{0.20}
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{CONFIDENTIAL\\do not distribute\\do not share}}
+%\SetWatermarkScale{0.20}
 %%%%%
 
 
@@ -131,18 +134,49 @@
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
 \usepackage{titlesec,titletoc}
+%%%
+\titleformat{\part}{\normalfont\normalsize\bfseries\filcenter}{\MakeUppercase{\parttitlename}\thepart}{}{\MakeUppercase}[]
+\titlespacing*\part{0pt}{0.50\baselineskip}{0.25\baselineskip}
+
+\titleformat{\section}[runin]{\normalfont\normalsize\bfseries}{\thesection.}{0.5em}{}[]
+\titlespacing*\section{0pt}{0.50\baselineskip}{0.50\baselineskip}
+
+\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesection\alph{subsection}.}{0.25em}{}[]
+\titlespacing*\subsection{0pt}{0.40\baselineskip}{0.50\baselineskip}
+
+\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{\roman{subsubsection}.}{0.25em}{}[]
+\titlespacing*\subsubsection{9pt}{0.25\baselineskip}{0.50\baselineskip}
+
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{-1em}{}[]
+\titlespacing*\paragraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
+
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.25em}{}[]
+\titlespacing*\subparagraph{15pt}{0.25\baselineskip}{0.50\baselineskip}
+%%%
+%\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
+%\titlespacing*\part{0pt}{0.65\baselineskip}{0.20\baselineskip}
+%\titleformat{\section}{\normalfont\normalsize\bfseries\filcenter}{\thesection}{}{}[]
+%\titlespacing*\section{0pt}{0.50\baselineskip}{0.15\baselineskip}
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+%\titlespacing*\subsection{0pt}{0.45\baselineskip}{0.25\baselineskip}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+%\titlespacing*\paragraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.35\baselineskip}{0.25\baselineskip}
+%%%
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
-\titleformat{\part}{\normalfont\large\bfseries}{\thepart}{}{}[]
-\titlespacing*\part{0pt}{0.95\baselineskip}{0.75\baselineskip}
-\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[.]
-\titlespacing*\section{0pt}{0.65\baselineskip}{0.55\baselineskip}
-\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
-\titlespacing*\subsection{0pt}{0.50\baselineskip}{0.35\baselineskip}
-\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
-\titlespacing*\paragraph{0pt}{0.45\baselineskip}{0.25\baselineskip}
-\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
-\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+%\titleformat{\part}{\normalfont\large\bfseries}{\thepart}{}{}[]
+%\titlespacing*\part{0pt}{0.50\baselineskip}{0.75\baselineskip}
+%\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[]
+%\titleformat{\section}{\normalfont\large\bfseries\filcenter}{\thesection}{}{}[]
+%\titlespacing*\section{0pt}{0.75\baselineskip}{0.45\baselineskip}
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+%\titlespacing*\subsection{0pt}{0.45\baselineskip}{0.25\baselineskip}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+%\titlespacing*\paragraph{0pt}{0.35\baselineskip}{0.15\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.30\baselineskip}{0.10\baselineskip}
 %\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
 %\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
 %\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
@@ -166,15 +200,17 @@
 %%%%% colors
 %http://latexcolor.com/
 %https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\definecolor{pridegold}{rgb}{241,179,0}
 \definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
 \definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
 \definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
-
-\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
-\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+%%% table cells
+\newcommand{\x}{\cellcolor{pridegold}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{aliceblue}} %use to shade in table cell
 \newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
 
@@ -196,11 +232,11 @@
 \newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 
 
-%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
-%\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Name},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
+\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Name},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\rab}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
-%\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
-%\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Name},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+%\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Name},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
 
 
 % highlighting 
@@ -270,17 +306,14 @@
 %\renewcommand\section{%
 %    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
 %    {\large \normalfont \bfseries}}%
-
 %\makeatletter
 %\renewcommand\paragraph{%
 %    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
 %    {\normalfont \normalsize \bfseries}}%
-
 %\makeatletter
 %\renewcommand\subparagraph{%
 %    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
 %    {\normalfont \normalsize \itshape }}%
-
 %\makeatletter
 %\renewcommand\subsection{%
 %    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
@@ -292,34 +325,24 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
-%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize Agency}
-\chead{\scriptsize \textit{Title}}
-\rhead{\scriptsize \today}
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%2026 Pre-Application Narrative 
+%\lhead{\scriptsize Agency}
+%\lhead{\scriptsize Cyber \acs{pra} for \acsp{npp}}
+%\chead{\scriptsize \textit{\acl{neu} Topic Area 11 -- Licensing, Safety, Security}}
+%\rhead{\scriptsize \today}
 \rfoot{\thepage}
-%%%%%
+%%%%%%
 
 
 %%%%% acronyms
+% alphabetical ordering is automated
 \input{$ACRONYM/acronyms}
+%\input{../../acronyms/acronyms}
 %%%%%
 
 
 \begin{document}
-
-
-{\centering 
-    \textbf{Agency - Call \\
-    Federal POC - , Technical POC - \\
-    General budget\\
-    }
-\par
-}
-
-\noindent Text of call.
-
-
-\newpage
 
 
 %%%%% spacing
@@ -329,312 +352,165 @@
 %%%%%
 
 
-%%%%% linenumbering
-\linenumbers %toggle line numbers
-\pagewiselinenumbers %reset line numbers on new page
-\modulolinenumbers[5] %line numbering interval
-%%%%%
-
-
-{\centering
+{\centering 
     \textbf{Title\\
-    Call\\
     }
-    \vspace{0.10in}
-    Name (PI) - Affiliation; Name (co-PI) - Affiliation\\
-    Name (co-PI) - Affiliation
+    Call\\
+    Name (\acs{pi}) -- Affiliation\\
 \par
 }
+
 
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
 
 
-\section*{Overview} 
-\subsection*{Proposal}
-\subsection*{Key features of the project}
 
-\section*{Motivation}
-\subsection*{Context}
+\part*{Project description}
+\section{Proposed Research} 
 
-\section*{Overall Objective}
 
-\section*{Workscopes in Brief}
-\begin{enumerate}[series=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - , })
+%\begin{wrapfigure}{l}{0.45\textwidth}
+    %\resizebox{0.99\linewidth}{!}
+%   \includegraphics[width=0.99\linewidth]{}
+%    \caption{}
+%    \label{fig-X}
+%\end{wrapfigure}
+
+
+\section{Motivation}
+
+
+\section{Importance \& Relevance to \acs{doe} Priorities}
+
+
+\section{Background}
+
+
+\section{Methodology}
+
+% \begin{enumerate*}[topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=*]
+%    \item tools that detect cyberattacks; 
+%    \item corrective actions that stop, delay, or contain attack progression;
+%    \item mitigation pathways that restore normal operations. 
+% \end{enumerate*}
+
+
+\section{Contribution to Advancing State of the Art}
+
+
+\part*{Outcomes \& Deliverables}
+\section{Preliminary Results}
+
+
+\section{Research Scope}
+\begin{enumerate}[series=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* --},align=left,leftmargin=*]
+    \item\textbf{.} 
         \begin{enumerate}[series=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
             \item\textit{.}
             \item\textit{.}
         \end{enumerate}
 \end{enumerate}
 
-
-\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{.}
-            \item\textit{.}
-        \end{enumerate}
-\end{enumerate}
-
-    
-\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{.}
-            \item\textit{.}
-        \end{enumerate}
-\end{enumerate}
-
-    
-\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{.}
-        \end{enumerate}
-\end{enumerate}
-
-    
-\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{.}
-            \item\textit{.}
-        \end{enumerate}
-\end{enumerate}
-
-    
-\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{Crosscutting discussions \& follow on activities.} (\textit{Full team})
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{Identify lessons learned.}
-            \item\textit{Develop future work.}
-            \item\textit{Reproducibility \& validation.}
-        \end{enumerate}
+\begin{enumerate}[series=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
 \end{enumerate}
 
 
-\section*{Relevant Background} 
-
-
-\section*{Related Research \& Funding Efforts}
-
-
-\section*{Team synergy}
-
-
-\section*{Unique project features}
-
-
-\section*{Logical path to work accomplishment} 
-\begin{enumerate}[series=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{Workscope title} (\textit{Lead - ; Support - })
-        \begin{enumerate}[series=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{This task.}
-            \item\textit{That task.}
-            \item\textit{Another task.}
+\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* --},align=left,leftmargin=*]
+    \item\textbf{.} 
+        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
+            \item\textit{}
+            \item\textit{.}  
                 \begin{enumerate*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item A brief explanation or a subtask if needed.
+                    \item .
+                    \item .
                 \end{enumerate*}
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Motivation}
-
-\paragraph*{Goals}
-The goals of this Workscope are \ldots .
-
-\paragraph*{Investigator duties}
-\begin{itemize}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,leftmargin=*]
-    \item[].
-    \item[].
-    \item[].
-\end{itemize}
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
-\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{Workscope title} (\textit{Lead - ; Support - })
-        \begin{enumerate}[series=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{This task.}
-            \item\textit{That task.}
-            \item\textit{Another task.}
+\begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* --},align=left,leftmargin=*]
+    \item\textbf{.} 
+        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
+            \item\textit{.}
+            \item\textit{.}
                 \begin{enumerate*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item A brief explanation or a subtask if needed.
+                    \item .
+                    \item . 
                 \end{enumerate*}
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Motivation}
-
-\paragraph*{Goals}
-\textit{Through this Workscope, we will \ldots}
-
-\paragraph*{Investigator duties}
-\begin{itemize}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,leftmargin=*]
-    \item[].
-    \item[].
-    \item[].
-\end{itemize}
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
 \begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
+    \item\textbf{.}
         \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
             \item\textit{.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
+                \begin{enumerate*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
+                    \item . 
+                \end{enumerate*}
             \item\textit{.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Motivation}
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
-\paragraph*{Goals}
-\textit{Through this Workscope, we will \ldots}
 
-\paragraph*{Investigator duties}
-\begin{itemize}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,leftmargin=*]
-    \item[].
-    \item[].
-    \item[].
-\end{itemize}
-
-    
 \begin{enumerate}[resume=outerlist,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
+    \item\textbf{Crosscutting discussions \& Follow on activities.} 
         \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
-            \item\textit{.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
-        \end{enumerate}
-\end{enumerate}
-
-\paragraph*{Motivation}
-
-\paragraph*{Goals}
-\textit{Through this Workscope, we will \ldots}
-
-\paragraph*{Investigator duties}
-\begin{itemize}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,leftmargin=*]
-    \item[].
-    \item[].
-    \item[].
-\end{itemize}
-
-    
-\begin{enumerate}[resume,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
-        \end{enumerate}
-\end{enumerate}
-
-\paragraph*{Motivation}
-
-\paragraph*{Goals}
-\textit{Through this Workscope, we will \ldots}
-
-\paragraph*{Investigator duties}
-\begin{itemize}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,leftmargin=*]
-    \item[].
-    \item[].
-    \item[].
-\end{itemize}
-
-
-\begin{enumerate}[resume,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{.} (\textit{Lead - ; Support - })
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
-            \item\textit{.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
-        \end{enumerate}
-\end{enumerate}
-
-\paragraph*{Motivation}
-
-\paragraph*{Goals}
-\textit{Through this Workscope, we will \ldots}
-
-\paragraph*{Investigator duties}
-\begin{itemize}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,leftmargin=*]
-    \item[].
-    \item[].
-    \item[].
-\end{itemize}
-
-    
-\begin{enumerate}[resume,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{Workscope \arabic* -},align=left,leftmargin=*]
-    \item\textbf{Crosscutting.} (\textit{Lead - ; Support - Full team})
-        \begin{enumerate}[resume=innerlist,topsep=3pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\textit{Task \Roman*.},align=left,leftmargin=-0.50in]
-            \item\textit{Identify lessons learned.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
+            \item\textit{Identify lessons learned to \ldots .}
+                \begin{enumerate*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
+                    \item .
+                \end{enumerate*}
             \item\textit{Develop future work.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
-            \item\textit{Reproducibility \& validation.}
-                \begin{enumerate}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
-                    \item Details.
-                    \item Details.
-                \end{enumerate}
+                \begin{enumerate*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
+                    \item .
+                    \item .
+                    \item .
+                \end{enumerate*}
+            \item\textit{\acf{rv}.}
+                    \begin{enumerate*}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=(\arabic*),leftmargin=0.15in]
+                        \item Reproducibility -- .
+                        \item Validation -- .
+                    \end{enumerate*}
         \end{enumerate}
 \end{enumerate}
 
-\paragraph*{Motivation}
-
-\paragraph*{Goals}
-\textit{Through this Workscope, we will wrapup the major findings of project activities and pursue new avenues of research with colleagues in the field.}
-
-\paragraph*{Investigator duties}
-\begin{itemize}[topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,leftmargin=*]
-    \item[].
-    \item[].
-    \item[].
-\end{itemize}
+\begin{enumerate}[resume=milestone,topsep=0pt,itemsep=-0.5ex,partopsep=1ex,parsep=1ex,label=\textbf{\textit{Milestone \arabic*.}},align=left,leftmargin=*]
+    \item\textit{.}
+\end{enumerate}
 
 
-\section*{Estimated Cost of the Project.} 
-We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
+\part*{Project Logistics}
+\section{Estimated Cost of the Project}                                                                    
+The maximum amount of \$1,000,000 is requested for the full time period. A detailed budget will be provided upon submission of the full proposal.
 
 
+\section{Timeframe for Execution}
+\setlength{\LTpre}{-0.5cm}
+%\vspace{-0.25in}
+\setlength{\arrayrulewidth}{0.3mm}
 \begin{longtable}{|L{0.23\linewidth}|c|c|c|c|c|c|c|c|c|c|c|c|}
-%       \captionsetup{margin=-0pt}
-        \caption*{\textbf{Timeframe for Execution of Proposed Project. Schedule, Roles, and Responsibilities.}}
+%        \caption{\textbf{Timeframe for Execution}}
+        \caption*{}
         \label{tab-timeline}\\
         \hline
         \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{TASKS}}}& 
         \multicolumn{4}{|c|}{\textbf{Y1}}&
         \multicolumn{4}{|c|}{\textbf{Y2}}&
-        \multicolumn{4}{|c|}{\textbf{Y3}}
-        \\
+        \multicolumn{4}{|c|}{\textbf{Y3}}\\
+        \cline{2-13}
         \cline{2-13}
         &
         \textbf{Q1}& 
@@ -648,59 +524,32 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
         \textbf{Q1}& 
         \textbf{Q2}& 
         \textbf{Q3}& 
-        \textbf{Q4}
-        \\
+        \textbf{Q4}\\
         \hline
-        I. 
+        \begin{enumerate}[series=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item .
+        \end{enumerate}
         &\x
         & 
+        &
         & 
         & 
         & 
         & 
         & 
         & 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        II. 
-        &\x
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
+        &
+        &
         & 
         \\
         \hline
-        III. 
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item . 
+        \end{enumerate}
         &\x 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        \\
-        \hline
-        IV. 
         &\x
-        & 
-        & 
-        & 
+        &
+        &
         & 
         & 
         & 
@@ -711,14 +560,16 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
         & 
         \\
         \hline
-        V. 
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item .
+        \end{enumerate}
         &\x 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
+        &\x
+        &
+        &
+        &
+        &
+        &
         & 
         & 
         & 
@@ -726,61 +577,188 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
         & 
         \\
         \hline
-        VI. 
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item .
+        \end{enumerate}
+        & 
         &\x 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
-        & 
+        &\x
+        &\x
+        &
+        &
+        &
+        &
         & 
         & 
         & 
         & 
         \\
         \hline
-        XI. Lessons learned
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item . 
+        \end{enumerate}
+        & 
+        & 
+        &\x 
+        &\x
+        &\x
+        &\x
         &
         &
         &
         &
+        &  
+        &
+        \\
+        \hline
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item . 
+        \end{enumerate}
+        & 
+        & 
+        & 
+        &
+        &\x 
+        &\x
         &
         &
         &
         &
+        & 
         &
+        \\
+        \hline
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item .
+        \end{enumerate}
+        & 
+        & 
+        & 
+        &\x 
+        &\x
+        &\x 
+        &\x 
+        &\x
+        &
+        &
+        &
+        &
+        \\
+        \hline
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item . 
+        \end{enumerate}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        &\x
+        &\x
+        &\x 
+        &
+        &
+        &
+        \\
+        \hline
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item . 
+        \end{enumerate}
+        & 
+        & 
+        & 
+        & 
+        & 
+        &\x
+        &\x
+        &\x
+        &\x 
+        &\x
+        &
+        &
+        \\
+        \hline
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item . 
+        \end{enumerate}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        &\x 
+        &\x
+        &\x 
+        &\x
+        &
+        &
+        \\
+        \hline
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item .
+        \end{enumerate}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        &
+        & 
+        &\x
+        &\x
+        &
+        \\
+        \hline
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item Lessons learned
+        \end{enumerate}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
         &
         &\x
         &\x
         \\
         \hline
-        XII. Future work
-        &
-        &
-        &
-        &
-        &
-        &
-        &
-        &
-        &
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item Future work  
+        \end{enumerate}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
         &
         &\x
         &\x
         \\
         \hline
-        XIII. Reprod. \& validation
-        &
-        &
-        &
-        &
-        &
-        &
-        &
-        &
-        &
+        \begin{enumerate}[resume=task,topsep=0pt,itemsep=1.5ex,partopsep=1ex,parsep=-1ex,label=\Roman*.,leftmargin=*,before=\vspace*{-0.75\baselineskip}]
+            \item\acs{rv}
+        \end{enumerate}
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
+        & 
         &
         &\x
         &\x
@@ -789,47 +767,53 @@ We request a total of \$X,XXX,XXX for this project for a timeframe of N years.
 \end{longtable}
 
 
+%%%%%%% citations
+%
+%%% make sure $BIBREF contains the path to each bib file in .bashrc
+%
+\part*{References}
+    \small
+    \bibliographystyle{neup}
+    \setlength{\bibhang}{0pt}
+    \bibliography{
+}
+%
+%%%%%%% 
 
-%\newpage
+\begin{appendices}
 
 
-%\begin{appendices}
+    \renewcommand{\thesection}{\Roman{section}}
+    \titleformat{\section}{\normalfont\normalsize\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+%    \pagenumbering{gobble}
+%    \pagenumbering{arabic}
 
 
-%    \renewcommand{\thesection}{\Roman{section}}
-%    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
-
-
+%    \normalsize
 %    \section{Acronyms}
 %    \printnoidxglossary[title={}]
 
 
-%    \section{Title}\label{app-}
+\end{appendices}
 
 
-%\end{appendices}
+%\begin{wrapfigure}{r}{0.45\textwidth}
+%    \includegraphics[width=0.43\textwidth]{hazop.png}
+%    \captionsetup{justification=centering,belowskip=5pt}
+%    \caption{\acs{haz} flowchart.}
+%    \label{fig-hazop}
+%\end{wrapfigure}
 
 
-%remove page break if there are page limits
-%\vspace{0.5\baselineskip}
-
-
-\part*{References}
-\bibliographystyle{nsf}
-%\bibliographystyle{neup}
-\setlength{\bibhang}{0pt}
-\bibliography{}
-
-
-%%%%%%% wrap figure around text
-%move to wherever in the text
+%wrap figure around text
+%move to wherever in the text 
 %{l} fixes it on the left margin
+%{L} floats
 %\begin{wrapfigure}{l}{0.x\textwidth}
-%        \includegraphics[width=0.(x-2)\textwidth]{filename.ext}
+%       \includegraphics[width=0.(x-2)\textwidth]{}
 %    \caption{}
 %    \label{fig-}
 %\end{wrapfigure}
-%%%%%%%
 
 
 \end{document}

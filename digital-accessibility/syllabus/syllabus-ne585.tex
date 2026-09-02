@@ -30,14 +30,15 @@
 
 
 %%%%% enable tagging for accessibility
-\RequirePackage{pdfmanagement-testphase}
 \DocumentMetadata{
     tagging=on,
+    check-tagging-status,
     pdfversion=2.0,
     pdfstandard=ua-2,
     lang=en-US,
     debug={log=all},
     testphase={latest,tagpdf},
+    uncompress,
     tagging-setup={math/setup={mathml-AF,mathml-SE}}
 }
 \tagpdfsetup{math/alt/use}

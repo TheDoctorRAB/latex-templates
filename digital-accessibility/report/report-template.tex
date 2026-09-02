@@ -3,6 +3,10 @@
 %%%%%
 %
 %%%%%
+%standard report format for journal papers
+%%%%%
+%
+%%%%%
 %PDF tagging accessible file
 %compile with pdflatex
 %run $show-pdf-tags --xml filename.pdf
@@ -30,9 +34,9 @@
 
 
 %%%%% enable tagging for accessibility
-\RequirePackage{pdfmanagement-testphase}
 \DocumentMetadata{
     tagging=on,
+    check-tagging-status,
     pdfversion=2.0,
     pdfstandard=ua-2,
     lang=en-US,
@@ -45,7 +49,7 @@
 
 
 %%%%% general 
-\documentclass[11pt,letterpaper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
 \usepackage[pagewise]{lineno} %linenumbering restarts each page
 %\usepackage[running]{lineno} %linenumbering continuous
@@ -96,11 +100,11 @@
     linkcolor=black,
     citecolor=black,
     urlcolor=blue,
-    pdftitle={Syllabus},
+    pdftitle={Report},
     pdfauthor={R. A. Borrelli},
-    pdfkeywords={syllabus},
+    pdfkeywords={report},
     pdflanguage={en-US},
-    pdfsubject={syllabus},
+    pdfsubject={report},
     pdfdisplaydoctitle=true 
 } 
 \usepackage[capitalise]{cleveref} %must be loaded after hyperref
@@ -291,48 +295,262 @@
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize }
-\chead{\scriptsize }
-\rhead{\scriptsize }
+\lhead{\scriptsize NE585 -- Nuclear fuel cycles}
+\chead{\scriptsize \textit{Topic}}
+\rhead{\scriptsize \today}
+\lfoot{\scriptsize Name}
 \rfoot{\thepage}
 %%%%%
 
 
 %%%%% acronyms
 \input{$ACRONYM/acronyms}
-%%%%%
-
-%%%%% spacing
-%\onehalfspacing %linespacing
-%\setstretch{1.05} %linespacing
-%\spacing{1.25} %equivalent to 1.5 line spacing in Word
-%%%%%
-
-
-%%%%% linenumbering
-%\linenumbers %toggle line numbers
-%\modulolinenumbers[5] %line numbering interval
+%\input{../acronyms/acronyms}
 %%%%%
 
 
 \begin{document}
 
 
+\begin{titlepage}
+    \title{Title}
+    \author{
+        Name
+        \\ \\
+        University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
+        Department of Nuclear Engineering and Industrial Management
+        \\ \\ \\
+        email
+    }
+\clearpage % not have page number on title page
+\maketitle
+\vspace*{\fill}
+\begin{flushright}{
+        \noindent Number of pages - \pageref{LastPage} \\
+        \noindent Number of tables - \totaltables \\
+        \noindent Number of figures - \totalfigures 
+}
+\end{flushright}
+\thispagestyle{empty} % start with page number 1 on second page
+\end{titlepage}
+
+
+\thispagestyle{empty}
+
+
+%%%%% spacing
+\onehalfspacing %linespacing
+%\setstretch{1.05} %linespacing
+%\spacing{1.25} %equivalent to 1.5 line spacing in Word
+%%%%%
+
+
+%%%%% linenumbering
+\linenumbers %toggle line numbers
+\modulolinenumbers[5] %line numbering interval
+%%%%%
+
+
+\section*{Executive Summary} \label{exec-summ}
+One page
+
+
 \newpage
 
 
-%\bibliographystyle{nsf}
-%\setlength{\bibhang}{0pt}
-%\bibliography{references}
+\thispagestyle{fancy}
+\setcounter{page}{1}
+
+
+\section{Introduction} \label{sec-introduction}
+Expand on the white paper in this section to introduce the project.
+
+\subsection{Motivation}
+
+\subsection{Goals}
 
 
 \newpage
+
+
+\section{Background} \label{sec-background}
+Give a good technical overview of your topic with literature references.
+
+
+\newpage
+
+
+\section{Process model} \label{sec-process-model}
+`Derive' the process model. Include all the necessary data needed. Provide diagrams, etc.
+
+Be as technical as possible, and include a solid qualitative analysis. Include and justify any assumptions.
+
+
+\newpage
+
+
+\section{\acs{mcp} model} \label{sec-mcnp}
+Provide the \acs{mcp} model screenshot the configuration in the visual editor. Explain what you are modeling and why it is important. Include the input file in an appendix.
+
+
+\newpage
+
+
+\section{Results and discussion} \label{sec-results-discussion}
+Present and analyze results.
+
+
+\newpage
+
+
+\section{Cross cutting discussions} \label{sec-cross-cutting}
+Briefly discuss cross cutting issues related to the project.
+
+
+\newpage
+
+
+\section{Future work} \label{sec-future-work}
+Outside the scope of the project, what additional work could be done using the existing model? What enhancements can be made to the model and for what purpose(s)?
+
+
+\newpage
+
+
+\section{Lessons learned} \label{sec-lessons}
+What you personally learned over the course of the project
+
+
+\newpage
+
+
+\section{Summary remarks} \label{sec-summary}
+Summarize. 
+
+Major results and implications include - 
+\begin{itemize}[begin-vspace=0ex,item-vspace=-0.5ex,begin-extra-vspace=1ex,para-vspace=1ex,left-margin=2.25ex,item-indent=0ex]
+    \item
+    \item
+    \item
+\end{itemize}
+
+
+\newpage
+
+
+%%%%% header and footer
+\pagestyle{fancyplain}
+\fancyhf{} %clear header and footer 
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+\rfoot{\fancyplain{}{\thepage}}
+\nolinenumbers
+%%%%%
+
+
+\section{Acknowledgements}
+
+
+\newpage
+
+
+%%%%%%% citations
+%
+%%% make sure $BIBREF contains the path to each bib file in .bashrc
+%%% make sure Overleaf has the latexmkrc pointing to where the bib and bst are located
+%
+\bibliographystyle{nsf}
+\setlength{\bibhang}{0pt}
+\bibliography{
+}
+%
+%%%%%%%
+
+
+\newpage
+
+
+\section{Tables}
+
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables%
+}
+
+\newpage
+
+
+%\setlength{\arrayrulewidth}{0.3mm}
+%\begin{longtable}{|l|c|c|}
+%    \caption{Gas processing constraints}
+%    \label{tab-gas-processing}
+%    \\
+%    \hline
+%    \textbf{Constraint}
+%    &\textbf{Regular grade}
+%    &\textbf{Premium grade}
+%    \\
+%    \hline
+%    Raw gas
+%    & 7 m\textsuperscript{3}/ton
+%    & 11 m\textsuperscript{3}/ton
+%    \\
+%    \hline
+%    Production time
+%    & 10 h/ton
+%    & 8 h/ton
+%    \\
+%    \hline
+%    Storage
+%    & 9 tons
+%    & 6 tons
+%    \\
+%    \hline
+%    Profit
+%    & \$150/ton
+%    & \$175/ton
+%    \\
+%    \hline
+%\end{longtable}
+
+
+\newpage
+
+
+\section{Figures}
+
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures%
+}
+
+
+\newpage
+
+
+%\begin{figure}[h!]
+%    \centering
+%    \includegraphic[width=0.X\textwidth]{.png}
+%    \caption[short]{}
+%    \label{fig-label-name}
+%\end{figure}
+
+%\newpage
 
 
 \begin{appendices}
 
 
+%%%%% formatting
     \renewcommand{\thesection}{\Roman{section}}
+%%%%%
+
+
+    \section{\acs{mcp} input decks} \label{app-mcnp}
+
+
+\newpage
 
 
     \section{Acronyms}
