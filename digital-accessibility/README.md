@@ -8,7 +8,6 @@ Remove \RequiredPackage{pdfmanagement} or \RequiredPackage{pdfmanagement-testpha
 Compile with pdflatex.
 
 show-pdf-tags --xml filename.pdf to see the tagging or exiftool filename.pdf
-
 Latex has to be less customized to meet compliance.
 
 Do not even load titlsec,titletoc.  
