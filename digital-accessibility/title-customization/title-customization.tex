@@ -177,49 +177,73 @@
 % \titleformat{\part}{\normalfont\normalsize\bfseries\filcenter}{\MakeUppercase{\parttitlename}\thepart}{}{\MakeUppercase}[]
 % \titlespacing*\part{0pt}{0.50\baselineskip}{0.25\baselineskip}
 %
-\makeatletter
-\renewcommand\part{%
-    \@startsection{part}{0}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-    {\centering\normalsize\normalfont\bfseries\MakeUppercase}}%
-\makeatother
+%\makeatletter
+%\renewcommand\part{%
+%    \@startsection{part}{0}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
+%    {\centering\normalsize\normalfont\bfseries\MakeUppercase}}%
+%\makeatother
 %
 %%%
 %
 % \titleformat{\section}[runin]{\normalfont\normalsize\bfseries}{\thesection.}{0.5em}{}[]
 % \titlespacing*\section{0pt}{0.50\baselineskip}{0.50\baselineskip}
 %
-\renewcommand{\thesection}{\arabic{section}.\hspace{-0.75em}}
-\makeatletter
-\renewcommand\section{%
-    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{-0.50\baselineskip}
-    {\normalsize\normalfont\bfseries}}%
-\makeatother
+%\renewcommand{\thesection}{\arabic{section}.\hspace{-0.75em}}
+%\makeatletter
+%\renewcommand\section{%
+%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{-0.50\baselineskip}
+%    {\normalsize\normalfont\bfseries}}%
+%\makeatother
 %
 %%%
 %
 % \titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesection\alph{subsection}.}{0.25em}{}[]
 % \titlespacing*\subsection{0pt}{0.40\baselineskip}{0.50\baselineskip}
 %
-\renewcommand{\thesubsection}{\arabic{section}\alph{subsection}.\hspace{-0.75em}}
-\makeatletter
-\renewcommand\subsection{%
-    \@startsection{subsection}{1}{\z@ }{0\baselineskip}{-0.50\baselineskip}
-    {\normalsize\normalfont\bfseries}}%
-\makeatother
+%\renewcommand{\thesubsection}{\arabic{section}\alph{subsection}.\hspace{-0.75em}}
+%\makeatletter
+%\renewcommand\subsection{%
+%    \@startsection{subsection}{1}{\z@ }{0\baselineskip}{-0.50\baselineskip}
+%    {\normalsize\normalfont\bfseries}}%
+%\makeatother
 %
 %%%
 %
 % \titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries}{\roman{subsubsection}.}{0.25em}{}[]
 % \titlespacing*\subsubsection{9pt}{0.25\baselineskip}{0.50\baselineskip}
 %
-\renewcommand{\thesubsubsection}{\arabic{section}\alph{subsection}(\roman{subsubsection}).\hspace{-0.75em}}
+%\renewcommand{\thesubsubsection}{\arabic{section}\alph{subsection}(\roman{subsubsection}).\hspace{-0.75em}}
+%\makeatletter
+%\renewcommand\subsubsection{%
+%    \@startsection{subsubsection}{1}{\z@ }{0\baselineskip}{-0.50\baselineskip}
+%    {\normalsize\normalfont\bfseries}}%
+%\makeatother
+%
+%%%
+%
+% \titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
+% \titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
+%
 \makeatletter
-\renewcommand\subsubsection{%
-    \@startsection{subsubsection}{1}{\z@ }{0\baselineskip}{-0.50\baselineskip}
+\renewcommand\paragraph{%
+    \@startsection{paragraph}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
     {\normalsize\normalfont\bfseries}}%
 \makeatother
 %
 %%%
+%
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.5em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
+%
+\renewcommand{\thesubparagraph}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.\arabic{paragraph}.\arabic{subparagraph}.\hspace{-0.75em}}
+\makeatletter
+\renewcommand\subparagraph{%
+    \@startsection{subparagraph}{1}{\z@ }{0\baselineskip}{-0.50\baselineskip}
+    {\normalsize\normalfont\itshape}}%
+\makeatother
+%
+%%%
+%
 %%%%%
 
 
@@ -378,6 +402,12 @@ Test
 Test
 
 \subsubsection{Goals}
+Test
+
+\paragraph{Methods}
+Test
+
+\subparagraph{Data}
 Test
 
 
